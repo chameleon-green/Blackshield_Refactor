@@ -6,7 +6,7 @@
     "path": "folders/Scripts/Struct Initializers.yy",
   },
   "resourceVersion": "1.0",
-  "name": "WeaponStructs",
+  "name": "AmmoStructs",
   "tags": [],
   "resourceType": "GMScript",
 }

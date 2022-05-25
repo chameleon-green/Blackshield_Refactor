@@ -2,8 +2,8 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Scripts",
-    "path": "folders/Scripts.yy",
+    "name": "Player Related",
+    "path": "folders/Scripts/Player Related.yy",
   },
   "resourceVersion": "1.0",
   "name": "PlayerMovement",

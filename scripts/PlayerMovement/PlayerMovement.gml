@@ -11,99 +11,106 @@ function PlayerMovement() {
 	var backwalk = "backwalk_rifle";
 	//if(LegsCrippled = 1) {walk = "walk_crawl"};
 	
-	var D = keyboard_check(ord("D")) and !keyboard_check(ord("A"));
-	var A = keyboard_check(ord("A")) and !keyboard_check(ord("D"));
+	var W = keyboard_check_pressed(ord("W")); 
+	var D = keyboard_check(ord("D")); 
+	var A = keyboard_check(ord("A"));
 	var S = keyboard_check(ord("S"));
-	var Shift = keyboard_check(vk_shift);
+	var Shift = keyboard_check(vk_shift) * CanSprint;
+	
+	col_bot = place_meeting(x,y+1,o_platform);
 	
 //++++++++++++++++++++++++++++++++++++ BASIC MOVEMENT +++++++++++++++++++++++++++++++++++++++++++++++
 
-	if(CanMove > 0) {
-		
-		var face_left = mouse_x < x;
-		var face_right = mouse_x > x;
-		var mouse_facing = sign(mouse_x - x);
-		image_xscale = mouse_facing;
-		
-		var MSpeed = MoveSpeed;
-		hspeed = 0; walking = 0; crouching = 0; sprinting = 0; crawling = 0;
-
-		//----------------move right
-		if (D and !col_right) {
-					
-			if(face_left) {
-				MSpeed = MoveSpeed/4;
-				hspeed = MSpeed; sprinting = 0; walking = 1;
-				if (col_bot) {skeleton_anim_set_step(backwalk,2)};
-			};
-			
-			if(face_right) {
-				if(Shift) {MSpeed = MoveSpeed*1.1; var Anim = sprint} else{MSpeed = MoveSpeed/2; var Anim = walk};
-				hspeed = MSpeed; sprinting = Shift; walking = !sprinting;
-				if (col_bot) {skeleton_anim_set_step(Anim,2)};
-			};
-		};
-		
-		//-----------------------move left
-		if (A and !col_left) {
-					
-			if(face_right) {
-				MSpeed = MoveSpeed/4;
-				hspeed = -MSpeed; sprinting = 0; walking = 1;
-				if (col_bot) {skeleton_anim_set_step(backwalk,2)};
-			};
-			
-			if(face_left) {
-				if(Shift) {MSpeed = MoveSpeed*1.1; var Anim = sprint} else{MSpeed = MoveSpeed/2; var Anim = walk};
-				hspeed = -MSpeed; sprinting = Shift; walking = !sprinting;
-				if (col_bot) {skeleton_anim_set_step(Anim,2)};
-			};
-		};
-		
-	};//---------canmove end bracket
-		
-
-		/*	
-
-	else if(hspeed = 0 and !col_bot or !col_bot and !stunned) {
-			air_timer += 1 //adds a slight delay to the air idle animation transition, was causing weird stuff when climbing slopes
-			if(air_timer >= 10) {
-				skeleton_animation_clear(2)
-				skeleton_anim_set_step("idle_air",2)
-			}		
-		}
-
-	//initiate crouching anim when we press S
-	if S {skeleton_animation_set_ext("crouch", 2) crouching = 1}
-
-	*/
-	//--------------sets idles
+if(CanMove) {
 	
-	if (hspeed = 0 and col_bot) {
-		skeleton_animation_clear(2)
+	hspd = 0;
+	var face_left = mouse_x < x;
+	var face_right = mouse_x > x;
+	var mouse_facing = sign((mouse_x*1.01) - x); //prevents our mouse_facing from equaling 0, hiding the player
+	image_xscale = mouse_facing;
+
+	var move = (D - A) * MoveSpeed;
+	
+	
+	if(D) {
+		if(face_left) {hspd = (move*CanMove)*0.5; if(col_bot) {skeleton_anim_set_step(backwalk,2)} };
+		if(face_right) {
+			if(Shift) {hspd = (move*CanMove)*1.5; if(col_bot) {skeleton_anim_set_step(sprint,2)} };
+			else {hspd = move*CanMove; if(col_bot) {skeleton_anim_set_step(walk,2)} };
+		};		
+	};
+	
+	if(A) {
+		if(face_right) {hspd = (move*CanMove)*0.5; if(col_bot) {skeleton_anim_set_step(backwalk,2)} };
+		if(face_left) {
+			if(Shift) {hspd = (move*CanMove)*1.5; if(col_bot) {skeleton_anim_set_step(sprint,2)} };
+			else {hspd = move*CanMove; if(col_bot) {skeleton_anim_set_step(walk,2)} };
+		};	
+	};
+	
+//--------------------------------------------- Vertical collisions and gravity --------------------
+
+    if (place_free(x,y+sign(vspd))) {
+        vspd += 1
+    };
+
+    if (place_meeting(x, y+vspd, o_platform)) {
+        vspd = 0;
+		move_contact_solid(270,1)
+     };
+
+
+	if place_meeting(x+hspd,y,o_platform)
+	{
+		var MaxGrade = 1;
+		var climb = 0; //our variable used to attempt to find a clear position to ascend to
+			while ( place_meeting(x+hspd,y-climb,o_platform) && (climb <= abs(MaxGrade*hspd)) ) {climb += 1}; //attempts to find a clear position to ascend to, the maximum height of which is determined by our speed and maxgrade value
+			if (place_meeting(x+hspd,y-climb,o_platform)) { //if we fail to find a position in range of our maximum climb, the player moves forward horizontally until it hits the wall
+					hspd = 0
+			};
+			else { //if we succeed in finding a clear position, move to it
+				y -= climb
+			};
+	};
+	x += hspd;
+
+	// Downward slopes
+	if (!place_meeting(x,y,o_platform) && vspd >= 0 && place_meeting(x,y+2+abs(hspd),o_platform)) {
+		while(!place_meeting(x,y+1,o_platform)) {y += 1;}
+	};
+
+//------------------------------------- Jumping and affect of gravity/climb --------------------------------------
+
+	if(W and place_meeting(x, y+5, o_platform)) {vspd = -20 * (1+(Shift/3))};
+
+	y += vspd; //change our Y by effects of gravity and climb values
+
+}; //canmove check bracket
+
+
+
+
+
+
+
+	
+	if (hspd = 0) {
+		{skeleton_animation_clear(2)}
+	};
+	
+	if(col_bot = 0) {
+			skeleton_animation_clear(2)
+			skeleton_anim_set_step("idle_air",2)
 	};
 	
 	if (wpn_active.weapon_slot = "primary") {
 		skeleton_anim_set_step(ranged_animgrp.idle,1)
 	};
+	
+	//initiate crouching anim when we press S
+	if (S) {skeleton_animation_set_ext("crouch", 2) crouching = 1}
 
 /*		
-//+++++++++++++++++++++++++++++++++++++++++++++++++++ gravity ++++++++++++++++++++++++++++++++++++++++++++++++
-
-	//moved to begin step event
-
-//++++++++++++++++++++++++++++++++++++++++++++++++ SLOPES ++++++++++++++++++++++++++++++++++++++++++++++
-
-//SEE BEGIN STEP EVENT FOR GRAVITY AND OTHER SLOPE STUFF
-
-  if(col_slope) {
-	
-	var Grade = abs(col_slope.image_yscale)/abs(col_slope.image_xscale)//determines slope of slope
-	Climb = ceil(abs(hspeed))*ceil(Grade*1.6) + grav*2 //calculates climb amount via slope*1.6 and gravity*2 and movespeed
-	y -= Climb 
-
-	//mask_index = 1
-  } 
 	 
  //++++++++++++++++++++++++++++++++++++++++++++++++ JUMPING ++++++++++++++++++++++++++++++++
 
