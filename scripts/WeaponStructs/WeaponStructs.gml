@@ -8,7 +8,7 @@ Boltgun_Phobos = { //---------------------------- PHOBOS BOLTER
 		ROF : 400, //rounds per minute
 		range : 1000, //effective range before gravity takes hold, rounds can mod this
 		capacity : 30,		
-		spread : 4,
+		spread : 0.5,
 		muzzle_velocity : 30,
 		
 		//technical weapon stats
@@ -34,7 +34,7 @@ Boltgun_Phobos = { //---------------------------- PHOBOS BOLTER
 		flash_color2 : c_white, //flash core color
 		animation_group : anmgrp_boltgun_phobos,
 		sound_group : sndgrp_boltgun1,
-		angular_offset : 22, //angular offset for animation related stuff
+		angular_offset : 90, //angular offset for animation related stuff
 		vertical_offset : -150 // Y axis offset for crosshair stuff		
 	};
 	//ds_list_add(ListComWP,pistol_bolt_tigrus[27]+".pistol_bolt_tigrus") //fix this later

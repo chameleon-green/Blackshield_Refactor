@@ -1,5 +1,3 @@
 draw_self();
 
-var ranged_animgrp = wpn_active.animation_group;
-
-draw_text(x,y,hspd);
+draw_text(x,bbox_top-50,spread_angle);
