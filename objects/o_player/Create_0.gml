@@ -1,5 +1,7 @@
 AnimationsFlashesSoundGroups();
+AmmoStructs();
 WeaponStructs();
+
 
 
 //----------------------------------- MOVEMENT VARIABLES -----------------------------------
@@ -38,7 +40,12 @@ skeleton_attachment_set("slot_gun magazine",wpn_active.magazine_attachment);
 
 selector = wpn_active.firemodes[0]; //selector switch setting
 cycle = 1; //weapon ROF cycle check
-spread_angle = wpn_active.spread;
+spread_angle = wpn_active.spread; //accumulating spread
+instant_spread = 0; //spread to add to animations when firing
+
+flash_x = 0;
+flash_y = 0;
+flash_angle = 0;
 
 //---------------------------------- INSTANCE CREATION --------------------------------
 

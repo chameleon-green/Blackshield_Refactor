@@ -24,6 +24,7 @@ function PlayerMovement() {
 if(CanMove) {
 	
 	hspd = 0;
+	sprinting = 0;
 	var face_left = mouse_x < x;
 	var face_right = mouse_x > x;
 	var mouse_facing = sign((mouse_x*1.01) - x); //prevents our mouse_facing from equaling 0, hiding the player
@@ -31,11 +32,10 @@ if(CanMove) {
 
 	var move = (D - A) * MoveSpeed;
 	
-	
 	if(D) {
 		if(face_left) {hspd = (move*CanMove)*0.5; if(col_bot) {skeleton_anim_set_step(backwalk,2)} };
 		if(face_right) {
-			if(Shift) {hspd = (move*CanMove)*1.5; if(col_bot) {skeleton_anim_set_step(sprint,2)} };
+			if(Shift) {hspd = (move*CanMove)*1.5; if(col_bot) {skeleton_anim_set_step(sprint,2); sprinting = 1} };
 			else {hspd = move*CanMove; if(col_bot) {skeleton_anim_set_step(walk,2)} };
 		};		
 	};
@@ -43,7 +43,7 @@ if(CanMove) {
 	if(A) {
 		if(face_right) {hspd = (move*CanMove)*0.5; if(col_bot) {skeleton_anim_set_step(backwalk,2)} };
 		if(face_left) {
-			if(Shift) {hspd = (move*CanMove)*1.5; if(col_bot) {skeleton_anim_set_step(sprint,2)} };
+			if(Shift) {hspd = (move*CanMove)*1.5; if(col_bot) {skeleton_anim_set_step(sprint,2); sprinting = 1} };
 			else {hspd = move*CanMove; if(col_bot) {skeleton_anim_set_step(walk,2)} };
 		};	
 	};
@@ -56,7 +56,8 @@ if(CanMove) {
 
     if (place_meeting(x, y+vspd, o_platform)) {
         vspd = 0;
-		move_contact_solid(270,1)
+		move_contact_solid(270,10)
+		move_outside_solid(90,1)
      };
 
 

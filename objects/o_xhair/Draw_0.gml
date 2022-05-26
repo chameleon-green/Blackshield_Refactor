@@ -1,14 +1,16 @@
 
-x = mouse_x;
+x = mouse_x; 
 y = mouse_y;
 
-image_xscale = 1;
-image_yscale = 1;
+if(!owner.sprinting) {
+var dist = point_distance(x,y,owner.flash_x,owner.flash_y);
+x = owner.flash_x + lengthdir_x(dist,-owner.flash_angle);
+y = owner.flash_y + lengthdir_y(dist,-owner.flash_angle);
+};
 
 
 var Owner_Distance = point_distance(x,y,owner.x,owner.y);
 var Owner_Spread = degtorad(clamp(owner.spread_angle,0,89));
-
 
 var HairOffset = clamp(tan(Owner_Spread)*Owner_Distance,6,130);
 var HairScale = clamp(HairOffset/20,1,10);

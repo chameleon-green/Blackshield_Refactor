@@ -1,5 +1,3 @@
-
-
 /*
 if(ownercheck = 1 && owner != -1) {
 	ownercheck = 0
@@ -10,4 +8,4 @@ if(ownercheck = 1 && owner != -1) {
 	};
 	else {instance_destroy(self)}	
 };
-else {instance_destroy(self)};
+//else {instance_destroy(self)};
