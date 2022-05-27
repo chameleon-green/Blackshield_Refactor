@@ -34,6 +34,7 @@ col_left = 0;
 //----------------------------------- EQUIPMENT VARIABLES ----------------------------------
 
 wpn_active = Boltgun_Phobos;
+ammo_active = wpn_active.default_ammo_type;
 skeleton_animation_set(wpn_active.animation_group.idle);
 skeleton_attachment_set("slot_gun",wpn_active.weapon_attachment);
 skeleton_attachment_set("slot_gun magazine",wpn_active.magazine_attachment);
@@ -46,6 +47,8 @@ instant_spread = 0; //spread to add to animations when firing
 flash_x = 0;
 flash_y = 0;
 flash_angle = 0;
+
+IFF = "player:"+string(id); 
 
 //---------------------------------- INSTANCE CREATION --------------------------------
 

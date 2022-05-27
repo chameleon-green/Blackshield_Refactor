@@ -1,5 +1,5 @@
 
-
+if(CanShoot) {
 	var torso_map = ds_map_create();
 	var head_map = ds_map_create();
 	var front_bicep_map = ds_map_create();
@@ -25,8 +25,8 @@
 	torsoX = ds_map_find_value(torso_map, "worldX");
 	torsoY = ds_map_find_value(torso_map, "worldY");
 	
-	delta_x2 = mouse_x - torsoX; //actual delta
-	delta_y2 = mouse_y - torsoY; //actual delta
+	delta_x2 = mouse_x - x//torsoX; //actual delta
+	delta_y2 = mouse_y - y//torsoY; //actual delta
 	
 	AimAngle2 = -radtodeg(arctan2(delta_y2,delta_x2));
 	AimAngleCorrected = (AimAngle2*image_xscale) + (90*image_xscale) + instant_spread;
@@ -46,3 +46,4 @@
 	ds_map_destroy(rear_bicep_map);
 	ds_map_destroy(rear_forearm_map);
 	ds_map_destroy(flash_map);
+};

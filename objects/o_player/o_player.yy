@@ -5,6 +5,7 @@
   },
   "solid": false,
   "visible": true,
+  "managed": true,
   "spriteMaskId": {
     "name": "spr_collision_mask_human",
     "path": "sprites/spr_collision_mask_human/spr_collision_mask_human.yy",

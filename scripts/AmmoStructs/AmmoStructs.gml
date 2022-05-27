@@ -19,7 +19,8 @@ function AmmoStructs() {
 		rarity : "150.common",	
 		
 		projectile_color : make_colour_rgb(255, 230, 90),
-		//flash_color : make_color_rgb(), //color override for flash, if relevant
+		projectile_color_core : c_white,
+		flash_color : "none", //color override for flash, if relevant
 		casing_type : 0
 		
 	};

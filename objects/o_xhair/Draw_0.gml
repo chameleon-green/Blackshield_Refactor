@@ -3,9 +3,12 @@ x = mouse_x;
 y = mouse_y;
 
 if(!owner.sprinting) {
-var dist = point_distance(x,y,owner.flash_x,owner.flash_y);
-x = owner.flash_x + lengthdir_x(dist,-owner.flash_angle);
-y = owner.flash_y + lengthdir_y(dist,-owner.flash_angle);
+//var dist = point_distance(x,y,owner.flash_x,owner.flash_y);
+//x = owner.flash_x + lengthdir_x(dist,-owner.flash_angle);
+//y = owner.flash_y + lengthdir_y(dist,-owner.flash_angle);
+
+x = mouse_x-(owner.x - owner.flash_x)
+y = mouse_y-(owner.y - owner.flash_y)
 };
 
 

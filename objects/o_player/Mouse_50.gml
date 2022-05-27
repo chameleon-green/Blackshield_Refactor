@@ -4,19 +4,23 @@ if(cycle and !sprinting) {
 
 cycle = 0;
 
-var RPM = wpn_active.ROF;
+var RPM = wpn_active.ROF * ammo_active.ROF_mod;
 var time = ( 1000/(RPM/60) )/16.7;
 alarm[0] = time;
 alarm[1] = 2;
 
-//instant_spread = choose(-1,0,1)//(spread_angle/irandom_range(-10,10)+6);
-
-
 var Max_Spread = wpn_active.spread*10;
+var Spread_Divisor = irandom_range(1,5) * choose(-1,1)
+if(spread_angle < Max_Spread) {spread_angle += wpn_active.spread};
+instant_spread = (spread_angle/Spread_Divisor);
 
-if(spread_angle < Max_Spread) { 
-spread_angle += wpn_active.spread
-};
+instance_create_depth(flash_x,flash_y,depth+1,o_bullet,{
+		type : other.ammo_active, 
+		IFF : other.IFF,
+		damage : other.wpn_active.damage,
+		direction : other.AimAngle2 + other.instant_spread,
+		speed : other.wpn_active.muzzle_velocity * other.ammo_active.velocity_mod
+		});
 
 skeleton_animation_set_ext(wpn_active.animation_group.fire,3)
 
