@@ -63,7 +63,7 @@ if(CanMove) {
 
 	if place_meeting(x+hspd,y,o_platform)
 	{
-		var MaxGrade = 1;
+		var MaxGrade = 0.5;
 		var climb = 0; //our variable used to attempt to find a clear position to ascend to
 			while ( place_meeting(x+hspd,y-climb,o_platform) && (climb <= abs(MaxGrade*hspd)) ) {climb += 1}; //attempts to find a clear position to ascend to, the maximum height of which is determined by our speed and maxgrade value
 			if (place_meeting(x+hspd,y-climb,o_platform)) { //if we fail to find a position in range of our maximum climb, the player moves forward horizontally until it hits the wall

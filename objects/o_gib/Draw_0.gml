@@ -7,7 +7,6 @@ var y2 = y1 + camera_get_view_height(cam);
 if( !point_in_rectangle( x, y, x1, y1, x2, y2)) {visible = 0;}
 
 
-image_angle = direction;
-draw_self();
-draw_sprite_ext(sp_bullet,1,x,y,1,1,direction,type.projectile_color[1],1);
-//draw_text(x,y-10,IFF);
+
+
+draw_sprite_ext(sprite_index,image_index,x,y,1,1,angle,c_white,1);

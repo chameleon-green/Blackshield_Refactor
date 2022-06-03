@@ -5,7 +5,7 @@ Boltgun_Phobos = { //---------------------------- PHOBOS BOLTER
 	
 		//combat stats
 		damage : 20,
-		ROF : 3400, //rounds per minute
+		ROF : 400, //rounds per minute
 		range : 1000, //effective range before gravity takes hold, rounds can mod this
 		capacity : 30,		
 		spread : 0.25,
@@ -30,8 +30,7 @@ Boltgun_Phobos = { //---------------------------- PHOBOS BOLTER
 		weapon_attachment : "bolter_phobos", //spine attachment name
 		magazine_attachment : "mag_sickle1", //spine attachment name
 		flash_type : flash_med_normal,
-		flash_color1 : make_colour_rgb(255, 230, 90),
-		flash_color2 : c_white, //flash core color
+		flash_color : [make_colour_rgb(255, 230, 90), c_white], 
 		animation_group : anmgrp_boltgun_phobos,
 		sound_group : sndgrp_boltgun1,
 		angular_offset : 90, //angular offset for animation related stuff

@@ -25,8 +25,27 @@ instance_create_depth(flash_x,flash_y,depth+1,o_bullet,{
 skeleton_animation_set_ext(wpn_active.animation_group.fire,3)
 
 var flash = irandom(3);
-skeleton_slot_color_set("slot_flash",wpn_active.flash_color1,1);
+
+if(ammo_active.flash_color != "none") {skeleton_slot_color_set("slot_flash",ammo_active.flash_color[0],1)};
+else {skeleton_slot_color_set("slot_flash",wpn_active.flash_color[0],1)};
+
 skeleton_attachment_set("slot_flash",wpn_active.flash_type[flash]);
 skeleton_attachment_set("slot_flash_core",wpn_active.flash_type[flash] + " core");
+
+var ejection_map = ds_map_create();
+skeleton_bone_state_get("gun_anim", ejection_map);
+var EjectX = ds_map_find_value(ejection_map, "worldX");
+var EjectY = ds_map_find_value(ejection_map, "worldY");
+var EjectAng = ds_map_find_value(ejection_map, "worldAngleX");
+
+instance_create_depth(EjectX,EjectY,depth-1,o_gib,{
+	sprite_index : other.ammo_active.casing_type[0],
+	image_index : other.ammo_active.casing_type[1],
+	hspd : -irandom_range(8,12)*other.image_xscale,
+	vspd : -random_range(3,5),
+	angspeed : irandom_range(-25,25)
+});
+
+ds_map_destroy(ejection_map);
 
 };
