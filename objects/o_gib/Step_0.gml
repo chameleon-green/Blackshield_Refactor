@@ -14,6 +14,7 @@ var col_side = place_meeting(x+(hspd*2),y,o_platform);
 x += hspd;
 y += vspd;
 angle += angspeed;
+image_angle = angle;
 
 if(vspd < 32 && !col_bot) {vspd += 1};
 
@@ -23,6 +24,11 @@ if(col_bot) {
 	angspeed = angspeed*0.5;
 	hspd = hspd*0.6;
 	move_outside_solid(90,-1)
+	if(sound_toggle = 1){
+		sound_toggle = 0
+		var ImpactSound = audio_play_sound_at(impact_sound,x,y,0,100,100,1,0,1);
+		audio_sound_pitch(ImpactSound,impact_sound_pitch)
+	};
 };
 
 if(col_side) {

@@ -21,7 +21,8 @@ function AmmoStructs() {
 		projectile_type : [sp_bullet, 0], //sprite and subimage, if relevant
 		projectile_color : [make_colour_rgb(255, 230, 90), c_white],
 		flash_color : "none", //color override for flash, if relevant
-		casing_type : [sp_casing_small, 0] //sprite and subimage of casing
+		casing_type : [sp_casing_small, 0], //sprite and subimage of casing
+		casing_sound : [snd_shellfall_small1, 0.9] //impact sound and pitch
 		
 		
 	};

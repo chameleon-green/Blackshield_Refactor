@@ -2,8 +2,6 @@ AnimationsFlashesSoundGroups();
 AmmoStructs();
 WeaponStructs();
 
-
-
 //----------------------------------- MOVEMENT VARIABLES -----------------------------------
 
 //movement toggles
@@ -33,14 +31,20 @@ col_left = 0;
 
 //----------------------------------- EQUIPMENT VARIABLES ----------------------------------
 
+//equipment statuses
+reloading = 0;
+
 wpn_active = Boltgun_Phobos;
 ammo_active = wpn_active.default_ammo_type;
+magazine_active = wpn_active.capacity;
 skeleton_animation_set(wpn_active.animation_group.idle);
 skeleton_attachment_set("slot_gun",wpn_active.weapon_attachment);
 skeleton_attachment_set("slot_gun magazine",wpn_active.magazine_attachment);
 
-selector = wpn_active.firemodes[0]; //selector switch setting
+selector_real = 0
+selector = wpn_active.firemodes[selector_real]; //selector switch setting
 cycle = 1; //weapon ROF cycle check
+burst_count = 0; //count of rounds fired in burst, if this weapon is burstfire
 spread_angle = wpn_active.spread; //accumulating spread
 instant_spread = 0; //spread to add to animations when firing
 

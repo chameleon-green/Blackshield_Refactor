@@ -2,8 +2,8 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Scripts",
-    "path": "folders/Scripts.yy",
+    "name": "Generic",
+    "path": "folders/Scripts/Generic.yy",
   },
   "resourceVersion": "1.0",
   "name": "SkeletonStuff",

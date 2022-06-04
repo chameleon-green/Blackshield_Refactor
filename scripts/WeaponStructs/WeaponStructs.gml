@@ -1,14 +1,20 @@
+#region Find ROF Function
+function FindROF(RoundsPerMinute) {
+	var  time = ( 1000/(RoundsPerMinute/60) )/16.7;
+	return time;
+}; // find ROF end
+#endregion
 
 function WeaponStructs(){
-
+	
 Boltgun_Phobos = { //---------------------------- PHOBOS BOLTER
 	
 		//combat stats
 		damage : 20,
-		ROF : 400, //rounds per minute
+		ROF : FindROF(330), //rounds per minute
 		range : 1000, //effective range before gravity takes hold, rounds can mod this
 		capacity : 30,		
-		spread : 0.25,
+		spread : 0.3,
 		muzzle_velocity : 30,
 		
 		//technical weapon stats

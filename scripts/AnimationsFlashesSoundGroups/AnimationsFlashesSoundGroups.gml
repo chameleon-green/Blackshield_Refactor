@@ -5,9 +5,9 @@ function AnimationsFlashesSoundGroups(){
 //+++++++++++++++++++++++++++++++++++++++++++ ANIMATION GROUPS ++++++++++++++++++++++++++++++++++++++++++++++++++
 	
 	anmgrp_boltgun_phobos = {
-		idle : "idle_bolter_phobos",
-		fire : "firing_bolter_phobos",
-		reload :  "reload_rifle_phobos"	
+		idle : "Bolt Weapons/idle_bolter_phobos",
+		fire : "Bolt Weapons/firing_bolter_phobos",
+		reload : "Bolt Weapons/reload_rifle_phobos"	
 	};
 
 
@@ -21,9 +21,11 @@ function AnimationsFlashesSoundGroups(){
 //+++++++++++++++++++++++++++++++++++++++++++ SOUND GROUPS ++++++++++++++++++++++++++++++++++++++++++++++++
 
 	sndgrp_boltgun1 = {
-		fire : 1,//snd_boltgun1,
-		mag_in : 1,//snd_magin,
-		mag_out : 1,//snd_magout,
-		rack_slide : 1//snd_rackslide
+		fire : snd_bolter1,
+		mag_in : snd_magin1,
+		mag_out : snd_magout1,
+		rack_slide : snd_rackslide1,
+		empty : snd_click_empty,
+		selector : snd_selector1
 	};
 }
