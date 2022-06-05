@@ -54,6 +54,8 @@ if(CanMove) {
         vspd += 1
     };
 
+	if(W and place_meeting(x, y+5, o_platform)) {vspd = -20 * (1+(Shift/3))};
+	
     if (place_meeting(x, y+vspd, o_platform)) {
         vspd = 0;
 		move_contact_solid(270,10)
@@ -61,12 +63,12 @@ if(CanMove) {
      };
 
 
-	if place_meeting(x+hspd,y,o_platform)
+	if place_meeting(x+hspd*2,y,o_platform)
 	{
-		var MaxGrade = 1;
+		var MaxGrade = 3;
 		var climb = 0; //our variable used to attempt to find a clear position to ascend to
-			while ( place_meeting(x+hspd,y-climb,o_platform) && (climb <= abs(MaxGrade*hspd)) ) {climb += 1}; //attempts to find a clear position to ascend to, the maximum height of which is determined by our speed and maxgrade value
-			if (place_meeting(x+hspd,y-climb,o_platform)) { //if we fail to find a position in range of our maximum climb, the player moves forward horizontally until it hits the wall
+			while ( place_meeting(x+hspd*2,y-climb,o_platform) && (climb <= abs(MaxGrade*hspd)) ) {climb += 1}; //attempts to find a clear position to ascend to, the maximum height of which is determined by our speed and maxgrade value
+			if (place_meeting(x+hspd*2,y-climb,o_platform)) { //if we fail to find a position in range of our maximum climb, the player moves forward horizontally until it hits the wall
 					hspd = 0
 			};
 			else { //if we succeed in finding a clear position, move to it
@@ -74,27 +76,19 @@ if(CanMove) {
 			};
 	};
 	x += hspd;
-
+	
 	// Downward slopes
 	if (!place_meeting(x,y,o_platform) && vspd >= 0 && place_meeting(x,y+2+abs(hspd),o_platform)) {
 		while(!place_meeting(x,y+1,o_platform)) {y += 1;}
 	};
-
+	
 //------------------------------------- Jumping and affect of gravity/climb --------------------------------------
-
-	if(W and place_meeting(x, y+5, o_platform)) {vspd = -20 * (1+(Shift/3))};
 
 	y += vspd; //change our Y by effects of gravity and climb values
 
 }; //canmove check bracket
 
 
-
-
-
-
-
-	
 	if (hspd = 0) {
 		{skeleton_animation_clear(2)}
 	};

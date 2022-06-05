@@ -15,6 +15,12 @@ function AnimationsFlashesSoundGroups(){
 		fire : "Ballistic Weapons/firing_shotgun_astartes",
 		reload : ["Ballistic Weapons/reload_shotgun_astartes1","Ballistic Weapons/reload_shotgun_astartes2","Ballistic Weapons/reload_shotgun_astartes3"]
 	};
+	
+	anmgrp_flamer_astartes = {
+		idle : "Flame Weapons/idle_flamer_astartes",
+		fire : ["Flame Weapons/spinup_flamer_astartes","Flame Weapons/firing_flamer_astartes","Flame Weapons/spindown_flamer_astartes"],
+		reload : "Flame Weapons/reload_flamer_astartes"
+	}
 
 
 //+++++++++++++++++++++++++++++++++++++++++++ MUZZLE FLASH GROUPS +++++++++++++++++++++++++++++++++++++++++
@@ -36,6 +42,15 @@ function AnimationsFlashesSoundGroups(){
 	};
 	
 	sndgrp_shotgun1 = {
+		fire : snd_shotgun1,
+		mag_in : snd_shotgun_reload_single1,
+		mag_out : snd_shotgun_reload_single1,
+		rack_slide : snd_shotgun_rackslide1,
+		empty : snd_click_empty,
+		selector : snd_selector1
+	};
+	
+	sndgrp_flamer1 = {
 		fire : snd_shotgun1,
 		mag_in : snd_shotgun_reload_single1,
 		mag_out : snd_shotgun_reload_single1,

@@ -34,7 +34,7 @@ col_left = 0;
 //equipment statuses
 reloading = 0;
 
-wpn_active = Shotgun_Astartes;
+wpn_active = Flamer_Astartes;
 ammo_active = wpn_active.default_ammo_type;
 magazine_active = wpn_active.capacity;
 skeleton_animation_set(wpn_active.animation_group.idle);

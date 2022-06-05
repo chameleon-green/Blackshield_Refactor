@@ -1,6 +1,6 @@
 var event = ds_map_find_value(event_data, "name");
 
-if(event = "eject") {
+if(ammo_active.casing_type != "none" && event = "eject") {
 	var ejection_map = ds_map_create();
 	skeleton_bone_state_get("gun_anim", ejection_map);
 	var EjectX = ds_map_find_value(ejection_map, "worldX");

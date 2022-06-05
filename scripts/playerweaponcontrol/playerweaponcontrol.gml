@@ -43,11 +43,13 @@ function FireGun (){
 	//--------------------------------------------------------- visual stuff --------------------------------------
 	skeleton_animation_set_ext(wpn_active.animation_group.fire,3);
 
-	var flash = irandom(3);
-	if(ammo_active.flash_color != "none") {skeleton_slot_color_set("slot_flash",ammo_active.flash_color[0],1)};
-	else {skeleton_slot_color_set("slot_flash",wpn_active.flash_color[0],1)};
-	skeleton_attachment_set("slot_flash",wpn_active.flash_type[flash]);
-	skeleton_attachment_set("slot_flash_core",wpn_active.flash_type[flash] + " core");
+	if(wpn_active.flash_type != "none") {
+		var flash = irandom(3);
+		if(ammo_active.flash_color != "none") {skeleton_slot_color_set("slot_flash",ammo_active.flash_color[0],1)};
+		else {skeleton_slot_color_set("slot_flash",wpn_active.flash_color[0],1)};
+		skeleton_attachment_set("slot_flash",wpn_active.flash_type[flash]);
+		skeleton_attachment_set("slot_flash_core",wpn_active.flash_type[flash] + " core");
+	};
 
 	var FireSound = audio_play_sound_at(wpn_active.sound_group.fire,x,y,0,100,100,1,0,1);
 	audio_sound_pitch(FireSound, random_range(0.9,1.1));	
