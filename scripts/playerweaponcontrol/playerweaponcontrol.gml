@@ -41,7 +41,9 @@ function FireGun (){
 
 
 	//--------------------------------------------------------- visual stuff --------------------------------------
-	skeleton_animation_set_ext(wpn_active.animation_group.fire,3);
+	
+	if(is_array(wpn_active.animation_group.fire)) {skeleton_animation_set_ext(wpn_active.animation_group.fire[1],3)}; //set fire anim for spooling guns
+	else{skeleton_animation_set_ext(wpn_active.animation_group.fire,3)}; //set fire anim for non spooling guns
 
 	if(wpn_active.flash_type != "none") {
 		var flash = irandom(3);
@@ -51,13 +53,19 @@ function FireGun (){
 		skeleton_attachment_set("slot_flash_core",wpn_active.flash_type[flash] + " core");
 	};
 
-	var FireSound = audio_play_sound_at(wpn_active.sound_group.fire,x,y,0,100,100,1,0,1);
-	audio_sound_pitch(FireSound, random_range(0.9,1.1));	
+	if( variable_struct_exists(wpn_active.sound_group, "fire_loop") ) {
+		if(aud_fireloop = 0) {aud_fireloop = audio_play_sound_at(wpn_active.sound_group.fire_loop,x,y,0,100,100,1,1000,10)};
+	};
+	else{
+		var FireSound = audio_play_sound_at(wpn_active.sound_group.fire,x,y,0,100,100,1,0,1);
+		audio_sound_pitch(FireSound, random_range(0.9,1.1));	
+	};
 };	
 #endregion
 
 #region Player Weapon Control Function
 function PlayerWeaponControl(){	
+	
 	
 	var _CanFire = (CanShoot and magazine_active > 0 and cycle);
 	var _CanReload = (CanReload and !reloading);
@@ -69,18 +77,49 @@ function PlayerWeaponControl(){
 	var Reload_Key = keyboard_check_pressed(ord("R"));
 	var Selector_Key = keyboard_check_pressed(ord("X"));
 	
-	if(!mouse_check_button(mb_left)) {burst_count = 0};
+	if(mouse_check_button_released(mb_left)) {
+		burst_count = 0;
+		spooled = 0;
+		if(is_array(wpn_active.animation_group.fire) and spindown_toggle ) {
+			skeleton_anim_set_step(wpn_active.animation_group.fire[2],3)
+		};
+		audio_stop_sound(aud_fireloop); aud_fireloop = 0;
+	};
+	
+	//check for empty mags, reload interrupt for single loaders, and spool up spoolguns
 	if(mouse_check_button_pressed(mb_left)) {		
-		if(magazine_active = 0) {audio_play_sound_at(wpn_active.sound_group.empty,x,y,0,100,100,1,0,1)};
+		if(magazine_active = 0) {
+			audio_play_sound_at(wpn_active.sound_group.empty,x,y,0,100,100,1,0,1);
+		};
+		
 		if(reloading = 1 and is_array(wpn_active.animation_group.reload)) {
 			skeleton_animation_clear(4);
 			skeleton_anim_set_step(wpn_active.animation_group.reload[2],4);	
-		};
+		};		
 	};
 	
+	//spindown when we hit 0 rounds for spoolguns
+	if(magazine_active = 0 && is_array(wpn_active.animation_group.fire) && spindown_toggle) {
+			skeleton_anim_set_step(wpn_active.animation_group.fire[2],3)
+			audio_stop_sound(aud_fireloop); aud_fireloop = 0;
+	};
+	
+//--------------------------------------- SHOOT BULLETS IN VARIOUS MODES ------------------------------
+
 	if(Semi_Fire and _CanFire) {FireGun()};	
-	if(Auto_Fire and _CanFire) {FireGun()};
+	if(Auto_Fire and _CanFire) {
+		if(is_array(wpn_active.animation_group.fire) and !spooled) {
+			skeleton_anim_set_step(wpn_active.animation_group.fire[0],3)
+		};
+		else{FireGun()};
+	};
 	if(Burst_Fire and _CanFire and (burst_count < string_digits(selector))) {FireGun()};
+
+//---------------------------------------- SPOOL UP GUNS WITH SPINUP ANIMATIONS -----------------------
+
+	
+		
+//--------------------------------------------- RELOAD AND SELECTOR SWITCH ---------------------------------	
 	
 	if(Reload_Key and _CanReload) {	
 		reloading = 1;

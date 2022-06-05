@@ -51,11 +51,13 @@ function AnimationsFlashesSoundGroups(){
 	};
 	
 	sndgrp_flamer1 = {
-		fire : snd_shotgun1,
+		fire_loop : snd_flamer_loop1,
 		mag_in : snd_shotgun_reload_single1,
 		mag_out : snd_shotgun_reload_single1,
 		rack_slide : snd_shotgun_rackslide1,
 		empty : snd_click_empty,
-		selector : snd_selector1
+		selector : snd_selector1,
+		spinup : snd_flamer_windup,
+		spindown : snd_flamer_winddown
 	};
 }

@@ -33,6 +33,11 @@ col_left = 0;
 
 //equipment statuses
 reloading = 0;
+spooled = 0;
+spindown_toggle = 0;
+
+//equipment sound stuff
+aud_fireloop = 0; //loop for guns with loop sounds
 
 wpn_active = Flamer_Astartes;
 ammo_active = wpn_active.default_ammo_type;

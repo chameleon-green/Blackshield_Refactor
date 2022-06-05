@@ -41,3 +41,22 @@ if(event = "reload_single_check" && (magazine_active >= wpn_active.capacity)) {
 if(event = "reload_single") {
 	if(magazine_active < wpn_active.capacity) {magazine_active += 1; audio_play_sound_at(wpn_active.sound_group.mag_in,x,y,0,100,100,1,0,1)};
 };
+
+if(event = "spinup") {
+	audio_play_sound_at(wpn_active.sound_group.spinup,x,y,0,100,100,1,0,1);
+	spindown_toggle = 1;
+};
+
+if(event = "spinupdone") {
+	skeleton_anim_set_step(wpn_active.animation_group.fire[1],3);
+	spooled = 1;
+};
+
+if(event = "spindown") {
+	audio_play_sound_at(wpn_active.sound_group.spindown,x,y,0,100,100,1,0,1);
+	spindown_toggle = 0;
+};
+
+if(event = "spindowndone") {
+	skeleton_animation_clear(3);
+};
