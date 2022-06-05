@@ -26,5 +26,18 @@ if(event = "rackslide") {audio_play_sound_at(wpn_active.sound_group.rack_slide,x
 if(event = "Reloaded") {
 	reloading = 0;
 	skeleton_animation_clear(4);
-	magazine_active = wpn_active.capacity
+	if( !is_array(wpn_active.animation_group.reload)) {magazine_active = wpn_active.capacity};
+};
+
+if(event = "reload_ready") {
+	skeleton_animation_clear(4);
+	skeleton_animation_set_ext(wpn_active.animation_group.reload[1],4);
+};
+
+if(event = "reload_single_check" && (magazine_active >= wpn_active.capacity)) {
+	skeleton_animation_clear(4); skeleton_animation_set_ext(wpn_active.animation_group.reload[2],4);
+};
+
+if(event = "reload_single") {
+	if(magazine_active < wpn_active.capacity) {magazine_active += 1; audio_play_sound_at(wpn_active.sound_group.mag_in,x,y,0,100,100,1,0,1)};
 };
