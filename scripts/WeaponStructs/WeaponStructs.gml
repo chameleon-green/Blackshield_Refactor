@@ -51,7 +51,7 @@ Flamer_Astartes = { //---------------------------- ASTARTES SHOTGUN
 	
 		//combat stats
 		damage : 20,
-		ROF : 1, //FindROF(330), //rounds per minute
+		ROF : 3, //FindROF(330), //rounds per minute
 		range : 1000, //effective range before gravity takes hold, rounds can mod this
 		capacity : 75,		
 		spread : 0.1,

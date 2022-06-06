@@ -34,7 +34,12 @@ if(CanShoot) {
 	
 	//-----------------------------------------------------------------------------------------------
 	
-	var Rear_Bicep_Mult = 1.12;
+	var Rear_Bicep_Mult = 1.15;
+	
+	var CorrectedAngle = (AimAngleCorrected - wpn_active.angular_offset - TorsoAngOffset);
+	if(wpn_active.angular_offset = 90)	{
+		var Rear_Bicep_Mult = 1 + (CorrectedAngle/1200);
+	};
 	
 	ds_map_replace(head_map, "angle", clamp(Head_Angle,-30,30));
 	skeleton_bone_state_set("head", head_map);

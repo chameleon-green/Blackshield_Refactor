@@ -123,7 +123,7 @@ function PlayerWeaponControl(){
 	
 	if(Reload_Key and _CanReload) {	
 		reloading = 1;
-		skeleton_animation_clear(2); skeleton_animation_clear(3);
+		skeleton_animation_clear(3); skeleton_animation_clear(3);
 		skeleton_animation_clear(4); skeleton_animation_clear(6);		
 		skeleton_animation_clear(8);
 		
