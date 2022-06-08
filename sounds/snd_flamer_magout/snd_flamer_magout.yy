@@ -12,7 +12,7 @@
     "path": "audiogroups/audiogroup_default",
   },
   "soundFile": "snd_flamer_magout.wav",
-  "duration": 1.158821,
+  "duration": 0.870771,
   "parent": {
     "name": "Weapons, Flame",
     "path": "folders/Sounds/Weapons, Flame.yy",

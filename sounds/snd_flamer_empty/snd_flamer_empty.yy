@@ -12,7 +12,7 @@
     "path": "audiogroups/audiogroup_default",
   },
   "soundFile": "snd_flamer_empty.wav",
-  "duration": 1.532517,
+  "duration": 1.063107,
   "parent": {
     "name": "Weapons, Flame",
     "path": "folders/Sounds/Weapons, Flame.yy",

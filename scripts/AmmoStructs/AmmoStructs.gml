@@ -73,8 +73,8 @@ function AmmoStructs() {
 		wear : 1, //durability cost on weapon when fired
 		rarity : "150.common",	
 		
-		projectile_type : [sp_bullet, 0], //sprite and subimage, if relevant
-		projectile_color : [make_colour_rgb(255, 230, 90), c_white],
+		projectile_type : [sp_flamer_flames, 0], //sprite and subimage, if relevant
+		projectile_color : [c_white, c_white],
 		flash_color : "none", //color override for flash, if relevant
 		casing_type : "none", //sprite and subimage of casing
 		casing_sound : "none", //impact sound and pitch

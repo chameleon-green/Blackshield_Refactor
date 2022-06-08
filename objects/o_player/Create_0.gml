@@ -39,7 +39,7 @@ spindown_toggle = 0;
 //equipment sound stuff
 aud_fireloop = 0; //loop for guns with loop sounds
 
-wpn_active = Shotgun_Astartes;
+wpn_active = Boltgun_Phobos;
 ammo_active = wpn_active.default_ammo_type;
 magazine_active = wpn_active.capacity;
 skeleton_animation_set(wpn_active.animation_group.idle);
