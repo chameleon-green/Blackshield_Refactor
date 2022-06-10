@@ -1,4 +1,4 @@
-
+/*
 CanShoot = 1;
 CanReload = 1;
 audio_listener_set_position(0,x,y,0);

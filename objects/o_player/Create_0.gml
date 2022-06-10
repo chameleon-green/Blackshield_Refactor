@@ -53,6 +53,9 @@ burst_count = 0; //count of rounds fired in burst, if this weapon is burstfire
 spread_angle = wpn_active.spread; //accumulating spread
 instant_spread = 0; //spread to add to animations when firing
 
+charge_toggle = 1;
+charge_scale = 1;
+
 flash_x = 0;
 flash_y = 0;
 flash_angle = 0;

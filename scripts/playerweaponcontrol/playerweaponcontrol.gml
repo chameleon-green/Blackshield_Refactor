@@ -73,11 +73,13 @@ function PlayerWeaponControl(){
 	var Semi_Fire = mouse_check_button_pressed(mb_left) and (selector = "Semi" or selector = "Supercharge" or selector = "Pump");
 	var Auto_Fire = mouse_check_button(mb_left) and (selector = "Auto" or selector = "Overcharge");
 	var Burst_Fire = mouse_check_button(mb_left) and (string_count("Burst",selector));
-	var Charge_Fire = mouse_check_button(mb_left) and (selector = "Charge"); 
+	var Charge_Fire = mouse_check_button(mb_left) and (selector = "Charge") and (charge_toggle); 
 	var Reload_Key = keyboard_check_pressed(ord("R"));
 	var Selector_Key = keyboard_check_pressed(ord("X"));
 	
+	//reset burst count, spooling, shooting/spinning spool sound
 	if(mouse_check_button_released(mb_left)) {
+		charge_toggle = 1;
 		burst_count = 0;
 		spooled = 0;
 		if(is_array(wpn_active.animation_group.fire) and spindown_toggle ) {
@@ -87,7 +89,8 @@ function PlayerWeaponControl(){
 	};
 	
 	//check for empty mags, reload interrupt for single loaders, and spool up spoolguns
-	if(mouse_check_button_pressed(mb_left)) {		
+	if(mouse_check_button_pressed(mb_left)) {	
+		
 		if(magazine_active = 0) {
 			audio_play_sound_at(wpn_active.sound_group.empty,x,y,0,100,100,1,0,1);
 		};
@@ -114,6 +117,37 @@ function PlayerWeaponControl(){
 		else{FireGun()};
 	};
 	if(Burst_Fire and _CanFire and (burst_count < string_digits(selector))) {FireGun()};
+	
+	if(Charge_Fire and _CanFire and charge_toggle) {
+		burst_count += 1;
+		
+		var Direction = irandom(360); var CloudSize = clamp(burst_count,80,170); var Distance = irandom_range(CloudSize*0.8,CloudSize);
+		var XX = flash_x+lengthdir_x(Distance,Direction); var YY = flash_y+lengthdir_y(Distance,Direction);
+		var Divisor = clamp(round(300/burst_count),2,12);
+		
+		if(frac(burst_count/Divisor)) = 0 { 
+			instance_create_depth(XX,YY,depth-1,o_chargeparticle,{
+				//direction : Direction+180,
+				speed : Distance/20,
+				distance : Distance,		
+				creator : id
+			});
+		};
+		
+		var FlashScale = clamp(burst_count/400,0.05,1)*1.5;
+		if(frac(burst_count/2)) = 0 {var FlashScale = FlashScale*0.6};
+		
+		var FlashColor = wpn_active.flash_color[0]; var FlashColorCore = wpn_active.flash_color[1];
+		if(ammo_active.flash_color != "none") {var FlashColor = ammo_active.flash_color[0]; var FlashColorCore = ammo_active.flash_color[1]};
+		
+		draw_sprite_ext(sp_charge_flash,1,flash_x,flash_y,FlashScale+0.5,FlashScale+0.5,random(360),FlashColor,1);
+		draw_sprite_ext(sp_charge_flash,0,flash_x,flash_y,FlashScale+0.5,FlashScale+0.5,random(360),FlashColorCore,1);
+		
+		if(burst_count >= 400) {
+			FireGun();
+			charge_toggle = 0
+		};
+	};
 
 //---------------------------------------- SPOOL UP GUNS WITH SPINUP ANIMATIONS -----------------------
 
@@ -122,6 +156,7 @@ function PlayerWeaponControl(){
 //--------------------------------------------- RELOAD AND SELECTOR SWITCH ---------------------------------	
 	
 	if(Reload_Key and _CanReload) {	
+		burst_count = 0;
 		reloading = 1;
 		skeleton_animation_clear(3); skeleton_animation_clear(3);
 		skeleton_animation_clear(4); skeleton_animation_clear(6);		
@@ -132,9 +167,12 @@ function PlayerWeaponControl(){
 	};
 	
 	if(Selector_Key and array_length(wpn_active.firemodes) > 1) {
-	audio_play_sound(wpn_active.sound_group.selector,1,0)
-	if(selector_real < array_length(wpn_active.firemodes)-1) {selector_real += 1;} else{selector_real = 0};
-	selector = wpn_active.firemodes[selector_real];
+		burst_count = 0;
+		
+		audio_play_sound(wpn_active.sound_group.selector,1,0)
+		if(selector_real < array_length(wpn_active.firemodes)-1) {selector_real += 1;} else{selector_real = 0};
+		
+		selector = wpn_active.firemodes[selector_real];
 	};
 	
 };
