@@ -15,7 +15,7 @@ if(CanShoot = 0) {
 	spindown_toggle = 0;
 }
 
-
+draw_self();
 
 PlayerWeaponControl();
-draw_self();
+

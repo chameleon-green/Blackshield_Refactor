@@ -29,13 +29,19 @@ function FireGun (){
 		};
 	};
 	
-	else{
+	else {
+		
+		var IsCharge = (selector = "Charge");
+		var ChargeMult = IsCharge*(burst_count/400)+1;
+		
 		instance_create_depth(flash_x,flash_y,depth+1,o_bullet,{
 			type : other.ammo_active, 
 			IFF : other.IFF,
-			damage : other.wpn_active.damage,
+			damage : other.wpn_active.damage*ChargeMult,
 			direction : other.AimAngleBullet + other.instant_spread,
-			speed : other.wpn_active.muzzle_velocity * other.ammo_active.velocity_mod
+			speed : other.wpn_active.muzzle_velocity * other.ammo_active.velocity_mod,
+			//image_xscale : ChargeMult,
+			image_yscale : ChargeMult * ChargeMult
 		});
 	};
 
@@ -79,6 +85,9 @@ function PlayerWeaponControl(){
 	
 	//reset burst count, spooling, shooting/spinning spool sound
 	if(mouse_check_button_released(mb_left)) {
+		
+		if(selector = "Charge" and charge_toggle) {FireGun()};
+		
 		charge_toggle = 1;
 		burst_count = 0;
 		spooled = 0;
@@ -86,6 +95,8 @@ function PlayerWeaponControl(){
 			skeleton_anim_set_step(wpn_active.animation_group.fire[2],3)
 		};
 		audio_stop_sound(aud_fireloop); aud_fireloop = 0;
+		
+		
 	};
 	
 	//check for empty mags, reload interrupt for single loaders, and spool up spoolguns
@@ -117,20 +128,19 @@ function PlayerWeaponControl(){
 		else{FireGun()};
 	};
 	if(Burst_Fire and _CanFire and (burst_count < string_digits(selector))) {FireGun()};
-	
+
+//---------------------------------------- Charge type weapon code -----------------------------------
 	if(Charge_Fire and _CanFire and charge_toggle) {
 		burst_count += 1;
 		
-		var Direction = irandom(360); var CloudSize = clamp(burst_count,80,170); var Distance = irandom_range(CloudSize*0.8,CloudSize);
-		var XX = flash_x+lengthdir_x(Distance,Direction); var YY = flash_y+lengthdir_y(Distance,Direction);
+		var Direction = random(360);
 		var Divisor = clamp(round(300/burst_count),2,12);
 		
 		if(frac(burst_count/Divisor)) = 0 { 
-			instance_create_depth(XX,YY,depth-1,o_chargeparticle,{
-				//direction : Direction+180,
-				speed : Distance/20,
-				distance : Distance,		
-				creator : id
+			instance_create_depth(flash_x+hspd,flash_y+vspd,depth-1,o_chargeparticle,{	
+				image_angle : Direction,
+				creator : id,
+				image_yscale : random_range(0.7,1.2)
 			});
 		};
 		
@@ -140,18 +150,15 @@ function PlayerWeaponControl(){
 		var FlashColor = wpn_active.flash_color[0]; var FlashColorCore = wpn_active.flash_color[1];
 		if(ammo_active.flash_color != "none") {var FlashColor = ammo_active.flash_color[0]; var FlashColorCore = ammo_active.flash_color[1]};
 		
-		draw_sprite_ext(sp_charge_flash,1,flash_x,flash_y,FlashScale+0.5,FlashScale+0.5,random(360),FlashColor,1);
-		draw_sprite_ext(sp_charge_flash,0,flash_x,flash_y,FlashScale+0.5,FlashScale+0.5,random(360),FlashColorCore,1);
+		draw_sprite_ext(sp_charge_flash,1,flash_x+hspd*2,flash_y+vspd*2,FlashScale+0.5,FlashScale+0.5,random(360),FlashColor,1);
+		draw_sprite_ext(sp_charge_flash,0,flash_x+hspd*2,flash_y+vspd*2,FlashScale+0.5,FlashScale+0.5,random(360),FlashColorCore,1);
 		
 		if(burst_count >= 400) {
 			FireGun();
-			charge_toggle = 0
+			charge_toggle = 0;
+			burst_count = 0
 		};
 	};
-
-//---------------------------------------- SPOOL UP GUNS WITH SPINUP ANIMATIONS -----------------------
-
-	
 		
 //--------------------------------------------- RELOAD AND SELECTOR SWITCH ---------------------------------	
 	

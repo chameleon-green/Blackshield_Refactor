@@ -5,7 +5,7 @@ image_angle = direction;
 draw_self();
 
 //draw core of bullet
-if(sprite_index = sp_bullet) {draw_sprite_ext(sp_bullet,1,x,y,1,1,direction,type.projectile_color[1],1)};
+if(sprite_index = sp_bullet) {draw_sprite_ext(sp_bullet,1,x,y,image_xscale,image_yscale,direction,type.projectile_color[1],1)};
 
 
 //------------------------------------------- Special projectile code -------------------------

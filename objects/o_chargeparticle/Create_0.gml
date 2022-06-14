@@ -1,3 +1,2 @@
-image_alpha = 0.1;
-lifetime = floor(distance/speed);
-alarm[0] = lifetime;
+image_speed = 1;
+alarm[0] = 12;
