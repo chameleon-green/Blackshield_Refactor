@@ -66,12 +66,13 @@ function FireGun (){
 		var FireSound = audio_play_sound_at(wpn_active.sound_group.fire,x,y,0,100,100,1,0,1);
 		audio_sound_pitch(FireSound, random_range(0.9,1.1));	
 	};
+	
+	audio_stop_sound(aud_chargeloop); aud_chargeloop = 0
 };	
 #endregion
 
 #region Player Weapon Control Function
 function PlayerWeaponControl(){	
-	
 	
 	var _CanFire = (CanShoot and magazine_active > 0 and cycle);
 	var _CanReload = (CanReload and !reloading);
@@ -86,7 +87,7 @@ function PlayerWeaponControl(){
 	//reset burst count, spooling, shooting/spinning spool sound
 	if(mouse_check_button_released(mb_left)) {
 		
-		if(selector = "Charge" and charge_toggle) {FireGun()};
+		if(selector = "Charge" and charge_toggle and _CanFire) {FireGun()};
 		
 		charge_toggle = 1;
 		burst_count = 0;
@@ -95,7 +96,7 @@ function PlayerWeaponControl(){
 			skeleton_anim_set_step(wpn_active.animation_group.fire[2],3)
 		};
 		audio_stop_sound(aud_fireloop); aud_fireloop = 0;
-		
+		audio_stop_sound(aud_chargeloop); aud_chargeloop = 0
 		
 	};
 	
@@ -152,6 +153,13 @@ function PlayerWeaponControl(){
 		
 		draw_sprite_ext(sp_charge_flash,1,flash_x+hspd*2,flash_y+vspd*2,FlashScale+0.5,FlashScale+0.5,random(360),FlashColor,1);
 		draw_sprite_ext(sp_charge_flash,0,flash_x+hspd*2,flash_y+vspd*2,FlashScale+0.5,FlashScale+0.5,random(360),FlashColorCore,1);
+		
+		var Pitch = 2*(burst_count/400);
+		var _Pitch = clamp(Pitch,0.25,2);
+		
+		if(aud_chargeloop = 0) {aud_chargeloop = audio_play_sound_at(snd_plasma_charge_loop,x,y,0,100,100,1,1,1)};
+		audio_sound_pitch(aud_chargeloop,_Pitch);
+		audio_sound_gain(aud_chargeloop,Pitch,0.1);
 		
 		if(burst_count >= 400) {
 			FireGun();

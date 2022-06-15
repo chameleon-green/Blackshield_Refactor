@@ -124,6 +124,43 @@ Shotgun_Astartes = { //---------------------------- ASTARTES SHOTGUN
 	//ds_list_add(ListComWP,pistol_bolt_tigrus[27]+".pistol_bolt_tigrus") //fix this later
 #endregion	
 
-
+#region Plasma cannons, guns, pistols
+Plasmagun_Thunderbolt = { //---------------------------- Thunderbolt pattern plasma gun
+	
+		//combat stats
+		damage : 100,
+		ROF : FindROF(400), //rounds per minute
+		range : 1000, //effective range before gravity takes hold, rounds can mod this
+		capacity : 18,		
+		spread : 0.5,
+		muzzle_velocity : 28,
+		
+		//technical weapon stats
+		weapon_type : "rifle_plasma",
+		weapon_slot : "primary",
+		ammo_type: "plasma",
+		default_ammo_type: Ammo_Plasma_Standard,
+		firemodes: ["Semi","Auto","Charge"],
+		weight : 20,
+		durability_max : 1000,
+		rarity : "150.common",
+		heat_generation : -1,
+		heat_capacity : 0,
+		
+		//cosmetic stuff, animations, sounds, etc.
+		name : "Thunderbolt Pattern Plasma Gun",
+		description : "desc_blank.txt", 
+		inventory_subimage : [sp_xhair, 6], //subimage for item to appear in inventory
+		weapon_attachment : "plasmagun_thunderbolt", //spine attachment name
+		magazine_attachment : "mag_plasma1", //spine attachment name
+		flash_type : flash_med_normal,
+		flash_color : [make_colour_rgb(0, 198, 229), c_white], 
+		animation_group : anmgrp_plasmagun_thunderbolt,
+		sound_group : sndgrp_plasma1,
+		angular_offset : 90, //angular offset for animation related stuff
+		vertical_offset : -150 // Y axis offset for crosshair stuff		
+	};
+	//ds_list_add(ListComWP,pistol_bolt_tigrus[27]+".pistol_bolt_tigrus") //fix this later
+#endregion
 
 };//function end bracket

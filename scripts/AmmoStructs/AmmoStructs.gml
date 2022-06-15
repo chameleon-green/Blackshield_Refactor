@@ -56,7 +56,7 @@ function AmmoStructs() {
 	#endregion
 	
 	#region flamer and plasma fuels
-	Ammo_Flamer_Standard = {//---------------------------- Buckshot rounds
+	Ammo_Flamer_Standard = {//---------------------------- flamer fuel
 		
 		damage_mod : 1,
 		ROF_mod : 1,
@@ -75,6 +75,31 @@ function AmmoStructs() {
 		
 		projectile_type : [sp_flamer_flames, 0], //sprite and subimage, if relevant
 		projectile_color : [c_white, c_white],
+		flash_color : "none", //color override for flash, if relevant
+		casing_type : "none", //sprite and subimage of casing
+		casing_sound : "none", //impact sound and pitch
+		inventory_subimage : [sp_xhair, 6]
+	};
+	
+	Ammo_Plasma_Standard = {//---------------------------- Buckshot rounds
+		
+		damage_mod : 1,
+		ROF_mod : 1,
+		range_mod : 1,
+		velocity_mod :1,
+		
+		damage_type : "thermal",
+		armor_penetration : 0.8,
+		guidance : "none",
+		fuse : 0.99, //how much resistance the projectile must encounter to detonate, as a factor of its dmg
+		special : "none", //an array of any special effects
+		
+		weight : 0.01, //weight in lbs
+		wear : 4, //durability cost on weapon when fired
+		rarity : "150.common",	
+		
+		projectile_type : [sp_bullet, 0], //sprite and subimage, if relevant
+		projectile_color : [make_color_rgb(0,198,229), c_white],
 		flash_color : "none", //color override for flash, if relevant
 		casing_type : "none", //sprite and subimage of casing
 		casing_sound : "none", //impact sound and pitch

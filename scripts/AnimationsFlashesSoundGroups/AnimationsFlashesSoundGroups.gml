@@ -20,7 +20,13 @@ function AnimationsFlashesSoundGroups(){
 		idle : "Flame Weapons/idle_flamer_astartes",
 		fire : ["Flame Weapons/spinup_flamer_astartes","Flame Weapons/firing_flamer_astartes","Flame Weapons/spindown_flamer_astartes"],
 		reload : "Flame Weapons/reload_flamer_astartes"
-	}
+	};
+	
+	anmgrp_plasmagun_thunderbolt = {
+		idle : "Plasma Weapons/idle_plasmagun_thunderbolt",
+		fire : "Plasma Weapons/firing_plasmagun_thunderbolt",
+		reload : "Plasma Weapons/reload_plasmagun_thunderbolt"			
+	};
 
 
 //+++++++++++++++++++++++++++++++++++++++++++ MUZZLE FLASH GROUPS +++++++++++++++++++++++++++++++++++++++++
@@ -59,5 +65,13 @@ function AnimationsFlashesSoundGroups(){
 		selector : snd_selector1,
 		spinup : snd_flamer_windup,
 		spindown : snd_flamer_winddown
+	};
+	
+	sndgrp_plasma1 = {
+		fire : snd_plasma_small1,
+		mag_in : snd_plasma_magin,
+		mag_out : snd_plasma_magout,
+		empty : snd_click_empty,
+		selector : snd_selector1
 	};
 }
