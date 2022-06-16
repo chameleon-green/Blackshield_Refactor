@@ -49,15 +49,21 @@ if(CanShoot) {
 		AimAngleCorrected = -radtodeg(arctan2(delta_y2,abs(delta_x2))) + 270  + TorsoAngOffset;//(AimAngleBullet*image_xscale) + (90*image_xscale) + instant_spread;
 		ds_map_replace(front_forearm_map, "angle", 0);
 		skeleton_bone_state_set("front forearm", front_forearm_map);
+		
+		if(wpn_active.weapon_slot[1] = 2) {
 		ds_map_replace(rear_forearm_map, "angle", 10);
 		skeleton_bone_state_set("rear forearm", rear_forearm_map);
+		};
 		Rear_Bicep_Mult = 0.9
 	};
 	
 	ds_map_replace(front_bicep_map, "angle", AimAngleCorrected);
 	skeleton_bone_state_set("front bicep", front_bicep_map);
+	
+	if(wpn_active.weapon_slot[1] = 2) {
 	ds_map_replace(rear_bicep_map, "angle", AimAngleCorrected * Rear_Bicep_Mult);
 	skeleton_bone_state_set("rear bicep", rear_bicep_map);
+	};
 	
 	//kill the maps we created to avoid memory leaks
 	ds_map_destroy(torso_map);

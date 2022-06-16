@@ -20,7 +20,7 @@ Boltgun_Phobos = { //---------------------------- PHOBOS BOLTER
 		
 		//technical weapon stats
 		weapon_type : "rifle_bolt",
-		weapon_slot : "primary",
+		weapon_slot : ["primary",2], //1 = single hand, 2 = both hands, 3 = offhand,
 		ammo_type: "bolt_small",
 		default_ammo_type: Ammo_Bolt_Standard,
 		firemodes: ["Semi","Auto","Charge"],
@@ -44,6 +44,43 @@ Boltgun_Phobos = { //---------------------------- PHOBOS BOLTER
 		vertical_offset : -150 // Y axis offset for crosshair stuff		
 	};
 	//ds_list_add(ListComWP,pistol_bolt_tigrus[27]+".pistol_bolt_tigrus") //fix this later
+	
+	Bolt_Pistol_Tigrus = { //---------------------------- tigrus bolt pistol
+	
+		//combat stats
+		damage : 40,
+		ROF : FindROF(330), //rounds per minute
+		range : 1000, //effective range before gravity takes hold, rounds can mod this
+		capacity : 10,		
+		spread : 0.9,
+		muzzle_velocity : 30,
+		
+		//technical weapon stats
+		weapon_type : "pistol_bolt",
+		weapon_slot : ["secondary",1], //1 = single hand, 2 = both hands, 3 = offhand
+		ammo_type: "bolt_small",
+		default_ammo_type: Ammo_Bolt_Standard,
+		firemodes: ["Semi"],
+		weight : 6,
+		durability_max : 1000,
+		rarity : "150.common",
+		heat_generation : -1,
+		heat_capacity : 0,
+		
+		//cosmetic stuff, animations, sounds, etc.
+		name : "Tigrus Pattern Bolt Pistol",
+		description : "desc_blank.txt", 
+		inventory_subimage : [sp_xhair, 6], //subimage for item to appear in inventory
+		weapon_attachment : "pistol_bolt_tigrus", //spine attachment name
+		magazine_attachment : "mag_pistol_tigrus", //spine attachment name
+		flash_type : flash_med_normal,
+		flash_color : [make_colour_rgb(255, 230, 90), c_white], 
+		animation_group : anmgrp_boltpistol_tigrus,
+		sound_group : sndgrp_boltgun1,
+		angular_offset : 150, //angular offset for animation related stuff
+		vertical_offset : -150 // Y axis offset for crosshair stuff		
+	};
+	//ds_list_add(ListComWP,pistol_bolt_tigrus[27]+".pistol_bolt_tigrus") //fix this later
 #endregion
 
 #region Flamers, hand flamers, heavy flamers
@@ -59,7 +96,7 @@ Flamer_Astartes = { //---------------------------- ASTARTES SHOTGUN
 		
 		//technical weapon stats
 		weapon_type : "flamer",
-		weapon_slot : "primary",
+		weapon_slot : ["primary",2], //1 = single hand, 2 = both hands, 3 = offhand,
 		ammo_type: "fuel",
 		default_ammo_type: Ammo_Flamer_Standard,
 		firemodes: ["Auto"],
@@ -98,7 +135,7 @@ Shotgun_Astartes = { //---------------------------- ASTARTES SHOTGUN
 		
 		//technical weapon stats
 		weapon_type : "shotgun",
-		weapon_slot : "primary",
+		weapon_slot : ["primary",2], //1 = single hand, 2 = both hands, 3 = offhand,
 		ammo_type: "shotgun",
 		default_ammo_type: Ammo_Shotgun_Buckshot,
 		firemodes: ["Pump"],
@@ -137,7 +174,7 @@ Plasmagun_Thunderbolt = { //---------------------------- Thunderbolt pattern pla
 		
 		//technical weapon stats
 		weapon_type : "rifle_plasma",
-		weapon_slot : "primary",
+		weapon_slot : ["primary",2], //1 = single hand, 2 = both hands, 3 = offhand,
 		ammo_type: "plasma",
 		default_ammo_type: Ammo_Plasma_Standard,
 		firemodes: ["Semi","Auto","Charge"],

@@ -7,7 +7,14 @@ function AnimationsFlashesSoundGroups(){
 	anmgrp_boltgun_phobos = {
 		idle : "Bolt Weapons/idle_bolter_phobos",
 		fire : "Bolt Weapons/firing_bolter_phobos",
-		reload : "Bolt Weapons/reload_rifle_phobos"	
+		reload : "Bolt Weapons/reload_rifle_phobos",
+	};
+	
+	anmgrp_boltpistol_tigrus = {
+		idle : "Bolt Weapons/idle_pistol_tigrus",
+		fire : "Bolt Weapons/firing_pistol_tigrus",
+		reload : "Bolt Weapons/reload_pistol_tigrus",
+		sprint : "sprint_full_melee"
 	};
 	
 	anmgrp_shotgun_astartes = {
