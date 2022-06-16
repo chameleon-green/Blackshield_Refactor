@@ -6,7 +6,7 @@ function PlayerMovement() {
 	
 	//var anim_array2 = wpn_melee[wpn_melee.Animations];
 	var ranged_animgrp = wpn_active.animation_group;
-	var sprint = ranged_animgrp.sprint;
+	var sprint = "sprint_full_rifle";
 	if(variable_struct_exists(ranged_animgrp,"sprint")) {var sprint = ranged_animgrp.sprint};
 	var walk = "walk_rifle";
 	var backwalk = "backwalk_rifle";

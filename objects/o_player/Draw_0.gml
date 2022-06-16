@@ -17,5 +17,9 @@ if(CanShoot = 0) {
 
 draw_self();
 
+var HeatReduction = clamp(1/wpn_active_heat,2/wpn_active.heat_capacity,2);
+
+if(wpn_active_heat > 0) {wpn_active_heat -= HeatReduction};
+if(wpn_active_heat < 0) {wpn_active_heat = 0};
 PlayerWeaponControl();
 

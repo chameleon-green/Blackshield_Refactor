@@ -40,6 +40,7 @@
     {"id":{"name":"sp_charge_particle","path":"sprites/sp_charge_particle/sp_charge_particle.yy",},"order":5,},
     {"id":{"name":"snd_flamer_empty","path":"sounds/snd_flamer_empty/snd_flamer_empty.yy",},"order":5,},
     {"id":{"name":"snd_flamer_magin","path":"sounds/snd_flamer_magin/snd_flamer_magin.yy",},"order":3,},
+    {"id":{"name":"sp_xhair_heatbar","path":"sprites/sp_xhair_heatbar/sp_xhair_heatbar.yy",},"order":1,},
     {"id":{"name":"o_plasmaflash","path":"objects/o_plasmaflash/o_plasmaflash.yy",},"order":7,},
     {"id":{"name":"snd_plasma_magout","path":"sounds/snd_plasma_magout/snd_plasma_magout.yy",},"order":1,},
     {"id":{"name":"snd_bolter1","path":"sounds/snd_bolter1/snd_bolter1.yy",},"order":0,},

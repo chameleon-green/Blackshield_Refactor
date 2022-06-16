@@ -177,12 +177,12 @@ Plasmagun_Thunderbolt = { //---------------------------- Thunderbolt pattern pla
 		weapon_slot : ["primary",2], //1 = single hand, 2 = both hands, 3 = offhand,
 		ammo_type: "plasma",
 		default_ammo_type: Ammo_Plasma_Standard,
-		firemodes: ["Semi","Auto","Charge"],
+		firemodes: ["Auto","Overcharge","Charge"],
 		weight : 20,
 		durability_max : 1000,
 		rarity : "150.common",
-		heat_generation : -1,
-		heat_capacity : 0,
+		heat_generation : 4,
+		heat_capacity : 30,
 		
 		//cosmetic stuff, animations, sounds, etc.
 		name : "Thunderbolt Pattern Plasma Gun",

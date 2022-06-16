@@ -1,8 +1,11 @@
 
 #region fire gun function
 function FireGun (){
+	
+	var Overclock = (selector = "Overcharge");
+	
 	cycle = 0;
-	alarm[0] = wpn_active.ROF; //timer to cycle weapon
+	alarm[0] = wpn_active.ROF / (1+Overclock); //timer to cycle weapon
 	alarm[1] = 2; //timer to reset flash
 
 	var Max_Spread = wpn_active.spread*10;
@@ -12,6 +15,7 @@ function FireGun (){
 
 	magazine_active -= 1;
 	burst_count += 1;
+	if(wpn_active.heat_generation > 0) {wpn_active_heat += wpn_active.heat_generation};
 
 	if(string_count("scatter",ammo_active.guidance)){
 		var Count = string_digits(ammo_active.guidance);
@@ -74,7 +78,8 @@ function FireGun (){
 #region Player Weapon Control Function
 function PlayerWeaponControl(){	
 	
-	var _CanFire = (CanShoot and magazine_active > 0 and cycle);
+	var _OverHeat = ((wpn_active_heat > wpn_active.heat_capacity) and (selector != "Supercharge") and (selector != "Overcharge"));
+	var _CanFire = (CanShoot and magazine_active > 0 and cycle and !_OverHeat);
 	var _CanReload = (CanReload and !reloading);
 	
 	var Semi_Fire = mouse_check_button_pressed(mb_left) and (selector = "Semi" or selector = "Supercharge" or selector = "Pump");
@@ -122,12 +127,14 @@ function PlayerWeaponControl(){
 //--------------------------------------- SHOOT BULLETS IN VARIOUS MODES ------------------------------
 
 	if(Semi_Fire and _CanFire) {FireGun()};	
+	
 	if(Auto_Fire and _CanFire) {
 		if(is_array(wpn_active.animation_group.fire) and !spooled) {
 			skeleton_anim_set_step(wpn_active.animation_group.fire[0],3)
 		};
 		else{FireGun()};
 	};
+	
 	if(Burst_Fire and _CanFire and (burst_count < string_digits(selector))) {FireGun()};
 
 //---------------------------------------- Charge type weapon code -----------------------------------

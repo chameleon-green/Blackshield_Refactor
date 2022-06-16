@@ -35,19 +35,20 @@ col_left = 0;
 reloading = 0;
 spooled = 0;
 spindown_toggle = 0;
+wpn_active_heat = 0;
 
 //equipment sound stuff
 aud_fireloop = 0; //loop for guns with loop sounds
 aud_chargeloop = 0; //loop for guns with charging
 
-wpn_active = Bolt_Pistol_Tigrus;
+wpn_active = Plasmagun_Thunderbolt;
 ammo_active = wpn_active.default_ammo_type;
 magazine_active = wpn_active.capacity;
 skeleton_animation_set(wpn_active.animation_group.idle);
 skeleton_attachment_set("slot_gun",wpn_active.weapon_attachment);
 skeleton_attachment_set("slot_gun magazine",wpn_active.magazine_attachment);
 
-selector_real = 0
+selector_real = 0 //numerical value for selector, used to access array of selector option strings
 selector = wpn_active.firemodes[selector_real]; //selector switch setting
 cycle = 1; //weapon ROF cycle check
 burst_count = 0; //count of rounds fired in burst, if this weapon is burstfire
