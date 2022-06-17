@@ -182,7 +182,7 @@ Plasmagun_Thunderbolt = { //---------------------------- Thunderbolt pattern pla
 		durability_max : 1000,
 		rarity : "150.common",
 		heat_generation : 4,
-		heat_capacity : 30,
+		heat_capacity : 26,
 		
 		//cosmetic stuff, animations, sounds, etc.
 		name : "Thunderbolt Pattern Plasma Gun",

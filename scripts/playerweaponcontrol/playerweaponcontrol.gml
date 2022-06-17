@@ -12,10 +12,13 @@ function FireGun (){
 	var Spread_Divisor = irandom_range(1,5) * choose(-1,1)
 	if(spread_angle < Max_Spread) {spread_angle += wpn_active.spread};
 	instant_spread = (spread_angle/Spread_Divisor);
+	
+	var IsCharge = (selector = "Charge");
+	var ChargeCap = wpn_active.heat_capacity*10;
+	var ChargeMult = clamp( IsCharge*(burst_count/ChargeCap)*(ChargeCap/100), 1, 10 )
 
 	magazine_active -= 1;
 	burst_count += 1;
-	if(wpn_active.heat_generation > 0) {wpn_active_heat += wpn_active.heat_generation};
 
 	if(string_count("scatter",ammo_active.guidance)){
 		var Count = string_digits(ammo_active.guidance);
@@ -34,10 +37,6 @@ function FireGun (){
 	};
 	
 	else {
-		
-		var IsCharge = (selector = "Charge");
-		var ChargeMult = IsCharge*(burst_count/400)+1;
-		
 		instance_create_depth(flash_x,flash_y,depth+1,o_bullet,{
 			type : other.ammo_active, 
 			IFF : other.IFF,
@@ -45,8 +44,13 @@ function FireGun (){
 			direction : other.AimAngleBullet + other.instant_spread,
 			speed : other.wpn_active.muzzle_velocity * other.ammo_active.velocity_mod,
 			//image_xscale : ChargeMult,
-			image_yscale : ChargeMult * ChargeMult
+			image_yscale : ChargeMult
 		});
+	};
+	
+	if(wpn_active.heat_generation > 0) {
+			if(IsCharge) {wpn_active_heat += wpn_active.heat_generation*ChargeMult*ChargeMult}
+			else {wpn_active_heat += wpn_active.heat_generation}
 	};
 
 
@@ -89,10 +93,13 @@ function PlayerWeaponControl(){
 	var Reload_Key = keyboard_check_pressed(ord("R"));
 	var Selector_Key = keyboard_check_pressed(ord("X"));
 	
+	var ChargeCap = wpn_active.heat_capacity*10;
+	
 	//reset burst count, spooling, shooting/spinning spool sound
 	if(mouse_check_button_released(mb_left)) {
 		
-		if(selector = "Charge" and charge_toggle and _CanFire) {FireGun()};
+		var Minimum_Charge = (burst_count >= (wpn_active.heat_capacity*2.5));
+		if(selector = "Charge" and charge_toggle and _CanFire and Minimum_Charge) {FireGun()};
 		
 		charge_toggle = 1;
 		burst_count = 0;
@@ -152,7 +159,7 @@ function PlayerWeaponControl(){
 			});
 		};
 		
-		var FlashScale = clamp(burst_count/400,0.05,1)*1.5;
+		var FlashScale = clamp(burst_count/ChargeCap,0.05,1)*1.5;
 		if(frac(burst_count/2)) = 0 {var FlashScale = FlashScale*0.6};
 		
 		var FlashColor = wpn_active.flash_color[0]; var FlashColorCore = wpn_active.flash_color[1];
@@ -161,14 +168,14 @@ function PlayerWeaponControl(){
 		draw_sprite_ext(sp_charge_flash,1,flash_x+hspd*2,flash_y+vspd*2,FlashScale+0.5,FlashScale+0.5,random(360),FlashColor,1);
 		draw_sprite_ext(sp_charge_flash,0,flash_x+hspd*2,flash_y+vspd*2,FlashScale+0.5,FlashScale+0.5,random(360),FlashColorCore,1);
 		
-		var Pitch = 2*(burst_count/400);
+		var Pitch = 2*(burst_count/ChargeCap);
 		var _Pitch = clamp(Pitch,0.25,2);
 		
 		if(aud_chargeloop = 0) {aud_chargeloop = audio_play_sound_at(snd_plasma_charge_loop,x,y,0,100,100,1,1,1)};
 		audio_sound_pitch(aud_chargeloop,_Pitch);
 		audio_sound_gain(aud_chargeloop,Pitch,0.1);
 		
-		if(burst_count >= 400) {
+		if(burst_count >= ChargeCap) {
 			FireGun();
 			charge_toggle = 0;
 			burst_count = 0

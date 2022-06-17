@@ -50,3 +50,4 @@ draw_text(x+28,y+26,Selector_Text); //selector switch setting
 draw_sprite_ext(sp_xhair,Firemode_Icon,x+14,y+36,1,1,0,c_white,1); //firemode icon draw
 
 
+//draw_text(x+28,y+56,owner.wpn_active_heat); //selector switch setting
