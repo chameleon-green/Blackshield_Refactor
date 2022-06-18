@@ -95,7 +95,7 @@ function PlayerWeaponControl(){
 	
 	var ChargeCap = wpn_active.heat_capacity*10;
 	
-	if(sprinting) {
+	if(!CanShoot) {
 		audio_stop_sound(aud_fireloop); aud_fireloop = 0;
 		audio_stop_sound(aud_chargeloop); aud_chargeloop = 0;
 		burst_count = 0

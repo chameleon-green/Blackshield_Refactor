@@ -60,3 +60,15 @@ if(event = "spindown") {
 if(event = "spindowndone") {
 	skeleton_animation_clear(3);
 };
+
+//------------------------------------------ movement related events ------------------------------------
+
+if(event = "roll_thud") {
+	hspd = hspd/2
+};
+
+if(event = "roll_done") {
+	skeleton_animation_clear(2);
+	rolling = 0;
+	hspd = 0
+};
