@@ -1,6 +1,7 @@
 AnimationsFlashesSoundGroups();
 AmmoStructs();
 WeaponStructs();
+PlayerStatsCalculator();
 
 //----------------------------------- MOVEMENT VARIABLES -----------------------------------
 

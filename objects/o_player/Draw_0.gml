@@ -23,3 +23,5 @@ if(wpn_active_heat > 0) {wpn_active_heat -= HeatReduction};
 if(wpn_active_heat < 0) {wpn_active_heat = 0};
 PlayerWeaponControl();
 
+draw_text(x,y-200,MaxStamina);
+

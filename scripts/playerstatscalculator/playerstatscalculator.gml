@@ -1,0 +1,113 @@
+// Script assets have changed for v2.3.0 see
+// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+function PlayerStatsCalculator() {
+
+	#region Base stats, stats and stat modifier structs
+	Base = {		
+		AGI : 100, CHR : 100,
+		DEX : 100, END : 100,
+		INT : 100, LCK : 100,
+		PER : 100, STR : 100,		
+		WIL : 100						
+	};
+	
+	Mod = {		
+		AGI : 00, CHR : 00,
+		DEX : 00, END : 00,
+		INT : 00, LCK : 00,
+		PER : 00, STR : 00,		
+		WIL : 00						
+	};
+	 #endregion
+	 
+	AGI = Base.AGI + Mod.AGI;
+	CHR = Base.CHR + Mod.CHR;
+	DEX = Base.DEX + Mod.DEX;
+	END = Base.END + Mod.END;
+	INT = Base.INT + Mod.INT;
+	LCK = Base.LCK + Mod.LCK;
+	PER = Base.PER + Mod.PER;
+	STR = Base.STR + Mod.STR;	
+	WIL = Base.WIL + Mod.WIL;
+	 
+	BaseMaxHP = StatAsymptote( (Base.END*7) + (Base.LCK/4) + (Base.WIL/2) , 1000);
+	MaxHP = StatAsymptote( (END*7) + (LCK/4) + (WIL/2) , 1000);
+	MaxStamina = StatAsymptote( (END*1.5) + (AGI/4) + (WIL/4) , 300); 
+	MaxWill = WIL*2; 
+	
+	CarryWeight = StatAsymptote( (STR*4) + (END/2) + (WIL/4) , 600);  
+	
+	CritChance = (StatAsymptote(LCK , 500))/1000;
+	CritMod = (StatAsymptote( (100+PER) + (LCK/2) , 350 ))/100; 
+	//++++++++++++++++++++++++++++++ MOVESPEED CALCS (complicated) +++++++++++++++++++++++++
+
+	/*
+	var reactor_power = ((reactor_output/100)/2) + 0.5 //what is our reactor output?
+	var AGI_Mod = power(AGI,(1/3))*4 //derive main component of movespeed from agility
+
+	//check if our legs are power armored
+	if(is_array(armor_legL_item)){ //is our left leg power armored?
+		if(armor_legL_item[11] = "power") {legL_Power_Armored = 1}
+		else{legL_Power_Armored = 0}
+	}
+	else{legL_Power_Armored = 0}
+
+	if(is_array(armor_legR_item)){ //is our right leg power armored?
+		if(armor_legR_item[11] = "power") {legR_Power_Armored = 1}
+		else{legR_Power_Armored = 0}
+	}
+	else{legR_Power_Armored = 0}
+
+	//modify reactor modifier
+	if(powered = 0) {reactor_power = 1} //if we are not powered, set multiplier to 1 (modifies nothing as there is no power)
+	if(!legR_Power_Armored and legL_Power_Armored and powered) {reactor_power = reactor_power/1.25} //if we have only one powered leg and power, reactor modifies speed less
+	if(legR_Power_Armored and !legL_Power_Armored and powered) {reactor_power = reactor_power/1.25} //if we have only one powered leg and power, reactor modifies speed less
+	if(!legR_Power_Armored and !legL_Power_Armored and powered) {reactor_power = 1} //if we have no powered legs but power, reactor doesn't affect movespeed
+
+	var BaseSpeed = AGI_Mod 
+	var legL_Mod = BaseSpeed*0.2*legL_Power_Armored*!powered //subtract 20% of speed if one leg is armored but no power
+	var legR_Mod = BaseSpeed*0.2*legR_Power_Armored*!powered //subtract an additional 20% of speed if one leg is armored but no power
+	var AdjustedSpeed = (BaseSpeed - legL_Mod - legR_Mod) * reactor_power //adjust final speed with reactor modifier
+
+	var WeightlessMoveSpeed = clamp(AdjustedSpeed,0,38) / (LegsCrippled + 1) //clamp movespeed to min and max
+
+	//+++++++++++++++++++++++++++++++++++++++++++++++++++ HP STUFF +++++++++++++++++++++++++++++++++++++++++++
+	
+	hp_body_head_max = baseMaxHP*0.11
+	hp_body_torso_max = baseMaxHP*0.23
+	hp_body_llarm_max = baseMaxHP*0.13
+	hp_body_rarm_max = baseMaxHP*0.13
+	hp_body_lleg_max = baseMaxHP*0.2
+	hp_body_rleg_max = baseMaxHP*0.2
+	
+	//+++++++++++++++++++++++++++++++++++++++++++++++ BASE RESISTANCES ++++++++++++++++++++++++++++++++++++++++
+
+	//bolt pistol hits for 20 dmg
+	basePhys = ceil(END/20) //max 5 physical resist
+	baseTher = ceil(END/10) //max 10 thermal resist
+	baseCryo = ceil(END/10) //max 10 cold resist
+	baseCorr = ceil(END/30) //max 4 corrosive resist
+	baseRadi = ceil(END/30) //max 4 radiation resist
+	baseElec = ceil(END/30) //max 4 shock resist
+	baseHazm = ceil(END/30) //max 4 hazmat/poison resist
+	baseWarp = ceil(INT/10) + ceil(WIL/10) //max 20 warp resist (DENY THE WITCH!)
+	basePoise = ceil(STR/5) + ceil(END/10) + ceil(WIL/10) //max 40 poise
+
+	baseBleed = END*3 + ceil(LCK/3)
+	basePoison = END*3 + ceil(LCK/3)
+	
+	//++++++++++++++++++++++++++++++++++++++++++++++ CARRY WEIGHT STUFF +++++++++++++++++++++++++++++++++++++++
+	if(instance_exists(obj_ic)){
+		var Weight = obj_ic.InvWeight
+		var Capacity = CarryWeight
+		var Ratio = (Weight/Capacity)*100
+		var ExponentDenom = power(2,(Ratio/30))
+		var Modifier = 1-(1/ExponentDenom)
+		var FinalMod = 1-(Modifier/2)
+		obj_ic.SpeedPenalty = string(100*(Modifier/2)) + "%"
+		
+		MoveSpeed = WeightlessMoveSpeed*FinalMod
+		if(Weight > Capacity) {cansprint = 0} else{cansprint = 1}
+	}
+	*/
+}; //function end bracket

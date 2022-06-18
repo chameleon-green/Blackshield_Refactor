@@ -30,8 +30,8 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Objects",
-    "path": "folders/Objects.yy",
+    "name": "Objects: Particles, Projectiles, Gibs",
+    "path": "folders/Objects/Objects: Particles, Projectiles, Gibs.yy",
   },
   "resourceVersion": "1.0",
   "name": "o_bullet",

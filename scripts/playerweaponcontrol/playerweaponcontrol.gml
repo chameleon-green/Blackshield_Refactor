@@ -95,6 +95,12 @@ function PlayerWeaponControl(){
 	
 	var ChargeCap = wpn_active.heat_capacity*10;
 	
+	if(sprinting) {
+		audio_stop_sound(aud_fireloop); aud_fireloop = 0;
+		audio_stop_sound(aud_chargeloop); aud_chargeloop = 0;
+		burst_count = 0
+	};
+	
 	//reset burst count, spooling, shooting/spinning spool sound
 	if(mouse_check_button_released(mb_left)) {
 		

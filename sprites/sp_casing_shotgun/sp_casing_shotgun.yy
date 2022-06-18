@@ -69,8 +69,8 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "Gibs and Projectiles",
-    "path": "folders/Sprites/Gibs and Projectiles.yy",
+    "name": "Sprites: Gibs and Projectiles",
+    "path": "folders/Sprites/Sprites: Gibs and Projectiles.yy",
   },
   "resourceVersion": "1.0",
   "name": "sp_casing_shotgun",

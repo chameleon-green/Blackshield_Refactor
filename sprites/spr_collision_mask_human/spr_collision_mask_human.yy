@@ -69,8 +69,8 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "Actors",
-    "path": "folders/Sprites/Actors.yy",
+    "name": "Sprites: Actors",
+    "path": "folders/Sprites/Sprites: Actors.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_collision_mask_human",

@@ -73,8 +73,8 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "UI",
-    "path": "folders/Sprites/UI.yy",
+    "name": "Sprites: UI",
+    "path": "folders/Sprites/Sprites: UI.yy",
   },
   "resourceVersion": "1.0",
   "name": "sp_xhair_heatbar",

@@ -69,8 +69,8 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "Terrain",
-    "path": "folders/Sprites/Terrain.yy",
+    "name": "Sprites: Terrain",
+    "path": "folders/Sprites/Sprites: Terrain.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_platform",
