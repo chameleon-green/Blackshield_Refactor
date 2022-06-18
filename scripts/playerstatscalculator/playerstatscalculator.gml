@@ -1,24 +1,22 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function PlayerStatsCalculator() {
 
-	#region Base stats, stats and stat modifier structs
-	Base = {		
-		AGI : 100, CHR : 100,
-		DEX : 100, END : 100,
-		INT : 100, LCK : 100,
-		PER : 100, STR : 100,		
-		WIL : 100						
-	};
+//returns a value given an input and a do not exceed (asymptote) limit
+//can adjust divisor value to change curve if desired
+#region Stats asymptote function: allows for infinitely scaling, exponentially reducing returns on stats
+function StatAsymptote(Input,PeakValue,PeakDivisor=100,Divisor=100) {	
 	
-	Mod = {		
-		AGI : 00, CHR : 00,
-		DEX : 00, END : 00,
-		INT : 00, LCK : 00,
-		PER : 00, STR : 00,		
-		WIL : 00						
-	};
-	 #endregion
+	var PeakAdjusted = PeakValue/PeakDivisor;
+	
+	var X = Input;
+	var Numerator = PeakAdjusted*X;
+	var Denominator = ( (1/Divisor)*X )+1;
+	
+	return round(Numerator/Denominator);
+	
+}; //asymptote function end bracket
+#endregion
+
+#region Stats calculator: calculates stats from core attributes and modifiers
+function PlayerStatsCalculator() {
 	 
 	AGI = Base.AGI + Mod.AGI;
 	CHR = Base.CHR + Mod.CHR;
@@ -111,3 +109,4 @@ function PlayerStatsCalculator() {
 	}
 	*/
 }; //function end bracket
+#endregion

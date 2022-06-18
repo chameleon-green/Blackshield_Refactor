@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Struct Initializers",
-    "path": "folders/Scripts/Struct Initializers.yy",
+    "name": "Player Related",
+    "path": "folders/Scripts/Player Related.yy",
   },
   "resourceVersion": "1.0",
-  "name": "MeleeWeaponStructs",
+  "name": "MeleeScripts",
   "tags": [],
   "resourceType": "GMScript",
 }

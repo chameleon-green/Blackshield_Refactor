@@ -5,9 +5,12 @@ function FindROF(RoundsPerMinute) {
 }; // find ROF end
 #endregion
 
-function WeaponStructs(){
 
-#region Boltguns, storm bolters, bolt pistols and heavy bolters
+#region WeaponStructs function
+function WeaponStructs(){
+#region ranged weapon structs
+
+	#region Boltguns, storm bolters, bolt pistols and heavy bolters
 Boltgun_Phobos = { //---------------------------- PHOBOS BOLTER
 	
 		//combat stats
@@ -83,7 +86,7 @@ Boltgun_Phobos = { //---------------------------- PHOBOS BOLTER
 	//ds_list_add(ListComWP,pistol_bolt_tigrus[27]+".pistol_bolt_tigrus") //fix this later
 #endregion
 
-#region Flamers, hand flamers, heavy flamers
+	#region Flamers, hand flamers, heavy flamers
 Flamer_Astartes = { //---------------------------- ASTARTES SHOTGUN
 	
 		//combat stats
@@ -122,7 +125,7 @@ Flamer_Astartes = { //---------------------------- ASTARTES SHOTGUN
 	//ds_list_add(ListComWP,pistol_bolt_tigrus[27]+".pistol_bolt_tigrus") //fix this later
 #endregion	
 
-#region Shotguns, auto and stub weapons
+	#region Shotguns, auto and stub weapons
 Shotgun_Astartes = { //---------------------------- ASTARTES SHOTGUN
 	
 		//combat stats
@@ -161,7 +164,7 @@ Shotgun_Astartes = { //---------------------------- ASTARTES SHOTGUN
 	//ds_list_add(ListComWP,pistol_bolt_tigrus[27]+".pistol_bolt_tigrus") //fix this later
 #endregion	
 
-#region Plasma cannons, guns, pistols
+	#region Plasma cannons, guns, pistols
 Plasmagun_Thunderbolt = { //---------------------------- Thunderbolt pattern plasma gun
 	
 		//combat stats
@@ -200,4 +203,64 @@ Plasmagun_Thunderbolt = { //---------------------------- Thunderbolt pattern pla
 	//ds_list_add(ListComWP,pistol_bolt_tigrus[27]+".pistol_bolt_tigrus") //fix this later
 #endregion
 
-};//function end bracket
+#endregion
+
+#region Melee weapons structs
+	#region Chain swords and axes
+Chainsword_Thunderedge = { //---------------------------- thunderedge pattern chainsword
+	
+		//combat stats
+		damage : 50,
+		force : FindROF(330), //poise and guard break
+		penetration : 0.15, //armor penetration, as percent of damage
+		scalings : ["STR(D).030","DEX(E).020"], //scalings for damage bonus to stats
+		damage_type : ["physical.100"],
+		
+		//technical weapon stats
+		weapon_type : "melee_chain_sword",
+		weapon_slot : ["melee",3], //1 = single hand, 2 = both hands, 3 = offhand,
+		weight : 20,
+		durability_max : 600,
+		rarity : "150.common",
+		
+		//cosmetic stuff, animations, sounds, etc.
+		name : "Thunderedge Pattern Chainsword",
+		description : "desc_blank.txt", 
+		inventory_subimage : [sp_xhair, 6], //subimage for item to appear in inventory
+		weapon_attachment : "sword_chain_thunderedge", //spine attachment name
+		animation_group : anmgrp_boltgun_phobos,
+		sound_group : sndgrp_boltgun1,
+	};
+	//ds_list_add(ListComWP,pistol_bolt_tigrus[27]+".pistol_bolt_tigrus") //fix this later
+#endregion
+	
+	#region Power swords, mauls and axes
+Powersword_Proteus = { //---------------------------- thunderedge pattern chainsword
+	
+		//combat stats
+		damage : 50,
+		force : FindROF(330), //poise and guard break
+		penetration : 0.2, //armor penetration, as percent of damage
+		scalings : ["STR(D).030","DEX(E).020"], //scalings for damage bonus to stats
+		damage_type : ["physical.100"],
+		
+		//technical weapon stats
+		weapon_type : "melee_chain_sword",
+		weapon_slot : ["melee",3], //1 = single hand, 2 = both hands, 3 = offhand,
+		weight : 20,
+		durability_max : 600,
+		rarity : "150.common",
+		
+		//cosmetic stuff, animations, sounds, etc.
+		name : "Thunderedge Pattern Chainsword",
+		description : "desc_blank.txt", 
+		inventory_subimage : [sp_xhair, 6], //subimage for item to appear in inventory
+		weapon_attachment : "bolter_phobos", //spine attachment name
+		animation_group : anmgrp_boltgun_phobos,
+		sound_group : sndgrp_boltgun1,
+	};
+	//ds_list_add(ListComWP,pistol_bolt_tigrus[27]+".pistol_bolt_tigrus") //fix this later
+#endregion
+#endregion
+};//weapon structs function end bracket
+#endregion

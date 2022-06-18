@@ -57,7 +57,7 @@ if(CanMove) {
 
 	if(W and place_meeting(x, y+5, o_platform)) {vspd = -20 * (1+(Shift/3))};
 	
-    if(place_meeting(x, y+vspd, o_platform)) {
+    if(place_meeting(x+hspd, y+vspd, o_platform)) {
         vspd = 0;
 		move_contact_solid(270,10)
 		move_outside_solid(90,1)

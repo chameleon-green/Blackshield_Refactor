@@ -1,8 +1,6 @@
 AnimationsFlashesSoundGroups();
 AmmoStructs();
 WeaponStructs();
-PlayerStatsCalculator();
-
 //----------------------------------- MOVEMENT VARIABLES -----------------------------------
 
 //movement toggles
@@ -65,6 +63,33 @@ flash_angle = 0;
 
 IFF = "player:"+string(id); 
 
+//------------------------------------------- STATS STRUCTS ------------------------------------------------
+#region Base stats, stats and stat modifier structs
+Base = {		
+	AGI : 100, 
+	CHR : 100,
+	DEX : 100, 
+	END : 100,
+	INT : 100, 
+	LCK : 100,
+	PER : 100, 
+	STR : 100,		
+	WIL : 100						
+	};
+	
+Mod = {		
+	AGI : 00, 
+	CHR : 00,
+	DEX : 00, 
+	END : 00,
+	INT : 00, 
+	LCK : 00,
+	PER : 00, 
+	STR : 00,		
+	WIL : 00						
+	};
+#endregion
+PlayerStatsCalculator();
 //---------------------------------- INSTANCE CREATION --------------------------------
 
 xhair = instance_create_depth(x,y,depth,o_xhair);
