@@ -49,16 +49,7 @@ if(CanMove) {
 			else {hspd = move*CanMove; if(col_bot) {skeleton_anim_set_step(walk,2)} };
 		};	
 	};
-		
-	if (hspd = 0) {
-	skeleton_animation_clear(2)
-	};
-	
-	if(col_bot = 0) {
-		skeleton_animation_clear(2)
-		skeleton_anim_set_step("idle_air",2)
-	};
-	
+				
 	//Jump with W, force aided by sprinting
 	if(W && place_meeting(x, y+10, o_platform)) {vspd = -20 * (1+(Shift/3))};
 
@@ -80,28 +71,37 @@ if (place_free(x,y+sign(vspd))) {
         vspd += 1
 };
 
-if(place_meeting(x+hspd, y+vspd, o_platform)) {
-	vspd = 0;
-	move_contact_solid(270,10)
-	move_outside_solid(90,1)
+if(place_meeting(x, y+vspd, o_platform)) { //vertical collisions
+	if(vspd < 0) {move_outside_solid(270,vspd)}; //if we are going up and hit something, try to get out of ceiling collision
+	else{move_contact_solid(270,10)}; //if we are going down and hit something, touch down on the floor
+	vspd = 0; //kill our vertical momentum in either case
 };
 
 if(place_meeting(x+hspd*2,y,o_platform)){
-	var MaxGrade = 4;
+	var MaxGrade = 3;
 	var climb = 0; //our variable used to attempt to find a clear position to ascend to
 	while ( place_meeting(x+(hspd*2),y-climb,o_platform) && (climb <= abs(MaxGrade*hspd)) ) {climb += 1}; //attempts to find a clear position to ascend to, the maximum height of which is determined by our speed and maxgrade value
-		if (place_meeting(x+(hspd*2),y-climb,o_platform) or (vspd != 0)) { //if we fail to find a position in range of our maximum climb, the player moves forward horizontally until it hits the wall			
-			move_outside_solid(180,50);
-			move_outside_solid(0,50);
+		if (place_meeting(x+(hspd*2),y-climb+vspd,o_platform) or (vspd != 0)) { //if we fail to find a position in range of our maximum climb, the player moves forward horizontally until it hits the wall			
+			move_outside_solid(180,100);
+			move_outside_solid(0,100);
 			hspd = 0
 		};
 		else { //if we succeed in finding a clear position, move to it
 			y -= climb
 		};
 };
+
+if (hspd = 0 && !rolling) {
+	skeleton_animation_clear(2)
+};
+
+if(col_bot = 0 && !rolling) {
+	skeleton_animation_clear(2);
+	skeleton_anim_set_step("idle_air",2)
+};
 	
 x += hspd;
-	
+		
 // Downward slopes
 if (!place_meeting(x,y,o_platform) && vspd >= 0 && place_meeting(x,y+2+abs(hspd),o_platform)) {
 	while(!place_meeting(x,y+1,o_platform)) {y += 1;}

@@ -10,7 +10,7 @@ CanRoll = 1;
 CanSprint = 1;
 
 //movement values
-MoveSpeed = 6; //11 = max agil
+MoveSpeed = 8; //11 = max agil
 JumpHeight = 20;
 hspd = 0;
 vspd = 0;
