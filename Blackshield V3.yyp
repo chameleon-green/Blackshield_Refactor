@@ -10,6 +10,7 @@
     {"id":{"name":"sp_flamer_flames","path":"sprites/sp_flamer_flames/sp_flamer_flames.yy",},"order":3,},
     {"id":{"name":"snd_flamer_loop1","path":"sounds/snd_flamer_loop1/snd_flamer_loop1.yy",},"order":0,},
     {"id":{"name":"snd_shotgun_reload_single1","path":"sounds/snd_shotgun_reload_single1/snd_shotgun_reload_single1.yy",},"order":3,},
+    {"id":{"name":"Animation Tracks","path":"notes/Animation Tracks/Animation Tracks.yy",},"order":0,},
     {"id":{"name":"sp_bullet","path":"sprites/sp_bullet/sp_bullet.yy",},"order":0,},
     {"id":{"name":"spr_collision_mask_human","path":"sprites/spr_collision_mask_human/spr_collision_mask_human.yy",},"order":0,},
     {"id":{"name":"snd_shellfall_big1","path":"sounds/snd_shellfall_big1/snd_shellfall_big1.yy",},"order":4,},

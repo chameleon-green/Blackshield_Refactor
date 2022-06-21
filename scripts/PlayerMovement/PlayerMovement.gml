@@ -23,8 +23,9 @@ function PlayerMovement() {
 	
 //+++++++++++++++++++++++++++++++++++++++ Control Inputs +++++++++++++++++++++++++++++++++++++++++++++++
 
-	if(!rolling) {hspd = 0};
+	if(!rolling and !swinging) {hspd = 0};
 	sprinting = 0;
+	crouching = 0;
 	var face_left = mouse_x < x;
 	var face_right = mouse_x > x;
 	var mouse_facing = sign((mouse_x*1.01) - x); //prevents our mouse_facing from equaling 0, hiding the player
@@ -56,10 +57,13 @@ if(CanMove) {
 	//initiate crouching anim when we press S
 	if (S) {skeleton_animation_set_ext("crouch", 2) crouching = 1};
 	
-	if(Space && col_bot) { //roll when pressing spacebar
+	if(Space && CanRoll && col_bot) { //roll when pressing spacebar
 		rolling = 1;
-		hspd = MoveSpeed*2*image_xscale;
+		hspd = MoveSpeed*1.3*image_xscale;
 		sprinting = 0;
+		skeleton_animation_clear(4);
+		reloading = 0;
+		if(reloading) {skeleton_attachment_set("slot_gun magazine",wpn_active.magazine_attachment)};
 		skeleton_animation_clear(2);
 		skeleton_anim_set_step("roll_fast",2);
 	};		
@@ -79,9 +83,10 @@ if(place_meeting(x, y+vspd, o_platform)) { //vertical collisions
 
 if(place_meeting(x+hspd*2,y,o_platform)){
 	var MaxGrade = 3;
+	var Hspd2 = hspd+(sign(hspd)*2);
 	var climb = 0; //our variable used to attempt to find a clear position to ascend to
-	while ( place_meeting(x+(hspd*2),y-climb,o_platform) && (climb <= abs(MaxGrade*hspd)) ) {climb += 1}; //attempts to find a clear position to ascend to, the maximum height of which is determined by our speed and maxgrade value
-		if (place_meeting(x+(hspd*2),y-climb+vspd,o_platform) or (vspd != 0)) { //if we fail to find a position in range of our maximum climb, the player moves forward horizontally until it hits the wall			
+	while ( place_meeting(x+Hspd2,y-climb,o_platform) && (climb <= abs(MaxGrade*hspd)) ) {climb += 1}; //attempts to find a clear position to ascend to, the maximum height of which is determined by our speed and maxgrade value
+		if (place_meeting(x+Hspd2,y-climb+vspd,o_platform) or (vspd != 0)) { //if we fail to find a position in range of our maximum climb, the player moves forward horizontally until it hits the wall			
 			move_outside_solid(180,100);
 			move_outside_solid(0,100);
 			hspd = 0
@@ -91,7 +96,7 @@ if(place_meeting(x+hspd*2,y,o_platform)){
 		};
 };
 
-if (hspd = 0 && !rolling) {
+if (hspd = 0 && !rolling and !crouching) {
 	skeleton_animation_clear(2)
 };
 

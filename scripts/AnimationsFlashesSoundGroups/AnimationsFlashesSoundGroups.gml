@@ -34,6 +34,14 @@ function AnimationsFlashesSoundGroups(){
 		fire : "Plasma Weapons/firing_plasmagun_thunderbolt",
 		reload : "Plasma Weapons/reload_plasmagun_thunderbolt"			
 	};
+	
+	anmgrp_chainsword_thunderedge = {
+		idle : "Chain Weapons/idle_sword_thunderedge",
+		strike : "Chain Weapons/strike_anim_sword_thunderedge",
+		light_attack : ["Chain Weapons/attack_sword_chain_light1","Chain Weapons/attack_sword_chain_light2","Chain Weapons/attack_sword_chain_light3"],
+		windup : "Chain Weapons/attack_sword_chain_windup1",
+		heavy_attack : "Chain Weapons/attack_sword_chain_heavy1"	
+	};
 
 
 //+++++++++++++++++++++++++++++++++++++++++++ MUZZLE FLASH GROUPS +++++++++++++++++++++++++++++++++++++++++

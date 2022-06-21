@@ -1,4 +1,7 @@
 
+if(swinging) {skeleton_attachment_set("slot_melee_weapon",wpn_active_melee.weapon_attachment)};
+
+
 if(CanShoot) {
 	var torso_map = ds_map_create();
 	var head_map = ds_map_create();

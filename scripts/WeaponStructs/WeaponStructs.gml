@@ -8,14 +8,13 @@ function FindROF(RoundsPerMinute) {
 
 #region WeaponStructs function
 function WeaponStructs(){
-#region ranged weapon structs
 
 	#region Boltguns, storm bolters, bolt pistols and heavy bolters
 Boltgun_Phobos = { //---------------------------- PHOBOS BOLTER
 	
 		//combat stats
 		damage : 50,
-		ROF : FindROF(330), //rounds per minute
+		ROF : FindROF(400), //rounds per minute
 		range : 1000, //effective range before gravity takes hold, rounds can mod this
 		capacity : 30,		
 		spread : 0.3,
@@ -26,12 +25,12 @@ Boltgun_Phobos = { //---------------------------- PHOBOS BOLTER
 		weapon_slot : ["primary",2], //1 = single hand, 2 = both hands, 3 = offhand,
 		ammo_type: "bolt_small",
 		default_ammo_type: Ammo_Bolt_Standard,
-		firemodes: ["Semi","Auto","Charge"],
+		firemodes: ["Semi","Burst(3)","Auto"],
 		weight : 15,
 		durability_max : 1000,
 		rarity : "150.common",
 		heat_generation : -1,
-		heat_capacity : 0,
+		heat_capacity : 1,
 		
 		//cosmetic stuff, animations, sounds, etc.
 		name : "Phobos Pattern Boltgun",
@@ -68,7 +67,7 @@ Boltgun_Phobos = { //---------------------------- PHOBOS BOLTER
 		durability_max : 1000,
 		rarity : "150.common",
 		heat_generation : -1,
-		heat_capacity : 0,
+		heat_capacity : 1,
 		
 		//cosmetic stuff, animations, sounds, etc.
 		name : "Tigrus Pattern Bolt Pistol",
@@ -107,7 +106,7 @@ Flamer_Astartes = { //---------------------------- ASTARTES SHOTGUN
 		durability_max : 1000,
 		rarity : "150.common",
 		heat_generation : -1,
-		heat_capacity : 0,
+		heat_capacity : 1,
 		
 		//cosmetic stuff, animations, sounds, etc.
 		name : "Astartes Pattern Flamer",
@@ -146,7 +145,7 @@ Shotgun_Astartes = { //---------------------------- ASTARTES SHOTGUN
 		durability_max : 1000,
 		rarity : "150.common",
 		heat_generation : -1,
-		heat_capacity : 0,
+		heat_capacity : 1,
 		
 		//cosmetic stuff, animations, sounds, etc.
 		name : "Astartes Pattern Shotgun",
@@ -203,9 +202,6 @@ Plasmagun_Thunderbolt = { //---------------------------- Thunderbolt pattern pla
 	//ds_list_add(ListComWP,pistol_bolt_tigrus[27]+".pistol_bolt_tigrus") //fix this later
 #endregion
 
-#endregion
-
-#region Melee weapons structs
 	#region Chain swords and axes
 Chainsword_Thunderedge = { //---------------------------- thunderedge pattern chainsword
 	
@@ -228,7 +224,7 @@ Chainsword_Thunderedge = { //---------------------------- thunderedge pattern ch
 		description : "desc_blank.txt", 
 		inventory_subimage : [sp_xhair, 6], //subimage for item to appear in inventory
 		weapon_attachment : "sword_chain_thunderedge", //spine attachment name
-		animation_group : anmgrp_boltgun_phobos,
+		animation_group : anmgrp_chainsword_thunderedge,
 		sound_group : sndgrp_boltgun1,
 	};
 	//ds_list_add(ListComWP,pistol_bolt_tigrus[27]+".pistol_bolt_tigrus") //fix this later
@@ -261,6 +257,6 @@ Powersword_Proteus = { //---------------------------- thunderedge pattern chains
 	};
 	//ds_list_add(ListComWP,pistol_bolt_tigrus[27]+".pistol_bolt_tigrus") //fix this later
 #endregion
-#endregion
+
 };//weapon structs function end bracket
 #endregion

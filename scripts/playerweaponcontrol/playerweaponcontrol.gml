@@ -15,7 +15,7 @@ function FireGun (){
 	
 	var IsCharge = (selector = "Charge");
 	var ChargeCap = wpn_active.heat_capacity*10;
-	var ChargeMult = clamp( IsCharge*(burst_count/ChargeCap)*(ChargeCap/100), 1, 10 )
+	var ChargeMult = clamp( IsCharge*(burst_count/ChargeCap)*(ChargeCap/100), 1, 10 );
 
 	magazine_active -= 1;
 	burst_count += 1;
@@ -98,7 +98,9 @@ function PlayerWeaponControl(){
 	if(!CanShoot) {
 		audio_stop_sound(aud_fireloop); aud_fireloop = 0;
 		audio_stop_sound(aud_chargeloop); aud_chargeloop = 0;
-		burst_count = 0
+		burst_count = 0;
+		spooled = 0;
+		spindown_toggle = 0;
 	};
 	
 	//reset burst count, spooling, shooting/spinning spool sound
@@ -110,12 +112,12 @@ function PlayerWeaponControl(){
 		charge_toggle = 1;
 		burst_count = 0;
 		spooled = 0;
+		
 		if(is_array(wpn_active.animation_group.fire) and spindown_toggle ) {
 			skeleton_anim_set_step(wpn_active.animation_group.fire[2],3)
 		};
 		audio_stop_sound(aud_fireloop); aud_fireloop = 0;
-		audio_stop_sound(aud_chargeloop); aud_chargeloop = 0
-		
+		audio_stop_sound(aud_chargeloop); aud_chargeloop = 0		
 	};
 	
 	//check for empty mags, reload interrupt for single loaders, and spool up spoolguns
@@ -191,6 +193,7 @@ function PlayerWeaponControl(){
 //--------------------------------------------- RELOAD AND SELECTOR SWITCH ---------------------------------	
 	
 	if(Reload_Key and _CanReload) {	
+		magazine_active = 0;
 		burst_count = 0;
 		reloading = 1;
 		skeleton_animation_clear(3); skeleton_animation_clear(3);

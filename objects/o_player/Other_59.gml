@@ -72,3 +72,9 @@ if(event = "roll_done") {
 	rolling = 0;
 	hspd = 0
 };
+
+//----------------------------------------- melee related events ------------------------------------------
+
+if(event = "swing_light") {
+	hspd = 0;
+};

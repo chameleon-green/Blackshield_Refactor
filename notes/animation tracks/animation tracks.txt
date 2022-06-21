@@ -1,0 +1,6 @@
+1 : ranged weapons idles, or 2-handed melee weapons
+2 : movement stuff (usually legs) and rolling
+3 : weapon firing animations
+4 : reloading
+5 : melee idles (for offhand)
+6 : melee attacks
