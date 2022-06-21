@@ -18,7 +18,7 @@ Boltgun_Phobos = { //---------------------------- PHOBOS BOLTER
 		range : 1000, //effective range before gravity takes hold, rounds can mod this
 		capacity : 30,		
 		spread : 0.3,
-		muzzle_velocity : 30,
+		muzzle_velocity : 35,
 		
 		//technical weapon stats
 		weapon_type : "rifle_bolt",

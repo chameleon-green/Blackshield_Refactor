@@ -35,6 +35,7 @@
     {"id":{"name":"o_player","path":"objects/o_player/o_player.yy",},"order":0,},
     {"id":{"name":"snd_plasma_magin","path":"sounds/snd_plasma_magin/snd_plasma_magin.yy",},"order":2,},
     {"id":{"name":"sp_marine","path":"sprites/sp_marine/sp_marine.yy",},"order":1,},
+    {"id":{"name":"o_explosion","path":"objects/o_explosion/o_explosion.yy",},"order":12,},
     {"id":{"name":"MeleeScripts","path":"scripts/MeleeScripts/MeleeScripts.yy",},"order":3,},
     {"id":{"name":"snd_rackslide1","path":"sounds/snd_rackslide1/snd_rackslide1.yy",},"order":2,},
     {"id":{"name":"snd_shellfall_small1","path":"sounds/snd_shellfall_small1/snd_shellfall_small1.yy",},"order":3,},

@@ -10,7 +10,7 @@ CanRoll = 1;
 CanSprint = 1;
 
 //movement values
-MoveSpeed = 15; //11 = max agil
+MoveSpeed = 10; //11 = max agil
 JumpHeight = 20;
 hspd = 0;
 vspd = 0;
@@ -40,7 +40,7 @@ wpn_active_heat = 0;
 aud_fireloop = 0; //loop for guns with loop sounds
 aud_chargeloop = 0; //loop for guns with charging
 
-wpn_active = Boltgun_Phobos;
+wpn_active = Flamer_Astartes;
 ammo_active = wpn_active.default_ammo_type;
 magazine_active = wpn_active.capacity;
 skeleton_animation_set(wpn_active.animation_group.idle);

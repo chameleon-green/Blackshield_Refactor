@@ -8,7 +8,10 @@ penetration = damage*type.armor_penetration;
 hp = damage;
 fuse = hp*type.fuse;
 
+base_speed = speed;
+
 //------------------------------------------ Special projectile code ------------------------------------	
+
 Flames = (string_count("flames",sprite_get_name(sprite_index)));
 if(Flames){
 
