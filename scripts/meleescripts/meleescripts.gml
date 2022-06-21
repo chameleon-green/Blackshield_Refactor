@@ -71,8 +71,9 @@ function PlayerMeleeControl(){
 	
 	//----------------------------------------queue up next attack
 	
-		if(Queued && (attack_sequence < array_length(wpn_active_melee.animation_group.light_attack))) {
+		if(Queued && attack_sequence_toggle && (attack_sequence < array_length(wpn_active_melee.animation_group.light_attack))) {
 		
+			attack_sequence_toggle = 0;
 			var TimeLeft = time_source_get_time_remaining(melee_reset_timer) //get time until current anim is done
 			time_source_reset(melee_reset_timer); //reset our melee end timer so we have time to set it for our next attack
 		
@@ -99,13 +100,15 @@ function PlayerMeleeControl(){
 					
 				var _ClearInputBuffer = function(){
 					time_source_reset(melee_input_check_timer);
-					attack_sequence = 0;
+					attack_sequence = 0;		
 				};
 					
 				time_source_reconfigure(melee_reset_timer,AnimationLength,time_source_units_frames,_EndMelee); //reconf our reset timer to use our new attack length
 				time_source_start(melee_reset_timer); //start the reset timer
 				time_source_reconfigure(melee_input_check_timer,AnimationLength+15,time_source_units_frames,_ClearInputBuffer);
 				time_source_start(melee_input_check_timer);
+				
+				attack_sequence_toggle = 1;
 			};
 		
 			time_source_reconfigure(melee_sequence_timer,TimeLeft,time_source_units_frames,_NextAttack); //qeue up our next attack when our current one is done

@@ -40,7 +40,7 @@ wpn_active_heat = 0;
 aud_fireloop = 0; //loop for guns with loop sounds
 aud_chargeloop = 0; //loop for guns with charging
 
-wpn_active = Flamer_Astartes;
+wpn_active = Shotgun_Astartes;
 ammo_active = wpn_active.default_ammo_type;
 magazine_active = wpn_active.capacity;
 skeleton_animation_set(wpn_active.animation_group.idle);
@@ -72,8 +72,9 @@ melee_reset_timer = time_source_create(time_source_game,0,time_source_units_fram
 melee_input_check_timer = time_source_create(time_source_game,0,time_source_units_frames,_mymethod); 
 melee_sequence_timer = time_source_create(time_source_game,0,time_source_units_frames,_mymethod);
 
-attack_sequence = 0;
-swinging = 0;
+attack_sequence = 0; //what attack we are at in our combo. used to navigate array of attack animations
+attack_sequence_toggle = 1; //toggle to prevent input from interrupting combos
+swinging = 0; //are we swinging a weapon?
 
 //------------------------------------------- STATS STRUCTS ------------------------------------------------
 

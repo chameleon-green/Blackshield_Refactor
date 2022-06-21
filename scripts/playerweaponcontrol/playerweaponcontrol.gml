@@ -193,7 +193,8 @@ function PlayerWeaponControl(){
 //--------------------------------------------- RELOAD AND SELECTOR SWITCH ---------------------------------	
 	
 	if(Reload_Key and _CanReload) {	
-		magazine_active = 0;
+		
+		if(!string_count("Shotgun",string(wpn_active))) {magazine_active = 0};
 		burst_count = 0;
 		reloading = 1;
 		skeleton_animation_clear(3); skeleton_animation_clear(3);

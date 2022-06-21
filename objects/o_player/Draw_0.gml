@@ -28,5 +28,5 @@ PlayerMeleeControl()
 
 var SwordDMG = MeleeDamageCalculator(id,Chainsword_Thunderedge)
 //var SwordDMG = array_length(Chainsword_Thunderedge.scalings);
-draw_text(x,y-200,attack_sequence);
+
 
