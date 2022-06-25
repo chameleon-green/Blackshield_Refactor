@@ -85,6 +85,45 @@ Boltgun_Phobos = { //---------------------------- PHOBOS BOLTER
 	//ds_list_add(ListComWP,pistol_bolt_tigrus[27]+".pistol_bolt_tigrus") //fix this later
 #endregion
 
+	#region Melta weapons and inferno pistols
+Meltagun_Proteus = { //---------------------------- ASTARTES SHOTGUN
+	
+		//combat stats
+		damage : 100,
+		ROF : 2, //FindROF(330), //rounds per minute
+		range : 1000, //effective range before gravity takes hold, rounds can mod this
+		capacity : 10000,		
+		spread : 0,
+		muzzle_velocity : 400,
+		
+		//technical weapon stats
+		weapon_type : "melta",
+		weapon_slot : ["primary",2], //1 = single hand, 2 = both hands, 3 = offhand,
+		ammo_type: "fuel",
+		default_ammo_type: Ammo_Melta_Standard,
+		firemodes: ["Auto"],
+		weight : 18,
+		durability_max : 1000,
+		rarity : "150.common",
+		heat_generation : -1,
+		heat_capacity : 1,
+		
+		//cosmetic stuff, animations, sounds, etc.
+		name : "Astartes Pattern Flamer",
+		description : "desc_blank.txt", 
+		inventory_subimage : [sp_xhair, 6], //subimage for item to appear in inventory
+		weapon_attachment : "flamer_astartes", //spine attachment name
+		magazine_attachment : "mag_flamer_1", //spine attachment name
+		flash_type : "none",
+		flash_color : "none", 
+		animation_group : anmgrp_flamer_astartes,
+		sound_group : sndgrp_flamer1,
+		angular_offset : 90, //angular offset for animation related stuff
+		vertical_offset : -150 // Y axis offset for crosshair stuff		
+	};
+	//ds_list_add(ListComWP,pistol_bolt_tigrus[27]+".pistol_bolt_tigrus") //fix this later
+#endregion	
+	
 	#region Flamers, hand flamers, heavy flamers
 Flamer_Astartes = { //---------------------------- ASTARTES SHOTGUN
 	

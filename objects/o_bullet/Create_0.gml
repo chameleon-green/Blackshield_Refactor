@@ -10,6 +10,8 @@ fuse = hp*type.fuse;
 
 base_speed = speed;
 
+kill = 0;
+
 //------------------------------------------ Special projectile code ------------------------------------	
 
 Flames = (string_count("flames",sprite_get_name(sprite_index)));

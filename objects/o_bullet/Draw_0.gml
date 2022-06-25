@@ -16,3 +16,6 @@ if(Flames){
 	draw_sprite_ext(sprite_index,image_index,x+xoffset,y+yoffset,image_xscale,image_yscale,image_angle,image_blend,image_alpha);
 	draw_sprite_ext(sprite_index,image_index,x-xoffset,y-yoffset,image_xscale,image_yscale,image_angle,image_blend,image_alpha);
 }; 
+
+if(image_xscale >= 600/64 or (kill = 1)) {instance_destroy(self)};
+

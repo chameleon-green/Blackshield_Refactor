@@ -55,7 +55,7 @@ function AmmoStructs() {
 	};
 	#endregion
 	
-	#region flamer and plasma fuels
+	#region flamer, melta and plasma fuels
 	Ammo_Flamer_Standard = {//---------------------------- flamer fuel
 		
 		damage_mod : 1,
@@ -75,6 +75,31 @@ function AmmoStructs() {
 		
 		projectile_type : [sp_flamer_flames, 0], //sprite and subimage, if relevant
 		projectile_color : [c_white, c_white],
+		flash_color : "none", //color override for flash, if relevant
+		casing_type : "none", //sprite and subimage of casing
+		casing_sound : "none", //impact sound and pitch
+		inventory_subimage : [sp_xhair, 6]
+	};
+	
+	Ammo_Melta_Standard = {//---------------------------- flamer fuel
+		
+		damage_mod : 1,
+		ROF_mod : 1,
+		range_mod : 1,
+		velocity_mod :1,
+		
+		damage_type : "thermal",
+		armor_penetration : 0.75,
+		guidance : "beam",
+		fuse : 0.5, //how much resistance the projectile must encounter to detonate, as a factor of its dmg
+		special : "none", //an array of any special effects
+		
+		weight : 0.01, //weight in lbs
+		wear : 1, //durability cost on weapon when fired
+		rarity : "150.common",	
+		
+		projectile_type : [sp_beam, 0], //sprite and subimage, if relevant
+		projectile_color : [c_orange, c_white],
 		flash_color : "none", //color override for flash, if relevant
 		casing_type : "none", //sprite and subimage of casing
 		casing_sound : "none", //impact sound and pitch

@@ -73,8 +73,8 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "Sprites: Gibs and Projectiles",
-    "path": "folders/Sprites/Sprites: Gibs and Projectiles.yy",
+    "name": "Projectiles",
+    "path": "folders/Sprites/Sprites: Gibs and Projectiles/Projectiles.yy",
   },
   "resourceVersion": "1.0",
   "name": "sp_bullet",

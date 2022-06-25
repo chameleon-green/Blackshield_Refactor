@@ -25,6 +25,8 @@ function FireGun (){
 		var Cone = wpn_active.spread*5
 		repeat(Count) {
 			instance_create_depth(flash_x,flash_y,depth+1,o_bullet,{
+				origin_x : other.flash_x,
+				origin_y : other.flash_y,
 				type : other.ammo_active, 
 				IFF : other.IFF,
 				damage : other.wpn_active.damage/Count,
@@ -38,13 +40,16 @@ function FireGun (){
 	
 	else {
 		instance_create_depth(flash_x,flash_y,depth+1,o_bullet,{
+			origin_x : other.flash_x,
+			origin_y : other.flash_y,
 			type : other.ammo_active, 
 			IFF : other.IFF,
 			damage : other.wpn_active.damage*ChargeMult,
 			direction : other.AimAngleBullet + other.instant_spread,
 			speed : other.wpn_active.muzzle_velocity * other.ammo_active.velocity_mod,
 			//image_xscale : ChargeMult,
-			image_yscale : ChargeMult
+			image_yscale : ChargeMult,
+			vspeed : -other.vspd
 		});
 	};
 	

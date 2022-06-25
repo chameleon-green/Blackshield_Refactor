@@ -19,6 +19,8 @@ if(collision_line(x,y,_XX,_YY,o_platform,0,1)){
 	speed = base_speed;
 };
 
+
+
 //---------------------------------------- special projectile code -------------------------------------
 
 if(Flames) {
@@ -33,4 +35,8 @@ if(Flames) {
 	image_alpha = image_alpha * (1 - 0.05*cycle_speed);
 };	
 
+var IsBeam = string_count("beam",type.guidance); 
 
+if(IsBeam) {
+
+};
