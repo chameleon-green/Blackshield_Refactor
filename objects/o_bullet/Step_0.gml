@@ -15,7 +15,7 @@ if(collision_line(x,y,_XX,_YY,o_platform,0,1)){
 		y = y+lengthdir_y(Line_Length,direction);
 		var Collided = place_meeting(x,y,o_platform);
 	};
-	if(Line_Length < base_speed) {instance_destroy(self); instance_create_depth(x,y,depth-1,o_explosion)};
+	if(Line_Length < base_speed) {instance_destroy(self)};
 	speed = base_speed;
 };
 
@@ -38,5 +38,22 @@ if(Flames) {
 var IsBeam = string_count("beam",type.guidance); 
 
 if(IsBeam) {
+	var max_length = 6000;
+	var solid_object = object1;
 
+	for(var i = 0; i < max_length; i+=6){
+
+	var lx = x + lengthdir_x(i, direction);
+	var ly = y + lengthdir_y(i, direction);
+	
+	image_xscale = i/64;
+	
+	if(collision_point(lx, ly, o_platform, false, true)) {
+		kill = 1
+		break;	
+	}
+	
+	}
+x+=hspd; y+=vspd;
+kill = 1;
 };

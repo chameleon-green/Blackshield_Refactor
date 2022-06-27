@@ -24,7 +24,7 @@ function FireGun (){
 		var Count = string_digits(ammo_active.guidance);
 		var Cone = wpn_active.spread*5
 		repeat(Count) {
-			instance_create_depth(flash_x,flash_y,depth+1,o_bullet,{
+			instance_create_depth(flash_x+hspd,flash_y+vspd_readonly,depth+1,o_bullet,{
 				origin_x : other.flash_x,
 				origin_y : other.flash_y,
 				type : other.ammo_active, 
@@ -39,7 +39,7 @@ function FireGun (){
 	};
 	
 	else {
-		instance_create_depth(flash_x,flash_y,depth+1,o_bullet,{
+		instance_create_depth(flash_x+hspd,flash_y+vspd_readonly,depth+1,o_bullet,{
 			origin_x : other.flash_x,
 			origin_y : other.flash_y,
 			type : other.ammo_active, 
@@ -49,7 +49,8 @@ function FireGun (){
 			speed : other.wpn_active.muzzle_velocity * other.ammo_active.velocity_mod,
 			//image_xscale : ChargeMult,
 			image_yscale : ChargeMult,
-			vspeed : -other.vspd
+			vspd : other.vspd_readonly,
+			hspd : other.hspd,
 		});
 	};
 	
@@ -146,7 +147,9 @@ function PlayerWeaponControl(){
 	
 //--------------------------------------- SHOOT BULLETS IN VARIOUS MODES ------------------------------
 
-	if(Semi_Fire and _CanFire) {FireGun()};	
+	if(Semi_Fire and _CanFire) {
+		FireGun()
+	};	
 	
 	if(Auto_Fire and _CanFire) {
 		if(is_array(wpn_active.animation_group.fire) and !spooled) {
@@ -155,7 +158,9 @@ function PlayerWeaponControl(){
 		else{FireGun()};
 	};
 	
-	if(Burst_Fire and _CanFire and (burst_count < string_digits(selector))) {FireGun()};
+	if(Burst_Fire and _CanFire and (burst_count < string_digits(selector))) {
+		FireGun()
+	};
 
 //---------------------------------------- Charge type weapon code -----------------------------------
 	if(Charge_Fire and _CanFire and charge_toggle) {

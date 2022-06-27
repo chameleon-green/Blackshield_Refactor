@@ -90,11 +90,11 @@ Meltagun_Proteus = { //---------------------------- ASTARTES SHOTGUN
 	
 		//combat stats
 		damage : 100,
-		ROF : 2, //FindROF(330), //rounds per minute
+		ROF : 1,//FindROF(700), //rounds per minute
 		range : 1000, //effective range before gravity takes hold, rounds can mod this
 		capacity : 10000,		
-		spread : 0,
-		muzzle_velocity : 400,
+		spread : 0.1,
+		muzzle_velocity : 00,
 		
 		//technical weapon stats
 		weapon_type : "melta",
@@ -112,11 +112,11 @@ Meltagun_Proteus = { //---------------------------- ASTARTES SHOTGUN
 		name : "Astartes Pattern Flamer",
 		description : "desc_blank.txt", 
 		inventory_subimage : [sp_xhair, 6], //subimage for item to appear in inventory
-		weapon_attachment : "flamer_astartes", //spine attachment name
+		weapon_attachment : "meltagun_proteus", //spine attachment name
 		magazine_attachment : "mag_flamer_1", //spine attachment name
-		flash_type : "none",
-		flash_color : "none", 
-		animation_group : anmgrp_flamer_astartes,
+		flash_type : flash_med_melta,
+		flash_color : [c_orange, c_white], 
+		animation_group : anmgrp_meltagun_proteus,
 		sound_group : sndgrp_flamer1,
 		angular_offset : 90, //angular offset for animation related stuff
 		vertical_offset : -150 // Y axis offset for crosshair stuff		

@@ -2,7 +2,7 @@ mk2 test.png
 size:2048,128
 filter:Linear,Linear
 0000_bicep
-bounds:1023,79,23,47
+bounds:1056,79,23,47
 0000_foot
 bounds:721,7,37,17
 rotate:90
@@ -10,7 +10,7 @@ rotate:90
 bounds:653,2,42,18
 rotate:90
 0000_hand
-bounds:1091,33,20,15
+bounds:1119,81,20,15
 0000_head
 bounds:490,3,26,31
 rotate:90
@@ -49,10 +49,10 @@ anim_field_proteus3
 bounds:223,12,114,37
 rotate:90
 anim_pistol_sunspite1
-bounds:1039,30,47,17
+bounds:1081,79,47,17
 rotate:90
 anim_pistol_sunspite2
-bounds:1058,49,29,13
+bounds:1100,97,29,13
 rotate:90
 anim_plasmacannon_sol1
 bounds:586,4,65,34
@@ -79,9 +79,9 @@ belt3
 bounds:262,16,110,100
 rotate:90
 blank
-bounds:1081,4,24,24
+bounds:1137,102,24,24
 crawl_hand
-bounds:1063,2,26,16
+bounds:1123,3,26,16
 rotate:90
 flash med 1
 bounds:794,48,78,56
@@ -107,6 +107,11 @@ rotate:90
 flash med 4 core
 bounds:455,31,95,39
 rotate:90
+flash melta 1
+bounds:1039,26,46,48
+flash melta 1 core
+bounds:957,5,51,31
+rotate:90
 front bicep
 bounds:418,3,24,52
 rotate:90
@@ -114,34 +119,37 @@ rear bicep
 bounds:418,3,24,52
 rotate:90
 front hand
-bounds:1095,98,28,20
+bounds:1115,98,28,20
 rotate:90
 holding hand
-bounds:1076,30,18,13
+bounds:1134,61,18,13
 rotate:90
 mag_pistol_tigrus
-bounds:1058,30,16,17
+bounds:1100,79,16,17
+rotate:90
 mag_plasma_thunderbolt
 bounds:278,4,10,16
 rotate:90
 mag_plasmacannon_sol
 bounds:523,3,26,26
 mag_sickle1
-bounds:1073,50,22,28
+bounds:1039,2,22,28
+rotate:90
 mag_sickle1e
-bounds:1107,3,22,28
+bounds:1069,2,22,28
+rotate:90
 magazine_bolter_heavy1
-bounds:1006,16,31,50
+bounds:1023,76,31,50
 pauldron
-bounds:957,6,50,47
+bounds:990,16,50,47
 rotate:90
 rear arm
 bounds:673,3,41,28
 rotate:90
 rear pauldron
-bounds:1048,80,45,46
+bounds:1087,31,45,46
 rearfist
-bounds:1039,2,26,22
+bounds:1099,3,26,22
 rotate:90
 sword_chain_thunderedge
 bounds:2,2,29,124
@@ -197,23 +205,28 @@ Gun Animations/anim_shotgun_astartes4
 bounds:2,2,62,20
 
 mk2 test_4.png
-size:128,256
+size:256,128
 filter:Linear,Linear
 Magazines/mag_belt_rotor
-bounds:2,2,93,95
+bounds:2,21,93,95
 rotate:90
 Magazines/mag_flamer_1
-bounds:2,191,36,17
+bounds:61,2,36,17
 Magazines/mag_kalibrax_1
-bounds:49,144,47,45
+bounds:99,69,47,45
 Magazines/mag_kalibrax_1e
-bounds:2,97,47,45
+bounds:148,67,47,45
+rotate:90
 Magazines/mag_kalibrax_2
-bounds:2,146,45,43
+bounds:146,22,45,43
 Magazines/mag_kalibrax_3
-bounds:51,97,47,45
+bounds:99,20,47,45
+rotate:90
+Magazines/mag_melta_proteus
+bounds:193,40,25,13
+rotate:90
 Magazines/mag_missile
-bounds:40,191,57,17
+bounds:2,2,57,17
 
 mk2 test_5.png
 size:256,128
@@ -296,32 +309,47 @@ MK3/trim/3000_pauldron trim
 bounds:2,2,59,56
 
 mk2 test_9.png
-size:1024,128
+size:512,256
 filter:Linear,Linear
 Weapons/autocannon_kalibrax
-bounds:186,9,126,48
+bounds:208,128,126,48
+rotate:90
 Weapons/bolter_heavy_mars
-bounds:290,66,133,59
+bounds:79,121,133,59
+rotate:90
 Weapons/bolter_heavy_voss
-bounds:156,59,132,66
+bounds:140,122,132,66
+rotate:90
 Weapons/bolter_phobos
-bounds:539,75,79,50
+bounds:297,175,79,50
+rotate:90
 Weapons/bolter_stalker
-bounds:533,21,98,51
+bounds:68,2,98,51
+rotate:90
 Weapons/flamer_astartes
-bounds:425,74,112,51
+bounds:185,8,112,51
+rotate:90
+Weapons/meltagun_proteus
+bounds:238,14,112,42
+rotate:90
 Weapons/missile_astartes
-bounds:314,2,117,62
+bounds:121,2,117,62
+rotate:90
 Weapons/pistol_bolt_tigrus
-bounds:633,37,50,39
+bounds:320,20,50,39
 rotate:90
 Weapons/pistol_plasma_sunspite
-bounds:620,89,62,36
+bounds:282,8,62,36
+rotate:90
 Weapons/plasmacannon_sol
-bounds:2,50,152,75
+bounds:2,102,152,75
+rotate:90
 Weapons/plasmagun_thunderbolt
-bounds:2,6,87,42
+bounds:282,72,87,42
+rotate:90
 Weapons/rotorcannon_proteus
-bounds:433,8,98,64
+bounds:2,2,98,64
+rotate:90
 Weapons/shotgun_astartes
-bounds:91,11,93,37
+bounds:258,161,93,37
+rotate:90

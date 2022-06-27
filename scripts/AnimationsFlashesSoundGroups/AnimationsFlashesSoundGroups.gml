@@ -29,6 +29,12 @@ function AnimationsFlashesSoundGroups(){
 		reload : "Flame Weapons/reload_flamer_astartes"
 	};
 	
+	anmgrp_meltagun_proteus = {
+		idle : "Melta Weapons/idle_meltagun_proteus",
+		fire : ["Flame Weapons/spinup_flamer_astartes","Melta Weapons/firing_meltagun_proteus","Flame Weapons/spindown_flamer_astartes"],
+		reload : "Flame Weapons/reload_flamer_astartes"
+	};
+	
 	anmgrp_plasmagun_thunderbolt = {
 		idle : "Plasma Weapons/idle_plasmagun_thunderbolt",
 		fire : "Plasma Weapons/firing_plasmagun_thunderbolt",
@@ -50,6 +56,11 @@ function AnimationsFlashesSoundGroups(){
 	flash_med_normal[2] = "flash med 3";
 	flash_med_normal[1] = "flash med 2";
 	flash_med_normal[0] = "flash med 1";
+	
+	flash_med_melta[3] = "flash melta 1";
+	flash_med_melta[2] = "flash melta 1";
+	flash_med_melta[1] = "flash melta 1";
+	flash_med_melta[0] = "flash melta 1";
 	
 //+++++++++++++++++++++++++++++++++++++++++++ SOUND GROUPS ++++++++++++++++++++++++++++++++++++++++++++++++
 

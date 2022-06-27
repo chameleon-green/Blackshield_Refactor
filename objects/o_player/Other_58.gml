@@ -24,8 +24,8 @@ if(CanShoot) {
 	flash_x = ds_map_find_value(flash_map, "worldX");
 	flash_y = ds_map_find_value(flash_map, "worldY");
 	torso_angle = ds_map_find_value(torso_map, "worldAngleX");
-	torsoX = ds_map_find_value(torso_map, "worldX");
-	torsoY = ds_map_find_value(torso_map, "worldY");
+	//torsoX = ds_map_find_value(torso_map, "worldX");
+	//torsoY = ds_map_find_value(torso_map, "worldY");
 	
 	delta_x2 = mouse_x - x;//torsoX; //actual delta
 	delta_y2 = mouse_y - y;//torsoY; //actual delta
@@ -79,3 +79,5 @@ if(CanShoot) {
 	ds_map_destroy(rear_forearm_map);
 	ds_map_destroy(flash_map);
 };
+
+ 

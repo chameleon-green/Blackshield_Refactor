@@ -1,3 +1,4 @@
+
 audio_listener_set_position(0,x,y,0);
 
 //------------------------------------------- STATE TOGGLES --------------------------------------------
@@ -26,7 +27,7 @@ PlayerMeleeControl()
 
 //--------------------------------------------- DEBUG STUFF ------------------------------------------------
 
-var SwordDMG = MeleeDamageCalculator(id,Chainsword_Thunderedge)
-//var SwordDMG = array_length(Chainsword_Thunderedge.scalings);
+draw_text(x,bbox_top-100,vspd_readonly);
+
 
 

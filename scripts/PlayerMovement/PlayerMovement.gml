@@ -71,6 +71,8 @@ if(CanMove) {
 
 //+++++++++++++++++++++++++++++++++++++ collisions and gravity +++++++++++++++++++++++++++++++++++++
 
+vspd_readonly = vspd;
+
 if (place_free(x,y+sign(vspd))) {
         vspd += 1
 };
@@ -92,7 +94,8 @@ if(place_meeting(x+hspd*2,y,o_platform)){
 			hspd = 0
 		};
 		else { //if we succeed in finding a clear position, move to it
-			y -= climb
+			y -= climb;
+			vspd_readonly = (vspd - climb)
 		};
 };
 
@@ -109,7 +112,7 @@ x += hspd;
 		
 // Downward slopes
 if (!place_meeting(x,y,o_platform) && vspd >= 0 && place_meeting(x,y+2+abs(hspd),o_platform)) {
-	while(!place_meeting(x,y+1,o_platform)) {y += 1;}
+	while(!place_meeting(x,y+1,o_platform)) {y += 1; vspd_readonly+=1}
 };
 	
 y += vspd; //change our Y by effects of gravity and climb values
