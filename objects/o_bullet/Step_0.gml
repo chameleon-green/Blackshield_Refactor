@@ -2,6 +2,8 @@ visible = 1;
 
 //-------------------------------------- Collision Code --------------------------------------------------
 
+//x+=hspd; y+=vspd;
+
 var _XX = x+lengthdir_x(base_speed,direction);
 var _YY = y+lengthdir_y(base_speed,direction);
 
@@ -39,7 +41,6 @@ var IsBeam = string_count("beam",type.guidance);
 
 if(IsBeam) {
 	var max_length = 6000;
-	var solid_object = object1;
 
 	for(var i = 0; i < max_length; i+=6){
 
@@ -47,6 +48,7 @@ if(IsBeam) {
 	var ly = y + lengthdir_y(i, direction);
 	
 	image_xscale = i/64;
+	image_yscale = 2;
 	
 	if(collision_point(lx, ly, o_platform, false, true)) {
 		kill = 1

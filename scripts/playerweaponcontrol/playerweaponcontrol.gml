@@ -119,6 +119,16 @@ function PlayerWeaponControl(){
 		burst_count = 0;
 		spooled = 0;
 		
+		if(string_count("Burst",selector)) {
+			var _Cycle = function() {cycle = 1};
+			alarm[0] =-1; cycle = 0;
+			var ROF3 = wpn_active.ROF*2; 
+			if(time_source_get_state(burst_timer) = time_source_state_stopped or time_source_get_state(burst_timer) = time_source_state_initial){
+				time_source_reconfigure(burst_timer,ROF3,time_source_units_frames,_Cycle);
+				time_source_start(burst_timer)
+			}
+		};
+		
 		if(is_array(wpn_active.animation_group.fire) and spindown_toggle ) {
 			skeleton_anim_set_step(wpn_active.animation_group.fire[2],3)
 		};
@@ -158,7 +168,7 @@ function PlayerWeaponControl(){
 		else{FireGun()};
 	};
 	
-	if(Burst_Fire and _CanFire and (burst_count < string_digits(selector))) {
+	if(Burst_Fire && _CanFire and (burst_count < string_digits(selector))) {
 		FireGun()
 	};
 

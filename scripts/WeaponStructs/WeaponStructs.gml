@@ -14,10 +14,10 @@ Boltgun_Phobos = { //---------------------------- PHOBOS BOLTER
 	
 		//combat stats
 		damage : 50,
-		ROF : FindROF(400), //rounds per minute
+		ROF : FindROF(800), //rounds per minute
 		range : 1000, //effective range before gravity takes hold, rounds can mod this
 		capacity : 30,		
-		spread : 0.3,
+		spread : 0.2,
 		muzzle_velocity : 35,
 		
 		//technical weapon stats
@@ -90,10 +90,10 @@ Meltagun_Proteus = { //---------------------------- ASTARTES SHOTGUN
 	
 		//combat stats
 		damage : 100,
-		ROF : 1,//FindROF(700), //rounds per minute
+		ROF : 2,//FindROF(700), //rounds per minute
 		range : 1000, //effective range before gravity takes hold, rounds can mod this
 		capacity : 10000,		
-		spread : 0.1,
+		spread : 0.0,
 		muzzle_velocity : 00,
 		
 		//technical weapon stats

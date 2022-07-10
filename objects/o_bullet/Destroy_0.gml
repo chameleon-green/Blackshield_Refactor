@@ -1,3 +1,4 @@
+/*
 var xx = x;
 var xx = y;
 var IsBeam = string_count("beam",type.guidance); 
@@ -7,6 +8,6 @@ if(IsBeam) {
 	xx = x + lengthdir_x(i, direction);
 	yy = y + lengthdir_y(i, direction);
 }
+*/
 
-
-instance_create_depth(xx,yy,depth-1,o_explosion);
+//instance_create_depth(xx,yy,depth-1,o_explosion);
