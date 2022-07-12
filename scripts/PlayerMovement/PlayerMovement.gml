@@ -61,7 +61,15 @@ if(CanMove) {
 		rolling = 1;
 		hspd = MoveSpeed*1.3*image_xscale;
 		sprinting = 0;
-		skeleton_animation_clear(4);
+		skeleton_animation_clear(4); 
+		if(is_array(wpn_active.animation_group.fire)) {
+			audio_stop_sound(aud_spoolup); aud_spoolup = 0;
+			audio_stop_sound(aud_spooldown); aud_spooldown = 0;
+			if(spindown_toggle) {
+				skeleton_animation_clear(3);
+				skeleton_anim_set_step(wpn_active.animation_group.fire[2],3)
+			};
+		};
 		reloading = 0;
 		if(reloading) {skeleton_attachment_set("slot_gun magazine",wpn_active.magazine_attachment)};
 		skeleton_animation_clear(2);

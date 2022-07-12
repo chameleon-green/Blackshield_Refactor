@@ -40,8 +40,10 @@ wpn_active_heat = 0;
 //equipment sound stuff
 aud_fireloop = 0; //loop for guns with loop sounds
 aud_chargeloop = 0; //loop for guns with charging
+aud_spoolup = 0; //sound for spooling up
+aud_spooldown = 0; //sound for spooling down
 
-wpn_active = Boltgun_Phobos ;//Meltagun_Proteus;
+wpn_active = Meltagun_Proteus;
 ammo_active = wpn_active.default_ammo_type;
 magazine_active = wpn_active.capacity;
 skeleton_animation_set(wpn_active.animation_group.idle);

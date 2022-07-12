@@ -11,3 +11,5 @@ if(IsBeam) {
 */
 
 //instance_create_depth(xx,yy,depth-1,o_explosion);
+
+time_source_destroy(kill_timer);

@@ -27,7 +27,7 @@ PlayerMeleeControl()
 
 //--------------------------------------------- DEBUG STUFF ------------------------------------------------
 
-draw_text(x,bbox_top-100,vspd_readonly);
+draw_text(x,bbox_top-100,spooled);
 
 
 

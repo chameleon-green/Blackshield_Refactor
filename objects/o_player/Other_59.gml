@@ -21,7 +21,10 @@ ds_map_destroy(ejection_map);
 }; // eject event end
 
 if(event = "magout") {audio_play_sound_at(wpn_active.sound_group.mag_out,x,y,0,100,100,1,0,1)};
-if(event = "magin") {audio_play_sound_at(wpn_active.sound_group.mag_in,x,y,0,100,100,1,0,1)};
+if(event = "magin") {
+	audio_play_sound_at(wpn_active.sound_group.mag_in,x,y,0,100,100,1,0,1);
+	//skeleton_attachment_set("slot_gun magazine",wpn_active.magazine_attachment)
+	};
 if(event = "rackslide") {audio_play_sound_at(wpn_active.sound_group.rack_slide,x,y,0,100,100,1,0,1)};
 if(event = "Reloaded") {
 	reloading = 0;
@@ -43,21 +46,23 @@ if(event = "reload_single") {
 };
 
 if(event = "spinup") {
-	audio_play_sound_at(wpn_active.sound_group.spinup,x,y,0,100,100,1,0,1);
+	aud_spoolup = audio_play_sound_at(wpn_active.sound_group.spinup,x,y,0,100,100,1,0,1);
 	spindown_toggle = 1;
 };
 
 if(event = "spinupdone") {
 	skeleton_anim_set_step(wpn_active.animation_group.fire[1],3);
+	aud_spoolup = 0;
 	spooled = 1;
 };
 
 if(event = "spindown") {
-	audio_play_sound_at(wpn_active.sound_group.spindown,x,y,0,100,100,1,0,1);
+	aud_spooldown = audio_play_sound_at(wpn_active.sound_group.spindown,x,y,0,100,100,1,0,1);
 	spindown_toggle = 0;
 };
 
 if(event = "spindowndone") {
+	aud_spooldown = 0;
 	skeleton_animation_clear(3);
 };
 

@@ -39,8 +39,20 @@ function PlayerMeleeControl(){
 		if(!Queued) {
 			CanMove = 0; CanShoot = 0; CanReload = 0; CanRoll = 0; //we can't do anything while swinging
 			hspd = 9*image_xscale; reloading = 0; //interrupt movement and reloading while swinging
+						
 			skeleton_animation_clear(2);skeleton_animation_clear(3);skeleton_animation_clear(4);
 			skeleton_animation_clear(5);skeleton_animation_clear(6);skeleton_animation_clear(7);
+			
+			//spoolgun related stuff. end spool or spooldown when we swing
+			if(is_array(wpn_active.animation_group.fire)) {
+			audio_stop_sound(aud_spoolup); aud_spoolup = 0;
+			audio_stop_sound(aud_spooldown); aud_spooldown = 0;
+			if(spindown_toggle) {
+				skeleton_animation_clear(3);
+				skeleton_anim_set_step(wpn_active.animation_group.fire[2],3)
+				};
+			};
+			
 			swinging = 1; 
 		
 			var Attack_Array = wpn_active_melee.animation_group;

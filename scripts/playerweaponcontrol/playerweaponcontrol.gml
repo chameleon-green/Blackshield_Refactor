@@ -104,6 +104,8 @@ function PlayerWeaponControl(){
 	if(!CanShoot) {
 		audio_stop_sound(aud_fireloop); aud_fireloop = 0;
 		audio_stop_sound(aud_chargeloop); aud_chargeloop = 0;
+		audio_stop_sound(aud_spoolup); aud_spoolup = 0;
+		if(is_array(wpn_active.animation_group.fire)) {skeleton_animation_clear(3)}
 		burst_count = 0;
 		spooled = 0;
 		spindown_toggle = 0;
@@ -111,6 +113,12 @@ function PlayerWeaponControl(){
 	
 	//reset burst count, spooling, shooting/spinning spool sound
 	if(mouse_check_button_released(mb_left)) {
+		
+		if(is_array(wpn_active.animation_group.fire) && spindown_toggle) {
+			audio_stop_sound(aud_spooldown); aud_spooldown = 0;
+			skeleton_animation_clear(3);
+			skeleton_anim_set_step(wpn_active.animation_group.fire[2],3)
+		};
 		
 		var Minimum_Charge = (burst_count >= (wpn_active.heat_capacity*2.5));
 		if(selector = "Charge" and charge_toggle and _CanFire and Minimum_Charge) {FireGun()};
@@ -129,17 +137,15 @@ function PlayerWeaponControl(){
 			}
 		};
 		
-		if(is_array(wpn_active.animation_group.fire) and spindown_toggle ) {
-			skeleton_anim_set_step(wpn_active.animation_group.fire[2],3)
-		};
 		audio_stop_sound(aud_fireloop); aud_fireloop = 0;
-		audio_stop_sound(aud_chargeloop); aud_chargeloop = 0		
+		audio_stop_sound(aud_chargeloop); aud_chargeloop = 0
+		audio_stop_sound(aud_spoolup); aud_spoolup = 0;
 	};
 	
 	//check for empty mags, reload interrupt for single loaders, and spool up spoolguns
 	if(mouse_check_button_pressed(mb_left)) {	
 		
-		if(magazine_active = 0) {
+		if(magazine_active = 0 and !reloading) {
 			audio_play_sound_at(wpn_active.sound_group.empty,x,y,0,100,100,1,0,1);
 		};
 		
@@ -147,6 +153,8 @@ function PlayerWeaponControl(){
 			skeleton_animation_clear(4);
 			skeleton_anim_set_step(wpn_active.animation_group.reload[2],4);	
 		};		
+		
+		audio_stop_sound(aud_spooldown); aud_spooldown = 0;
 	};
 	
 	//spindown when we hit 0 rounds for spoolguns

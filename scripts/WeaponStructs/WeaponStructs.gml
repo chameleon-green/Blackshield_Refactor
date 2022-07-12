@@ -89,11 +89,11 @@ Boltgun_Phobos = { //---------------------------- PHOBOS BOLTER
 Meltagun_Proteus = { //---------------------------- ASTARTES SHOTGUN
 	
 		//combat stats
-		damage : 100,
-		ROF : 2,//FindROF(700), //rounds per minute
+		damage : 90,
+		ROF : 2, //rounds per minute
 		range : 1000, //effective range before gravity takes hold, rounds can mod this
-		capacity : 10000,		
-		spread : 0.0,
+		capacity : 55,		
+		spread : 0.1,
 		muzzle_velocity : 00,
 		
 		//technical weapon stats
@@ -109,15 +109,15 @@ Meltagun_Proteus = { //---------------------------- ASTARTES SHOTGUN
 		heat_capacity : 1,
 		
 		//cosmetic stuff, animations, sounds, etc.
-		name : "Astartes Pattern Flamer",
+		name : "Proteus Pattern Meltagun",
 		description : "desc_blank.txt", 
 		inventory_subimage : [sp_xhair, 6], //subimage for item to appear in inventory
 		weapon_attachment : "meltagun_proteus", //spine attachment name
-		magazine_attachment : "mag_flamer_1", //spine attachment name
+		magazine_attachment : "mag_melta_proteus", //spine attachment name
 		flash_type : flash_med_melta,
 		flash_color : [c_orange, c_white], 
 		animation_group : anmgrp_meltagun_proteus,
-		sound_group : sndgrp_flamer1,
+		sound_group : sndgrp_melta1,
 		angular_offset : 90, //angular offset for animation related stuff
 		vertical_offset : -150 // Y axis offset for crosshair stuff		
 	};

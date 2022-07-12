@@ -89,7 +89,7 @@ function AmmoStructs() {
 		velocity_mod :1,
 		
 		damage_type : "thermal",
-		armor_penetration : 0.75,
+		armor_penetration : 3,
 		guidance : "beam",
 		fuse : 0.5, //how much resistance the projectile must encounter to detonate, as a factor of its dmg
 		special : "none", //an array of any special effects

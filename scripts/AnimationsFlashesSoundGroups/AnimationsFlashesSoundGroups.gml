@@ -31,8 +31,8 @@ function AnimationsFlashesSoundGroups(){
 	
 	anmgrp_meltagun_proteus = {
 		idle : "Melta Weapons/idle_meltagun_proteus",
-		fire : ["Flame Weapons/spinup_flamer_astartes","Melta Weapons/firing_meltagun_proteus","Flame Weapons/spindown_flamer_astartes"],
-		reload : "Flame Weapons/reload_flamer_astartes"
+		fire : ["Melta Weapons/spinup_meltagun_proteus","Melta Weapons/firing_meltagun_proteus","Melta Weapons/spindown_meltagun_proteus"],
+		reload : "Melta Weapons/reload_meltagun_proteus"
 	};
 	
 	anmgrp_plasmagun_thunderbolt = {
@@ -91,6 +91,16 @@ function AnimationsFlashesSoundGroups(){
 		selector : snd_selector1,
 		spinup : snd_flamer_windup,
 		spindown : snd_flamer_winddown
+	};
+	
+	sndgrp_melta1 = {
+		fire_loop : snd_melta_loop1,
+		mag_in : snd_flamer_magin,
+		mag_out : snd_flamer_magout,
+		empty : snd_flamer_empty,
+		selector : snd_selector1,
+		spinup : snd_melta_windup,
+		spindown : snd_melta_winddown
 	};
 	
 	sndgrp_plasma1 = {
