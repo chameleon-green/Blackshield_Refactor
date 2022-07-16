@@ -20,12 +20,12 @@ if(ammo_active.casing_type != "none" && event = "eject") {
 ds_map_destroy(ejection_map);
 }; // eject event end
 
-if(event = "magout") {audio_play_sound_at(wpn_active.sound_group.mag_out,x,y,0,100,100,1,0,1)};
+if(event = "magout") {audio_play_sound(wpn_active.sound_group.mag_out,1,0)};
 if(event = "magin") {
 	audio_play_sound_at(wpn_active.sound_group.mag_in,x,y,0,100,100,1,0,1);
 	//skeleton_attachment_set("slot_gun magazine",wpn_active.magazine_attachment)
 	};
-if(event = "rackslide") {audio_play_sound_at(wpn_active.sound_group.rack_slide,x,y,0,100,100,1,0,1)};
+if(event = "rackslide") {audio_play_sound(wpn_active.sound_group.rack_slide,1,0)};
 if(event = "Reloaded") {
 	reloading = 0;
 	skeleton_animation_clear(4);
@@ -42,11 +42,11 @@ if(event = "reload_single_check" && (magazine_active >= wpn_active.capacity)) {
 };
 
 if(event = "reload_single") {
-	if(magazine_active < wpn_active.capacity) {magazine_active += 1; audio_play_sound_at(wpn_active.sound_group.mag_in,x,y,0,100,100,1,0,1)};
+	if(magazine_active < wpn_active.capacity) {magazine_active += 1; audio_play_sound(wpn_active.sound_group.mag_in,1,0)};
 };
 
 if(event = "spinup") {
-	aud_spoolup = audio_play_sound_at(wpn_active.sound_group.spinup,x,y,0,100,100,1,0,1);
+	aud_spoolup = audio_play_sound(wpn_active.sound_group.spinup,1,0);
 	spindown_toggle = 1;
 };
 
@@ -57,7 +57,7 @@ if(event = "spinupdone") {
 };
 
 if(event = "spindown") {
-	aud_spooldown = audio_play_sound_at(wpn_active.sound_group.spindown,x,y,0,100,100,1,0,1);
+	aud_spooldown = audio_play_sound(wpn_active.sound_group.spindown,1,0);
 	spindown_toggle = 0;
 };
 
@@ -80,10 +80,11 @@ if(event = "roll_done") {
 
 //----------------------------------------- melee related events ------------------------------------------
 
-if(event = "swing_light") {
-	hspd = 0;
+if(event = "swing_light" or event = "swing_heavy") {
+	var rand = irandom_range(0,array_length(wpn_active_melee.sound_group.attack)-1);
+	audio_play_sound(wpn_active_melee.sound_group.attack[rand],1,0);
 };
 
-if(event = "swing_heavy") {
+if(event = "step_melee") {
 	hspd = 0;
 };

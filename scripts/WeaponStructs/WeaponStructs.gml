@@ -264,7 +264,7 @@ Chainsword_Thunderedge = { //---------------------------- thunderedge pattern ch
 		inventory_subimage : [sp_xhair, 6], //subimage for item to appear in inventory
 		weapon_attachment : "sword_chain_thunderedge", //spine attachment name
 		animation_group : anmgrp_chainsword_thunderedge,
-		sound_group : sndgrp_boltgun1,
+		sound_group : sndgrp_chain1,
 	};
 	//ds_list_add(ListComWP,pistol_bolt_tigrus[27]+".pistol_bolt_tigrus") //fix this later
 #endregion

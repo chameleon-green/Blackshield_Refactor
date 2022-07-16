@@ -6,6 +6,7 @@ function PlayerMovement() {
 	
 	//var anim_array2 = wpn_melee[wpn_melee.Animations];
 	var ranged_animgrp = wpn_active.animation_group;
+	var melee_animgrp = wpn_active_melee.animation_group;
 	var sprint = "sprint_full_rifle";
 	if(variable_struct_exists(ranged_animgrp,"sprint")) {var sprint = ranged_animgrp.sprint};
 	var walk = "walk_rifle";
@@ -21,6 +22,23 @@ function PlayerMovement() {
 	
 	col_bot = place_meeting(x,y+1,o_platform);
 	
+//------------------------------- Weapon idle scripts ---------------------------------------------------
+
+if (wpn_active.weapon_slot[0] = "primary") {
+	skeleton_anim_set_step(ranged_animgrp.idle,1)
+	if(aud_melee_idle != 0) {audio_stop_sound(aud_melee_idle); aud_melee_idle = 0};
+};
+
+if (wpn_active.weapon_slot[0] = "secondary") {
+	skeleton_anim_set_step(ranged_animgrp.idle,1);
+	if(!reloading) {
+		skeleton_anim_set_step(melee_animgrp.idle,5);
+		//if(aud_melee_idle = 0) {aud_melee_idle = audio_play_sound(wpn_active_melee.sound_group.idle,1,1)};		
+	};
+};
+
+if(sprinting && (hspd != 0) ) {skeleton_animation_clear(5)};
+
 //+++++++++++++++++++++++++++++++++++++++ Control Inputs +++++++++++++++++++++++++++++++++++++++++++++++
 
 	if(!rolling and !swinging) {hspd = 0};
@@ -124,9 +142,5 @@ if (!place_meeting(x,y,o_platform) && vspd >= 0 && place_meeting(x,y+2+abs(hspd)
 };
 	
 y += vspd; //change our Y by effects of gravity and climb values
-		
-if (wpn_active.weapon_slot = "primary") {
-	skeleton_anim_set_step(ranged_animgrp.idle,1)
-};
 
 }; //function end bracket <--------

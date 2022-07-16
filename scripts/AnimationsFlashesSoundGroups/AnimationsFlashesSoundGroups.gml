@@ -110,4 +110,9 @@ function AnimationsFlashesSoundGroups(){
 		empty : snd_click_empty,
 		selector : snd_selector1
 	};
+	
+	sndgrp_chain1 = {
+		attack : [snd_chain1,snd_chain2,snd_chain3],
+		idle : snd_chain_idle_loop1
+	};
 }

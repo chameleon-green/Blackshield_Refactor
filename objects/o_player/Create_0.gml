@@ -43,9 +43,18 @@ aud_chargeloop = 0; //loop for guns with charging
 aud_spoolup = 0; //sound for spooling up
 aud_spooldown = 0; //sound for spooling down
 
-wpn_active = Boltgun_Phobos;
+wpn_primary = Boltgun_Phobos;
+ammo_primary = wpn_primary.default_ammo_type;
+magazine_primary = wpn_primary.capacity
+
+wpn_secondary = Bolt_Pistol_Tigrus;
+ammo_secondary = wpn_secondary.default_ammo_type;
+magazine_secondary = wpn_secondary.capacity
+
+wpn_active = wpn_secondary;
 ammo_active = wpn_active.default_ammo_type;
 magazine_active = wpn_active.capacity;
+
 skeleton_animation_set(wpn_active.animation_group.idle);
 skeleton_attachment_set("slot_gun",wpn_active.weapon_attachment);
 skeleton_attachment_set("slot_gun magazine",wpn_active.magazine_attachment);
@@ -69,6 +78,8 @@ burst_timer = time_source_create(time_source_game,0,time_source_units_frames,_my
 IFF = "player:"+string(id); 
 
 //------------------------------------------- Melee related stuff --------------------------
+
+aud_melee_idle = 0;
 
 wpn_active_melee = Chainsword_Thunderedge;
 

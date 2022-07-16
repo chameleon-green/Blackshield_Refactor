@@ -31,9 +31,9 @@ PlayerMeleeControl()
 //--------------------------------------------- DEBUG STUFF ------------------------------------------------
 
 var state = time_source_get_state(melee_reset_timer)
-var anim = skeleton_animation_get_ext(6)
+var anim = skeleton_animation_get_ext(5)
 
 draw_text(x,bbox_top-100,state);
-draw_text(x,bbox_top-120,time_source_get_time_remaining(melee_reset_timer));
+draw_text(x,bbox_top-120,aud_melee_idle);
 
 

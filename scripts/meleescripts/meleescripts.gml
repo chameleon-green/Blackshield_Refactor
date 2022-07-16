@@ -35,7 +35,7 @@ function PlayerMeleeControl(){
 	
 	if(!rolling && mouse_check_button_released(mb_right)) {
 		
-		if( (melee_charge < 12) && !Queued && light_melee_toggle) {
+		if( (melee_charge < 13) && !Queued && light_melee_toggle) {
 			attack_sequence = 0;
 			CanMove = 0; CanShoot = 0; CanReload = 0; CanRoll = 0; //we can't do anything while swinging
 			hspd = 9*image_xscale; reloading = 0; //interrupt movement and reloading while swinging
@@ -65,14 +65,14 @@ function PlayerMeleeControl(){
 			attack_sequence += 1;
 			time_source_reconfigure(melee_reset_timer,AnimationLength,time_source_units_frames,Func_EndMelee);
 			time_source_start(melee_reset_timer);
-			time_source_reconfigure(melee_input_check_timer,AnimationLength+6,time_source_units_frames,Func_ClearInputBuffer);
+			time_source_reconfigure(melee_input_check_timer,AnimationLength+7,time_source_units_frames,Func_ClearInputBuffer);
 			time_source_start(melee_input_check_timer);
 			exit;
 		};//----------swinging check bracket 
 	
 	//----------------------------------------queue up next attack
 	
-		if((melee_charge < 12) && Queued && attack_sequence_toggle && (attack_sequence < array_length(wpn_active_melee.animation_group.light_attack))) {
+		if((melee_charge < 13) && Queued && attack_sequence_toggle && (attack_sequence < array_length(wpn_active_melee.animation_group.light_attack))) {
 		
 			attack_sequence_toggle = 0;
 			var TimeLeft = time_source_get_time_remaining(melee_reset_timer) //get time until current anim is done
@@ -95,7 +95,7 @@ function PlayerMeleeControl(){
 					
 				time_source_reconfigure(melee_reset_timer,AnimationLength,time_source_units_frames,Func_EndMelee); //reconf our reset timer to use our new attack length
 				time_source_start(melee_reset_timer); //start the reset timer
-				time_source_reconfigure(melee_input_check_timer,AnimationLength+6,time_source_units_frames,Func_ClearInputBuffer);
+				time_source_reconfigure(melee_input_check_timer,AnimationLength+7,time_source_units_frames,Func_ClearInputBuffer);
 				time_source_start(melee_input_check_timer);
 				
 				attack_sequence_toggle = 1;
@@ -118,10 +118,8 @@ function PlayerMeleeControl(){
 	//charge up melee by holding RMB
 	if(mouse_check_button(mb_right) and !Queued) {melee_charge += 1} else{melee_charge = 0};
 	
-	//light_melee_toggle = 1;
-	
 	//set us into windup anim if we are holding RMB
-	if(melee_charge >= 12 && heavy_melee_toggle) {		
+	if(melee_charge >= 13 && heavy_melee_toggle) {		
 		
 		Func_ClearInputBuffer();
 		

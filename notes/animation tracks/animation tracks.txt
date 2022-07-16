@@ -4,3 +4,5 @@
 4 : reloading
 5 : melee idles (for offhand)
 6 : melee attacks
+
+8 : melee extra idles, like chain teeth

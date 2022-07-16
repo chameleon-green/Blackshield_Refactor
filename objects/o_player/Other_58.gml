@@ -1,5 +1,7 @@
 
-if(swinging) {skeleton_attachment_set("slot_melee_weapon",wpn_active_melee.weapon_attachment)};
+if(swinging or wpn_active != wpn_primary && !reloading) {
+	skeleton_attachment_set("slot_melee_weapon",wpn_active_melee.weapon_attachment)
+};
 
 
 if(CanShoot) {

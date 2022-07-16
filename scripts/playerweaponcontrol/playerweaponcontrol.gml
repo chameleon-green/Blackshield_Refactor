@@ -74,10 +74,10 @@ function FireGun (){
 	};
 
 	if( variable_struct_exists(wpn_active.sound_group, "fire_loop") ) {
-		if(aud_fireloop = 0) {aud_fireloop = audio_play_sound_at(wpn_active.sound_group.fire_loop,x,y,0,100,100,1,1000,10)};
+		if(aud_fireloop = 0) {aud_fireloop = audio_play_sound(wpn_active.sound_group.fire_loop,1,1)};
 	};
 	else{
-		var FireSound = audio_play_sound_at(wpn_active.sound_group.fire,x,y,0,100,100,1,0,1);
+		var FireSound = audio_play_sound(wpn_active.sound_group.fire,1,0);
 		audio_sound_pitch(FireSound, random_range(0.9,1.1));	
 	};
 	
@@ -98,6 +98,7 @@ function PlayerWeaponControl(){
 	var Charge_Fire = mouse_check_button(mb_left) and (selector = "Charge") and (charge_toggle); 
 	var Reload_Key = keyboard_check_pressed(ord("R"));
 	var Selector_Key = keyboard_check_pressed(ord("X"));
+	var Swap_Key = keyboard_check_pressed(ord("Q"));
 	
 	var ChargeCap = wpn_active.heat_capacity*10;
 	
@@ -207,7 +208,7 @@ function PlayerWeaponControl(){
 		var Pitch = 2*(burst_count/ChargeCap);
 		var _Pitch = clamp(Pitch,0.25,2);
 		
-		if(aud_chargeloop = 0) {aud_chargeloop = audio_play_sound_at(snd_plasma_charge_loop,x,y,0,100,100,1,1,1)};
+		if(aud_chargeloop = 0) {aud_chargeloop = audio_play_sound(snd_plasma_charge_loop,1,1)};
 		audio_sound_pitch(aud_chargeloop,_Pitch);
 		audio_sound_gain(aud_chargeloop,Pitch,0.1);
 		
@@ -226,8 +227,8 @@ function PlayerWeaponControl(){
 		burst_count = 0;
 		reloading = 1;
 		skeleton_animation_clear(3); skeleton_animation_clear(3);
-		skeleton_animation_clear(4); skeleton_animation_clear(6);		
-		skeleton_animation_clear(8);
+		skeleton_animation_clear(4); skeleton_animation_clear(5);		
+		skeleton_animation_clear(6); skeleton_animation_clear(8);
 		
 		if(is_array(wpn_active.animation_group.reload)) {skeleton_animation_set_ext(wpn_active.animation_group.reload[0],4)};
 		else{skeleton_animation_set_ext(wpn_active.animation_group.reload,4)};
@@ -240,6 +241,37 @@ function PlayerWeaponControl(){
 		if(selector_real < array_length(wpn_active.firemodes)-1) {selector_real += 1;} else{selector_real = 0};
 		
 		selector = wpn_active.firemodes[selector_real];
+	};
+	
+//--------------------------------------------- QUICKSWAP ---------------------------------	
+	
+	if(Swap_Key && !rolling && !swinging) {	
+
+		if(wpn_active = wpn_primary) {
+			wpn_active = wpn_secondary; 
+			magazine_primary = magazine_active;
+			magazine_active = magazine_secondary;
+			ammo_active = ammo_secondary;
+			/*
+			if(is_struct(wpn_active_melee)){
+				skeleton_anim_set_step(wpn_active_melee.animation_group.idle,5);
+				skeleton_anim_set_step(wpn_active_melee.animation_group.strike,8)
+			};
+			*/
+		};
+		else{
+			wpn_active = wpn_primary;
+			magazine_secondary = magazine_active;
+			magazine_active = magazine_primary;
+			ammo_active = ammo_primary;
+			skeleton_animation_clear(5); skeleton_animation_clear(8);
+		};
+		
+		selector = wpn_active.firemodes[0];
+		
+		skeleton_anim_set_step(wpn_active.animation_group.idle,1);
+		skeleton_attachment_set("slot_gun",wpn_active.weapon_attachment);
+		skeleton_attachment_set("slot_gun magazine",wpn_active.magazine_attachment);		
 	};
 	
 };
