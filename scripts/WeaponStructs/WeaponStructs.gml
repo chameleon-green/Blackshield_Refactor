@@ -78,7 +78,7 @@ Boltgun_Phobos = { //---------------------------- PHOBOS BOLTER
 		flash_type : flash_med_normal,
 		flash_color : [make_colour_rgb(255, 230, 90), c_white], 
 		animation_group : anmgrp_boltpistol_tigrus,
-		sound_group : sndgrp_boltgun1,
+		sound_group : sndgrp_boltgun2,
 		angular_offset : 150, //angular offset for animation related stuff
 		vertical_offset : -150 // Y axis offset for crosshair stuff		
 	};

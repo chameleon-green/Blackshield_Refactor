@@ -78,7 +78,7 @@ function FireGun (){
 	};
 	else{
 		var FireSound = audio_play_sound(wpn_active.sound_group.fire,1,0);
-		audio_sound_pitch(FireSound, random_range(0.9,1.1));	
+		audio_sound_pitch(FireSound, random_range(0.85,1.05));	
 	};
 	
 	audio_stop_sound(aud_chargeloop); aud_chargeloop = 0

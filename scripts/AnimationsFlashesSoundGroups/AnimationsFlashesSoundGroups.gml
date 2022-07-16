@@ -73,6 +73,15 @@ function AnimationsFlashesSoundGroups(){
 		selector : snd_selector1
 	};
 	
+	sndgrp_boltgun2 = {
+		fire : snd_bolterlight1,
+		mag_in : snd_magin1,
+		mag_out : snd_magout1,
+		rack_slide : snd_rackslide1,
+		empty : snd_click_empty,
+		selector : snd_selector1
+	};
+	
 	sndgrp_shotgun1 = {
 		fire : snd_shotgun1,
 		mag_in : snd_shotgun_reload_single1,
