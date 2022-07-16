@@ -26,17 +26,17 @@ function MeleeDamageCalculator(entity,weapon){
 //note that methods must be defined before time sources can be called, so some of this may seem backwards
 function PlayerMeleeControl(){
 	
-	if(swinging) {};
-	else{skeleton_animation_clear(8)};
+	var InputState = time_source_get_state(melee_input_check_timer);
+	var Queued = (InputState = time_source_state_active);
+	
+	if(!swinging) {skeleton_animation_clear(8)};
 	
 	//---------------------------------- Initial Swing -----------------------------------------------
 	
 	if(!rolling && mouse_check_button_released(mb_right)) {
 		
-		var InputState = time_source_get_state(melee_input_check_timer);
-		var Queued = (InputState = time_source_state_active);
-		
-		if(!Queued) {
+		if( (melee_charge < 12) && !Queued && light_melee_toggle) {
+			attack_sequence = 0;
 			CanMove = 0; CanShoot = 0; CanReload = 0; CanRoll = 0; //we can't do anything while swinging
 			hspd = 9*image_xscale; reloading = 0; //interrupt movement and reloading while swinging
 						
@@ -54,36 +54,25 @@ function PlayerMeleeControl(){
 			};
 			
 			swinging = 1; 
+			melee_charge = 0;
 		
 			var Attack_Array = wpn_active_melee.animation_group;
 			var Animation = Attack_Array.light_attack[0+attack_sequence];
 			var AnimationLength = skeleton_animation_get_frames(Animation);
 		
-			var _EndMelee = function(){
-				swinging = 0;
-				skeleton_animation_clear(6);
-				skeleton_animation_clear(8);
-				hspd = 0;				
-			};
-			
-			var _ClearInputBuffer = function(){
-				time_source_reset(melee_input_check_timer);
-				attack_sequence = 0;
-			};
-		
 			skeleton_anim_set_step(Animation,6);
 			skeleton_anim_set_step(Attack_Array.strike,8);
 			attack_sequence += 1;
-			time_source_reconfigure(melee_reset_timer,AnimationLength,time_source_units_frames,_EndMelee);
+			time_source_reconfigure(melee_reset_timer,AnimationLength,time_source_units_frames,Func_EndMelee);
 			time_source_start(melee_reset_timer);
-			time_source_reconfigure(melee_input_check_timer,AnimationLength+15,time_source_units_frames,_ClearInputBuffer);
+			time_source_reconfigure(melee_input_check_timer,AnimationLength+6,time_source_units_frames,Func_ClearInputBuffer);
 			time_source_start(melee_input_check_timer);
 			exit;
-		};//swinging check bracket 
+		};//----------swinging check bracket 
 	
 	//----------------------------------------queue up next attack
 	
-		if(Queued && attack_sequence_toggle && (attack_sequence < array_length(wpn_active_melee.animation_group.light_attack))) {
+		if((melee_charge < 12) && Queued && attack_sequence_toggle && (attack_sequence < array_length(wpn_active_melee.animation_group.light_attack))) {
 		
 			attack_sequence_toggle = 0;
 			var TimeLeft = time_source_get_time_remaining(melee_reset_timer) //get time until current anim is done
@@ -95,6 +84,7 @@ function PlayerMeleeControl(){
 				var AnimationLength = skeleton_animation_get_frames(Animation); //how long is the attack in frames
 				
 				swinging = 1; //we are swinging a sword
+				melee_charge = 0;
 				hspd = 9*image_xscale;
 				
 				skeleton_animation_clear(6); //clear our current attack, as it is done
@@ -102,22 +92,10 @@ function PlayerMeleeControl(){
 				skeleton_anim_set_step(Attack_Array.strike,8);
 				
 				attack_sequence += 1; //increment attack sequence by 1 to play next animation if another attack is qeued
-				
-				var _EndMelee = function(){ //function to end melee when our reset time runs out
-					swinging = 0;
-					skeleton_animation_clear(6);
-					skeleton_animation_clear(8);
-					hspd = 0;
-					};
 					
-				var _ClearInputBuffer = function(){
-					time_source_reset(melee_input_check_timer);
-					attack_sequence = 0;		
-				};
-					
-				time_source_reconfigure(melee_reset_timer,AnimationLength,time_source_units_frames,_EndMelee); //reconf our reset timer to use our new attack length
+				time_source_reconfigure(melee_reset_timer,AnimationLength,time_source_units_frames,Func_EndMelee); //reconf our reset timer to use our new attack length
 				time_source_start(melee_reset_timer); //start the reset timer
-				time_source_reconfigure(melee_input_check_timer,AnimationLength+15,time_source_units_frames,_ClearInputBuffer);
+				time_source_reconfigure(melee_input_check_timer,AnimationLength+6,time_source_units_frames,Func_ClearInputBuffer);
 				time_source_start(melee_input_check_timer);
 				
 				attack_sequence_toggle = 1;
@@ -126,7 +104,42 @@ function PlayerMeleeControl(){
 			time_source_reconfigure(melee_sequence_timer,TimeLeft,time_source_units_frames,_NextAttack); //qeue up our next attack when our current one is done
 			time_source_start(melee_sequence_timer); //start our timer to qeue up next attack and use _NextAttack method
 			
-		};//swinging check bracket
-	};//mb released check bracket	
-}; //melee strike function
+		};//Already currently swinging check (qeued check)
+		
+	//---------------------------------------------------------- HEAVY ATTACK CODE --------------------------------------------------------
+	
+		if( (melee_charge >= 35) && heavy_melee_toggle) {Func_HeavyAttack()};
+		else if ( (skeleton_animation_get_ext(6) = wpn_active_melee.animation_group.windup) && (melee_charge < 35) ) {time_source_reset(melee_reset_timer); Func_EndMelee()};
+		
+		heavy_melee_toggle = 1;
+		
+	};//------------mb released check bracket	
+	
+	//charge up melee by holding RMB
+	if(mouse_check_button(mb_right) and !Queued) {melee_charge += 1} else{melee_charge = 0};
+	
+	//light_melee_toggle = 1;
+	
+	//set us into windup anim if we are holding RMB
+	if(melee_charge >= 12 && heavy_melee_toggle) {		
+		
+		Func_ClearInputBuffer();
+		
+		time_source_reset(melee_input_check_timer); time_source_reset(melee_sequence_timer);
+		
+		swinging = 1; hspd = 0;
+		skeleton_anim_set_step(wpn_active_melee.animation_group.windup,6);
+		skeleton_anim_set_step(wpn_active_melee.animation_group.strike,8);
+		
+		var AnimLength = skeleton_animation_get_frames(wpn_active_melee.animation_group.windup);
+		var InputState = time_source_get_state(melee_reset_timer);
+		
+		if(InputState != 1) {
+			time_source_reconfigure(melee_reset_timer,AnimLength,time_source_units_frames,Func_HeavyAttack); //reconf our reset timer to use our new attack length
+			time_source_start(melee_reset_timer) //start the reset timer
+		};
+		
+	};	
+	
+}; //------------melee strike function
 #endregion

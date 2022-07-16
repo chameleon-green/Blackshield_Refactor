@@ -43,7 +43,7 @@ aud_chargeloop = 0; //loop for guns with charging
 aud_spoolup = 0; //sound for spooling up
 aud_spooldown = 0; //sound for spooling down
 
-wpn_active = Meltagun_Proteus;
+wpn_active = Boltgun_Phobos;
 ammo_active = wpn_active.default_ammo_type;
 magazine_active = wpn_active.capacity;
 skeleton_animation_set(wpn_active.animation_group.idle);
@@ -79,6 +79,34 @@ melee_sequence_timer = time_source_create(time_source_game,0,time_source_units_f
 attack_sequence = 0; //what attack we are at in our combo. used to navigate array of attack animations
 attack_sequence_toggle = 1; //toggle to prevent input from interrupting combos
 swinging = 0; //are we swinging a weapon?
+melee_charge = 0; //our charge amount for heavy attacks
+heavy_melee_toggle = 1; //allow us to heavy attack once we have released RMB again
+light_melee_toggle = 1; //allow us to make a light melee attack 
+
+#region Melee time related functions
+Func_EndMelee = function(){ //function to end melee when our reset time runs out
+	swinging = 0; hspd = 0;
+	skeleton_animation_clear(6); skeleton_animation_clear(8);				
+};
+					
+Func_ClearInputBuffer = function(){
+	time_source_reset(melee_input_check_timer);
+	attack_sequence = 0;		
+};
+
+Func_HeavyAttack = function(){
+	swinging = 1; //we are swinging a sword
+	melee_charge = 0;
+	hspd = 19*image_xscale;
+	var AnimFrames = skeleton_animation_get_frames(wpn_active_melee.animation_group.heavy_attack);
+	attack_sequence = 0;
+	heavy_melee_toggle = 0;
+	skeleton_animation_clear(6);
+	skeleton_anim_set_step(wpn_active_melee.animation_group.heavy_attack,6);
+	time_source_reconfigure(melee_reset_timer,AnimFrames,time_source_units_frames,Func_EndMelee);
+	time_source_start(melee_reset_timer);
+};
+#endregion				
 
 //------------------------------------------- STATS STRUCTS ------------------------------------------------
 

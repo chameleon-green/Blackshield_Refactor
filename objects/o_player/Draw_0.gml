@@ -1,6 +1,9 @@
 
 audio_listener_set_position(0,x,y,0);
 
+
+
+
 //------------------------------------------- STATE TOGGLES --------------------------------------------
 
 CanShoot = (!sprinting && !rolling && !reloading && !swinging);
@@ -27,7 +30,10 @@ PlayerMeleeControl()
 
 //--------------------------------------------- DEBUG STUFF ------------------------------------------------
 
-draw_text(x,bbox_top-100,spooled);
+var state = time_source_get_state(melee_reset_timer)
+var anim = skeleton_animation_get_ext(6)
 
+draw_text(x,bbox_top-100,state);
+draw_text(x,bbox_top-120,time_source_get_time_remaining(melee_reset_timer));
 
 

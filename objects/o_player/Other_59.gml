@@ -83,3 +83,7 @@ if(event = "roll_done") {
 if(event = "swing_light") {
 	hspd = 0;
 };
+
+if(event = "swing_heavy") {
+	hspd = 0;
+};
