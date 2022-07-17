@@ -245,7 +245,7 @@ function PlayerWeaponControl(){
 	
 //--------------------------------------------- QUICKSWAP ---------------------------------	
 	
-	if(Swap_Key && !rolling && !swinging) {	
+	if(Swap_Key && !rolling && !swinging && !reloading) {	
 
 		if(wpn_active = wpn_primary) {
 			wpn_active = wpn_secondary; 

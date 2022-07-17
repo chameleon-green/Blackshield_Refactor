@@ -1,4 +1,6 @@
 
+//if(instance_exists(o_IC)) {visible = !o_IC.visible};
+
 x = mouse_x; 
 y = mouse_y;
 
