@@ -19,6 +19,7 @@ function AmmoStructs() {
 		wear : 1, //durability cost on weapon when fired
 		rarity : "150.common",	
 		
+		name : "Bolt Rounds, Standard",
 		projectile_type : [sp_bullet, 0], //sprite and subimage, if relevant
 		projectile_color : [make_colour_rgb(255, 230, 90), c_white],
 		flash_color : "none", //color override for flash, if relevant
@@ -46,6 +47,7 @@ function AmmoStructs() {
 		wear : 1, //durability cost on weapon when fired
 		rarity : "150.common",	
 		
+		name : "Shotgun Shells, Groxshot",
 		projectile_type : [sp_bullet, 0], //sprite and subimage, if relevant
 		projectile_color : [make_colour_rgb(255, 230, 90), c_white],
 		flash_color : "none", //color override for flash, if relevant
@@ -73,6 +75,7 @@ function AmmoStructs() {
 		wear : 1, //durability cost on weapon when fired
 		rarity : "150.common",	
 		
+		name : "Flamer Fuel, Standard",
 		projectile_type : [sp_flamer_flames, 0], //sprite and subimage, if relevant
 		projectile_color : [c_white, c_white],
 		flash_color : "none", //color override for flash, if relevant
@@ -98,6 +101,7 @@ function AmmoStructs() {
 		wear : 1, //durability cost on weapon when fired
 		rarity : "150.common",	
 		
+		name : "Melta Fuel, Standard",
 		projectile_type : [sp_beam, 0], //sprite and subimage, if relevant
 		projectile_color : [c_orange, c_white],
 		flash_color : "none", //color override for flash, if relevant
@@ -122,7 +126,8 @@ function AmmoStructs() {
 		weight : 0.01, //weight in lbs
 		wear : 4, //durability cost on weapon when fired
 		rarity : "150.common",	
-		
+
+		name : "Plasma Fuel, Standard",
 		projectile_type : [sp_bullet, 0], //sprite and subimage, if relevant
 		projectile_color : [make_color_rgb(0,198,229), c_white],
 		flash_color : "none", //color override for flash, if relevant

@@ -12,11 +12,42 @@ visible = 0;
 
 //----------------------------------------- UI functionality --------------------------------
 
-scale = 1.75;
+scale = 1.33;
 bg_subimage = 0;
 gui_close_toggle = 1;
 Tab = "items";
 SubTab = "weapons";
+
+Mouse_X = 0; 
+Mouse_Y = 0;
+
+
+
+//------------------------------------------ Inventory functionality -------------------------------------------
+
+global.IDList = ds_list_create();
+global.Selected = undefined;
+
+AnimationsFlashesSoundGroups();
+AmmoStructs();
+WeaponStructs();
+
+counter_weapons = 0;
+counter_armor = 0;
+counter_aid = 0;
+counter_ammo = 0;
+counter_crafting = 0;
+
+InventorySize = 100;
+grd_inv_wepn = ds_grid_create(10,InventorySize); //weapon inventory
+grd_inv_armr = ds_grid_create(10,InventorySize); //armor inventory
+grd_inv_aidd = ds_grid_create(10,InventorySize); //aid inventory
+grd_inv_ammo = ds_grid_create(10,InventorySize); //ammo inventory
+grd_inv_crft = ds_grid_create(10,InventorySize); //crafting inventory
+
+AddItem(Boltgun_Phobos,1,grd_inv_wepn);
+AddItem(Boltgun_Phobos,1,grd_inv_wepn);
+AddItem(Boltgun_Phobos,1,grd_inv_wepn);
 
 //----------------------------------------- Zoom Functionality ------------------------------
 

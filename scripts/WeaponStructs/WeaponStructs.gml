@@ -1,10 +1,11 @@
+
+
 #region Find ROF Function
 function FindROF(RoundsPerMinute) {
 	var  time = ( 1000/(RoundsPerMinute/60) )/16.7;
 	return time;
 }; // find ROF end
 #endregion
-
 
 #region WeaponStructs function
 function WeaponStructs(){

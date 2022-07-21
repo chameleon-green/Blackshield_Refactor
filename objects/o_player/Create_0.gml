@@ -43,7 +43,7 @@ aud_chargeloop = 0; //loop for guns with charging
 aud_spoolup = 0; //sound for spooling up
 aud_spooldown = 0; //sound for spooling down
 
-wpn_primary = Boltgun_Phobos;
+wpn_primary = Meltagun_Proteus;
 ammo_primary = wpn_primary.default_ammo_type;
 magazine_primary = wpn_primary.capacity
 
