@@ -24,6 +24,12 @@ if(!visible) {
 	counter_aid = 0;
 	counter_ammo = 0;
 	counter_crafting = 0;
+	
+	incrementor_weapons = 0;
+	incrementor_armor = 0;
+	incrementor_aid = 0;
+	incrementor_ammo = 0;
+	incrementor_crafting = 0;	
 };
 
 visible = !visible;

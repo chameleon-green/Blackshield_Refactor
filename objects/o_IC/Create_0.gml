@@ -12,7 +12,7 @@ visible = 0;
 
 //----------------------------------------- UI functionality --------------------------------
 
-scale = 1.33;
+scale = 1.53;
 bg_subimage = 0;
 gui_close_toggle = 1;
 Tab = "items";
@@ -21,6 +21,7 @@ SubTab = "weapons";
 Mouse_X = 0; 
 Mouse_Y = 0;
 
+MyScrollbar = 0;
 
 
 //------------------------------------------ Inventory functionality -------------------------------------------
@@ -31,6 +32,12 @@ global.Selected = undefined;
 AnimationsFlashesSoundGroups();
 AmmoStructs();
 WeaponStructs();
+
+incrementor_weapons = 0;
+incrementor_armor = 0;
+incrementor_aid = 0;
+incrementor_ammo = 0;
+incrementor_crafting = 0;
 
 counter_weapons = 0;
 counter_armor = 0;
@@ -45,6 +52,21 @@ grd_inv_aidd = ds_grid_create(10,InventorySize); //aid inventory
 grd_inv_ammo = ds_grid_create(10,InventorySize); //ammo inventory
 grd_inv_crft = ds_grid_create(10,InventorySize); //crafting inventory
 
+AddItem(Boltgun_Phobos,1,grd_inv_wepn);
+AddItem(Boltgun_Phobos,1,grd_inv_wepn);
+AddItem(Boltgun_Phobos,1,grd_inv_wepn);
+AddItem(Boltgun_Phobos,1,grd_inv_wepn);
+AddItem(Boltgun_Phobos,1,grd_inv_wepn);
+AddItem(Boltgun_Phobos,1,grd_inv_wepn);
+AddItem(Boltgun_Phobos,1,grd_inv_wepn);
+AddItem(Boltgun_Phobos,1,grd_inv_wepn);
+AddItem(Boltgun_Phobos,1,grd_inv_wepn);
+AddItem(Boltgun_Phobos,1,grd_inv_wepn);
+AddItem(Boltgun_Phobos,1,grd_inv_wepn);
+AddItem(Boltgun_Phobos,1,grd_inv_wepn);
+AddItem(Boltgun_Phobos,1,grd_inv_wepn);
+AddItem(Boltgun_Phobos,1,grd_inv_wepn);
+AddItem(Boltgun_Phobos,1,grd_inv_wepn);
 AddItem(Boltgun_Phobos,1,grd_inv_wepn);
 AddItem(Boltgun_Phobos,1,grd_inv_wepn);
 AddItem(Boltgun_Phobos,1,grd_inv_wepn);

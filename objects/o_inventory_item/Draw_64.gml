@@ -12,7 +12,7 @@ var Click = mouse_check_button_pressed(mb_left);
 
 var Color = c_dkgray;
 
-x = Xcent-(120*creator.scale); y = Ycent + (yoffset*37*scale);
+x = Xcent-(132*scale); y = Ycent - (133*scale) + (yoffset*36*scale);
 
 //------------------------------------------ Mouse interactions ----------------------------------------
 
