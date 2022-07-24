@@ -45,31 +45,30 @@ counter_aid = 0;
 counter_ammo = 0;
 counter_crafting = 0;
 
-InventorySize = 100;
+InventorySize = 101;
 grd_inv_wepn = ds_grid_create(10,InventorySize); //weapon inventory
 grd_inv_armr = ds_grid_create(10,InventorySize); //armor inventory
 grd_inv_aidd = ds_grid_create(10,InventorySize); //aid inventory
 grd_inv_ammo = ds_grid_create(10,InventorySize); //ammo inventory
 grd_inv_crft = ds_grid_create(10,InventorySize); //crafting inventory
 
-AddItem(Boltgun_Phobos,1,grd_inv_wepn);
-AddItem(Boltgun_Phobos,1,grd_inv_wepn);
-AddItem(Boltgun_Phobos,1,grd_inv_wepn);
-AddItem(Boltgun_Phobos,1,grd_inv_wepn);
-AddItem(Boltgun_Phobos,1,grd_inv_wepn);
-AddItem(Boltgun_Phobos,1,grd_inv_wepn);
-AddItem(Boltgun_Phobos,1,grd_inv_wepn);
-AddItem(Boltgun_Phobos,1,grd_inv_wepn);
-AddItem(Boltgun_Phobos,1,grd_inv_wepn);
-AddItem(Boltgun_Phobos,1,grd_inv_wepn);
-AddItem(Boltgun_Phobos,1,grd_inv_wepn);
-AddItem(Boltgun_Phobos,1,grd_inv_wepn);
-AddItem(Boltgun_Phobos,1,grd_inv_wepn);
-AddItem(Boltgun_Phobos,1,grd_inv_wepn);
-AddItem(Boltgun_Phobos,1,grd_inv_wepn);
-AddItem(Boltgun_Phobos,1,grd_inv_wepn);
-AddItem(Boltgun_Phobos,1,grd_inv_wepn);
-AddItem(Boltgun_Phobos,1,grd_inv_wepn);
+AddItem(Boltgun_Phobos,1,grd_inv_wepn,InventorySize);
+AddItem(Boltgun_Phobos,1,grd_inv_wepn,InventorySize);
+AddItem(Boltgun_Phobos,1,grd_inv_wepn,InventorySize);
+AddItem(Boltgun_Phobos,1,grd_inv_wepn,InventorySize);
+AddItem(Boltgun_Phobos,1,grd_inv_wepn,InventorySize);
+AddItem(Boltgun_Phobos,1,grd_inv_wepn,InventorySize);
+AddItem(Boltgun_Phobos,1,grd_inv_wepn,InventorySize);
+AddItem(Boltgun_Phobos,1,grd_inv_wepn,InventorySize);
+AddItem(Boltgun_Phobos,1,grd_inv_wepn,InventorySize);
+AddItem(Shotgun_Astartes,1,grd_inv_wepn,InventorySize);
+
+AddItem(Ammo_Bolt_Standard,100,grd_inv_ammo,InventorySize);
+AddItem(Ammo_Bolt_Standard,100,grd_inv_ammo,InventorySize);
+AddItem(Ammo_Bolt_Standard,1,grd_inv_ammo,InventorySize);
+AddItem(Ammo_Bolt_Standard,1,grd_inv_ammo,InventorySize);
+AddItem(Ammo_Bolt_Standard,1,grd_inv_ammo,InventorySize);
+AddItem(Ammo_Bolt_Standard,1,grd_inv_ammo,InventorySize);
 
 //----------------------------------------- Zoom Functionality ------------------------------
 

@@ -26,7 +26,7 @@ function GenerateID() { //generates a unique ID, given a list of existing IDs
 #endregion
 
 #region add item function
-function AddItem (Item,Quantity,TargetGrid,Durability=-1){
+function AddItem (Item,Quantity,TargetGrid,InventorySize,Durability=-1){
 	
 	var Counter = 0;
 	var ItemType = "none";
@@ -54,21 +54,33 @@ function AddItem (Item,Quantity,TargetGrid,Durability=-1){
 		}; //while loop
 	};//is weapon check
 	
+	if(ItemType = "ammo") {
+		
+		var GridWidth = ds_grid_width(TargetGrid);
+		var ItemY = ds_grid_value_y(TargetGrid,0,0,GridWidth-1,InventorySize-1,Item);
+		
+		if(ItemY != -1) {
+			var CurrentQuantity = ds_grid_get(TargetGrid,1,ItemY);
+			ds_grid_set(TargetGrid,1,ItemY,CurrentQuantity+Quantity);
+			
+		};
+		else{
+		
+			while(Counter < (InventorySize-1) ) {
+			
+				var Slot = ds_grid_get(TargetGrid,0,Counter);				
+				if(Slot = 0) {
+					ds_grid_set(TargetGrid,0,Counter,Item); //what are we adding?
+					ds_grid_set(TargetGrid,1,Counter,Quantity); //how many?
+					ds_grid_set(TargetGrid,8,Counter,GenerateID()); //unique ID for item
+					break;
+				};		
+			Counter +=1;
+			
+			}; //while loop
+		}; //else check
+	}; //is ammo check
+	
 };// func end
 #endregion
 
-#region inventory item surface drawing function
-
-function DrawItemUIPart(surface,scale,originX,originY,displacement) {
-	
-	if(!surface_exists(surface)) {surface_create(313,36)};
-	
-	surface_set_target(surface);
-    draw_clear_alpha(c_black, 0);	
-	draw_surface_general(surface, 0, 0, surface_get_width(surface), displacement, originX, originY, scale, scale, 0, c_white, c_white, c_white, c_white, 1);
-	
-    
-	
-};
-
-#endregion
