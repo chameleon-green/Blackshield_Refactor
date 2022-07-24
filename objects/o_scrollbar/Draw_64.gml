@@ -2,11 +2,19 @@ var Xcent = window_get_width()/2;
 var Ycent = window_get_height()/2; 
 scale = creator.scale;
 image_xscale = scale;
-image_yscale = 0.25*scale;
 
-x = Xcent-(298*scale); 
+x = Xcent-(298*scale);
 var BgY = Ycent - (133*scale);
 var BgYBar = Ycent - (118*scale);
+
+if(!creator.visible) {instance_destroy(self); creator.MyScrollbar = 0};
+
+//---------------------------------------------- Coordinate stuff ---------------------------------------------
+
+DisplacementMod = clamp(item_count/9,1,999999999999999); //how far should the items move relative to the scroll? allows for very long item lists
+BarLength = 292 - ( clamp(item_count-9,0,99999999999999) * (36/DisplacementMod) );  //  40/4, 4 being the multiplier found in obj_inventory_item
+ScaleMod = 292/BarLength;
+image_yscale = scale/ScaleMod;
 
 //----------------------------------------------- Mouse Stuff -----------------------------------
 
@@ -31,11 +39,10 @@ if(dragging && ClickHold) {
 };
 if(!ClickHold) {dragging = 0};
 
+Offset = y - Ycent
+
 //----------------------------------------------- Drawing -------------------------------------------------
 
 
 draw_sprite_ext(sprite_index,0,x,BgY,scale,scale,0,c_white,1);
 draw_self();
-
-
-draw_sprite_ext(sp_xhair,0,x,MaxDisplacementHeight,scale,scale,0,c_white,1);

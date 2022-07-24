@@ -12,7 +12,7 @@ visible = 0;
 
 //----------------------------------------- UI functionality --------------------------------
 
-scale = 1.53;
+scale = 1.75;
 bg_subimage = 0;
 gui_close_toggle = 1;
 Tab = "items";

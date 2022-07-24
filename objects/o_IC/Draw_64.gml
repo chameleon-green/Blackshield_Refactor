@@ -1,11 +1,15 @@
 
 
+
 Mouse_X = device_mouse_x_to_gui(0); 
 Mouse_Y = device_mouse_y_to_gui(0); 
 var Click = mouse_check_button_pressed(mb_left);
 var Ycent = window_get_height()/2; var Xcent = window_get_width()/2;
 
 draw_sprite_ext(sp_inventory_bg,bg_subimage,Xcent,Ycent,scale,scale,0,c_white,1);
+
+draw_text(Mouse_X+20,Mouse_Y,"XRel: " + string((Mouse_X-Xcent)/scale));
+draw_text(Mouse_X+20,Mouse_Y+12,"YRel: " + string((Mouse_Y-Ycent)/scale));
 
 //+++++++++++++++++++++++++++++++++++++++ BUTTON CHECKS ++++++++++++++++++++++++++++++++++++++++++++
 
@@ -19,7 +23,6 @@ if(Click) {
 	if(ButtonRegionCenter(Mouse_X,Mouse_Y,18,-72,180,200,scale)) {Tab = "log"; bg_subimage = 8; global.Selected = undefined};
 	
 	if(Tab = "items") {
-		if(MyScrollbar = 0) {MyScrollbar = instance_create_depth(x,y,depth-1,o_scrollbar,{creator : id})};
 		if(ButtonRegionCenter(Mouse_X,Mouse_Y,302,272,140,170,scale) && (SubTab != "weapons")) {SubTab = "weapons"; bg_subimage = 0; counter_weapons = 0; incrementor_weapons = 0; global.Selected = undefined};
 		if(ButtonRegionCenter(Mouse_X,Mouse_Y,264,234,140,170,scale) && (SubTab != "armor")) {SubTab = "armor"; bg_subimage = 1 counter_armor = 0; incrementor_armor = 0; global.Selected = undefined};
 		if(ButtonRegionCenter(Mouse_X,Mouse_Y,226,196,140,170,scale) && (SubTab != "aid")) {SubTab = "aid"; bg_subimage = 2 counter_aid = 0; incrementor_aid = 0; global.Selected = undefined};
@@ -54,18 +57,24 @@ draw_text(Mouse_X,Mouse_Y+30,ds_grid_get(grd_inv_wepn,0,2));
 
 if(Tab = "items") {
 	
+	if(MyScrollbar = 0) {MyScrollbar = instance_create_depth(x,y,depth-1,o_scrollbar,{creator : id})};
+	
 	if(SubTab = "weapons") {
 		while(incrementor_weapons < (InventorySize-1)) {
 			var Slot = ds_grid_get(grd_inv_wepn,0,incrementor_weapons)
 			if(Slot != 0) {						
 				var ID = ds_grid_get(grd_inv_wepn,8,incrementor_weapons);
 				instance_create_depth(x,y,depth-1,o_inventory_item,{
+					MyTab : Tab,
+					MySubTab : SubTab,
 					creator : id, 
 					yoffset : counter_weapons,
 					item : Slot,
-					unique_id : ID
+					unique_id : ID,
+					scrollbar : MyScrollbar
 				})
 				counter_weapons += 1;
+				MyScrollbar.item_count = counter_weapons;
 			};
 			incrementor_weapons += 1;	
 		};//while loop

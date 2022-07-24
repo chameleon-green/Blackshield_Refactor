@@ -57,3 +57,18 @@ function AddItem (Item,Quantity,TargetGrid,Durability=-1){
 };// func end
 #endregion
 
+#region inventory item surface drawing function
+
+function DrawItemUIPart(surface,scale,originX,originY,displacement) {
+	
+	if(!surface_exists(surface)) {surface_create(313,36)};
+	
+	surface_set_target(surface);
+    draw_clear_alpha(c_black, 0);	
+	draw_surface_general(surface, 0, 0, surface_get_width(surface), displacement, originX, originY, scale, scale, 0, c_white, c_white, c_white, c_white, 1);
+	
+    
+	
+};
+
+#endregion

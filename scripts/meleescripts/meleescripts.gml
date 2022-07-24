@@ -121,6 +121,11 @@ function PlayerMeleeControl(){
 	//set us into windup anim if we are holding RMB
 	if(melee_charge >= 13 && heavy_melee_toggle) {		
 		
+		reloading = 0;
+		
+		skeleton_animation_clear(2);skeleton_animation_clear(3);skeleton_animation_clear(4);
+		skeleton_animation_clear(5);skeleton_animation_clear(7);
+		
 		Func_ClearInputBuffer();
 		
 		time_source_reset(melee_input_check_timer); time_source_reset(melee_sequence_timer);
