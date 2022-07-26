@@ -11,14 +11,14 @@ function AnimationsFlashesSoundGroups(){
 	};
 	
 	anmgrp_boltpistol_tigrus = {
-		idle : "idle_empty_gun_hand",//"Bolt Weapons/idle_pistol_tigrus",
+		idle : "Bolt Weapons/idle_pistol_tigrus",
 		fire : "Bolt Weapons/firing_pistol_tigrus",
 		reload : "Bolt Weapons/reload_pistol_tigrus",
 		sprint : "sprint_full_melee"
 	};
 	
 	anmgrp_shotgun_astartes = {
-		idle : "Ballistic Weapons/idle_shotgun_astartes",
+		idle : "idle_fists",//"Ballistic Weapons/idle_shotgun_astartes",
 		fire : "Ballistic Weapons/firing_shotgun_astartes",
 		reload : ["Ballistic Weapons/reload_shotgun_astartes1","Ballistic Weapons/reload_shotgun_astartes2","Ballistic Weapons/reload_shotgun_astartes3"]
 	};
