@@ -31,6 +31,11 @@ col_left = 0;
 
 //----------------------------------- EQUIPMENT VARIABLES ----------------------------------
 
+var WpnGrid = MyIC.grd_inv_wepn;
+var AmmoGrid = MyIC.grd_inv_ammo;
+
+//ds_grid_value_disk_exists()
+
 //equipment statuses
 reloading = 0;
 spooled = 0;
@@ -44,14 +49,16 @@ aud_spoolup = 0; //sound for spooling up
 aud_spooldown = 0; //sound for spooling down
 
 wpn_primary = Shotgun_Astartes;
+wpn_primary_id = 0;
 ammo_primary = wpn_primary.default_ammo_type;
 magazine_primary = wpn_primary.capacity
 
 wpn_secondary = Bolt_Pistol_Tigrus;
+wpn_secondary_id = 0;
 ammo_secondary = wpn_secondary.default_ammo_type;
 magazine_secondary = wpn_secondary.capacity
 
-wpn_active = wpn_secondary;
+wpn_active = wpn_primary;
 ammo_active = wpn_active.default_ammo_type;
 magazine_active = wpn_active.capacity;
 

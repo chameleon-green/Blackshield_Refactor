@@ -4,7 +4,7 @@ if(swinging or wpn_active != wpn_primary && !reloading) {
 };
 
 
-if(CanShoot) {
+if(CanShoot = 4) {
 	var torso_map = ds_map_create();
 	var head_map = ds_map_create();
 	var front_bicep_map = ds_map_create();

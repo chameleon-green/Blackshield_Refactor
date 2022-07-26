@@ -10,6 +10,32 @@ function FindROF(RoundsPerMinute) {
 #region WeaponStructs function
 function WeaponStructs(){
 
+	#region fists
+	Unarmed_Fists = { //---------------------------- thunderedge pattern chainsword
+	
+		//combat stats
+		damage : 0,
+		force : 10, //poise and guard break
+		penetration : 0, //armor penetration, as percent of damage
+		scalings : ["STR(D).100","DEX(E).50"], //scalings for damage bonus to stats
+		damage_type : ["physical.100"],
+		
+		//technical weapon stats
+		weapon_type : "unarmed_fists",
+		weapon_slot : ["melee",2], //1 = single hand, 2 = both hands, 3 = offhand,
+		weight : 0,
+		durability_max : "none",
+		rarity : "100.common",
+		
+		//cosmetic stuff, animations, sounds, etc.
+		name : "Fists",
+		weapon_attachment : "sword_chain_thunderedge", //spine attachment name
+		animation_group : anmgrp_chainsword_thunderedge,
+		sound_group : sndgrp_chain1,
+	};
+	//ds_list_add(ListComWP,pistol_bolt_tigrus[27]+".pistol_bolt_tigrus") //fix this later
+	#endregion
+	
 	#region Boltguns, storm bolters, bolt pistols and heavy bolters
 Boltgun_Phobos = { //---------------------------- PHOBOS BOLTER
 	

@@ -70,6 +70,10 @@ AddItem(Ammo_Bolt_Standard,1,grd_inv_ammo,InventorySize);
 AddItem(Ammo_Bolt_Standard,1,grd_inv_ammo,InventorySize);
 AddItem(Ammo_Bolt_Standard,1,grd_inv_ammo,InventorySize);
 
+//----------------------------------------- Create Player ---------------------------------------
+
+MyPlayer = instance_create_depth(x,y,depth,o_player,{MyIC : id});
+
 //----------------------------------------- Zoom Functionality ------------------------------
 
 view_momentum = 0;

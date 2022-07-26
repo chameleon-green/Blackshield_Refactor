@@ -11,7 +11,7 @@ function AnimationsFlashesSoundGroups(){
 	};
 	
 	anmgrp_boltpistol_tigrus = {
-		idle : "Bolt Weapons/idle_pistol_tigrus",
+		idle : "idle_empty_gun_hand",//"Bolt Weapons/idle_pistol_tigrus",
 		fire : "Bolt Weapons/firing_pistol_tigrus",
 		reload : "Bolt Weapons/reload_pistol_tigrus",
 		sprint : "sprint_full_melee"
@@ -45,6 +45,14 @@ function AnimationsFlashesSoundGroups(){
 		idle : "Chain Weapons/idle_sword_thunderedge",
 		strike : "Chain Weapons/strike_anim_sword_thunderedge",
 		light_attack : ["Chain Weapons/attack_sword_chain_light1","Chain Weapons/attack_sword_chain_light2","Chain Weapons/attack_sword_chain_light3"],
+		windup : "Chain Weapons/attack_sword_chain_windup1",
+		heavy_attack : "Chain Weapons/attack_sword_chain_heavy1"	
+	};
+	
+	anmgrp_fists = {
+		idle : "idle_fists",
+		strike : "",
+		light_attack : ["attack_fists_light1","attack_fists_light2","attack_fists_light3"],
 		windup : "Chain Weapons/attack_sword_chain_windup1",
 		heavy_attack : "Chain Weapons/attack_sword_chain_heavy1"	
 	};

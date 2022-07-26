@@ -29,7 +29,7 @@ if (wpn_active.weapon_slot[0] = "primary") {
 	if(aud_melee_idle != 0) {audio_stop_sound(aud_melee_idle); aud_melee_idle = 0};
 };
 
-if (wpn_active.weapon_slot[0] = "secondary") {
+else if (wpn_active.weapon_slot[0] = "secondary") {
 	skeleton_anim_set_step(ranged_animgrp.idle,1);
 	if(!reloading) {
 		skeleton_anim_set_step(melee_animgrp.idle,5);
