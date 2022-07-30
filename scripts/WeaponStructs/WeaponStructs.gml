@@ -12,7 +12,9 @@ function WeaponStructs(){
 
 	#region fists
 	Unarmed_Fists = { //---------------------------- thunderedge pattern chainsword
-	
+		
+		item_type : "weapon_melee_unarmed",
+		
 		//combat stats
 		damage : 0,
 		force : 10, //poise and guard break
@@ -29,16 +31,18 @@ function WeaponStructs(){
 		
 		//cosmetic stuff, animations, sounds, etc.
 		name : "Fists",
-		weapon_attachment : "sword_chain_thunderedge", //spine attachment name
-		animation_group : anmgrp_chainsword_thunderedge,
-		sound_group : sndgrp_chain1,
+		weapon_attachment : -1, //spine attachment name
+		animation_group : anmgrp_fists,
+		sound_group : sndgrp_unarmed1
 	};
 	//ds_list_add(ListComWP,pistol_bolt_tigrus[27]+".pistol_bolt_tigrus") //fix this later
 	#endregion
 	
 	#region Boltguns, storm bolters, bolt pistols and heavy bolters
 Boltgun_Phobos = { //---------------------------- PHOBOS BOLTER
-	
+		
+		item_type : "weapon_ranged_bolt",
+		
 		//combat stats
 		damage : 50,
 		ROF : FindROF(800), //rounds per minute
@@ -75,7 +79,9 @@ Boltgun_Phobos = { //---------------------------- PHOBOS BOLTER
 	//ds_list_add(ListComWP,pistol_bolt_tigrus[27]+".pistol_bolt_tigrus") //fix this later
 	
 	Bolt_Pistol_Tigrus = { //---------------------------- tigrus bolt pistol
-	
+		
+		item_type : "weapon_ranged_bolt",
+		
 		//combat stats
 		damage : 40,
 		ROF : FindROF(330), //rounds per minute
@@ -114,7 +120,9 @@ Boltgun_Phobos = { //---------------------------- PHOBOS BOLTER
 
 	#region Melta weapons and inferno pistols
 Meltagun_Proteus = { //---------------------------- ASTARTES SHOTGUN
-	
+		
+		item_type : "weapon_ranged_melta",
+		
 		//combat stats
 		damage : 90,
 		ROF : 2, //rounds per minute
@@ -154,6 +162,8 @@ Meltagun_Proteus = { //---------------------------- ASTARTES SHOTGUN
 	#region Flamers, hand flamers, heavy flamers
 Flamer_Astartes = { //---------------------------- ASTARTES SHOTGUN
 	
+		item_type : "weapon_ranged_flamer",
+		
 		//combat stats
 		damage : 20,
 		ROF : 2, //FindROF(330), //rounds per minute
@@ -192,7 +202,9 @@ Flamer_Astartes = { //---------------------------- ASTARTES SHOTGUN
 
 	#region Shotguns, auto and stub weapons
 Shotgun_Astartes = { //---------------------------- ASTARTES SHOTGUN
-	
+		
+		item_type : "weapon_ranged_shotgun",
+		
 		//combat stats
 		damage : 80,
 		ROF : 45, //FindROF(330), //rounds per minute
@@ -231,7 +243,9 @@ Shotgun_Astartes = { //---------------------------- ASTARTES SHOTGUN
 
 	#region Plasma cannons, guns, pistols
 Plasmagun_Thunderbolt = { //---------------------------- Thunderbolt pattern plasma gun
-	
+		
+		item_type : "weapon_ranged_plasma",
+		
 		//combat stats
 		damage : 100,
 		ROF : FindROF(400), //rounds per minute
@@ -270,7 +284,9 @@ Plasmagun_Thunderbolt = { //---------------------------- Thunderbolt pattern pla
 
 	#region Chain swords and axes
 Chainsword_Thunderedge = { //---------------------------- thunderedge pattern chainsword
-	
+		
+		item_type : "weapon_melee_sword_chain",
+		
 		//combat stats
 		damage : 50,
 		force : FindROF(330), //poise and guard break
@@ -298,7 +314,9 @@ Chainsword_Thunderedge = { //---------------------------- thunderedge pattern ch
 	
 	#region Power swords, mauls and axes
 Powersword_Proteus = { //---------------------------- thunderedge pattern chainsword
-	
+		
+		item_type : "weapon_melee_sword_power",
+		
 		//combat stats
 		damage : 50,
 		force : FindROF(330), //poise and guard break

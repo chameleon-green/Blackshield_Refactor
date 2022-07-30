@@ -10,7 +10,8 @@ rotate:90
 bounds:653,2,42,18
 rotate:90
 0000_hand
-bounds:1119,81,20,15
+bounds:1134,57,20,15
+rotate:90
 0000_head
 bounds:490,3,26,31
 rotate:90
@@ -83,6 +84,10 @@ bounds:1137,102,24,24
 crawl_hand
 bounds:1123,3,26,16
 rotate:90
+fist punch
+bounds:1123,79,20,17
+fist punch outside
+bounds:1100,79,21,16
 flash med 1
 bounds:794,48,78,56
 rotate:90
@@ -122,11 +127,10 @@ front hand
 bounds:1115,98,28,20
 rotate:90
 holding hand
-bounds:1134,61,18,13
+bounds:1145,82,18,13
 rotate:90
 mag_pistol_tigrus
-bounds:1100,79,16,17
-rotate:90
+bounds:1134,38,16,17
 mag_plasma_thunderbolt
 bounds:278,4,10,16
 rotate:90

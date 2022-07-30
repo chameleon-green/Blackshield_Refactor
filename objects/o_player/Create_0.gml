@@ -53,10 +53,10 @@ wpn_primary_id = 0;
 ammo_primary = wpn_primary.default_ammo_type;
 magazine_primary = wpn_primary.capacity
 
-wpn_secondary = Bolt_Pistol_Tigrus;
+wpn_secondary = Unarmed_Fists;//Bolt_Pistol_Tigrus;
 wpn_secondary_id = 0;
-ammo_secondary = wpn_secondary.default_ammo_type;
-magazine_secondary = wpn_secondary.capacity
+//ammo_secondary = wpn_secondary.default_ammo_type;
+//magazine_secondary = wpn_secondary.capacity
 
 wpn_active = wpn_primary;
 ammo_active = wpn_active.default_ammo_type;
@@ -70,7 +70,7 @@ selector_real = 0 //numerical value for selector, used to access array of select
 selector = wpn_active.firemodes[selector_real]; //selector switch setting
 cycle = 1; //weapon ROF cycle check
 burst_count = 0; //count of rounds fired in burst, if this weapon is burstfire
-spread_angle = wpn_active.spread; //accumulating spread
+spread_angle = 0; //accumulating spread
 instant_spread = 0; //spread to add to animations when firing
 
 charge_toggle = 1;
@@ -88,7 +88,7 @@ IFF = "player:"+string(id);
 
 aud_melee_idle = 0;
 
-wpn_active_melee = Chainsword_Thunderedge;
+wpn_active_melee = Unarmed_Fists;
 
 melee_reset_timer = time_source_create(time_source_game,0,time_source_units_frames,_mymethod);
 melee_input_check_timer = time_source_create(time_source_game,0,time_source_units_frames,_mymethod); 
@@ -104,7 +104,11 @@ light_melee_toggle = 1; //allow us to make a light melee attack
 #region Melee time related functions
 Func_EndMelee = function(){ //function to end melee when our reset time runs out
 	swinging = 0; hspd = 0;
-	skeleton_animation_clear(6); skeleton_animation_clear(8);				
+	skeleton_animation_clear(6); skeleton_animation_clear(8);		
+	if(string_count("weapon_ranged",wpn_active.item_type)){
+		skeleton_attachment_set("slot_gun",wpn_active.weapon_attachment);
+		skeleton_attachment_set("slot_gun magazine",wpn_active.magazine_attachment);
+	};
 };
 					
 Func_ClearInputBuffer = function(){

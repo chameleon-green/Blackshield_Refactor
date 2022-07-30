@@ -4,6 +4,7 @@ function AmmoStructs() {
 	#region small bolt rounds
 	Ammo_Bolt_Standard = { //---------------------------- STANDARD BOLT ROUNDS
 		
+		item_type : "ammo_bolt",
 		damage_mod : 1,
 		ROF_mod : 1,
 		range_mod : 1,
@@ -32,6 +33,7 @@ function AmmoStructs() {
 	#region stubber, auto and shotgun ammo
 	Ammo_Shotgun_Buckshot = {//---------------------------- Buckshot rounds
 		
+		item_type : "ammo_shotgun",
 		damage_mod : 1,
 		ROF_mod : 1,
 		range_mod : 1,
@@ -60,6 +62,7 @@ function AmmoStructs() {
 	#region flamer, melta and plasma fuels
 	Ammo_Flamer_Standard = {//---------------------------- flamer fuel
 		
+		item_type : "ammo_flamer",
 		damage_mod : 1,
 		ROF_mod : 1,
 		range_mod : 1,
@@ -86,6 +89,7 @@ function AmmoStructs() {
 	
 	Ammo_Melta_Standard = {//---------------------------- flamer fuel
 		
+		item_type : "ammo_melta",
 		damage_mod : 1,
 		ROF_mod : 1,
 		range_mod : 1,
@@ -112,6 +116,7 @@ function AmmoStructs() {
 	
 	Ammo_Plasma_Standard = {//---------------------------- Buckshot rounds
 		
+		item_type : "ammo_plasma",
 		damage_mod : 1,
 		ROF_mod : 1,
 		range_mod : 1,

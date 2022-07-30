@@ -18,7 +18,7 @@ function AnimationsFlashesSoundGroups(){
 	};
 	
 	anmgrp_shotgun_astartes = {
-		idle : "idle_fists",//"Ballistic Weapons/idle_shotgun_astartes",
+		idle : "Ballistic Weapons/idle_shotgun_astartes",
 		fire : "Ballistic Weapons/firing_shotgun_astartes",
 		reload : ["Ballistic Weapons/reload_shotgun_astartes1","Ballistic Weapons/reload_shotgun_astartes2","Ballistic Weapons/reload_shotgun_astartes3"]
 	};
@@ -130,6 +130,11 @@ function AnimationsFlashesSoundGroups(){
 	
 	sndgrp_chain1 = {
 		attack : [snd_chain1,snd_chain2,snd_chain3],
+		idle : snd_chain_idle_loop1
+	};
+	
+	sndgrp_unarmed1 = {
+		attack : [snd_punch1,snd_punch2,snd_punch3],
 		idle : snd_chain_idle_loop1
 	};
 }

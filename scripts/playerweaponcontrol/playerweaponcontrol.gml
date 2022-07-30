@@ -246,18 +246,24 @@ function PlayerWeaponControl(){
 //--------------------------------------------- QUICKSWAP ---------------------------------	
 	
 	if(Swap_Key && !rolling && !swinging && !reloading) {	
-
+		
+		//swap to our secondary, else melee weapon
 		if(wpn_active = wpn_primary) {
-			wpn_active = wpn_secondary; 
-			magazine_primary = magazine_active;
-			magazine_active = magazine_secondary;
-			ammo_active = ammo_secondary;
-			/*
-			if(is_struct(wpn_active_melee)){
-				skeleton_anim_set_step(wpn_active_melee.animation_group.idle,5);
-				skeleton_anim_set_step(wpn_active_melee.animation_group.strike,8)
+			
+			//are we a two handed melee weapon?
+			var IsMeleeZwei = ( (wpn_secondary.weapon_slot[0] = "melee") && (wpn_secondary.weapon_slot[1] = 2) );
+			
+			if(IsMeleeZwei){
+				
 			};
-			*/
+			
+			else{
+				wpn_active = wpn_secondary; 
+				magazine_primary = magazine_active;
+				magazine_active = magazine_secondary;
+				ammo_active = ammo_secondary;
+			};
+
 		};
 		else{
 			wpn_active = wpn_primary;
