@@ -66,8 +66,8 @@ if(Click) {
 			if(instance_exists(MyScrollbar)) {MyScrollbar.reset = 1};
 		};
 		
-		if(ButtonRegionCenter(Mouse_X,Mouse_Y,-40,-112,-19,-49,scale)){
-			Equip = 1;
+		if(ButtonRegionCenter(Mouse_X,Mouse_Y,-40,-112,-49,-19,scale)){
+			EquipItem(grd_inv_wepn,global.Selected,MyPlayer);
 		};
 		if(ButtonRegionCenter(Mouse_X,Mouse_Y,-122,-216,-19,-49,scale)){
 			Description = 1;
@@ -128,13 +128,13 @@ if(Tab = "items") {
 		
 		//equip button draw
 		draw_sprite_ext(sp_button,TriButtonFrames[0],Xcent+76*scale,Ycent+34*scale,scale,scale,0,c_white,1);	
-		draw_text_ext_transformed_color(Xcent+76*scale,Ycent+22*scale,TriButtonText[0],0,500,scale,scale,0,TriButtonColors[0],TriButtonColors[0],TriButtonColors[0],TriButtonColors[0],1);	
+		draw_text_ext_transformed_color(Xcent+76*scale,Ycent+25*scale,TriButtonText[0],0,500,scale,scale,0,TriButtonColors[0],TriButtonColors[0],TriButtonColors[0],TriButtonColors[0],1);	
 		//desc button draw
 		draw_sprite_ext(sp_button,TriButtonFrames[1],Xcent+168*scale,Ycent+34*scale,scale,scale,0,c_white,1);
-		draw_text_ext_transformed_color(Xcent+169*scale,Ycent+23.5*scale,TriButtonText[1],0,500,scale*0.87,scale*0.9,0,TriButtonColors[1],TriButtonColors[1],TriButtonColors[1],TriButtonColors[1],1);	
+		draw_text_ext_transformed_color(Xcent+169*scale,Ycent+26.5*scale,TriButtonText[1],0,500,scale*0.95,scale*0.95,0,TriButtonColors[1],TriButtonColors[1],TriButtonColors[1],TriButtonColors[1],1);	
 		//drop button draw
 		draw_sprite_ext(sp_button,TriButtonFrames[2],Xcent+251*scale,Ycent+34*scale,scale,scale,0,c_white,1);
-		draw_text_ext_transformed_color(Xcent+251*scale,Ycent+22*scale,TriButtonText[2],0,500,scale,scale,0,TriButtonColors[2],TriButtonColors[2],TriButtonColors[2],TriButtonColors[2],1);
+		draw_text_ext_transformed_color(Xcent+251*scale,Ycent+25*scale,TriButtonText[2],0,500,scale,scale,0,TriButtonColors[2],TriButtonColors[2],TriButtonColors[2],TriButtonColors[2],1);
 		
 		while(incrementor_weapons < (InventorySize-1)) {
 			var Slot = ds_grid_get(grd_inv_wepn,0,incrementor_weapons)
@@ -148,7 +148,8 @@ if(Tab = "items") {
 					item : Slot,
 					unique_id : ID,
 					scrollbar : MyScrollbar,
-					grid : grd_inv_wepn
+					grid : grd_inv_wepn,
+					MyPlayer : MyPlayer
 				})
 				counter_weapons += 1;
 				MyScrollbar.item_count = counter_weapons;
@@ -173,13 +174,13 @@ if(Tab = "items") {
 				
 		//equip button draw
 		draw_sprite_ext(sp_button,TriButtonFrames[0],Xcent+76*scale,Ycent+34*scale,scale,scale,0,c_white,1);	
-		draw_text_ext_transformed_color(Xcent+76*scale,Ycent+22*scale,TriButtonText[0],0,500,scale,scale,0,TriButtonColors[0],TriButtonColors[0],TriButtonColors[0],TriButtonColors[0],1);	
+		draw_text_ext_transformed_color(Xcent+76*scale,Ycent+25*scale,TriButtonText[0],0,500,scale,scale,0,TriButtonColors[0],TriButtonColors[0],TriButtonColors[0],TriButtonColors[0],1);	
 		//desc button draw
 		draw_sprite_ext(sp_button,TriButtonFrames[1],Xcent+168*scale,Ycent+34*scale,scale,scale,0,c_white,1);
-		draw_text_ext_transformed_color(Xcent+169*scale,Ycent+23.5*scale,TriButtonText[1],0,500,scale*0.87,scale*0.9,0,TriButtonColors[1],TriButtonColors[1],TriButtonColors[1],TriButtonColors[1],1);	
+		draw_text_ext_transformed_color(Xcent+169*scale,Ycent+26.5*scale,TriButtonText[1],0,500,scale*0.95,scale*0.95,0,TriButtonColors[1],TriButtonColors[1],TriButtonColors[1],TriButtonColors[1],1);	
 		//drop button draw
 		draw_sprite_ext(sp_button,TriButtonFrames[2],Xcent+251*scale,Ycent+34*scale,scale,scale,0,c_white,1);
-		draw_text_ext_transformed_color(Xcent+251*scale,Ycent+22*scale,TriButtonText[2],0,500,scale,scale,0,TriButtonColors[2],TriButtonColors[2],TriButtonColors[2],TriButtonColors[2],1);
+		draw_text_ext_transformed_color(Xcent+251*scale,Ycent+25*scale,TriButtonText[2],0,500,scale,scale,0,TriButtonColors[2],TriButtonColors[2],TriButtonColors[2],TriButtonColors[2],1);
 			
 		while(incrementor_ammo < (InventorySize-1)) {
 			var Slot = ds_grid_get(grd_inv_ammo,0,incrementor_ammo)
@@ -193,7 +194,8 @@ if(Tab = "items") {
 					item : Slot,
 					unique_id : ID,
 					scrollbar : MyScrollbar,
-					grid : grd_inv_ammo
+					grid : grd_inv_ammo,
+					MyPlayer : MyPlayer
 				})
 				counter_ammo += 1;
 				MyScrollbar.item_count = counter_ammo;

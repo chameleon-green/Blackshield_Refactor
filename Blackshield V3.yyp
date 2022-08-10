@@ -60,6 +60,7 @@
     {"id":{"name":"PlayerMovement","path":"scripts/PlayerMovement/PlayerMovement.yy",},"order":0,},
     {"id":{"name":"snd_flamer_winddown","path":"sounds/snd_flamer_winddown/snd_flamer_winddown.yy",},"order":2,},
     {"id":{"name":"sp_charge_particle","path":"sprites/sp_charge_particle/sp_charge_particle.yy",},"order":5,},
+    {"id":{"name":"fnt_caslonSB","path":"fonts/fnt_caslonSB/fnt_caslonSB.yy",},"order":0,},
     {"id":{"name":"snd_flamer_empty","path":"sounds/snd_flamer_empty/snd_flamer_empty.yy",},"order":5,},
     {"id":{"name":"snd_flamer_magin","path":"sounds/snd_flamer_magin/snd_flamer_magin.yy",},"order":3,},
     {"id":{"name":"sp_xhair_heatbar","path":"sprites/sp_xhair_heatbar/sp_xhair_heatbar.yy",},"order":1,},

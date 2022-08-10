@@ -25,6 +25,57 @@ function GenerateID() { //generates a unique ID, given a list of existing IDs
 
 #endregion
 
+#region item search function
+
+function SearchForItem(Grid,Keyword,Variable,ArrayKey=0) { //searches grid of items for a specific variable containing a keyword
+	
+	var Size = ds_grid_width(Grid);
+	var Incrementor = 0;
+	
+	while(Incrementor < Size) {
+		var Item = ds_grid_get(Grid,0,Incrementor);
+		var String = 0;
+		var Data = variable_struct_get(Item,Variable);
+		
+		if(is_array(Data)) {String = Data[ArrayKey]} else{String = Data};
+		if(string_count(Keyword,String)) {return Incrementor};		
+		Incrementor += 1;
+	};
+	return -1; //we failed to find anything useful
+
+};
+
+#endregion
+
+#region equip items from IC equip button
+
+function EquipItem(Grid,UniqueID,PlayerID) { //searches grid of items for a specific variable containing a keyword
+	
+	var ValueY = ds_grid_value_y(Grid,0,0,10,ds_grid_width(Grid),UniqueID);
+	var Item = ds_grid_get(Grid,0,ValueY);
+	
+	var IsWeapon = string_count("weapon",Item.item_type);
+	var IsAmmo = string_count("ammo",Item.item_type);
+	
+	if(IsWeapon) {
+		if(Item.weapon_slot[0] = "primary"){
+			with(PlayerID) {
+				wpn_primary = Item;
+				wpn_active = Item;
+				wpn_primary_id = UniqueID;
+				skeleton_animation_set(Item.animation_group.idle);
+				skeleton_attachment_set("slot_gun",Item.weapon_attachment);
+				skeleton_attachment_set("slot_gun magazine",Item.magazine_attachment);
+			};
+		};
+		if(Item.weapon_slot[0] = "secondary"){
+		};
+	};
+
+};
+
+#endregion
+
 #region add item function
 function AddItem (Item,Quantity,TargetGrid,InventorySize,Durability=-1){
 	

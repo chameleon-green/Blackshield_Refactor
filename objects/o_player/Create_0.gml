@@ -29,12 +29,27 @@ col_bot = 1;
 col_right = 0;
 col_left = 0;
 
-//----------------------------------- EQUIPMENT VARIABLES ----------------------------------
+//----------------------------------- find weapons and armor ------------------------------------
 
 var WpnGrid = MyIC.grd_inv_wepn;
 var AmmoGrid = MyIC.grd_inv_ammo;
 
-//ds_grid_value_disk_exists()
+var WeaponKey = SearchForItem(WpnGrid,"primary","weapon_slot",0);
+if(WeaponKey != -1) {
+	wpn_primary = ds_grid_get(WpnGrid,0,WeaponKey);
+	wpn_primary_id = ds_grid_get(WpnGrid,8,WeaponKey);
+	ammo_primary = wpn_primary.default_ammo_type;
+	magazine_primary = wpn_primary.capacity
+};
+
+var AmmoKey1 = ds_grid_value_y(AmmoGrid,0,0,10,MyIC.InventorySize,wpn_primary.default_ammo_type);
+if(AmmoKey1 != -1) {
+	ammo_primary_id = ds_grid_get(AmmoGrid,8,AmmoKey1);
+};
+
+//----------------------------------- EQUIPMENT VARIABLES ----------------------------------
+
+
 
 //equipment statuses
 reloading = 0;
@@ -48,10 +63,12 @@ aud_chargeloop = 0; //loop for guns with charging
 aud_spoolup = 0; //sound for spooling up
 aud_spooldown = 0; //sound for spooling down
 
+/*
 wpn_primary = Shotgun_Astartes;
 wpn_primary_id = 0;
 ammo_primary = wpn_primary.default_ammo_type;
 magazine_primary = wpn_primary.capacity
+*/
 
 wpn_secondary = Unarmed_Fists;//Bolt_Pistol_Tigrus;
 wpn_secondary_id = 0;
@@ -89,6 +106,7 @@ IFF = "player:"+string(id);
 aud_melee_idle = 0;
 
 wpn_active_melee = Unarmed_Fists;
+wpn_melee_id = 0;
 
 melee_reset_timer = time_source_create(time_source_game,0,time_source_units_frames,_mymethod);
 melee_input_check_timer = time_source_create(time_source_game,0,time_source_units_frames,_mymethod); 

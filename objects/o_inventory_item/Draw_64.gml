@@ -23,11 +23,18 @@ y =  BaseY - (scrollbar.Offset + (120*scale) )*scrollbar.DisplacementMod + scrol
 //------------------------------------------ Mouse interactions ----------------------------------------
 
 var touching = point_in_rectangle(Mouse_X,Mouse_Y,bbox_left,bbox_top,bbox_right,bbox_bottom);
-if( (touching && Interactable) or (global.Selected = id) ) {image_index = 0; Color = c_yellow};
-if(Click && touching && Interactable) {global.Selected = id};
+if( (touching && Interactable) or (global.Selected = unique_id) ) {image_index = 0; Color = c_yellow};
+if(Click && touching && Interactable) {global.Selected = unique_id};
 
 //----------------------------------------- Drawing Stuff -------------------------------------------------
 
+var IsEquipped = ( (MyPlayer.wpn_primary_id = unique_id) or 
+				   (MyPlayer.wpn_secondary_id = unique_id) or
+				   (MyPlayer.wpn_melee_id = unique_id) or
+				   (MyPlayer.ammo_primary_id = unique_id)
+				 );
+
+draw_set_font(fnt_caslonSB);
 draw_set_halign(fa_center);
 draw_set_valign(fa_center);
 
@@ -39,13 +46,13 @@ var TitleText = item.name;
 var IsAmmo = variable_struct_exists(item,"projectile_type");
 
 if(IsAmmo) {TitleText = item.name + " (" + string(Quantity) + ")"};
+if(IsEquipped) {TitleText = TitleText + " (equipped)"};
 
 if ( (MyDisplacement >= -158) and (MyDisplacement <= 135) ){
 	
-	Interactable = 1;
-	
+	Interactable = 1;	
 	draw_self();	
-	draw_text_ext_transformed_color(x,y+(7*scale),TitleText,1,99999,scale*0.8,scale*0.9,0,Color,Color,Color,Color,1);
+	draw_text_ext_transformed_color(x,y+(10*scale),TitleText,1,99999,scale*0.9,scale*1,0,Color,Color,Color,Color,1);
 
 };
 
@@ -60,7 +67,7 @@ if ( (MyDisplacement < -158) and (MyDisplacement > -192) ){
 	draw_sprite_general(sprite_index,image_index,0,0,313,Height,bbox_left,y,scale,scale,0,c_white,c_white,c_gray,c_gray,1)
 	
 	if( abs(Height) > 23 ) {
-		draw_text_ext_transformed_color(x,y+(7*scale),TitleText,1,99999,scale*0.8,scale*0.9,0,Color,Color,Color,Color,1)
+		draw_text_ext_transformed_color(x,y+(10*scale),TitleText,1,99999,scale*0.9,scale*1,0,Color,Color,Color,Color,1)
 		Interactable = 1;
 	};
 	
@@ -77,7 +84,7 @@ if ( (MyDisplacement > 135) and (MyDisplacement < 166) ){
 	draw_sprite_general(sprite_index,image_index,0,36,313,-Height,bbox_left,y+(36*scale),scale,scale,0,c_white,c_white,c_gray,c_gray,1)
 	
 	if( abs(Height) > 26 ) {
-		draw_text_ext_transformed_color(x,y+(7*scale),TitleText,1,99999,scale*0.8,scale*0.9,0,Color,Color,Color,Color,1)
+		draw_text_ext_transformed_color(x,y+(10*scale),TitleText,1,99999,scale*0.9,scale*1,0,Color,Color,Color,Color,1)
 		Interactable = 1;
 	};
 };
