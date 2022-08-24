@@ -20,54 +20,54 @@ if(Click) {
 	
 	if(ButtonRegionCenter(Mouse_X,Mouse_Y,300,220,180,200,scale) && (Tab != "items")) {
 		Tab = "items"; bg_subimage = 0; 
-		global.Selected = undefined;
+		global.Selected = [-1,-1];
 		counter_weapons = 0; incrementor_weapons = 0; counter_armor = 0; incrementor_armor = 0; 
 		counter_aid = 0; incrementor_aid = 0; counter_ammo = 0; incrementor_ammo = 0; 
 		counter_crafting = 0; incrementor_crafting = 0; 
 	};
-	if(ButtonRegionCenter(Mouse_X,Mouse_Y,210,120,180,200,scale)) {Tab = "status"; bg_subimage = 6; global.Selected = undefined};
-	if(ButtonRegionCenter(Mouse_X,Mouse_Y,114,24,180,200,scale)) {Tab = "skills"; bg_subimage = 7; global.Selected = undefined};
-	if(ButtonRegionCenter(Mouse_X,Mouse_Y,18,-72,180,200,scale)) {Tab = "log"; bg_subimage = 8; global.Selected = undefined};
+	if(ButtonRegionCenter(Mouse_X,Mouse_Y,210,120,180,200,scale)) {Tab = "status"; bg_subimage = 6; global.Selected = [-1,-1]};
+	if(ButtonRegionCenter(Mouse_X,Mouse_Y,114,24,180,200,scale)) {Tab = "skills"; bg_subimage = 7; global.Selected = [-1,-1]};
+	if(ButtonRegionCenter(Mouse_X,Mouse_Y,18,-72,180,200,scale)) {Tab = "log"; bg_subimage = 8; global.Selected = [-1,-1]};
 	
 	if(Tab = "items") {
 		if(ButtonRegionCenter(Mouse_X,Mouse_Y,302,272,140,170,scale) && (SubTab != "weapons")) {
 			SubTab = "weapons"; 
 			bg_subimage = 0; counter_weapons = 0; incrementor_weapons = 0; 
-			global.Selected = undefined;
+			global.Selected = [-1,-1];
 			if(instance_exists(MyScrollbar)) {MyScrollbar.reset = 1};
 		};
 		if(ButtonRegionCenter(Mouse_X,Mouse_Y,264,234,140,170,scale) && (SubTab != "armor")) {
 			SubTab = "armor"; 
 			bg_subimage = 1; counter_armor = 0; incrementor_armor = 0; 
-			global.Selected = undefined;
+			global.Selected = [-1,-1];
 			if(instance_exists(MyScrollbar)) {MyScrollbar.reset = 1};
 		};
 		if(ButtonRegionCenter(Mouse_X,Mouse_Y,226,196,140,170,scale) && (SubTab != "aid")) {
 			SubTab = "aid"; 
 			bg_subimage = 2 counter_aid = 0; incrementor_aid = 0; 
-			global.Selected = undefined;
+			global.Selected = [-1,-1];
 			if(instance_exists(MyScrollbar)) {MyScrollbar.reset = 1};
 		};
 		if(ButtonRegionCenter(Mouse_X,Mouse_Y,188,158,140,170,scale) && (SubTab != "ammo")) {
 			SubTab = "ammo"; 
 			bg_subimage = 3 counter_ammo = 0; incrementor_ammo = 0; 
-			global.Selected = undefined;
+			global.Selected = [-1,-1];
 			if(instance_exists(MyScrollbar)) {MyScrollbar.reset = 1};
 		};
 		if(ButtonRegionCenter(Mouse_X,Mouse_Y,150,120,140,170,scale) && (SubTab != "currency")) {
 			SubTab = "currency"; bg_subimage = 4; 
-			global.Selected = undefined;
+			global.Selected = [-1,-1];
 			if(instance_exists(MyScrollbar)) {MyScrollbar.reset = 1};
 		};
 		if(ButtonRegionCenter(Mouse_X,Mouse_Y,112,82,140,170,scale) && (SubTab != "crafting")) {
 			SubTab = "crafting"; 
 			bg_subimage = 5 counter_crafting = 0; incrementor_crafting = 0; 
-			global.Selected = undefined;
+			global.Selected = [-1,-1];
 			if(instance_exists(MyScrollbar)) {MyScrollbar.reset = 1};
 		};
 		
 		if(ButtonRegionCenter(Mouse_X,Mouse_Y,-40,-112,-49,-19,scale)){
-			EquipItem(grd_inv_wepn,global.Selected,MyPlayer);
+			EquipItem(global.Selected[1],global.Selected[0],MyPlayer);
 		};
 		if(ButtonRegionCenter(Mouse_X,Mouse_Y,-122,-216,-19,-49,scale)){
 			Description = 1;

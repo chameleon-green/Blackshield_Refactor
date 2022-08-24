@@ -90,7 +90,7 @@ function PlayerWeaponControl(){
 	
 	var _OverHeat = ((wpn_active_heat > wpn_active.heat_capacity) and (selector != "Supercharge") and (selector != "Overcharge"));
 	var _CanFire = (CanShoot and magazine_active > 0 and cycle and !_OverHeat);
-	var _CanReload = (CanReload and !reloading);
+	var _CanReload = (CanReload and !reloading and is_string(ammo_active_id));
 	
 	var Semi_Fire = mouse_check_button_pressed(mb_left) and (selector = "Semi" or selector = "Supercharge" or selector = "Pump");
 	var Auto_Fire = mouse_check_button(mb_left) and (selector = "Auto" or selector = "Overcharge");
@@ -259,21 +259,26 @@ function PlayerWeaponControl(){
 			
 			else{
 				wpn_active = wpn_secondary; 
+				wpn_active_id = wpn_secondary_id;
 				magazine_primary = magazine_active;
 				magazine_active = magazine_secondary;
 				ammo_active = ammo_secondary;
+				ammo_active_id = ammo_secondary_id;
 			};
 
 		};
 		else{
 			wpn_active = wpn_primary;
+			wpn_active_id = wpn_primary_id;
 			magazine_secondary = magazine_active;
 			magazine_active = magazine_primary;
 			ammo_active = ammo_primary;
+			ammo_active_id = ammo_primary_id;
 			skeleton_animation_clear(5); skeleton_animation_clear(8);
 		};
 		
-		selector = wpn_active.firemodes[0];
+		selector_real = 0;
+		selector = wpn_active.firemodes[selector_real];
 		
 		skeleton_animation_clear(1); skeleton_animation_clear(3);
 		

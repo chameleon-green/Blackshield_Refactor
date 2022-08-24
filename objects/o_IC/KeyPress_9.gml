@@ -15,7 +15,7 @@ if(visible) {
     window_mouse_set(_x,_y);
 	
 	gui_close_toggle = 1;
-	global.Selected = undefined;
+	global.Selected = [-1,-1];
 };
 
 if(!visible) {

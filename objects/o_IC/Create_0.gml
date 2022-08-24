@@ -27,7 +27,7 @@ MyScrollbar = 0;
 //------------------------------------------ Inventory functionality -------------------------------------------
 
 global.IDList = ds_list_create();
-global.Selected = undefined;
+global.Selected = [-1,-1];
 
 AnimationsFlashesSoundGroups();
 AmmoStructs();
@@ -64,11 +64,9 @@ AddItem(Boltgun_Phobos,1,grd_inv_wepn,InventorySize);
 AddItem(Shotgun_Astartes,1,grd_inv_wepn,InventorySize);
 
 AddItem(Ammo_Bolt_Standard,100,grd_inv_ammo,InventorySize);
-AddItem(Ammo_Bolt_Standard,100,grd_inv_ammo,InventorySize);
-AddItem(Ammo_Bolt_Standard,1,grd_inv_ammo,InventorySize);
-AddItem(Ammo_Bolt_Standard,1,grd_inv_ammo,InventorySize);
-AddItem(Ammo_Bolt_Standard,1,grd_inv_ammo,InventorySize);
-AddItem(Ammo_Bolt_Standard,1,grd_inv_ammo,InventorySize);
+AddItem(Ammo_Bolt_Kraken,100,grd_inv_ammo,InventorySize);
+AddItem(Ammo_Shotgun_Buckshot,3,grd_inv_ammo,InventorySize);
+AddItem(Ammo_Shotgun_Slug,30,grd_inv_ammo,InventorySize);
 
 //----------------------------------------- Create Player ---------------------------------------
 

@@ -25,57 +25,6 @@ function GenerateID() { //generates a unique ID, given a list of existing IDs
 
 #endregion
 
-#region item search function
-
-function SearchForItem(Grid,Keyword,Variable,ArrayKey=0) { //searches grid of items for a specific variable containing a keyword
-	
-	var Size = ds_grid_width(Grid);
-	var Incrementor = 0;
-	
-	while(Incrementor < Size) {
-		var Item = ds_grid_get(Grid,0,Incrementor);
-		var String = 0;
-		var Data = variable_struct_get(Item,Variable);
-		
-		if(is_array(Data)) {String = Data[ArrayKey]} else{String = Data};
-		if(string_count(Keyword,String)) {return Incrementor};		
-		Incrementor += 1;
-	};
-	return -1; //we failed to find anything useful
-
-};
-
-#endregion
-
-#region equip items from IC equip button
-
-function EquipItem(Grid,UniqueID,PlayerID) { //searches grid of items for a specific variable containing a keyword
-	
-	var ValueY = ds_grid_value_y(Grid,0,0,10,ds_grid_width(Grid),UniqueID);
-	var Item = ds_grid_get(Grid,0,ValueY);
-	
-	var IsWeapon = string_count("weapon",Item.item_type);
-	var IsAmmo = string_count("ammo",Item.item_type);
-	
-	if(IsWeapon) {
-		if(Item.weapon_slot[0] = "primary"){
-			with(PlayerID) {
-				wpn_primary = Item;
-				wpn_active = Item;
-				wpn_primary_id = UniqueID;
-				skeleton_animation_set(Item.animation_group.idle);
-				skeleton_attachment_set("slot_gun",Item.weapon_attachment);
-				skeleton_attachment_set("slot_gun magazine",Item.magazine_attachment);
-			};
-		};
-		if(Item.weapon_slot[0] = "secondary"){
-		};
-	};
-
-};
-
-#endregion
-
 #region add item function
 function AddItem (Item,Quantity,TargetGrid,InventorySize,Durability=-1){
 	
@@ -107,8 +56,8 @@ function AddItem (Item,Quantity,TargetGrid,InventorySize,Durability=-1){
 	
 	if(ItemType = "ammo") {
 		
-		var GridWidth = ds_grid_width(TargetGrid);
-		var ItemY = ds_grid_value_y(TargetGrid,0,0,GridWidth-1,InventorySize-1,Item);
+		var GridHeight = ds_grid_height(TargetGrid);
+		var ItemY = ds_grid_value_y(TargetGrid,0,0,GridHeight,InventorySize-1,Item);
 		
 		if(ItemY != -1) {
 			var CurrentQuantity = ds_grid_get(TargetGrid,1,ItemY);
@@ -133,5 +82,140 @@ function AddItem (Item,Quantity,TargetGrid,InventorySize,Durability=-1){
 	}; //is ammo check
 	
 };// func end
+#endregion
+
+#region clear item entry function
+
+function ClearItem (UniqueID,TargetGrid,PlayerID){
+
+	if(UniqueID = PlayerID.ammo_primary_id) {PlayerID.ammo_primary_id = -1};
+	if(UniqueID = PlayerID.ammo_secondary_id) {PlayerID.ammo_secondary_id = -1};
+	if(UniqueID = PlayerID.ammo_active_id) {PlayerID.ammo_active_id = -1};
+	if(UniqueID = PlayerID.wpn_primary_id) {PlayerID.wpn_primary_id = -1};
+	if(UniqueID = PlayerID.wpn_secondary_id) {PlayerID.wpn_secondary_id = -1};
+	if(UniqueID = PlayerID.wpn_melee_id) {PlayerID.wpn_melee_id = -1};
+	if(UniqueID = PlayerID.wpn_active_id) {PlayerID.wpn_active_id = -1};
+	
+	var ItemY = ds_grid_value_y(TargetGrid,0,0,ds_grid_width(TargetGrid),ds_grid_height(TargetGrid),UniqueID);
+	ds_grid_set_region(TargetGrid,0,ItemY,ds_grid_width(TargetGrid),ItemY,0);
+	
+}; //end function bracket
+
+#endregion
+
+#region item search function
+
+function SearchForItem(Grid,Keyword,Variable,ArrayKey=0) { //searches grid of items for a specific variable containing a keyword
+	
+	var Size = ds_grid_height(Grid);
+	var Incrementor = 0;
+	
+	while(Incrementor < Size) {
+		var Item = ds_grid_get(Grid,0,Incrementor);
+		var String = 0;
+		var Data = variable_struct_get(Item,Variable);
+		
+		if(is_array(Data)) {String = Data[ArrayKey]} else{String = Data};
+		if(string_count(Keyword,String)) {return Incrementor};		
+		Incrementor += 1;
+	};
+	return -1; //we failed to find anything useful
+
+};
+
+#endregion
+
+#region equip items from IC equip button
+
+function EquipItem(Item,UniqueID,PlayerID) { //searches grid of items for a specific variable containing a keyword
+	
+	var IsWeapon = string_count("weapon_ranged",Item.item_type);
+	var IsAmmo = string_count("ammo",Item.item_type);
+		
+	#region Weapon Swaps
+	if(IsWeapon) {
+		var Grid = grd_inv_wepn;
+		var ValueY = ds_grid_value_y(Grid,0,0,10,InventorySize,UniqueID);
+		//logs our ammunition type and rounds left in magazine
+		var CurrentValueY = ds_grid_value_y(Grid,0,0,10,InventorySize,PlayerID.wpn_active_id);
+		ds_grid_set(Grid,3,CurrentValueY,PlayerID.ammo_active);
+		ds_grid_set(Grid,4,CurrentValueY,PlayerID.magazine_active);
+		
+		PlayerID.spread_angle = 0; //need this to avoid crashes, for some reason
+		
+		if(Item.weapon_slot[0] = "primary"){
+			
+			//if we have any of the ammo type currently in the mag of the gun we are switching to, equip it
+			var AmmoY = -1;
+			var AmmoToSwapTo = ds_grid_get(Grid,3,ValueY);
+			if( ds_grid_value_exists(grd_inv_ammo,0,0,10,InventorySize,AmmoToSwapTo) ) {
+				var AmmoY = ds_grid_value_y(grd_inv_ammo,0,0,10,InventorySize,AmmoToSwapTo);
+			};
+			if(AmmoY != -1) {PlayerID.ammo_primary_id = ds_grid_get(grd_inv_ammo,8,AmmoY)} else{PlayerID.ammo_primary_id = -1};
+			
+			
+			with(PlayerID) {			
+				var SwapTo = (PlayerID.wpn_active = PlayerID.wpn_primary);
+				
+				wpn_primary = Item;
+				wpn_primary_id = UniqueID;
+				ammo_primary = ds_grid_get(Grid,3,ValueY);
+				magazine_primary = ds_grid_get(Grid,4,ValueY);
+					
+				if(SwapTo) {
+					wpn_active = Item;
+					wpn_active_id = UniqueID;
+					ammo_active = ammo_primary;
+					ammo_active_id = ammo_primary_id;
+					magazine_active = magazine_primary;
+					selector_real = 0;
+					selector = wpn_active.firemodes[selector_real];
+					skeleton_animation_set(Item.animation_group.idle);
+					skeleton_attachment_set("slot_gun",Item.weapon_attachment);
+					skeleton_attachment_set("slot_gun magazine",Item.magazine_attachment);
+				};
+			};
+		};
+		
+		if(Item.weapon_slot[0] = "secondary"){
+		};
+	};
+	#endregion
+	
+	#region Ammo Swaps
+	if(IsAmmo) {
+		
+		var ActiveWeapon = MyPlayer.wpn_active;
+		var IsValid = string_count("weapon_ranged",ActiveWeapon.item_type);
+		var CorrectAmmo = (Item.item_type = ActiveWeapon.ammo_type);
+		var NotTheSame = (Item != MyPlayer.ammo_active);
+		
+		if(NotTheSame && IsValid && CorrectAmmo && !MyPlayer.reloading){
+			
+			var GunY = ds_grid_value_y(grd_inv_wepn,0,0,ds_grid_width(grd_inv_wepn),ds_grid_height(grd_inv_wepn),MyPlayer.wpn_active_id);
+			ds_grid_set(grd_inv_wepn,3,GunY,Item);
+			
+			if(MyPlayer.wpn_active.weapon_slot[0] = "primary") {MyPlayer.ammo_primary = Item; MyPlayer.ammo_primary_id = UniqueID};
+			if(MyPlayer.wpn_active.weapon_slot[0] = "secondary") {MyPlayer.ammo_secondary = Item; MyPlayer.ammo_secondary_id = UniqueID};
+				
+			MyPlayer.ammo_active = Item; MyPlayer.ammo_active_id = UniqueID;
+			
+			with (MyPlayer) {				
+				magazine_active = 0;
+				burst_count = 0;
+				reloading = 1;
+				skeleton_animation_clear(3); skeleton_animation_clear(3);
+				skeleton_animation_clear(4); skeleton_animation_clear(5);		
+				skeleton_animation_clear(6); skeleton_animation_clear(8);
+		
+				if(is_array(wpn_active.animation_group.reload)) {skeleton_animation_set_ext(wpn_active.animation_group.reload[0],4)};
+				else{skeleton_animation_set_ext(wpn_active.animation_group.reload,4)};			
+			};
+		};
+		
+	};
+	#endregion
+};
+
 #endregion
 

@@ -27,6 +27,9 @@
     {"compositeImage":{"FrameId":{"name":"6f62ffb7-bf05-4f3c-b84d-612d1e2924eb","path":"sprites/sp_casing_shotgun/sp_casing_shotgun.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
         {"FrameId":{"name":"6f62ffb7-bf05-4f3c-b84d-612d1e2924eb","path":"sprites/sp_casing_shotgun/sp_casing_shotgun.yy",},"LayerId":{"name":"39361880-f415-476c-997e-6d3d3910df31","path":"sprites/sp_casing_shotgun/sp_casing_shotgun.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
       ],"parent":{"name":"sp_casing_shotgun","path":"sprites/sp_casing_shotgun/sp_casing_shotgun.yy",},"resourceVersion":"1.0","name":"6f62ffb7-bf05-4f3c-b84d-612d1e2924eb","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"1da3539a-4548-46de-816d-dc85770fc132","path":"sprites/sp_casing_shotgun/sp_casing_shotgun.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"1da3539a-4548-46de-816d-dc85770fc132","path":"sprites/sp_casing_shotgun/sp_casing_shotgun.yy",},"LayerId":{"name":"39361880-f415-476c-997e-6d3d3910df31","path":"sprites/sp_casing_shotgun/sp_casing_shotgun.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"sp_casing_shotgun","path":"sprites/sp_casing_shotgun/sp_casing_shotgun.yy",},"resourceVersion":"1.0","name":"1da3539a-4548-46de-816d-dc85770fc132","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
     "spriteId": {"name":"sp_casing_shotgun","path":"sprites/sp_casing_shotgun/sp_casing_shotgun.yy",},
@@ -36,13 +39,14 @@
     "playbackSpeedType": 0,
     "autoRecord": true,
     "volume": 1.0,
-    "length": 1.0,
-    "events": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MessageEventKeyframe>",},
-    "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
+    "length": 2.0,
+    "events": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore`1","elementType":"MessageEventKeyframe",},
+    "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore`1","elementType":"MomentsEventKeyframe",},
     "tracks": [
       {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"db4e224d-2eb8-4b1c-99a8-892ef324b436","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"6f62ffb7-bf05-4f3c-b84d-612d1e2924eb","path":"sprites/sp_casing_shotgun/sp_casing_shotgun.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
-          ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack","modifiers":[],},
+            {"id":"db4e224d-2eb8-4b1c-99a8-892ef324b436","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"6f62ffb7-bf05-4f3c-b84d-612d1e2924eb","path":"sprites/sp_casing_shotgun/sp_casing_shotgun.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe`1","elementType":"SpriteFrameKeyframe",},
+            {"id":"06556f7d-eed8-40af-99c6-516dcd5a87c1","Key":1.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"1da3539a-4548-46de-816d-dc85770fc132","path":"sprites/sp_casing_shotgun/sp_casing_shotgun.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe`1","elementType":"SpriteFrameKeyframe",},
+          ],"resourceVersion":"1.0","resourceType":"KeyframeStore`1","elementType":"SpriteFrameKeyframe",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack","modifiers":[],},
     ],
     "visibleRange": null,
     "lockOrigin": false,

@@ -31,20 +31,30 @@ col_left = 0;
 
 //----------------------------------- find weapons and armor ------------------------------------
 
+wpn_primary = Unarmed_Fists; wpn_secondary = Unarmed_Fists;
+wpn_primary_id = -1; wpn_secondary_id = -1; wpn_active_id = -1;
+magazine_primary = 0; magazine_secondary = 0; magazine_active = 0;
+ammo_primary = 0; ammo_secondary = 0; ammo_primary_id = -1; ammo_secondary_id = -1; 
+
 var WpnGrid = MyIC.grd_inv_wepn;
 var AmmoGrid = MyIC.grd_inv_ammo;
 
 var WeaponKey = SearchForItem(WpnGrid,"primary","weapon_slot",0);
 if(WeaponKey != -1) {
-	wpn_primary = ds_grid_get(WpnGrid,0,WeaponKey);
-	wpn_primary_id = ds_grid_get(WpnGrid,8,WeaponKey);
-	ammo_primary = wpn_primary.default_ammo_type;
-	magazine_primary = wpn_primary.capacity
+	wpn_primary = ds_grid_get(WpnGrid,0,WeaponKey); wpn_primary_id = ds_grid_get(WpnGrid,8,WeaponKey);	
+	wpn_active = wpn_primary; wpn_active_id = wpn_primary_id;
+	ammo_primary = wpn_primary.default_ammo_type; ammo_active = ammo_primary;
+	magazine_primary = wpn_primary.capacity; magazine_active = magazine_primary;		
+	selector_real = 0; //numerical value for selector, used to access array of selector option strings
+	selector = wpn_active.firemodes[selector_real]; //selector switch setting	
+	skeleton_attachment_set("slot_gun",wpn_active.weapon_attachment);
+	skeleton_attachment_set("slot_gun magazine",wpn_active.magazine_attachment);
 };
 
 var AmmoKey1 = ds_grid_value_y(AmmoGrid,0,0,10,MyIC.InventorySize,wpn_primary.default_ammo_type);
 if(AmmoKey1 != -1) {
 	ammo_primary_id = ds_grid_get(AmmoGrid,8,AmmoKey1);
+	ammo_active_id = ammo_primary_id;
 };
 
 //----------------------------------- EQUIPMENT VARIABLES ----------------------------------
@@ -75,16 +85,8 @@ wpn_secondary_id = 0;
 //ammo_secondary = wpn_secondary.default_ammo_type;
 //magazine_secondary = wpn_secondary.capacity
 
-wpn_active = wpn_primary;
-ammo_active = wpn_active.default_ammo_type;
-magazine_active = wpn_active.capacity;
-
 skeleton_animation_set(wpn_active.animation_group.idle);
-skeleton_attachment_set("slot_gun",wpn_active.weapon_attachment);
-skeleton_attachment_set("slot_gun magazine",wpn_active.magazine_attachment);
 
-selector_real = 0 //numerical value for selector, used to access array of selector option strings
-selector = wpn_active.firemodes[selector_real]; //selector switch setting
 cycle = 1; //weapon ROF cycle check
 burst_count = 0; //count of rounds fired in burst, if this weapon is burstfire
 spread_angle = 0; //accumulating spread
@@ -179,8 +181,15 @@ PlayerStatsCalculator();
 
 //---------------------------------- INSTANCE CREATION --------------------------------
 
-xhair = instance_create_depth(x,y,depth,o_xhair);
-with (xhair) {owner = other.id};
+var IC_ID = -1;
+if(variable_instance_exists(id,"MyIC")) {IC_ID = MyIC};
+xhair = instance_create_depth(x,y,depth,o_xhair,{
+	owner : other.id,
+	MyIC : IC_ID	
+});
+
+
+
 
 
 

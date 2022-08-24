@@ -1,6 +1,4 @@
 
-//if(instance_exists(o_IC)) {visible = !o_IC.visible};
-
 x = mouse_x; 
 y = mouse_y;
 
@@ -36,6 +34,14 @@ else if(Firemode = "Auto") {Firemode_Icon = 5};
 else if(Firemode = "Supercharge" or Firemode = "Overcharge") {Firemode_Icon = 6};
 var Selector_Text = owner.selector;
 
+var AmmoID = owner.ammo_active_id;
+var AmmoCount = 0;
+if(AmmoID != -1) {
+	var AmmoGrid = owner.MyIC.grd_inv_ammo;
+	var AmmoYVal = ds_grid_value_y(AmmoGrid,0,0,10,ds_grid_height(AmmoGrid),AmmoID)
+	var AmmoCount = ds_grid_get(AmmoGrid,1,AmmoYVal);
+};
+
 if(owner.wpn_active.heat_generation > 0) {
 	var HeatRatio = owner.wpn_active_heat/owner.wpn_active.heat_capacity;
 	var Bar_Color = c_white;
@@ -47,7 +53,7 @@ if(owner.wpn_active.heat_generation > 0) {
 
 draw_set_halign(fa_left);
 draw_set_valign(fa_top);
-draw_text(x+8,y+8,string(owner.magazine_active) + "/" + string(owner.wpn_active.capacity)); //ammo count
+draw_text(x+8,y+8,string(owner.magazine_active) + "/" + string(AmmoCount)); //ammo count
 draw_text(x+28,y+26,Selector_Text); //selector switch setting
 draw_sprite_ext(sp_xhair,Firemode_Icon,x+14,y+36,1,1,0,c_white,1); //firemode icon draw
 

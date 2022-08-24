@@ -22,9 +22,10 @@ y =  BaseY - (scrollbar.Offset + (120*scale) )*scrollbar.DisplacementMod + scrol
 
 //------------------------------------------ Mouse interactions ----------------------------------------
 
+var Selected = (global.Selected[0] = unique_id);
 var touching = point_in_rectangle(Mouse_X,Mouse_Y,bbox_left,bbox_top,bbox_right,bbox_bottom);
-if( (touching && Interactable) or (global.Selected = unique_id) ) {image_index = 0; Color = c_yellow};
-if(Click && touching && Interactable) {global.Selected = unique_id};
+if( (touching && Interactable) or Selected) {image_index = 0; Color = c_yellow};
+if(Click && touching && Interactable) {global.Selected = [unique_id,item]};
 
 //----------------------------------------- Drawing Stuff -------------------------------------------------
 
@@ -39,7 +40,7 @@ draw_set_halign(fa_center);
 draw_set_valign(fa_center);
 
 var MyDisplacement = (Ycent - y)/scale;
-var GridYValue = ds_grid_value_y(grid,0,0,ds_grid_width(grid)-1,creator.InventorySize-1,unique_id);
+var GridYValue = ds_grid_value_y(grid,0,0,ds_grid_height(grid),creator.InventorySize-1,unique_id);
 var Quantity = ds_grid_get(grid,1,GridYValue);
 var TitleText = item.name;
 
@@ -56,6 +57,7 @@ if ( (MyDisplacement >= -158) and (MyDisplacement <= 135) ){
 
 };
 
+#region cutoff for text and shadows
 //bottom cutoff
 if ( (MyDisplacement < -158) and (MyDisplacement > -192) ){
 	
@@ -88,5 +90,14 @@ if ( (MyDisplacement > 135) and (MyDisplacement < 166) ){
 		Interactable = 1;
 	};
 };
+#endregion
 
-
+if(Selected = 1) {
+	var ImageScale = 3;
+	draw_sprite_ext(item.inventory_subimage[0],item.inventory_subimage[1],Xcent+(158*scale),Ycent-(62*scale),ImageScale,ImageScale,0,c_white,1);
+	
+	if(!IsAmmo) {
+		var Ammo = ds_grid_get(grid,3,GridYValue);
+		draw_text_ext_transformed(Xcent+(158*scale),Ycent-(82*scale),Ammo.name,1,40000,ImageScale,ImageScale,0)
+	};
+};

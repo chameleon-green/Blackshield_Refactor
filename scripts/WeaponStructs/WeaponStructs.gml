@@ -44,8 +44,8 @@ Boltgun_Phobos = { //---------------------------- PHOBOS BOLTER
 		item_type : "weapon_ranged_bolt",
 		
 		//combat stats
-		damage : 50,
-		ROF : FindROF(800), //rounds per minute
+		damage : 70,
+		ROF : FindROF(450), //rounds per minute
 		range : 1000, //effective range before gravity takes hold, rounds can mod this
 		capacity : 30,		
 		spread : 0.2,
@@ -54,7 +54,7 @@ Boltgun_Phobos = { //---------------------------- PHOBOS BOLTER
 		//technical weapon stats
 		weapon_type : "rifle_bolt",
 		weapon_slot : ["primary",2], //1 = single hand, 2 = both hands, 3 = offhand,
-		ammo_type: "bolt_small",
+		ammo_type: "ammo_bolt",
 		default_ammo_type: Ammo_Bolt_Standard,
 		firemodes: ["Semi","Burst(3)","Auto"],
 		weight : 15,
@@ -83,7 +83,7 @@ Boltgun_Phobos = { //---------------------------- PHOBOS BOLTER
 		item_type : "weapon_ranged_bolt",
 		
 		//combat stats
-		damage : 40,
+		damage : 50,
 		ROF : FindROF(330), //rounds per minute
 		range : 1000, //effective range before gravity takes hold, rounds can mod this
 		capacity : 10,		
@@ -93,7 +93,7 @@ Boltgun_Phobos = { //---------------------------- PHOBOS BOLTER
 		//technical weapon stats
 		weapon_type : "pistol_bolt",
 		weapon_slot : ["secondary",1], //1 = single hand, 2 = both hands, 3 = offhand
-		ammo_type: "bolt_small",
+		ammo_type: "ammo_bolt",
 		default_ammo_type: Ammo_Bolt_Standard,
 		firemodes: ["Semi"],
 		weight : 6,
@@ -119,7 +119,7 @@ Boltgun_Phobos = { //---------------------------- PHOBOS BOLTER
 #endregion
 
 	#region Melta weapons and inferno pistols
-Meltagun_Proteus = { //---------------------------- ASTARTES SHOTGUN
+Meltagun_Proteus = { //---------------------------- proteus melter
 		
 		item_type : "weapon_ranged_melta",
 		
@@ -134,7 +134,7 @@ Meltagun_Proteus = { //---------------------------- ASTARTES SHOTGUN
 		//technical weapon stats
 		weapon_type : "melta",
 		weapon_slot : ["primary",2], //1 = single hand, 2 = both hands, 3 = offhand,
-		ammo_type: "fuel",
+		ammo_type: "ammo_melta",
 		default_ammo_type: Ammo_Melta_Standard,
 		firemodes: ["Auto"],
 		weight : 18,
@@ -175,7 +175,7 @@ Flamer_Astartes = { //---------------------------- ASTARTES SHOTGUN
 		//technical weapon stats
 		weapon_type : "flamer",
 		weapon_slot : ["primary",2], //1 = single hand, 2 = both hands, 3 = offhand,
-		ammo_type: "fuel",
+		ammo_type: "ammo_flamer",
 		default_ammo_type: Ammo_Flamer_Standard,
 		firemodes: ["Auto"],
 		weight : 18,
@@ -216,7 +216,7 @@ Shotgun_Astartes = { //---------------------------- ASTARTES SHOTGUN
 		//technical weapon stats
 		weapon_type : "shotgun",
 		weapon_slot : ["primary",2], //1 = single hand, 2 = both hands, 3 = offhand,
-		ammo_type: "shotgun",
+		ammo_type: "ammo_shotgun",
 		default_ammo_type: Ammo_Shotgun_Buckshot,
 		firemodes: ["Pump"],
 		weight : 10,
@@ -247,7 +247,7 @@ Plasmagun_Thunderbolt = { //---------------------------- Thunderbolt pattern pla
 		item_type : "weapon_ranged_plasma",
 		
 		//combat stats
-		damage : 100,
+		damage : 120,
 		ROF : FindROF(400), //rounds per minute
 		range : 1000, //effective range before gravity takes hold, rounds can mod this
 		capacity : 18,		
@@ -257,7 +257,7 @@ Plasmagun_Thunderbolt = { //---------------------------- Thunderbolt pattern pla
 		//technical weapon stats
 		weapon_type : "rifle_plasma",
 		weapon_slot : ["primary",2], //1 = single hand, 2 = both hands, 3 = offhand,
-		ammo_type: "plasma",
+		ammo_type: "ammo_plasma",
 		default_ammo_type: Ammo_Plasma_Standard,
 		firemodes: ["Auto","Overcharge","Charge"],
 		weight : 20,
@@ -288,9 +288,9 @@ Chainsword_Thunderedge = { //---------------------------- thunderedge pattern ch
 		item_type : "weapon_melee_sword_chain",
 		
 		//combat stats
-		damage : 50,
+		damage : 60,
 		force : FindROF(330), //poise and guard break
-		penetration : 0.15, //armor penetration, as percent of damage
+		penetration : 0.3, //armor penetration, as percent of damage
 		scalings : ["STR(D).030","DEX(E).020"], //scalings for damage bonus to stats
 		damage_type : ["physical.100"],
 		
@@ -320,7 +320,7 @@ Powersword_Proteus = { //---------------------------- thunderedge pattern chains
 		//combat stats
 		damage : 50,
 		force : FindROF(330), //poise and guard break
-		penetration : 0.2, //armor penetration, as percent of damage
+		penetration : 1, //armor penetration, as percent of damage
 		scalings : ["STR(D).030","DEX(E).020"], //scalings for damage bonus to stats
 		damage_type : ["physical.100"],
 		
