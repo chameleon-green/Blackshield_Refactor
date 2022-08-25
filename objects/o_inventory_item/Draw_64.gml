@@ -115,7 +115,32 @@ if(Selected = 1) {
 		var AmmoLeft = ds_grid_get(grid,4,GridYValue);	
 		if(unique_id = MyPlayer.wpn_active_id) {AmmoLeft = MyPlayer.magazine_active};	
 		var _String = Ammo.name+" ("+string(AmmoLeft)+"/"+string(AmmoCap)+")";
-		var _Color = c_yellow;//make_color_rgb(255,205,70);
+		var _Color = c_yellow;
+		
+		draw_set_halign(fa_center);
+		draw_set_valign(fa_center);
 		draw_text_ext_transformed_color(Xcent+(158*scale),Ycent-(9*scale),_String,1,40000,scale*0.75,scale*0.75,0,_Color,_Color,_Color,_Color,1);
+		draw_set_halign(fa_left);
+		draw_text_ext_transformed_color(Xcent+(72*scale),Ycent+(60*scale),item.damage,1,40000,scale*1.33,scale*1.33,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+(72*scale),Ycent+(94*scale),item.ROF,1,40000,scale*1.33,scale*1.33,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+(72*scale),Ycent+(128*scale),item.spread,1,40000,scale*1.33,scale*1.33,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+(72*scale),Ycent+(162*scale),item.range,1,40000,scale*1.33,scale*1.33,0,_Color,_Color,_Color,_Color,1);		
+		draw_text_ext_transformed_color(Xcent+(151*scale),Ycent+(60*scale),item.capacity,1,40000,scale*1.33,scale*1.33,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+(151*scale),Ycent+(94*scale),"40404",1,40000,scale*1.33,scale*1.33,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+(151*scale),Ycent+(128*scale),item.weight,1,40000,scale*1.33,scale*1.33,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+(151*scale),Ycent+(162*scale),item.durability_max,1,40000,scale*1.33,scale*1.33,0,_Color,_Color,_Color,_Color,1);
+	};
+	
+	if(IsAmmo) {
+		var _Color = c_yellow;
+		draw_set_halign(fa_left);
+		var PenString = string(item.armor_penetration*100) + "%"
+		draw_text_ext_transformed_color(Xcent+(71*scale),Ycent+(61*scale),string(item.damage_mod),1,40000,scale*1.25,scale*1.25,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+(71*scale),Ycent+(96*scale),string(item.ROF_mod),1,40000,scale*1.25,scale*1.25,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+(156*scale),Ycent+(61*scale),item.damage_type[1],1,40000,scale*1.125,scale*1.25,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+(156*scale),Ycent+(96*scale),item.weight,1,40000,scale*1.25,scale*1.25,0,_Color,_Color,_Color,_Color,1);	
+		draw_text_ext_transformed_color(Xcent+(240*scale),Ycent+(61*scale),PenString,1,40000,scale*1.125,scale*1.25,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+(240*scale),Ycent+(96*scale),"40404",1,40000,scale*1.125,scale*1.25,0,_Color,_Color,_Color,_Color,1);
+		
 	};
 };

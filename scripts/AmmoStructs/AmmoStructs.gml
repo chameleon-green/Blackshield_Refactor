@@ -5,12 +5,12 @@ function AmmoStructs() {
 	Ammo_Bolt_Standard = { //---------------------------- STANDARD BOLT ROUNDS
 		
 		item_type : "ammo_bolt",
-		damage_mod : 1,
-		ROF_mod : 1,
-		range_mod : 1,
-		velocity_mod :1,
+		damage_mod : 1.00,
+		ROF_mod : 1.00,
+		range_mod : 1.00,
+		velocity_mod : 1.00,
 		
-		damage_type : "physical",
+		damage_type : ["physical","PHYS"],
 		armor_penetration : 0.25,
 		guidance : "dumb",
 		fuse : 0.5, //how much resistance the projectile must encounter to detonate, as a factor of its dmg
@@ -37,7 +37,7 @@ function AmmoStructs() {
 		range_mod : 1.25,
 		velocity_mod : 2,
 		
-		damage_type : "physical",
+		damage_type : ["physical","PHYS"],
 		armor_penetration : 0.75,
 		guidance : "dumb",
 		fuse : 0.5, //how much resistance the projectile must encounter to detonate, as a factor of its dmg
@@ -61,12 +61,12 @@ function AmmoStructs() {
 	Ammo_Shotgun_Buckshot = {//---------------------------- Buckshot rounds
 		
 		item_type : "ammo_shotgun",
-		damage_mod : 1,
-		ROF_mod : 1,
-		range_mod : 1,
-		velocity_mod :1,
+		damage_mod : 1.00,
+		ROF_mod : 1.00,
+		range_mod : 1.00,
+		velocity_mod : 1.00,
 		
-		damage_type : "physical",
+		damage_type : ["physical","PHYS"],
 		armor_penetration : -0.2,
 		guidance : "scatter12",
 		fuse : 0.5, //how much resistance the projectile must encounter to detonate, as a factor of its dmg
@@ -88,12 +88,12 @@ function AmmoStructs() {
 	Ammo_Shotgun_Slug = {//---------------------------- Buckshot rounds
 		
 		item_type : "ammo_shotgun",
-		damage_mod : 1.5,
-		ROF_mod : 1,
-		range_mod : 1,
-		velocity_mod : 1,
+		damage_mod : 1.50,
+		ROF_mod : 1.00,
+		range_mod : 1.00,
+		velocity_mod : 1.00,
 		
-		damage_type : "physical",
+		damage_type : ["physical","PHYS"],
 		armor_penetration : -0.1,
 		guidance : "none",
 		fuse : 0.5, //how much resistance the projectile must encounter to detonate, as a factor of its dmg
@@ -117,12 +117,12 @@ function AmmoStructs() {
 	Ammo_Flamer_Standard = {//---------------------------- flamer fuel
 		
 		item_type : "ammo_flamer",
-		damage_mod : 1,
-		ROF_mod : 1,
-		range_mod : 1,
-		velocity_mod :1,
+		damage_mod : 1.00,
+		ROF_mod : 1.00,
+		range_mod : 1.00,
+		velocity_mod : 1.00,
 		
-		damage_type : "thermal",
+		damage_type : ["thermal","THER"],
 		armor_penetration : 0,
 		guidance : "flame",
 		fuse : 0.5, //how much resistance the projectile must encounter to detonate, as a factor of its dmg
@@ -144,12 +144,12 @@ function AmmoStructs() {
 	Ammo_Melta_Standard = {//---------------------------- flamer fuel
 		
 		item_type : "ammo_melta",
-		damage_mod : 1,
-		ROF_mod : 1,
-		range_mod : 1,
-		velocity_mod :1,
+		damage_mod : 1.00,
+		ROF_mod : 1.00,
+		range_mod : 1.00,
+		velocity_mod : 1.00,
 		
-		damage_type : "thermal",
+		damage_type : ["thermal","THER"],
 		armor_penetration : 3,
 		guidance : "beam",
 		fuse : 0.5, //how much resistance the projectile must encounter to detonate, as a factor of its dmg
@@ -171,12 +171,12 @@ function AmmoStructs() {
 	Ammo_Plasma_Standard = {//---------------------------- Buckshot rounds
 		
 		item_type : "ammo_plasma",
-		damage_mod : 1,
-		ROF_mod : 1,
-		range_mod : 1,
-		velocity_mod :1,
+		damage_mod : 1.00,
+		ROF_mod : 1.00,
+		range_mod : 1.00,
+		velocity_mod : 1.00,
 		
-		damage_type : "thermal",
+		damage_type : ["thermal","THER"],
 		armor_penetration : 0.8,
 		guidance : "none",
 		fuse : 0.99, //how much resistance the projectile must encounter to detonate, as a factor of its dmg
