@@ -11,7 +11,7 @@ var Owner_Distance = point_distance(x,y,owner.x,owner.y);
 var Owner_Spread = degtorad(clamp(owner.spread_angle,0,89));
 
 if(string_count("scatter",owner.ammo_active.guidance)) { //accounts for spray pattern of scatter ammo
-	Owner_Spread = degtorad(clamp(owner.spread_angle + owner.wpn_active.spread*5,0,89));
+	Owner_Spread = degtorad(clamp(owner.spread_angle + owner.wpn_active.spread*3,0,89));
 };
 
 var HairOffset = clamp(tan(Owner_Spread)*Owner_Distance,6,130);

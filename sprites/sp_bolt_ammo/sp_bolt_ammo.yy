@@ -113,8 +113,8 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "Item Icons",
-    "path": "folders/Sprites/Sprites: UI/Item Icons.yy",
+    "name": "Ammo",
+    "path": "folders/Sprites/Sprites: UI/Item Icons/Ammo.yy",
   },
   "resourceVersion": "1.0",
   "name": "sp_bolt_ammo",

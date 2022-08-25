@@ -66,7 +66,7 @@ Boltgun_Phobos = { //---------------------------- PHOBOS BOLTER
 		//cosmetic stuff, animations, sounds, etc.
 		name : "Phobos Pattern Boltgun",
 		description : "desc_blank.txt", 
-		inventory_subimage : [sp_xhair, 6], //subimage for item to appear in inventory
+		inventory_subimage : [sp_boltgun_icons, 0], //subimage for item to appear in inventory
 		weapon_attachment : "bolter_phobos", //spine attachment name
 		magazine_attachment : "mag_sickle1", //spine attachment name
 		flash_type : flash_med_normal,
@@ -210,7 +210,7 @@ Shotgun_Astartes = { //---------------------------- ASTARTES SHOTGUN
 		ROF : 45, //FindROF(330), //rounds per minute
 		range : 1000, //effective range before gravity takes hold, rounds can mod this
 		capacity : 8,		
-		spread : 0.5,
+		spread : 0.65,
 		muzzle_velocity : 60,
 		
 		//technical weapon stats
@@ -228,7 +228,7 @@ Shotgun_Astartes = { //---------------------------- ASTARTES SHOTGUN
 		//cosmetic stuff, animations, sounds, etc.
 		name : "Astartes Pattern Shotgun",
 		description : "desc_blank.txt", 
-		inventory_subimage : [sp_xhair, 6], //subimage for item to appear in inventory
+		inventory_subimage : [sp_shotgun_icons, 0], //subimage for item to appear in inventory
 		weapon_attachment : "shotgun_astartes", //spine attachment name
 		magazine_attachment : -1, //spine attachment name
 		flash_type : flash_med_normal,

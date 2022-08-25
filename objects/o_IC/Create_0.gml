@@ -8,7 +8,7 @@ if(global.debug = 1) {
 
 visible = 0;
 
-//window_set_cursor(cr_none);
+window_set_cursor(cr_none);
 
 //----------------------------------------- UI functionality --------------------------------
 

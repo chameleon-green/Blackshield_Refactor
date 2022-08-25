@@ -22,7 +22,7 @@ function FireGun (){
 
 	if(string_count("scatter",ammo_active.guidance)){
 		var Count = string_digits(ammo_active.guidance);
-		var Cone = wpn_active.spread*5
+		var Cone = wpn_active.spread*3
 		repeat(Count) {
 			instance_create_depth(flash_x+hspd,flash_y+vspd_readonly,depth+1,o_bullet,{
 				origin_x : other.flash_x,
@@ -146,7 +146,7 @@ function PlayerWeaponControl(){
 	//check for empty mags, reload interrupt for single loaders, and spool up spoolguns
 	if(mouse_check_button_pressed(mb_left)) {	
 		
-		if(magazine_active = 0 and !reloading) {
+		if(magazine_active = 0 and !reloading and CanShoot) {
 			audio_play_sound_at(wpn_active.sound_group.empty,x,y,0,100,100,1,0,1);
 		};
 		
