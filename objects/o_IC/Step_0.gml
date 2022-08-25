@@ -3,7 +3,7 @@
 //camera_xspd = camera_x - camera_xprev;
 
 //cancel zoom momentum if inventory is brought up
-if(visible) {view_momentum = 0};
+if(visible) {view_momentum = 0; window_set_cursor(cr_default)};
 
 if(abs(view_momentum) > 0) {view_momentum *= 0.95};
 if(abs(view_momentum) < 0.2) {view_momentum = 0};
@@ -57,5 +57,6 @@ if(!visible and gui_close_toggle){
 	//camera_set_view_pos(view_camera[0],0,0);
 
 	camera_set_view_target(view_camera[0],track);
+	window_set_cursor(cr_none);
 };
 	

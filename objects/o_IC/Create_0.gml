@@ -17,6 +17,7 @@ bg_subimage = 0;
 gui_close_toggle = 1;
 Tab = "items";
 SubTab = "weapons";
+refresh = 0;
 
 Mouse_X = 0; 
 Mouse_Y = 0;
@@ -53,20 +54,24 @@ grd_inv_ammo = ds_grid_create(10,InventorySize); //ammo inventory
 grd_inv_crft = ds_grid_create(10,InventorySize); //crafting inventory
 
 AddItem(Boltgun_Phobos,1,grd_inv_wepn,InventorySize);
-AddItem(Boltgun_Phobos,1,grd_inv_wepn,InventorySize);
-AddItem(Boltgun_Phobos,1,grd_inv_wepn,InventorySize);
-AddItem(Boltgun_Phobos,1,grd_inv_wepn,InventorySize);
-AddItem(Boltgun_Phobos,1,grd_inv_wepn,InventorySize);
-AddItem(Boltgun_Phobos,1,grd_inv_wepn,InventorySize);
-AddItem(Boltgun_Phobos,1,grd_inv_wepn,InventorySize);
-AddItem(Boltgun_Phobos,1,grd_inv_wepn,InventorySize);
-AddItem(Boltgun_Phobos,1,grd_inv_wepn,InventorySize);
 AddItem(Shotgun_Astartes,1,grd_inv_wepn,InventorySize);
+AddItem(Flamer_Astartes,1,grd_inv_wepn,InventorySize);
+AddItem(Plasmagun_Thunderbolt,1,grd_inv_wepn,InventorySize);
+AddItem(Meltagun_Proteus,1,grd_inv_wepn,InventorySize);
+AddItem(Boltgun_Phobos,1,grd_inv_wepn,InventorySize);
+AddItem(Boltgun_Phobos,1,grd_inv_wepn,InventorySize);
+AddItem(Boltgun_Phobos,1,grd_inv_wepn,InventorySize);
+AddItem(Boltgun_Phobos,1,grd_inv_wepn,InventorySize);
+AddItem(Boltgun_Phobos,1,grd_inv_wepn,InventorySize);
+
 
 AddItem(Ammo_Bolt_Standard,100,grd_inv_ammo,InventorySize);
 AddItem(Ammo_Bolt_Kraken,100,grd_inv_ammo,InventorySize);
 AddItem(Ammo_Shotgun_Buckshot,3,grd_inv_ammo,InventorySize);
 AddItem(Ammo_Shotgun_Slug,30,grd_inv_ammo,InventorySize);
+AddItem(Ammo_Flamer_Standard,300,grd_inv_ammo,InventorySize);
+AddItem(Ammo_Plasma_Standard,300,grd_inv_ammo,InventorySize);
+AddItem(Ammo_Melta_Standard,300,grd_inv_ammo,InventorySize);
 
 //----------------------------------------- Create Player ---------------------------------------
 

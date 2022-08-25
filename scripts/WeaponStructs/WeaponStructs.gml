@@ -56,7 +56,7 @@ Boltgun_Phobos = { //---------------------------- PHOBOS BOLTER
 		weapon_slot : ["primary",2], //1 = single hand, 2 = both hands, 3 = offhand,
 		ammo_type: "ammo_bolt",
 		default_ammo_type: Ammo_Bolt_Standard,
-		firemodes: ["Semi","Burst(3)","Auto"],
+		firemodes: ["Semi","Burst (3)","Auto"],
 		weight : 15,
 		durability_max : 1000,
 		rarity : "150.common",

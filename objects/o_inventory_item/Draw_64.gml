@@ -17,7 +17,10 @@ if( (creator.SubTab != MySubTab) or (creator.Tab != MyTab) or !creator.visible) 
 var IsEquipped = ( (MyPlayer.wpn_primary_id = unique_id) or 
 				   (MyPlayer.wpn_secondary_id = unique_id) or
 				   (MyPlayer.wpn_melee_id = unique_id) or
-				   (MyPlayer.ammo_primary_id = unique_id)
+				   (MyPlayer.ammo_primary_id = unique_id) or
+				   (MyPlayer.ammo_primary = item) or 
+				   (MyPlayer.ammo_secondary = item) or 
+				   (MyPlayer.ammo_active = item)
 				 );
 
 //------------------------------------------ Coordinate Stuff -------------------------------------------------
@@ -40,12 +43,14 @@ draw_set_halign(fa_center);
 draw_set_valign(fa_center);
 
 var MyDisplacement = (Ycent - y)/scale;
-var GridYValue = ds_grid_value_y(grid,0,0,ds_grid_height(grid),creator.InventorySize-1,unique_id);
+var GridYValue = ds_grid_value_y(grid,0,0,ds_grid_width(grid),ds_grid_height(grid),unique_id);
 var Quantity = ds_grid_get(grid,1,GridYValue);
 var TitleText = item.name;
 
 var IsAmmo = variable_struct_exists(item,"projectile_type");
 var IsRangedWeapon = variable_struct_exists(item,"capacity");
+
+if(GridYValue = -1) {creator.refresh = 1};
 
 if(IsAmmo) {TitleText = item.name + " (" + string(Quantity) + ")"};
 if(IsEquipped) {TitleText = TitleText + " (equipped)"};

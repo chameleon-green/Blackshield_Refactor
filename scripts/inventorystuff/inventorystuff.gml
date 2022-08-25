@@ -73,14 +73,19 @@ function AddItem (Item,Quantity,TargetGrid,InventorySize,Durability=-1){
 					ds_grid_set(TargetGrid,0,Counter,Item); //what are we adding?
 					ds_grid_set(TargetGrid,1,Counter,Quantity); //how many?
 					ds_grid_set(TargetGrid,8,Counter,GenerateID()); //unique ID for item
+					if(variable_instance_exists(id,"MyPlayer")){
+						if(MyPlayer.ammo_secondary = Item) {MyPlayer.ammo_secondary_id = ds_grid_get(TargetGrid,8,Counter)};
+						if(MyPlayer.ammo_primary = Item) {MyPlayer.ammo_primary_id = ds_grid_get(TargetGrid,8,Counter)};
+						if(MyPlayer.ammo_active = Item) {MyPlayer.ammo_active_id = ds_grid_get(TargetGrid,8,Counter)};
+					};
 					break;
 				};		
 			Counter +=1;
 			
 			}; //while loop
-		}; //else check
+		}; //else check		
 	}; //is ammo check
-	
+	refresh = 1;
 };// func end
 #endregion
 
@@ -144,6 +149,8 @@ function EquipItem(Item,UniqueID,PlayerID) { //searches grid of items for a spec
 		PlayerID.spread_angle = 0; //need this to avoid crashes, for some reason
 		
 		if(Item.weapon_slot[0] = "primary"){
+			
+			//if(UniqueID = PlayerID.wpn_primary_id) {exit};
 			
 			//if we have any of the ammo type currently in the mag of the gun we are switching to, equip it
 			var AmmoY = -1;

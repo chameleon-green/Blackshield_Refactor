@@ -21,9 +21,7 @@ if(Click) {
 	if(ButtonRegionCenter(Mouse_X,Mouse_Y,300,220,180,200,scale) && (Tab != "items")) {
 		Tab = "items"; bg_subimage = 0; 
 		global.Selected = [-1,-1];
-		counter_weapons = 0; incrementor_weapons = 0; counter_armor = 0; incrementor_armor = 0; 
-		counter_aid = 0; incrementor_aid = 0; counter_ammo = 0; incrementor_ammo = 0; 
-		counter_crafting = 0; incrementor_crafting = 0; 
+		refresh = 1; 
 	};
 	if(ButtonRegionCenter(Mouse_X,Mouse_Y,210,120,180,200,scale)) {Tab = "status"; bg_subimage = 6; global.Selected = [-1,-1]};
 	if(ButtonRegionCenter(Mouse_X,Mouse_Y,114,24,180,200,scale)) {Tab = "skills"; bg_subimage = 7; global.Selected = [-1,-1]};
@@ -66,7 +64,7 @@ if(Click) {
 			if(instance_exists(MyScrollbar)) {MyScrollbar.reset = 1};
 		};
 		
-		if(ButtonRegionCenter(Mouse_X,Mouse_Y,-40,-112,-49,-19,scale)){
+		if(ButtonRegionCenter(Mouse_X,Mouse_Y,-40,-112,-49,-19,scale) and is_struct(global.Selected[1]) ){
 			EquipItem(global.Selected[1],global.Selected[0],MyPlayer);
 		};
 		if(ButtonRegionCenter(Mouse_X,Mouse_Y,-122,-216,-19,-49,scale)){
@@ -78,7 +76,7 @@ if(Click) {
 
 	};
 };
-
+/*
 ButtonDrawCenter(305,215,180,200,scale);
 ButtonDrawCenter(210,120,180,200,scale);
 ButtonDrawCenter(114,24,180,200,scale);
@@ -90,8 +88,16 @@ ButtonDrawCenter(226,196,140,170,scale);
 ButtonDrawCenter(188,158,140,170,scale);
 ButtonDrawCenter(150,120,140,170,scale);
 ButtonDrawCenter(112,82,140,170,scale);
-
-
+*/
+if(refresh) {
+	instance_destroy(o_inventory_item);
+	refresh = 0;
+	counter_weapons = 0; incrementor_weapons = 0; 
+	counter_armor = 0; incrementor_armor = 0; 
+	counter_aid = 0; incrementor_aid = 0; 
+	counter_ammo = 0; incrementor_ammo = 0; 
+	counter_crafting = 0; incrementor_crafting = 0; 
+};
 
 #endregion
 
