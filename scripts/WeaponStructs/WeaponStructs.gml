@@ -59,7 +59,7 @@ Boltgun_Phobos = { //---------------------------- PHOBOS BOLTER
 		firemodes: ["Semi","Burst (3)","Auto"],
 		weight : 15,
 		durability_max : 1000,
-		rarity : "150.common",
+		rarity : "1300.common",
 		heat_generation : -1,
 		heat_capacity : 1,
 		
@@ -98,7 +98,7 @@ Boltgun_Phobos = { //---------------------------- PHOBOS BOLTER
 		firemodes: ["Semi"],
 		weight : 6,
 		durability_max : 1000,
-		rarity : "150.common",
+		rarity : "1200.common",
 		heat_generation : -1,
 		heat_capacity : 1,
 		
@@ -139,7 +139,7 @@ Meltagun_Proteus = { //---------------------------- proteus melter
 		firemodes: ["Auto"],
 		weight : 18,
 		durability_max : 1000,
-		rarity : "150.common",
+		rarity : "1200.common",
 		heat_generation : -1,
 		heat_capacity : 1,
 		
@@ -180,7 +180,7 @@ Flamer_Astartes = { //---------------------------- ASTARTES SHOTGUN
 		firemodes: ["Auto"],
 		weight : 18,
 		durability_max : 1000,
-		rarity : "150.common",
+		rarity : "400.common",
 		heat_generation : -1,
 		heat_capacity : 1,
 		
@@ -221,7 +221,7 @@ Shotgun_Astartes = { //---------------------------- ASTARTES SHOTGUN
 		firemodes: ["Pump"],
 		weight : 10,
 		durability_max : 1000,
-		rarity : "150.common",
+		rarity : "300.common",
 		heat_generation : -1,
 		heat_capacity : 1,
 		
@@ -262,7 +262,7 @@ Plasmagun_Thunderbolt = { //---------------------------- Thunderbolt pattern pla
 		firemodes: ["Auto","Overcharge","Charge"],
 		weight : 20,
 		durability_max : 1000,
-		rarity : "150.common",
+		rarity : "1400.common",
 		heat_generation : 4,
 		heat_capacity : 15, //26
 		
@@ -299,7 +299,7 @@ Chainsword_Thunderedge = { //---------------------------- thunderedge pattern ch
 		weapon_slot : ["melee",3], //1 = single hand, 2 = both hands, 3 = offhand,
 		weight : 20,
 		durability_max : 600,
-		rarity : "150.common",
+		rarity : "500.common",
 		
 		//cosmetic stuff, animations, sounds, etc.
 		name : "Thunderedge Pattern Chainsword",
@@ -329,7 +329,7 @@ Powersword_Proteus = { //---------------------------- thunderedge pattern chains
 		weapon_slot : ["melee",3], //1 = single hand, 2 = both hands, 3 = offhand,
 		weight : 20,
 		durability_max : 600,
-		rarity : "150.common",
+		rarity : "900.common",
 		
 		//cosmetic stuff, animations, sounds, etc.
 		name : "Thunderedge Pattern Chainsword",

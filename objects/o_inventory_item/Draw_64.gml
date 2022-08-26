@@ -140,7 +140,7 @@ if(Selected = 1) {
 		draw_text_ext_transformed_color(Xcent+(156*scale),Ycent+(61*scale),item.damage_type[1],1,40000,scale*1.125,scale*1.25,0,_Color,_Color,_Color,_Color,1);
 		draw_text_ext_transformed_color(Xcent+(156*scale),Ycent+(96*scale),item.weight,1,40000,scale*1.25,scale*1.25,0,_Color,_Color,_Color,_Color,1);	
 		draw_text_ext_transformed_color(Xcent+(240*scale),Ycent+(61*scale),PenString,1,40000,scale*1.125,scale*1.25,0,_Color,_Color,_Color,_Color,1);
-		draw_text_ext_transformed_color(Xcent+(240*scale),Ycent+(96*scale),"40404",1,40000,scale*1.125,scale*1.25,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+(240*scale),Ycent+(96*scale),AmmoCost(item),1,40000,scale*1.125,scale*1.25,0,_Color,_Color,_Color,_Color,1);
 		
 	};
 };

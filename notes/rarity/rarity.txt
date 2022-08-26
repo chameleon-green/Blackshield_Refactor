@@ -1,0 +1,34 @@
+HOW IT WORKS
+
+Rarity/tech level is encoded as a string.
+Rarity in text, tech in numbers.
+Example: rarity = "uncommon.100"
+
+------------------------------------------------------------------------
+
+RARITIES
+
+Common (white/yellow)
+Uncommon (blue)
+Rare (green)
+Epic (purple)
+Legendary (orange)
+
+Shops determine their inventories based on their max tech level. Note that items
+can have intermediate tech levels to add granularity if needed. A boltgun for example
+may have a common rarity. However, a low tech hive gundealer will not be able to stock
+astartes-pattern wargear; despite the low rarity rating, it's tech level will exceed the merchant's
+tech level.
+
+Auto/stub weapons, chainswords and flamers are plentiful and easy to manufacture (000-300)
+Laser weapons are slightly more advanced but still quite common (300-600)
+Melta/plasma and power weapons are fairly advanced weapons, but still accessible (600-900)
+Bolt weapons are hard to acquire, even human-sized ones (900-1200)
+Power armor is extremely advanced and hard to find (1200-1500)
+Advanced relic gear like iron haloes and personal shields are even rarer (1500-1800)
+Terminator armor and other archaeotech are near impossible to acquire (1800+)
+
+All astartes-grade gear is additionally 300 points higher than "normal", i.e. an astartes flamer
+would be 300-600 tech level, and an astartes boltgun would be 1200-1500
+
+------------------------------------------------------------------------

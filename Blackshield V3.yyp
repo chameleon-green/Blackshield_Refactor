@@ -67,6 +67,7 @@
     {"id":{"name":"fnt_caslonSB","path":"fonts/fnt_caslonSB/fnt_caslonSB.yy",},"order":0,},
     {"id":{"name":"snd_flamer_empty","path":"sounds/snd_flamer_empty/snd_flamer_empty.yy",},"order":5,},
     {"id":{"name":"snd_flamer_magin","path":"sounds/snd_flamer_magin/snd_flamer_magin.yy",},"order":3,},
+    {"id":{"name":"Rarity","path":"notes/Rarity/Rarity.yy",},"order":1,},
     {"id":{"name":"sp_xhair_heatbar","path":"sprites/sp_xhair_heatbar/sp_xhair_heatbar.yy",},"order":1,},
     {"id":{"name":"snd_chain3","path":"sounds/snd_chain3/snd_chain3.yy",},"order":2,},
     {"id":{"name":"snd_plasma_magout","path":"sounds/snd_plasma_magout/snd_plasma_magout.yy",},"order":1,},

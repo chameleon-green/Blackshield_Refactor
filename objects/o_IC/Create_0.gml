@@ -72,6 +72,8 @@ AddItem(Ammo_Shotgun_Slug,30,grd_inv_ammo,InventorySize);
 AddItem(Ammo_Flamer_Standard,300,grd_inv_ammo,InventorySize);
 AddItem(Ammo_Plasma_Standard,300,grd_inv_ammo,InventorySize);
 AddItem(Ammo_Melta_Standard,300,grd_inv_ammo,InventorySize);
+AddItem(Ammo_Auto_Ball,300,grd_inv_ammo,InventorySize);
+AddItem(Ammo_Autocannon_Ball,300,grd_inv_ammo,InventorySize);
 
 //----------------------------------------- Create Player ---------------------------------------
 
