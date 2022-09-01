@@ -24,17 +24,17 @@ function PlayerMovement() {
 	
 //------------------------------- Weapon idle scripts ---------------------------------------------------
 
+var TwoHanded = (wpn_active_melee.weapon_slot[1] = 2);
+
 if (wpn_active.weapon_slot[0] = "primary") {
 	skeleton_anim_set_step(ranged_animgrp.idle,1)
 	if(aud_melee_idle != 0) {audio_stop_sound(aud_melee_idle); aud_melee_idle = 0};
 };
 
-else if (wpn_active.weapon_slot[0] = "secondary") {
+else if ((wpn_active.weapon_slot[0] = "secondary")) {
 	skeleton_anim_set_step(ranged_animgrp.idle,1);
-	if(!reloading) {
-		skeleton_anim_set_step(melee_animgrp.idle,5);
-		//if(aud_melee_idle = 0) {aud_melee_idle = audio_play_sound(wpn_active_melee.sound_group.idle,1,1)};		
-	};
+		
+	if(!reloading and !TwoHanded) {skeleton_anim_set_step(melee_animgrp.idle,5)};
 };
 
 if(sprinting && (hspd != 0) ) {skeleton_animation_clear(5)};
@@ -51,7 +51,7 @@ if(sprinting && (hspd != 0) ) {skeleton_animation_clear(5)};
 
 if(CanMove) {
 	
-	image_xscale = mouse_facing;
+	image_xscale = mouse_facing*image_yscale;
 		
 	if(D) {
 		if(face_left) {hspd = (move*CanMove)*0.5; if(col_bot) {skeleton_anim_set_step(backwalk,2)} };

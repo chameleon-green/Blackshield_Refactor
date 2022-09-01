@@ -40,7 +40,7 @@ if(event = "Reloaded") {
 		var _AmmoPool = ds_grid_get(_Grid,1,_AmmoY,);
 	
 		if( !is_array(wpn_active.animation_group.reload)) {		
-			if(_AmmoPool >= wpn_active.capacity) {magazine_active = wpn_active.capacity; ds_grid_add(_Grid,1,_AmmoY,-wpn_active.capacity)}
+			if(_AmmoPool > wpn_active.capacity) {magazine_active = wpn_active.capacity; ds_grid_add(_Grid,1,_AmmoY,-wpn_active.capacity)}
 			else{magazine_active = _AmmoPool; ds_grid_set(_Grid,1,_AmmoY,0); ClearItem(ammo_active_id,_Grid,id)};
 		};
 	};

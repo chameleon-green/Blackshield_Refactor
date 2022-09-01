@@ -9,9 +9,6 @@ draw_set_valign(fa_center);
 
 draw_sprite_ext(sp_inventory_bg,bg_subimage,Xcent,Ycent,scale,scale,0,c_white,1);
 
-draw_text(Mouse_X+20,Mouse_Y,"XRel: " + string((Mouse_X-Xcent)/scale));
-draw_text(Mouse_X+20,Mouse_Y+12,"YRel: " + string((Mouse_Y-Ycent)/scale));
-
 //+++++++++++++++++++++++++++++++++++++++ BUTTON CHECKS ++++++++++++++++++++++++++++++++++++++++++++
 
 #region Button Checks

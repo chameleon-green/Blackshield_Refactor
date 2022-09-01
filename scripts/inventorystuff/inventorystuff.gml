@@ -148,44 +148,39 @@ function EquipItem(Item,UniqueID,PlayerID) { //searches grid of items for a spec
 		
 		PlayerID.spread_angle = 0; //need this to avoid crashes, for some reason
 		
-		if(Item.weapon_slot[0] = "primary"){
+		var _Slot = Item.weapon_slot[0];		
+		//if(UniqueID = PlayerID.wpn_primary_id) {exit};
 			
-			//if(UniqueID = PlayerID.wpn_primary_id) {exit};
-			
-			//if we have any of the ammo type currently in the mag of the gun we are switching to, equip it
-			var AmmoY = -1;
-			var AmmoToSwapTo = ds_grid_get(Grid,3,ValueY);
-			if( ds_grid_value_exists(grd_inv_ammo,0,0,10,InventorySize,AmmoToSwapTo) ) {
-				var AmmoY = ds_grid_value_y(grd_inv_ammo,0,0,10,InventorySize,AmmoToSwapTo);
-			};
-			if(AmmoY != -1) {PlayerID.ammo_primary_id = ds_grid_get(grd_inv_ammo,8,AmmoY)} else{PlayerID.ammo_primary_id = -1};
+		//if we have any of the ammo type currently in the mag of the gun we are switching to, equip it
+		var AmmoY = -1;
+		var AmmoToSwapTo = ds_grid_get(Grid,3,ValueY);
+		if( ds_grid_value_exists(grd_inv_ammo,0,0,10,InventorySize,AmmoToSwapTo) ) {
+			var AmmoY = ds_grid_value_y(grd_inv_ammo,0,0,10,InventorySize,AmmoToSwapTo);
+		};
+		if(AmmoY != -1) {variable_instance_set(MyPlayer,"ammo_"+_Slot+"_id",ds_grid_get(grd_inv_ammo,8,AmmoY))} else{variable_instance_set(MyPlayer,"ammo_"+_Slot+"_id",-1)};
 			
 			
-			with(PlayerID) {			
-				var SwapTo = (PlayerID.wpn_active = PlayerID.wpn_primary);
+		with(PlayerID) {			
+			var SwapTo = (wpn_active = variable_instance_get(id,"wpn_"+_Slot));
 				
-				wpn_primary = Item;
-				wpn_primary_id = UniqueID;
-				ammo_primary = ds_grid_get(Grid,3,ValueY);
-				magazine_primary = ds_grid_get(Grid,4,ValueY);
+			variable_instance_set(id,"wpn_"+_Slot,Item);
+			variable_instance_set(id,"wpn_"+_Slot+"_id",UniqueID);
+			variable_instance_set(id,"ammo_"+_Slot,ds_grid_get(Grid,3,ValueY));
+			variable_instance_set(id,"magazine_"+_Slot,ds_grid_get(Grid,4,ValueY));
 					
-				if(SwapTo) {
-					wpn_active = Item;
-					wpn_active_id = UniqueID;
-					ammo_active = ammo_primary;
-					ammo_active_id = ammo_primary_id;
-					magazine_active = magazine_primary;
-					selector_real = 0;
-					selector = wpn_active.firemodes[selector_real];
-					skeleton_animation_set(Item.animation_group.idle);
-					skeleton_attachment_set("slot_gun",Item.weapon_attachment);
-					skeleton_attachment_set("slot_gun magazine",Item.magazine_attachment);
-				};
+			if(SwapTo) {
+				wpn_active = Item;
+				wpn_active_id = UniqueID;
+				ammo_active = variable_instance_get(id,"ammo_"+_Slot);;
+				ammo_active_id = variable_instance_get(id,"ammo_"+_Slot+"_id");
+				magazine_active = magazine_primary;
+				selector_real = 0;
+				selector = wpn_active.firemodes[selector_real];
+				skeleton_animation_set(Item.animation_group.idle);
+				skeleton_attachment_set("slot_gun",Item.weapon_attachment);
+				skeleton_attachment_set("slot_gun magazine",Item.magazine_attachment);
 			};
-		};
-		
-		if(Item.weapon_slot[0] = "secondary"){
-		};
+		};		
 	};
 	#endregion
 	

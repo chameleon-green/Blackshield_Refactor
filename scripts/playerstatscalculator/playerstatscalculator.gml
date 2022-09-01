@@ -1,4 +1,4 @@
-
+		
 //returns a value given an input and a do not exceed (asymptote) limit
 //can adjust divisor value to change curve if desired
 #region Stats asymptote function: allows for infinitely scaling, exponentially reducing returns on stats

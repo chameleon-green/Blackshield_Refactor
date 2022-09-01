@@ -284,7 +284,8 @@ function PlayerWeaponControl(){
 		
 		skeleton_animation_clear(1); skeleton_animation_clear(3);
 		
-		skeleton_anim_set_step(wpn_active.animation_group.idle,1);
+		//skeleton_anim_set_step(wpn_active.animation_group.idle,1);
+		skeleton_anim_set_step("Ballistic Weapons/idle_shotgun_astartes",1);
 		skeleton_attachment_set("slot_gun",wpn_active.weapon_attachment);
 		skeleton_attachment_set("slot_gun magazine",wpn_active.magazine_attachment);		
 	};

@@ -2,6 +2,9 @@ AnimationsFlashesSoundGroups();
 AmmoStructs();
 WeaponStructs();
 var _mymethod = function(){};
+
+image_xscale = 1;
+image_yscale = 1;
 //----------------------------------- MOVEMENT VARIABLES -----------------------------------
 
 //movement toggles

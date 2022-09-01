@@ -12,14 +12,15 @@ xx += view_momentum;
 yy += view_momentum/1.78;
 
 if(xx > 2732) {xx = 2732};
-if(xx < 683) {xx = 683};
+if(xx < 1) {xx = 1}; //if(xx < 683) {xx = 683};
 if(yy > 1536) {yy = 1536};
-if(yy < 384) {yy = 384};
+if(yy < 1) {yy = 1}; //if(yy < 384) {yy = 384};
 
 view_wport[0] = xx; view_hport[0] = yy;
 camera_set_view_size(view_camera[0],view_wport[0],view_hport[0]);
 camera_set_view_border(view_camera[0],xx/2,yy/2);
 
+//surface_resize(application_surface,683,384);
 //view_multiplier = xx/1366;
 
 if(equalize = 1) { 
@@ -40,7 +41,7 @@ if(equalize = 1) {
 //---------------------------------------------- camera tracking --------------------------------------------
 
 
-if(!visible and gui_close_toggle){	
+if(!visible and enable_mouseaim){	
 	var F = keyboard_check(ord("F")); 
 	if(F) {if(mouse_mult < 12) {mouse_mult+=1}} else{pl_mult = 1 mouse_mult = 2};
 	

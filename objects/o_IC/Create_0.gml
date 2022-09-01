@@ -1,4 +1,4 @@
-global.debug = 1;
+global.debug = 0;
 //audio_debug(global.debug);
 FPS = 0;
 
@@ -12,9 +12,11 @@ window_set_cursor(cr_none);
 
 //----------------------------------------- UI functionality --------------------------------
 
+active = 0;
 scale = 1.75;
 bg_subimage = 0;
-gui_close_toggle = 1;
+enable_mouseaim = 1;
+pos_at_close = [0,0,0,0];
 Tab = "items";
 SubTab = "weapons";
 refresh = 0;
@@ -58,11 +60,7 @@ AddItem(Shotgun_Astartes,1,grd_inv_wepn,InventorySize);
 AddItem(Flamer_Astartes,1,grd_inv_wepn,InventorySize);
 AddItem(Plasmagun_Thunderbolt,1,grd_inv_wepn,InventorySize);
 AddItem(Meltagun_Proteus,1,grd_inv_wepn,InventorySize);
-AddItem(Boltgun_Phobos,1,grd_inv_wepn,InventorySize);
-AddItem(Boltgun_Phobos,1,grd_inv_wepn,InventorySize);
-AddItem(Boltgun_Phobos,1,grd_inv_wepn,InventorySize);
-AddItem(Boltgun_Phobos,1,grd_inv_wepn,InventorySize);
-AddItem(Boltgun_Phobos,1,grd_inv_wepn,InventorySize);
+AddItem(Bolt_Pistol_Tigrus,1,grd_inv_wepn,InventorySize);
 
 
 AddItem(Ammo_Bolt_Standard,100,grd_inv_ammo,InventorySize);
