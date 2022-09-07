@@ -14,7 +14,7 @@ function AnimationsFlashesSoundGroups(){
 		idle : "Bolt Weapons/idle_pistol_tigrus",
 		fire : "Bolt Weapons/firing_pistol_tigrus",
 		reload : "Bolt Weapons/reload_pistol_tigrus",
-		sprint : "sprint_full_melee"
+		sprint : "Basic Movement/sprint_full_melee"
 	};
 	
 	anmgrp_shotgun_astartes = {
@@ -50,11 +50,14 @@ function AnimationsFlashesSoundGroups(){
 	};
 	
 	anmgrp_fists = {
-		idle : "idle_fists",
+		idle : "Basic Movement/idle_fists",
 		strike : "",
 		light_attack : ["attack_fists_light1","attack_fists_light2","attack_fists_light3"],
 		windup : "Chain Weapons/attack_sword_chain_windup1",
-		heavy_attack : "Chain Weapons/attack_sword_chain_heavy1"	
+		heavy_attack : "Chain Weapons/attack_sword_chain_heavy1",	
+		sprint : "Basic Movement/sprint_full_melee",
+		walk : "Basic Movement/walk_melee",
+		backwalk : "Basic Movement/backwalk_melee"
 	};
 
 

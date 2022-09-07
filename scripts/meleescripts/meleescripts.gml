@@ -28,6 +28,7 @@ function PlayerMeleeControl(){
 	
 	var InputState = time_source_get_state(melee_input_check_timer);
 	var Queued = (InputState = time_source_state_active);
+	var IsRanged = string_count("ranged",wpn_active.item_type);
 	
 	if(!swinging) {skeleton_animation_clear(8)};
 	
@@ -44,12 +45,14 @@ function PlayerMeleeControl(){
 			skeleton_animation_clear(5);skeleton_animation_clear(6);skeleton_animation_clear(7);
 			
 			//spoolgun related stuff. end spool or spooldown when we swing
-			if(is_array(wpn_active.animation_group.fire)) {
-			audio_stop_sound(aud_spoolup); aud_spoolup = 0;
-			audio_stop_sound(aud_spooldown); aud_spooldown = 0;
-			if(spindown_toggle) {
-				skeleton_animation_clear(3);
-				skeleton_anim_set_step(wpn_active.animation_group.fire[2],3)
+			if(IsRanged){
+				if(is_array(wpn_active.animation_group.fire)) {
+				audio_stop_sound(aud_spoolup); aud_spoolup = 0;
+				audio_stop_sound(aud_spooldown); aud_spooldown = 0;
+				if(spindown_toggle) {
+					skeleton_animation_clear(3);
+					skeleton_anim_set_step(wpn_active.animation_group.fire[2],3)
+					};
 				};
 			};
 			

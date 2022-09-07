@@ -7,10 +7,13 @@ function PlayerMovement() {
 	//var anim_array2 = wpn_melee[wpn_melee.Animations];
 	var ranged_animgrp = wpn_active.animation_group;
 	var melee_animgrp = wpn_active_melee.animation_group;
-	var sprint = "sprint_full_rifle";
+	var IsRanged = string_count("ranged",wpn_active.item_type);
+	var sprint = "Basic Movement/sprint_full_rifle";
+	var walk = "Basic Movement/walk_rifle";
+	var backwalk = "Basic Movement/backwalk_rifle";
 	if(variable_struct_exists(ranged_animgrp,"sprint")) {var sprint = ranged_animgrp.sprint};
-	var walk = "walk_rifle";
-	var backwalk = "backwalk_rifle";
+	if(variable_struct_exists(ranged_animgrp,"walk")) {var walk = ranged_animgrp.walk};
+	if(variable_struct_exists(ranged_animgrp,"backwalk")) {var backwalk = ranged_animgrp.backwalk};
 	//if(LegsCrippled = 1) {walk = "walk_crawl"};
 	
 	var W = keyboard_check_pressed(ord("W")); 
@@ -73,25 +76,27 @@ if(CanMove) {
 	if(W && place_meeting(x, y+10, o_platform)) {vspd = -20 * (1+(Shift/3))};
 
 	//initiate crouching anim when we press S
-	if (S) {skeleton_animation_set_ext("crouch", 2) crouching = 1};
+	if (S) {skeleton_animation_set_ext("Basic Movement/crouch", 2) crouching = 1};
 	
 	if(Space && CanRoll && col_bot) { //roll when pressing spacebar
 		rolling = 1;
 		hspd = MoveSpeed*1.3*image_xscale;
 		sprinting = 0;
 		skeleton_animation_clear(4); 
-		if(is_array(wpn_active.animation_group.fire)) {
-			audio_stop_sound(aud_spoolup); aud_spoolup = 0;
-			audio_stop_sound(aud_spooldown); aud_spooldown = 0;
-			if(spindown_toggle) {
-				skeleton_animation_clear(3);
-				skeleton_anim_set_step(wpn_active.animation_group.fire[2],3)
+		if(IsRanged) {
+			if(is_array(wpn_active.animation_group.fire)) {
+				audio_stop_sound(aud_spoolup); aud_spoolup = 0;
+				audio_stop_sound(aud_spooldown); aud_spooldown = 0;
+				if(spindown_toggle) {
+					skeleton_animation_clear(3);
+					skeleton_anim_set_step(wpn_active.animation_group.fire[2],3)
+				};
 			};
 		};
 		reloading = 0;
 		if(reloading) {skeleton_attachment_set("slot_gun magazine",wpn_active.magazine_attachment)};
 		skeleton_animation_clear(2);
-		skeleton_anim_set_step("roll_fast",2);
+		skeleton_anim_set_step("Basic Movement/roll_fast",2);
 	};		
 }; //canmove check end bracket	
 
@@ -131,7 +136,7 @@ if (hspd = 0 && !rolling and !crouching) {
 
 if(col_bot = 0 && !rolling) {
 	skeleton_animation_clear(2);
-	skeleton_anim_set_step("idle_air",2)
+	skeleton_anim_set_step("Basic Movement/idle_air",2)
 };
 	
 x += hspd;

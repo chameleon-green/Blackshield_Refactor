@@ -271,7 +271,7 @@ Plasmagun_Thunderbolt = { //---------------------------- Thunderbolt pattern pla
 		description : "desc_blank.txt", 
 		inventory_subimage : [sp_xhair, 6], //subimage for item to appear in inventory
 		weapon_attachment : "plasmagun_thunderbolt", //spine attachment name
-		magazine_attachment : "mag_plasma1", //spine attachment name
+		magazine_attachment : "mag_plasma_thunderbolt", //spine attachment name
 		flash_type : flash_med_normal,
 		flash_color : [make_colour_rgb(0, 198, 229), c_white], 
 		animation_group : anmgrp_plasmagun_thunderbolt,
