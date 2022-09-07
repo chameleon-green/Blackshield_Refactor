@@ -83,7 +83,7 @@ ammo_primary = wpn_primary.default_ammo_type;
 magazine_primary = wpn_primary.capacity
 */
 
-wpn_secondary = Unarmed_Fists;//Bolt_Pistol_Tigrus;
+wpn_secondary = -1;//Bolt_Pistol_Tigrus;
 wpn_secondary_id = 0;
 //ammo_secondary = wpn_secondary.default_ammo_type;
 //magazine_secondary = wpn_secondary.capacity

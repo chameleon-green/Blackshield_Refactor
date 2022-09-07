@@ -90,6 +90,8 @@ function FireGun (){
 #region Player Weapon Control Function
 function PlayerWeaponControl(){	
 	
+	var IsRanged = string_count("ranged",wpn_active.item_type);
+	
 	var _OverHeat = ((wpn_active_heat > wpn_active.heat_capacity) and (selector != "Supercharge") and (selector != "Overcharge"));
 	var _CanFire = (CanShoot and magazine_active > 0 and cycle and !_OverHeat);
 	var _CanReload = (CanReload and !reloading and is_string(ammo_active_id));
@@ -108,7 +110,7 @@ function PlayerWeaponControl(){
 		audio_stop_sound(aud_fireloop); aud_fireloop = 0;
 		audio_stop_sound(aud_chargeloop); aud_chargeloop = 0;
 		audio_stop_sound(aud_spoolup); aud_spoolup = 0;
-		if(is_array(wpn_active.animation_group.fire)) {skeleton_animation_clear(3)}
+		if(IsRanged && is_array(wpn_active.animation_group.fire)) {skeleton_animation_clear(3)}
 		burst_count = 0;
 		spooled = 0;
 		spindown_toggle = 0;
@@ -117,7 +119,7 @@ function PlayerWeaponControl(){
 	//reset burst count, spooling, shooting/spinning spool sound
 	if(mouse_check_button_released(mb_left)) {
 		
-		if(is_array(wpn_active.animation_group.fire) && spindown_toggle) {
+		if(IsRanged && is_array(wpn_active.animation_group.fire) && spindown_toggle) {
 			audio_stop_sound(aud_spooldown); aud_spooldown = 0;
 			skeleton_animation_clear(3);
 			skeleton_anim_set_step(wpn_active.animation_group.fire[2],3)
@@ -148,7 +150,7 @@ function PlayerWeaponControl(){
 	//check for empty mags, reload interrupt for single loaders, and spool up spoolguns
 	if(mouse_check_button_pressed(mb_left)) {	
 		
-		if(magazine_active = 0 and !reloading and CanShoot) {
+		if(IsRanged && magazine_active = 0 and !reloading and CanShoot) {
 			audio_play_sound_at(wpn_active.sound_group.empty,x,y,0,100,100,1,0,1);
 		};
 		
@@ -161,7 +163,7 @@ function PlayerWeaponControl(){
 	};
 	
 	//spindown when we hit 0 rounds for spoolguns
-	if(magazine_active = 0 && is_array(wpn_active.animation_group.fire) && spindown_toggle) {
+	if(IsRanged && magazine_active = 0 && is_array(wpn_active.animation_group.fire) && spindown_toggle) {
 			skeleton_anim_set_step(wpn_active.animation_group.fire[2],3)
 			audio_stop_sound(aud_fireloop); aud_fireloop = 0;
 	};
@@ -184,7 +186,7 @@ function PlayerWeaponControl(){
 	};
 
 //---------------------------------------- Charge type weapon code -----------------------------------
-	if(Charge_Fire and _CanFire and charge_toggle) {
+	if(IsRanged && Charge_Fire and _CanFire and charge_toggle) {
 		burst_count += 1;
 		
 		var Direction = random(360);
@@ -223,7 +225,7 @@ function PlayerWeaponControl(){
 		
 //--------------------------------------------- RELOAD AND SELECTOR SWITCH ---------------------------------	
 	
-	if(Reload_Key and _CanReload) {	
+	if(IsRanged && Reload_Key && _CanReload) {	
 		
 		if(!string_count("Shotgun",string(wpn_active))) {magazine_active = 0};
 		burst_count = 0;
@@ -236,7 +238,7 @@ function PlayerWeaponControl(){
 		else{skeleton_animation_set_ext(wpn_active.animation_group.reload,4)};
 	};
 	
-	if(Selector_Key and array_length(wpn_active.firemodes) > 1) {
+	if(IsRanged && Selector_Key and array_length(wpn_active.firemodes) > 1) {
 		burst_count = 0;
 		
 		audio_play_sound(wpn_active.sound_group.selector,1,0)
@@ -247,16 +249,17 @@ function PlayerWeaponControl(){
 	
 //--------------------------------------------- QUICKSWAP ---------------------------------	
 	
-	if(Swap_Key && !rolling && !swinging && !reloading) {	
+	if(Swap_Key && !rolling && !swinging && !reloading && !mouse_check_button(mb_left)) {	
 		
 		//swap to our secondary, else melee weapon
 		if(wpn_active = wpn_primary) {
-			
-			//are we a two handed melee weapon?
-			var IsMeleeZwei = ( (wpn_secondary.weapon_slot[0] = "melee") && (wpn_secondary.weapon_slot[1] = 2) );
-			
-			if(IsMeleeZwei){
-				
+						
+			if(!is_struct(wpn_secondary)){ //we do not have a secondary equipped, use melee weapon instead
+				skeleton_animation_clear(1);
+				skeleton_attachment_set("slot_melee_weapon",wpn_active_melee.weapon_attachment);
+				skeleton_anim_set_step(wpn_active_melee.animation_group.idle,1);
+				wpn_active = wpn_active_melee;
+				wpn_active_id = wpn_melee_id;
 			};
 			
 			else{
@@ -266,6 +269,8 @@ function PlayerWeaponControl(){
 				magazine_active = magazine_secondary;
 				ammo_active = ammo_secondary;
 				ammo_active_id = ammo_secondary_id;
+				selector_real = 0;
+				selector = wpn_active.firemodes[selector_real];
 			};
 
 		};
@@ -276,18 +281,18 @@ function PlayerWeaponControl(){
 			magazine_active = magazine_primary;
 			ammo_active = ammo_primary;
 			ammo_active_id = ammo_primary_id;
+			selector_real = 0;
+			selector = wpn_active.firemodes[selector_real];
 			skeleton_animation_clear(5); skeleton_animation_clear(8);
 		};
 		
-		selector_real = 0;
-		selector = wpn_active.firemodes[selector_real];
+		
 		
 		skeleton_animation_clear(1); skeleton_animation_clear(3);
 		
-		//skeleton_anim_set_step(wpn_active.animation_group.idle,1);
-		skeleton_anim_set_step("Ballistic Weapons/idle_shotgun_astartes",1);
-		skeleton_attachment_set("slot_gun",wpn_active.weapon_attachment);
-		skeleton_attachment_set("slot_gun magazine",wpn_active.magazine_attachment);		
+		skeleton_anim_set_step(wpn_active.animation_group.idle,1);		
+		//skeleton_attachment_set("slot_gun",wpn_active.weapon_attachment);
+		//skeleton_attachment_set("slot_gun magazine",wpn_active.magazine_attachment);		
 	};
 	
 };

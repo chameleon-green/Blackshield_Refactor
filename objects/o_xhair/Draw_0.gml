@@ -26,34 +26,39 @@ draw_sprite_ext(sp_xhair,1,x-HairOffset,y,1,HairScale,90,c_white,1); //left hair
 
 //------------------------------------------ roundcount, icon and heatbar --------------------------------------
 
-var Firemode = owner.selector;
-var Firemode_Icon = 2;
-if(Firemode = "Burst (2)") {Firemode_Icon = 3};
-else if(Firemode = "Burst (3)") {Firemode_Icon = 4};
-else if(Firemode = "Auto") {Firemode_Icon = 5};
-else if(Firemode = "Supercharge" or Firemode = "Overcharge") {Firemode_Icon = 6};
-var Selector_Text = owner.selector;
+var IsRanged = (string_count("ranged",owner.wpn_active.item_type));
 
-var AmmoID = owner.ammo_active_id;
-var AmmoCount = 0;
-if(AmmoID != -1) {
-	var AmmoGrid = owner.MyIC.grd_inv_ammo;
-	var AmmoYVal = ds_grid_value_y(AmmoGrid,0,0,10,ds_grid_height(AmmoGrid),AmmoID)
-	var AmmoCount = ds_grid_get(AmmoGrid,1,AmmoYVal);
-};
-
-if(owner.wpn_active.heat_generation > 0) {
-	var HeatRatio = owner.wpn_active_heat/owner.wpn_active.heat_capacity;
-	var Bar_Color = c_white;
-	if(HeatRatio > 1) {Selector_Text = "OVERHEATING!"; Bar_Color = c_red; Firemode_Icon = 6};	
+if(IsRanged) {
 	
-	draw_sprite_ext(sp_xhair_heatbar,0,x+13,y+53,1,1,0,c_white,1);
-	draw_sprite_ext(sp_xhair_heatbar,1,x+13,y+53,clamp(HeatRatio,0,1),1,0,Bar_Color,1);
-};
+	var Firemode = owner.selector;
+	var Firemode_Icon = 2;
+	if(Firemode = "Burst (2)") {Firemode_Icon = 3};
+	else if(Firemode = "Burst (3)") {Firemode_Icon = 4};
+	else if(Firemode = "Auto") {Firemode_Icon = 5};
+	else if(Firemode = "Supercharge" or Firemode = "Overcharge") {Firemode_Icon = 6};
+	var Selector_Text = owner.selector;
 
-draw_set_halign(fa_left);
-draw_set_valign(fa_top);
-draw_text(x+8,y+8,string(owner.magazine_active) + "/" + string(AmmoCount)); //ammo count
-draw_text(x+28,y+26,Selector_Text); //selector switch setting
-draw_sprite_ext(sp_xhair,Firemode_Icon,x+14,y+36,1,1,0,c_white,1); //firemode icon draw
+	var AmmoID = owner.ammo_active_id;
+	var AmmoCount = 0;
+	if(AmmoID != -1) {
+		var AmmoGrid = owner.MyIC.grd_inv_ammo;
+		var AmmoYVal = ds_grid_value_y(AmmoGrid,0,0,10,ds_grid_height(AmmoGrid),AmmoID)
+		var AmmoCount = ds_grid_get(AmmoGrid,1,AmmoYVal);
+	};
+
+	if(owner.wpn_active.heat_generation > 0) {
+		var HeatRatio = owner.wpn_active_heat/owner.wpn_active.heat_capacity;
+		var Bar_Color = c_white;
+		if(HeatRatio > 1) {Selector_Text = "OVERHEATING!"; Bar_Color = c_red; Firemode_Icon = 6};	
+	
+		draw_sprite_ext(sp_xhair_heatbar,0,x+13,y+53,1,1,0,c_white,1);
+		draw_sprite_ext(sp_xhair_heatbar,1,x+13,y+53,clamp(HeatRatio,0,1),1,0,Bar_Color,1);
+	};
+
+	draw_set_halign(fa_left);
+	draw_set_valign(fa_top);
+	draw_text(x+8,y+8,string(owner.magazine_active) + "/" + string(AmmoCount)); //ammo count
+	draw_text(x+28,y+26,Selector_Text); //selector switch setting
+	draw_sprite_ext(sp_xhair,Firemode_Icon,x+14,y+36,1,1,0,c_white,1); //firemode icon draw
+}
 
