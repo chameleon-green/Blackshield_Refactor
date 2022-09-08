@@ -146,7 +146,7 @@ function EquipItem(Item,UniqueID,PlayerID) { //searches grid of items for a spec
 		ds_grid_set(Grid,3,CurrentValueY,PlayerID.ammo_active);
 		ds_grid_set(Grid,4,CurrentValueY,PlayerID.magazine_active);
 		
-		PlayerID.spread_angle = 0; //need this to avoid crashes, for some reason
+		//PlayerID.spread_angle = 0; //need this to avoid crashes, for some reason
 		
 		var _Slot = Item.weapon_slot[0];		
 		//if(UniqueID = PlayerID.wpn_primary_id) {exit};

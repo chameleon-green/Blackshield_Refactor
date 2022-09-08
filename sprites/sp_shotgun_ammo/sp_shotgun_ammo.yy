@@ -1,4 +1,7 @@
 {
+  "resourceType": "GMSprite",
+  "resourceVersion": "1.0",
+  "name": "sp_shotgun_ammo",
   "bboxMode": 0,
   "collisionKind": 1,
   "type": 0,
@@ -24,15 +27,13 @@
   "gridX": 0,
   "gridY": 0,
   "frames": [
-    {"compositeImage":{"FrameId":{"name":"806feee6-e818-41d4-9947-97b082677aca","path":"sprites/sp_shotgun_ammo/sp_shotgun_ammo.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"806feee6-e818-41d4-9947-97b082677aca","path":"sprites/sp_shotgun_ammo/sp_shotgun_ammo.yy",},"LayerId":{"name":"b63ca391-9242-4be4-baab-4c02b64085a0","path":"sprites/sp_shotgun_ammo/sp_shotgun_ammo.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"sp_shotgun_ammo","path":"sprites/sp_shotgun_ammo/sp_shotgun_ammo.yy",},"resourceVersion":"1.0","name":"806feee6-e818-41d4-9947-97b082677aca","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"b5fe8968-0c34-40dd-99ce-54a5810028a6","path":"sprites/sp_shotgun_ammo/sp_shotgun_ammo.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"b5fe8968-0c34-40dd-99ce-54a5810028a6","path":"sprites/sp_shotgun_ammo/sp_shotgun_ammo.yy",},"LayerId":{"name":"b63ca391-9242-4be4-baab-4c02b64085a0","path":"sprites/sp_shotgun_ammo/sp_shotgun_ammo.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"sp_shotgun_ammo","path":"sprites/sp_shotgun_ammo/sp_shotgun_ammo.yy",},"resourceVersion":"1.0","name":"b5fe8968-0c34-40dd-99ce-54a5810028a6","tags":[],"resourceType":"GMSpriteFrame",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"806feee6-e818-41d4-9947-97b082677aca",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"b5fe8968-0c34-40dd-99ce-54a5810028a6",},
   ],
   "sequence": {
-    "spriteId": {"name":"sp_shotgun_ammo","path":"sprites/sp_shotgun_ammo/sp_shotgun_ammo.yy",},
+    "resourceType": "GMSequence",
+    "resourceVersion": "1.4",
+    "name": "sp_shotgun_ammo",
     "timeUnits": 1,
     "playback": 1,
     "playbackSpeed": 30.0,
@@ -40,13 +41,13 @@
     "autoRecord": true,
     "volume": 1.0,
     "length": 2.0,
-    "events": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore`1","elementType":"MessageEventKeyframe",},
-    "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore`1","elementType":"MomentsEventKeyframe",},
+    "events": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MessageEventKeyframe>",},
+    "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
-      {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"a8d0e9bc-16b5-49d6-948e-79d754058704","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"806feee6-e818-41d4-9947-97b082677aca","path":"sprites/sp_shotgun_ammo/sp_shotgun_ammo.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe`1","elementType":"SpriteFrameKeyframe",},
-            {"id":"58c03d92-6a14-453b-970e-2fbf5efe66ba","Key":1.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"b5fe8968-0c34-40dd-99ce-54a5810028a6","path":"sprites/sp_shotgun_ammo/sp_shotgun_ammo.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe`1","elementType":"SpriteFrameKeyframe",},
-          ],"resourceVersion":"1.0","resourceType":"KeyframeStore`1","elementType":"SpriteFrameKeyframe",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack","modifiers":[],},
+      {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","spriteId":null,"keyframes":{"Keyframes":[
+            {"id":"a8d0e9bc-16b5-49d6-948e-79d754058704","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"806feee6-e818-41d4-9947-97b082677aca","path":"sprites/sp_shotgun_ammo/sp_shotgun_ammo.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"58c03d92-6a14-453b-970e-2fbf5efe66ba","Key":1.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"b5fe8968-0c34-40dd-99ce-54a5810028a6","path":"sprites/sp_shotgun_ammo/sp_shotgun_ammo.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+          ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"isCreationTrack":false,"modifiers":[],},
     ],
     "visibleRange": null,
     "lockOrigin": false,
@@ -62,22 +63,13 @@
     "yorigin": 32,
     "eventToFunction": {},
     "eventStubScript": null,
-    "parent": {"name":"sp_shotgun_ammo","path":"sprites/sp_shotgun_ammo/sp_shotgun_ammo.yy",},
-    "resourceVersion": "1.4",
-    "name": "sp_shotgun_ammo",
-    "tags": [],
-    "resourceType": "GMSequence",
   },
   "layers": [
-    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"b63ca391-9242-4be4-baab-4c02b64085a0","tags":[],"resourceType":"GMImageLayer",},
+    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"b63ca391-9242-4be4-baab-4c02b64085a0","visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default",},
   ],
   "nineSlice": null,
   "parent": {
     "name": "Ammo",
     "path": "folders/Sprites/Sprites: UI/Item Icons/Ammo.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "sp_shotgun_ammo",
-  "tags": [],
-  "resourceType": "GMSprite",
 }
