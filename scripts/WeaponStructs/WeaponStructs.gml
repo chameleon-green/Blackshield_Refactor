@@ -340,6 +340,34 @@ Powersword_Proteus = { //---------------------------- thunderedge pattern chains
 		sound_group : sndgrp_boltgun1,
 	};
 	//ds_list_add(ListComWP,pistol_bolt_tigrus[27]+".pistol_bolt_tigrus") //fix this later
+	
+	HeavyHammer_Proteus = { //---------------------------- thunderedge pattern chainsword
+		
+		item_type : "weapon_melee_heavyhammer_power",
+		
+		//combat stats
+		damage : 120,
+		force : 30, //poise and guard break
+		penetration : 1, //armor penetration, as percent of damage
+		scalings : ["STR(A).030","DEX(F).020"], //scalings for damage bonus to stats
+		damage_type : ["physical.100"],
+		
+		//technical weapon stats
+		weapon_type : "melee_power_hammer",
+		weapon_slot : ["melee",2], //1 = single hand, 2 = both hands, 3 = offhand,
+		weight : 20,
+		durability_max : 600,
+		rarity : "900.common",
+		
+		//cosmetic stuff, animations, sounds, etc.
+		name : "Proteus Pattern Heavy Thunderhammer",
+		description : "desc_blank.txt", 
+		inventory_subimage : [sp_xhair, 6], //subimage for item to appear in inventory
+		weapon_attachment : "heavyhammer_proteus", //spine attachment name
+		animation_group : anmgrp_polearm1,
+		sound_group : sndgrp_melee_heavy1,
+	};
+	//ds_list_add(ListComWP,pistol_bolt_tigrus[27]+".pistol_bolt_tigrus") //fix this later
 #endregion
 
 };//weapon structs function end bracket

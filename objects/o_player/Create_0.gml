@@ -111,7 +111,7 @@ IFF = "player:"+string(id);
 
 aud_melee_idle = 0;
 
-wpn_active_melee = Unarmed_Fists;
+wpn_active_melee = HeavyHammer_Proteus;
 wpn_melee_id = 0;
 
 melee_reset_timer = time_source_create(time_source_game,0,time_source_units_frames,_mymethod);

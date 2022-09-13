@@ -60,13 +60,13 @@ function AnimationsFlashesSoundGroups(){
 		backwalk : "Basic Movement/backwalk_melee"
 	};
 	
-	anmgrp_fists2 = {
+	anmgrp_polearm1 = {
 		idle : "Power Weapons/idle_heavyhammer_proteus",
 		strike : "",
 		light_attack : ["Power Weapons/attack_heavyhammer_proteus_light1","Power Weapons/attack_heavyhammer_proteus_light2","Power Weapons/attack_heavyhammer_proteus_light3"],
 		windup : "Chain Weapons/attack_sword_chain_windup1",
 		heavy_attack : "Chain Weapons/attack_sword_chain_heavy1",	
-		sprint : "Basic Movement/sprint_full_melee",
+		sprint : "Basic Movement/sprint_full_melee_heavy",
 		walk : "Basic Movement/walk_melee",
 		backwalk : "Basic Movement/backwalk_melee"
 	};
@@ -149,6 +149,11 @@ function AnimationsFlashesSoundGroups(){
 	
 	sndgrp_unarmed1 = {
 		attack : [snd_punch1,snd_punch2,snd_punch3],
+		idle : snd_chain_idle_loop1
+	};
+	
+	sndgrp_melee_heavy1 = {
+		attack : [snd_swing_heavy1,snd_swing_heavy2,snd_swing_heavy3],
 		idle : snd_chain_idle_loop1
 	};
 }

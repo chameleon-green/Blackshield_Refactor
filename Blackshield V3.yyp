@@ -17,6 +17,7 @@
     {"id":{"name":"snd_magout1","path":"sounds/snd_magout1/snd_magout1.yy",},"order":1,},
     {"id":{"name":"sp_flamer_flames","path":"sprites/sp_flamer_flames/sp_flamer_flames.yy",},"order":2,},
     {"id":{"name":"snd_flamer_loop1","path":"sounds/snd_flamer_loop1/snd_flamer_loop1.yy",},"order":0,},
+    {"id":{"name":"snd_swing_heavy3","path":"sounds/snd_swing_heavy3/snd_swing_heavy3.yy",},"order":12,},
     {"id":{"name":"snd_shotgun_reload_single1","path":"sounds/snd_shotgun_reload_single1/snd_shotgun_reload_single1.yy",},"order":3,},
     {"id":{"name":"Animation Tracks","path":"notes/Animation Tracks/Animation Tracks.yy",},"order":0,},
     {"id":{"name":"UI_Stuff","path":"scripts/UI_Stuff/UI_Stuff.yy",},"order":2,},
@@ -63,6 +64,7 @@
     {"id":{"name":"MeleeScripts","path":"scripts/MeleeScripts/MeleeScripts.yy",},"order":3,},
     {"id":{"name":"InventoryStuff","path":"scripts/InventoryStuff/InventoryStuff.yy",},"order":4,},
     {"id":{"name":"snd_rackslide1","path":"sounds/snd_rackslide1/snd_rackslide1.yy",},"order":2,},
+    {"id":{"name":"snd_swing_heavy2","path":"sounds/snd_swing_heavy2/snd_swing_heavy2.yy",},"order":11,},
     {"id":{"name":"sp_bolt_ammo","path":"sprites/sp_bolt_ammo/sp_bolt_ammo.yy",},"order":0,},
     {"id":{"name":"snd_shellfall_small1","path":"sounds/snd_shellfall_small1/snd_shellfall_small1.yy",},"order":3,},
     {"id":{"name":"PlayerMovement","path":"scripts/PlayerMovement/PlayerMovement.yy",},"order":0,},
@@ -85,6 +87,7 @@
     {"id":{"name":"snd_plasma_small1","path":"sounds/snd_plasma_small1/snd_plasma_small1.yy",},"order":0,},
     {"id":{"name":"o_scrollbar","path":"objects/o_scrollbar/o_scrollbar.yy",},"order":3,},
     {"id":{"name":"SkeletonStuff","path":"scripts/SkeletonStuff/SkeletonStuff.yy",},"order":0,},
+    {"id":{"name":"snd_swing_heavy1","path":"sounds/snd_swing_heavy1/snd_swing_heavy1.yy",},"order":10,},
     {"id":{"name":"home","path":"rooms/home/home.yy",},"order":0,},
   ],
   "Options": [
