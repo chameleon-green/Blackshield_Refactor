@@ -39,7 +39,7 @@ function PlayerMeleeControl(){
 		if( (melee_charge < 13) && !Queued && light_melee_toggle) {
 			attack_sequence = 0;
 			CanMove = 0; CanShoot = 0; CanReload = 0; CanRoll = 0; //we can't do anything while swinging
-			hspd = 9*image_xscale; reloading = 0; //interrupt movement and reloading while swinging
+			reloading = 0; //interrupt movement and reloading while swinging hspd = 9*image_xscale; 
 						
 			skeleton_animation_clear(2);skeleton_animation_clear(3);skeleton_animation_clear(4);
 			skeleton_animation_clear(5);skeleton_animation_clear(6);skeleton_animation_clear(7);
@@ -58,6 +58,8 @@ function PlayerMeleeControl(){
 			
 			swinging = 1; 
 			melee_charge = 0;
+			if(wpn_active_melee.weapon_slot[1] = 2) {skeleton_attachment_set("slot_gun magazine",-1)};
+			hspd = 0;
 		
 			var Attack_Array = wpn_active_melee.animation_group;
 			var Animation = Attack_Array.light_attack[0+attack_sequence];
@@ -88,7 +90,8 @@ function PlayerMeleeControl(){
 				
 				swinging = 1; //we are swinging a sword
 				melee_charge = 0;
-				hspd = 9*image_xscale;
+				if(wpn_active_melee.weapon_slot[1] = 2) {skeleton_attachment_set("slot_gun magazine",-1)};
+				hspd = 0;
 				
 				skeleton_animation_clear(6); //clear our current attack, as it is done
 				skeleton_anim_set_step(Animation,6); //animate our next attack	
@@ -133,9 +136,11 @@ function PlayerMeleeControl(){
 		
 		time_source_reset(melee_input_check_timer); time_source_reset(melee_sequence_timer);
 		
-		swinging = 1; hspd = 0;
+		swinging = 1;
 		skeleton_anim_set_step(wpn_active_melee.animation_group.windup,6);
 		skeleton_anim_set_step(wpn_active_melee.animation_group.strike,8);
+		if(wpn_active_melee.weapon_slot[1] = 2) {skeleton_attachment_set("slot_gun magazine",-1)};
+		hspd = 0;
 		
 		var AnimLength = skeleton_animation_get_frames(wpn_active_melee.animation_group.windup);
 		var InputState = time_source_get_state(melee_reset_timer);

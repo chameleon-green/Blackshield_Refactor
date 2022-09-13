@@ -34,8 +34,8 @@ col_left = 0;
 
 //----------------------------------- find weapons and armor ------------------------------------
 
-wpn_primary = Unarmed_Fists; wpn_secondary = Unarmed_Fists;
-wpn_primary_id = -1; wpn_secondary_id = -1; wpn_active_id = -1;
+wpn_primary = Unarmed_Fists; wpn_secondary = Unarmed_Fists; wpn_active = wpn_primary;
+wpn_primary_id = -2; wpn_secondary_id = -3; wpn_active_id = wpn_primary_id;
 magazine_primary = 0; magazine_secondary = 0; magazine_active = 0;
 ammo_primary = 0; ammo_secondary = 0; ammo_primary_id = -1; ammo_secondary_id = -1; 
 
@@ -83,10 +83,11 @@ ammo_primary = wpn_primary.default_ammo_type;
 magazine_primary = wpn_primary.capacity
 */
 
-wpn_secondary = -1;//Bolt_Pistol_Tigrus;
-wpn_secondary_id = 0;
+//wpn_secondary = -1;//Bolt_Pistol_Tigrus;
+//wpn_secondary_id = 0;
 //ammo_secondary = wpn_secondary.default_ammo_type;
 //magazine_secondary = wpn_secondary.capacity
+
 
 skeleton_animation_set(wpn_active.animation_group.idle);
 
@@ -142,7 +143,8 @@ Func_ClearInputBuffer = function(){
 Func_HeavyAttack = function(){
 	swinging = 1; //we are swinging a sword
 	melee_charge = 0;
-	hspd = 22*image_xscale;
+	if(wpn_active_melee.weapon_slot[1] = 2) {skeleton_attachment_set("slot_gun magazine",-1)};
+	hspd = 0;
 	var AnimFrames = skeleton_animation_get_frames(wpn_active_melee.animation_group.heavy_attack);
 	attack_sequence = 0;
 	heavy_melee_toggle = 0;

@@ -233,6 +233,12 @@ Magazines/mag_missile
 bounds:2,2,57,17
 
 mk2 test_5.png
+size:128,256
+filter:Linear,Linear
+Melee/heavyhammer_proteus
+bounds:2,2,67,163
+
+mk2 test_6.png
 size:256,128
 filter:Linear,Linear
 MK2/2000_backpack
@@ -269,7 +275,7 @@ MK2/2000_torso
 bounds:2,53,73,69
 rotate:90
 
-mk2 test_6.png
+mk2 test_7.png
 size:256,128
 filter:Linear,Linear
 MK2/trim/2000_backpack trim
@@ -280,7 +286,7 @@ MK2/trim/2000_thigh_trim
 bounds:2,2,30,33
 rotate:90
 
-mk2 test_7.png
+mk2 test_8.png
 size:256,128
 filter:Linear,Linear
 MK3/3000_collar
@@ -306,13 +312,13 @@ bounds:77,75,39,51
 MK3/3000_torso
 bounds:2,49,73,77
 
-mk2 test_8.png
+mk2 test_9.png
 size:64,64
 filter:Linear,Linear
 MK3/trim/3000_pauldron trim
 bounds:2,2,59,56
 
-mk2 test_9.png
+mk2 test_10.png
 size:512,256
 filter:Linear,Linear
 Weapons/autocannon_kalibrax

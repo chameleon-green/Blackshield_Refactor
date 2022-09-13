@@ -59,6 +59,17 @@ function AnimationsFlashesSoundGroups(){
 		walk : "Basic Movement/walk_melee",
 		backwalk : "Basic Movement/backwalk_melee"
 	};
+	
+	anmgrp_fists2 = {
+		idle : "Power Weapons/idle_heavyhammer_proteus",
+		strike : "",
+		light_attack : ["Power Weapons/attack_heavyhammer_proteus_light1","Power Weapons/attack_heavyhammer_proteus_light2","Power Weapons/attack_heavyhammer_proteus_light3"],
+		windup : "Chain Weapons/attack_sword_chain_windup1",
+		heavy_attack : "Chain Weapons/attack_sword_chain_heavy1",	
+		sprint : "Basic Movement/sprint_full_melee",
+		walk : "Basic Movement/walk_melee",
+		backwalk : "Basic Movement/backwalk_melee"
+	};
 
 
 //+++++++++++++++++++++++++++++++++++++++++++ MUZZLE FLASH GROUPS +++++++++++++++++++++++++++++++++++++++++

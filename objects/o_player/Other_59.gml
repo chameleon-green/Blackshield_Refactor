@@ -1,7 +1,7 @@
 
 var event = ds_map_find_value(event_data, "name");
 
-if(ammo_active.casing_type != "none" && event = "eject") {
+if(ammo_active.casing_type != "none" && event = "Ranged/eject") {
 	var ejection_map = ds_map_create();
 	skeleton_bone_state_get("gun_anim", ejection_map);
 	var EjectX = ds_map_find_value(ejection_map, "worldX");
@@ -21,8 +21,8 @@ if(ammo_active.casing_type != "none" && event = "eject") {
 ds_map_destroy(ejection_map);
 }; // eject event end
 
-if(event = "magout") {audio_play_sound(wpn_active.sound_group.mag_out,1,0)};
-if(event = "magin") {
+if(event = "Ranged/magout") {audio_play_sound(wpn_active.sound_group.mag_out,1,0)};
+if(event = "Ranged/magin") {
 	audio_play_sound_at(wpn_active.sound_group.mag_in,x,y,0,100,100,1,0,1);
 	//skeleton_attachment_set("slot_gun magazine",wpn_active.magazine_attachment)
 	};
@@ -30,7 +30,7 @@ if(event = "rackslide") {audio_play_sound(wpn_active.sound_group.rack_slide,1,0)
 
 //---------------------------------------- RELOADING -----------------------------------------------
 
-if(event = "Reloaded") {
+if(event = "Ranged/Reloaded") {
 	reloading = 0;
 	skeleton_animation_clear(4);
 	
@@ -46,12 +46,12 @@ if(event = "Reloaded") {
 	};
 };
 
-if(event = "reload_ready") {
+if(event = "Ranged/reload_ready") {
 	skeleton_animation_clear(4);
 	skeleton_animation_set_ext(wpn_active.animation_group.reload[1],4);
 };
 
-if(event = "reload_single_check") {
+if(event = "Ranged/reload_single_check") {
 	
 	if (!is_string(ammo_active_id) or  (magazine_active >= wpn_active.capacity) ){	
 		skeleton_animation_clear(4); 
@@ -59,7 +59,7 @@ if(event = "reload_single_check") {
 	};
 };
 
-if(event = "reload_single") {
+if(event = "Ranged/reload_single") {
 	if(magazine_active < wpn_active.capacity) {
 		
 		var _Grid = MyIC.grd_inv_ammo;
@@ -73,23 +73,23 @@ if(event = "reload_single") {
 
 //------------------------------------------- SPINNING ----------------------------------------------------
 
-if(event = "spinup") {
+if(event = "Ranged/spinup") {
 	aud_spoolup = audio_play_sound(wpn_active.sound_group.spinup,1,0);
 	spindown_toggle = 1;
 };
 
-if(event = "spinupdone") {
+if(event = "Ranged/spinupdone") {
 	skeleton_anim_set_step(wpn_active.animation_group.fire[1],3);
 	aud_spoolup = 0;
 	spooled = 1;
 };
 
-if(event = "spindown") {
+if(event = "Ranged/spindown") {
 	aud_spooldown = audio_play_sound(wpn_active.sound_group.spindown,1,0);
 	spindown_toggle = 0;
 };
 
-if(event = "spindowndone") {
+if(event = "Ranged/spindowndone") {
 	aud_spooldown = 0;
 	skeleton_animation_clear(3);
 };
@@ -108,11 +108,15 @@ if(event = "roll_done") {
 
 //----------------------------------------- melee related events ------------------------------------------
 
-if(event = "swing_light" or event = "swing_heavy") {
+if(event = "Melee/swing_light" or event = "Melee/swing_heavy") {
 	var rand = irandom_range(0,array_length(wpn_active_melee.sound_group.attack)-1);
 	audio_play_sound(wpn_active_melee.sound_group.attack[rand],1,0);
 };
 
-if(event = "step_melee") {
+if(event = "Melee/stepped_melee") {
 	hspd = 0;
+};
+
+if(event = "Melee/step_melee") {
+	hspd = 12*image_xscale;
 };
