@@ -88,6 +88,7 @@ function PlayerMeleeControl(){
 				var Animation = Attack_Array.light_attack[0+attack_sequence]; //find our next attack to animate
 				var AnimationLength = skeleton_animation_get_frames(Animation); //how long is the attack in frames
 				
+				swing[3] = 0;
 				swinging = 1; //we are swinging a sword
 				melee_charge = 0;
 				if(wpn_active_melee.weapon_slot[1] = 2) {skeleton_attachment_set("slot_gun magazine",-1)};
@@ -136,6 +137,7 @@ function PlayerMeleeControl(){
 		
 		time_source_reset(melee_input_check_timer); time_source_reset(melee_sequence_timer);
 		
+		swing[3] = 0;
 		swinging = 1;
 		skeleton_anim_set_step(wpn_active_melee.animation_group.windup,6);
 		skeleton_anim_set_step(wpn_active_melee.animation_group.strike,8);

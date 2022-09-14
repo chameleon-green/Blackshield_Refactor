@@ -39,9 +39,9 @@ PlayerMeleeControl()
 //draw_text(x,bbox_top-100,wpn_active.name);
 //draw_text(x,bbox_top-120,wpn_secondary.name);
 
-draw_text(x,bbox_top-100,skeleton_animation_get_ext(1));
-draw_text(x,bbox_top-120,skeleton_animation_get_ext(2));
-draw_text(x,bbox_top-130,skeleton_animation_get_ext(3));
+draw_text(x,bbox_top-100,magazine_active);
+draw_text(x,bbox_top-120,magazine_primary);
+draw_text(x,bbox_top-130,magazine_secondary);
 draw_text(x,bbox_top-140,skeleton_animation_get_ext(4));
 
 

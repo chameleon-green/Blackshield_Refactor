@@ -26,7 +26,7 @@ if(event = "Ranged/magin") {
 	audio_play_sound_at(wpn_active.sound_group.mag_in,x,y,0,100,100,1,0,1);
 	//skeleton_attachment_set("slot_gun magazine",wpn_active.magazine_attachment)
 	};
-if(event = "rackslide") {audio_play_sound(wpn_active.sound_group.rack_slide,1,0)};
+if(event = "Ranged/rackslide") {audio_play_sound(wpn_active.sound_group.rack_slide,1,0)};
 
 //---------------------------------------- RELOADING -----------------------------------------------
 
@@ -111,6 +111,8 @@ if(event = "roll_done") {
 if(event = "Melee/swing_light" or event = "Melee/swing_heavy") {
 	var rand = irandom_range(0,array_length(wpn_active_melee.sound_group.attack)-1);
 	audio_play_sound(wpn_active_melee.sound_group.attack[rand],1,0);
+	swing[3] = 1;
+	instance_create_depth(swing[0],swing[1],depth-1,o_swing,{creator : id, image_angle : swing[2],});
 };
 
 if(event = "Melee/stepped_melee") {

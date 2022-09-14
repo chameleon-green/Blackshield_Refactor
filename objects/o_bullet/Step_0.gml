@@ -21,8 +21,6 @@ if(collision_line(x,y,_XX,_YY,o_platform,0,1)){
 	speed = base_speed;
 };
 
-
-
 //---------------------------------------- special projectile code -------------------------------------
 
 if(Flames) {

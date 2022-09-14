@@ -267,16 +267,13 @@ if(IsRanged) {
 		
 		var SwapWeapon = function(_Slot,_Slot2,Item) {//_Slot is the slot to swap to, _Slot2 is the currently active slot
 			skeleton_animation_clear(1); skeleton_animation_clear(3);
-			
-			//var WPN = variable_instance_get(id,"wpn_" + _Slot);
-			//var Ranged = (string_count("ranged",WPN.item_type,));
-			var Ranged = (string_count("ranged",Item.item_type,));
-			
+			variable_instance_set(id,"magazine_" + _Slot2, magazine_active);
+						
+			var Ranged = (string_count("ranged",Item.item_type,));			
 			wpn_active = variable_instance_get(id,"wpn_" + _Slot); 
 			wpn_active_id = variable_instance_get(id,"wpn_" + _Slot + "_id");
-			
-			if(Ranged) {
-				variable_instance_set(id,"magazine" + _Slot2, magazine_active);
+						
+			if(Ranged) {				
 				magazine_active = variable_instance_get(id,"magazine_" + _Slot);
 				ammo_active = variable_instance_get(id,"ammo_" + _Slot);
 				ammo_active_id = variable_instance_get(id,"ammo_" + _Slot + "_id");

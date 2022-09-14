@@ -109,6 +109,9 @@ IFF = "player:"+string(id);
 
 //------------------------------------------- Melee related stuff --------------------------
 
+swing = [0,0,0,0]; //x,y,angle,killvalue
+
+
 aud_melee_idle = 0;
 
 wpn_active_melee = HeavyHammer_Proteus;
@@ -127,6 +130,8 @@ light_melee_toggle = 1; //allow us to make a light melee attack
 
 #region Melee time related functions
 Func_EndMelee = function(){ //function to end melee when our reset time runs out
+	
+	swing[3] = 0; //kill our blade object
 	swinging = 0; hspd = 0;
 	skeleton_animation_clear(6); skeleton_animation_clear(8);		
 	if(string_count("weapon_ranged",wpn_active.item_type)){
@@ -141,6 +146,7 @@ Func_ClearInputBuffer = function(){
 };
 
 Func_HeavyAttack = function(){
+
 	swinging = 1; //we are swinging a sword
 	melee_charge = 0;
 	if(wpn_active_melee.weapon_slot[1] = 2) {skeleton_attachment_set("slot_gun magazine",-1)};

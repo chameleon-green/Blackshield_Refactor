@@ -62,3 +62,4 @@ draw_sprite_ext(sp_xhair,1,x,y-HairOffset,1,HairScale,0,c_white,1); //upper hair
 draw_sprite_ext(sp_xhair,1,x,y+HairOffset,1,HairScale,180,c_white,1); //lower hair
 draw_sprite_ext(sp_xhair,1,x+HairOffset,y,1,HairScale,-90,c_white,1); //right hair
 draw_sprite_ext(sp_xhair,1,x-HairOffset,y,1,HairScale,90,c_white,1); //left hair
+

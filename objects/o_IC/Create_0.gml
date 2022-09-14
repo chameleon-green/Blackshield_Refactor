@@ -1,4 +1,4 @@
-global.debug = 0;
+global.debug = 1;
 //audio_debug(global.debug);
 FPS = 0;
 

@@ -3,6 +3,18 @@ if(swinging or wpn_active != wpn_primary && !reloading) {
 };
 
 
+var HitPointMap = ds_map_create();
+	skeleton_bone_state_get("melee hitpoint",HitPointMap);	
+	swing[0] = ds_map_find_value(HitPointMap, "worldX");
+	swing[1] = ds_map_find_value(HitPointMap, "worldY");
+	swing[2] = -ds_map_find_value(HitPointMap, "worldAngleY")
+	ds_map_destroy(HitPointMap);	
+
+if(swinging) {	
+	
+};
+
+
 if(CanShoot = 1) {
 	var torso_map = ds_map_create();
 	var head_map = ds_map_create();
