@@ -1,0 +1,9 @@
+Autocannon shells are large ballistic rounds used in autocannons.
+
+APFSDS (Armor-Piercing, Fin-Stabilized Discarding Sabot) rounds utilize a subcaliber 
+penetrator composed of pyrophoric alloys encased in a disposable sabot. A natural 
+evolution of the HVAP round, APFSDS rounds shed the outer jacket entirely during flight 
+to allow for even greater muzzle velocities.
+
+APFSDS rounds have a 1.00 armor piercing modifier, 1.10 damage modifier and a 1.2
+velocity modifier.

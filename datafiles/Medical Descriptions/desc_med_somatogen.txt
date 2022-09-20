@@ -1,0 +1,6 @@
+Derived from chemical juvenant treatments used by those of great wealth or import, 
+somatogen is a combat drug that substantially boosts physical recovery by 
+stimulating tissue growth. It is exceptionally rare and expensive, but achieves 
+incredible results.
+
++10 HP/s and +10 Endurance for 60 seconds.

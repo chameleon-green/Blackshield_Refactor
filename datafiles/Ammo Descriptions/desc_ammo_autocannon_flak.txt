@@ -1,0 +1,6 @@
+Autocannon shells are large ballistic rounds used in autocannons.
+
+Flak shells have a proximity sensor and fragmentation warhead. They were originally
+designed for shooting down aircraft, but can be used to deadly effect against lightly
+armored targets of any kind.
+

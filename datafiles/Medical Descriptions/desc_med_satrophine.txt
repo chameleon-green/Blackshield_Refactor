@@ -1,0 +1,5 @@
+Satrophine boosts oxygen uptake and modifies various metabolic processes 
+in the body to substantially boost stamina. It is a common sight in the criminal 
+underground of the Imperium, but no less expensive for it.
+
++5 Stamina/s for 30 seconds.

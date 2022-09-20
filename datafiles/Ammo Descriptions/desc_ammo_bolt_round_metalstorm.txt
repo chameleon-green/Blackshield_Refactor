@@ -1,0 +1,9 @@
+Bolts are self propelled, armor piercing rounds with a mass-reactive fuse and high explosive filler.
+They pierce their target before exploding, maximizing the damage of their warhead and
+gruesomely blowing their apart target from the inside out. There are few types of personal 
+armor that can defeat bolter rounds; even Astartes power armor will quickly fail under 
+a hail of bolts. 
+
+Metalstorm rounds eschew their armor-piercing core for a proximity sensor and enhanced
+explosive payload. While they lose much of their armor penetration capability, they are
+effective against hordes of soft targets.

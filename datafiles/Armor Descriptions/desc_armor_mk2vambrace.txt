@@ -1,0 +1,8 @@
+MKII "Crusade" pattern power armor was the first fully enclosed model, 
+intended to carry the newly founded Imperial Asartes legions beyond the confines of Terra. 
+The vambraces contain powerful electrically motivated fiber bundles and servoes which 
+increase the strength and speed of the wearer, and the large profile pauldrons can be used
+to shield the torso.
+
+Crusade pattern extremity armor is composed of interlinked flexible casings which increase
+flexibility but complicates repair. 

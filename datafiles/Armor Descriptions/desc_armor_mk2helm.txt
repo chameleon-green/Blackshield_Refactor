@@ -1,0 +1,12 @@
+MKII "Crusade" pattern power armor was the first fully enclosed model, 
+intended to carry the newly founded Imperial Asartes legions beyond the confines of Terra. 
+The helm contains life support, auspex and communications equipment, improving situational
+awareness and unit cohesion. Auto-senses that interface directly with the wearer's nervous
+system allow the user to see, smell, feel, taste and hear as though the armor were not there
+at all. 
+
+The neck joint of the MKII armor is less flexible than later models due to comparitively 
+primitive neural link technologies.
+
+
+

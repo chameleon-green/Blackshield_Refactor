@@ -1,0 +1,6 @@
+Medical kit with a variety of implements used to treat battlefield injuries.
+Heavy and bulky, but well stocked and useful.
+
++50 hp/s for 1 second. Can also be used to treat crippled limbs in the
+status screen; click the injury tooltip to consume 1 kit and heal the
+injury.

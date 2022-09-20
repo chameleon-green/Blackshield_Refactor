@@ -1,0 +1,8 @@
+Autocannon shells are large ballistic rounds used in autocannons.
+
+Hypervelocity armor-piercing rounds use a dense core of pure adamantium surrounded by a 
+lightweight jacket. The reduced projectile mass allows for very high muzzle velocity, which 
+is coupled with the penetrator core to greatly boost armor piercing performance. 
+
+HVAP rounds have a 0.6 armor piercing modifier and a 1.1 velocity modifier.
+

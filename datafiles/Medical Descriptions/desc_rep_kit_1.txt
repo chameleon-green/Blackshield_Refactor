@@ -1,0 +1,6 @@
+Universal repair kit stocked with a variety of implements and spare parts for repairing 
+wargear in the field.
+
+Restores 100 points of durability to your currently selected weapon. Can also be used to 
+restore armor; use in the status menu by clicking an armor damage warning to repair 
+its respective piece by 25%.

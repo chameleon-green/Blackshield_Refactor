@@ -1,0 +1,4 @@
+Autocannon shells are large ballistic rounds used in autocannons.
+
+Standard autocannon shells are heavy solid shot, and have no special effects.
+

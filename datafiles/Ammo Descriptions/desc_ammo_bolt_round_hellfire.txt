@@ -1,0 +1,12 @@
+Bolts are self propelled, armor piercing rounds with a mass-reactive fuse and high explosive filler.
+They pierce their target before exploding, maximizing the damage of their warhead and
+gruesomely blowing their apart target from the inside out. There are few types of personal 
+armor that can defeat bolter rounds; even Astartes power armor will quickly fail under 
+a hail of bolts. 
+
+Hellfire bolt rounds replace the standard mass reactive fuse and explosive filler with 
+a chamber of razor sharp needles suspended in a solution of mutagenic acids and deadly 
+viruses, making them lethal against any kind of organic target.
+
+Hellfire rounds deal biohazard damage with a 3.00x multiplier, with an armor penetration
+rate of 0.

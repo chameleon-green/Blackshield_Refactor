@@ -1,0 +1,12 @@
+MKIII "Iron" pattern power armor is a specialized upgrade of the MKII, featuring
+greatly enhanced frontal protection. This mark was originally designed for brutal close quarters
+combat such as tunnel warfare and starship boarding actions. Additional plasteel and ceramite 
+plating has been affixed over the original MKII chassis, substantially improving survivability but 
+greatly increasing weight and noise. The cuirass contains the armor's main fusion reactor, 
+located in the backpack. Without it, other critical parts of the armor such as servos and
+sensors will not function.
+
+
+The cuirass powerplant was not improved despite the additional weight. As a result, MKIII
+armor runs hotter and slower than its predecessor, but offers the highest level of protection
+out of any conventional power armor mark.

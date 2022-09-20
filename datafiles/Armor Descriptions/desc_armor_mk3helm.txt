@@ -1,0 +1,11 @@
+MKIII "Iron" pattern power armor is a specialized upgrade of the MKII, featuring
+greatly enhanced frontal protection. This mark was originally designed for brutal close quarters
+combat such as tunnel warfare and starship boarding actions. Additional plasteel and ceramite 
+plating has been affixed over the original MKII chassis, substantially improving survivability but 
+greatly increasing weight and noise.
+
+The helm contains life support, auspex and communications equipment, improving situational
+awareness and unit cohesion. Auto-senses that interface directly with the wearer's nervous
+system allow the user to see, smell, feel, taste and hear as though the armor were not there
+at all. The angular faceplate design of the MKIII would inspire the design of the later MKIV
+"Maximus" pattern power armor.

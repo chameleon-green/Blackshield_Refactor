@@ -94,6 +94,10 @@ if(refresh) {
 	counter_aid = 0; incrementor_aid = 0; 
 	counter_ammo = 0; incrementor_ammo = 0; 
 	counter_crafting = 0; incrementor_crafting = 0; 
+	ds_grid_alphabetize(grd_inv_wepn);
+	ds_grid_alphabetize(grd_inv_ammo);
+	ds_grid_alphabetize(grd_inv_aidd);
+	ds_grid_alphabetize(grd_inv_armr);
 };
 
 #endregion

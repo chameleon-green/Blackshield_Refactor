@@ -221,3 +221,150 @@ function EquipItem(Item,UniqueID,PlayerID) { //searches grid of items for a spec
 
 #endregion
 
+#region DS grid alphabetizer function unmodified
+
+function scr_grid_alphabetize(grid,TitleIndex,IDIndex=9){ //feed grid to organize, array key to get name string, and what grid value to pull uniqueID from
+	
+	var Counter = 0;
+	
+	var Width = ds_grid_width(grid);
+	var Length = ds_grid_height(grid);
+	var TitleList = ds_list_create();
+	var StatsList = ds_list_create();
+	var TempGrid = ds_grid_create(Width,Length);
+	var TitleIndexInternal = TitleIndex;
+	
+//---------------------------------------------- ADD STUFF TO LISTS ---------------------------------
+
+	while(Counter < Width) {
+		var Item = ds_grid_get(grid,Counter,0)
+		if(Item != 0){
+			switch(Item[22]){
+				case "grenade": TitleIndexInternal = 6; break;
+				case "melee": TitleIndexInternal = 14; break;
+				default: TitleIndexInternal = TitleIndex; break;
+			};
+			var Title = Item[TitleIndexInternal]+string(ds_grid_get(grid,Counter,IDIndex));
+			ds_list_add(TitleList,Title);
+			ds_list_sort(TitleList,true);
+
+			Counter+=1;
+		}
+		else Counter+=1;	
+	}
+	
+	Counter = 0;
+	
+	while(Counter < Width) {
+		var Item = ds_grid_get(grid,Counter,0);
+		if(Item != 0){
+		switch(Item[22]){
+				case "grenade": TitleIndexInternal = 6; break;
+				case "melee": TitleIndexInternal = 14; break;
+				default: TitleIndexInternal = TitleIndex; break;
+			};
+		var Title = Item[TitleIndexInternal]+string(ds_grid_get(grid,Counter,IDIndex));
+		
+		var array = array_create(Length);
+			for(var i = 0; i<array_length(array); i++){
+				array[i] = ds_grid_get(grid,Counter,i);
+			};	
+			
+		var Index = ds_list_find_index(TitleList,Title);
+		ds_list_set(StatsList,Index,array);
+
+		Counter+=1;
+		};
+		else Counter+=1;
+	};
+	
+	Counter = 0;
+	
+	while(Counter < ds_list_size(StatsList)) {
+		var Entry = ds_list_find_value(StatsList,Counter);
+		for(var i = 0; i<array_length(Entry); i++){
+				ds_grid_set(TempGrid,Counter,i,Entry[i]);
+			};	
+		
+		Counter+=1;
+	};
+	
+//------------------------------------------ RETURN STUFF ---------------------------------
+
+ds_list_destroy(TitleList);
+ds_list_destroy(StatsList);
+ds_grid_copy(grid,TempGrid); //Ds grid copy overwrite existing grid with the one we generated
+ds_grid_destroy(TempGrid);
+};
+
+#endregion
+
+#region DS grid alphabetizer function
+
+function ds_grid_alphabetize(grid,IDIndex=8){//feed grid to organize and what grid value to pull uniqueID from
+	
+	var Counter = 0;
+	
+	var Width = ds_grid_width(grid);
+	var Length = ds_grid_height(grid);
+	var TitleList = ds_list_create();
+	var StatsList = ds_list_create();
+	var TempGrid = ds_grid_create(Width,Length);
+	//var TitleIndexInternal = TitleIndex;
+	
+//---------------------------------------------- ADD STUFF TO LISTS ---------------------------------
+
+	while(Counter < Length) {
+		var Item = ds_grid_get(grid,0,Counter)
+		if(Item != 0){
+			
+			var Title = Item.name+string(ds_grid_get(grid,IDIndex,Counter));
+			ds_list_add(TitleList,Title);
+			ds_list_sort(TitleList,true);
+
+			Counter+=1;
+		}
+		else Counter+=1;	
+	}
+	
+	Counter = 0;
+	
+	while(Counter < Length) {
+		var Item = ds_grid_get(grid,0,Counter);
+		if(Item != 0){
+		
+		var Title = Item.name+string(ds_grid_get(grid,IDIndex,Counter));
+		
+		var array = array_create(Width);
+			for(var i = 0; i<array_length(array); i++){
+				array[i] = ds_grid_get(grid,i,Counter);
+			};	
+			
+		var Index = ds_list_find_index(TitleList,Title);
+		ds_list_set(StatsList,Index,array);
+
+		Counter+=1;
+		};
+		else Counter+=1;
+	};
+	
+	Counter = 0;
+	
+	while(Counter < ds_list_size(StatsList)) {
+		var Entry = ds_list_find_value(StatsList,Counter);
+		for(var i = 0; i<array_length(Entry); i++){
+				ds_grid_set(TempGrid,i,Counter,Entry[i]);
+			};	
+		
+		Counter+=1;
+	};
+	
+//------------------------------------------ RETURN STUFF ---------------------------------
+
+ds_list_destroy(TitleList);
+ds_list_destroy(StatsList);
+ds_grid_copy(grid,TempGrid); //Ds grid copy overwrite existing grid with the one we generated
+ds_grid_destroy(TempGrid);
+};
+
+#endregion

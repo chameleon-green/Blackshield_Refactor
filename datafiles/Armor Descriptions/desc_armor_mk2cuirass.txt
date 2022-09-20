@@ -1,0 +1,13 @@
+MKII "Crusade" pattern power armor was the first fully enclosed model, 
+intended to carry the newly founded Imperial Asartes legions beyond the confines of Terra. 
+Segmented flexible casings allow for greater agility than some future models, 
+but substantially complicates repairs. The cuirass contains the armor's main fusion reactor, 
+located in the backpack. Without it, other critical parts of the armor such as servos and
+sensors will not function.
+
+
+The cuirass protects the torso from most man portable weapons. It will fail against 
+heavier systems.
+
+
+

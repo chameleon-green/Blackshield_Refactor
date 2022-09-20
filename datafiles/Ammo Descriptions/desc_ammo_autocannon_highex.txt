@@ -1,0 +1,5 @@
+Autocannon shells are large ballistic rounds used in autocannons.
+
+High explosive shells trade their armor penetrating core for an explosive payload.
+
+

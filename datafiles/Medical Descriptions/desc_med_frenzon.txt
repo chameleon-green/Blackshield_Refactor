@@ -1,0 +1,11 @@
+Frenzon is an extremely rare and powerful combat drug. It massively boosts one's
+abilities, but quickly causes serious damage to the user's body as it wreaks havoc
+on its chemical balance and biomechanical systems. It is most often used by Imperial
+assassins of the Eversor clade, whose specially engineered metabolisms are designed
+to handle the biological load of such a potent drug.
+
++50 Strength for 60 seconds
++50 Agility for 60 seconds
++50 Endurance for 60 seconds
++5 Stamina/s for 60 seconds
+-10 HP/s for 60 seconds

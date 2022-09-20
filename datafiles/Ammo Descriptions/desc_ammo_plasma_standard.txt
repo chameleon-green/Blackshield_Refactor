@@ -1,0 +1,7 @@
+Plasma weapons are powered by flasks of liquid hydrogen fuel. These flasks and their parent
+weapons are incredibly hazardous, owing to their extreme pressurization and tempremental
+technology respectively.
+
+Standard plasma fuel has no special effects, dealing 1.00 thermal damage.
+
+

@@ -1,0 +1,10 @@
+Bolts are self propelled, armor piercing rounds with a mass-reactive fuse and high explosive filler.
+They pierce their target before exploding, maximizing the damage of their warhead and
+gruesomely blowing their apart target from the inside out. There are few types of personal 
+armor that can defeat bolter rounds; even Astartes power armor will quickly fail under 
+a hail of bolts. 
+
+Bolt shells are a larger version of bolt rounds, used in heavy bolters.
+
+Standard bolt shells do not have any special effects, and deal 1.00x physical damage of 
+the weapon they are used in.

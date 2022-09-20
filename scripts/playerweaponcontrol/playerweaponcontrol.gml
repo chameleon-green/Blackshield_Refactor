@@ -136,9 +136,9 @@ if(IsRanged) {
 		
 		if(string_count("Burst",selector)) {
 			var _Cycle = function() {cycle = 1};
-			alarm[0] =-1; cycle = 0;
-			var ROF3 = wpn_active.ROF*2; 
-			if(time_source_get_state(burst_timer) = time_source_state_stopped or time_source_get_state(burst_timer) = time_source_state_initial){
+			alarm[0] = 1; cycle = 0;
+			var ROF3 = round(wpn_active.ROF*4); 
+			if((time_source_get_state(burst_timer) = time_source_state_stopped) or (time_source_get_state(burst_timer) = time_source_state_initial)){
 				time_source_reconfigure(burst_timer,ROF3,time_source_units_frames,_Cycle);
 				time_source_start(burst_timer)
 			}

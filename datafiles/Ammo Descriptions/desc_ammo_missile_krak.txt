@@ -1,0 +1,5 @@
+Missile launchers are highly versatile, able to fire a broad variety of useful payloads.
+
+Krak missiles utilize a multi-stage shaped charge warhead to defeat armor. The nature of
+this warhead means their blast is focussed into a small area, making them less useful
+against large groups of enemies.
