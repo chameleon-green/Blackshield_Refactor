@@ -1,4 +1,70 @@
 
+#region array to string translators for inventory
+
+function ArrayToString(Array,Type=0) {
+	
+	//--------------------------Read scalings from scalings array on weapon 
+	if(Type = 1) {
+		var FinalText = ""
+		var Counter = 0;
+		var Length = array_length(Array);
+		
+			while(Counter < Length){
+				var Entry = Array[Counter];
+				var Letters = string_letters(Entry);
+				//var Digits = string_digits(Entry);
+				
+				var StatText = string_char_at(Letters,1)+string_char_at(Letters,2)+string_char_at(Letters,3)+"("+string_char_at(Letters,4)+")"+" ";
+				FinalText += StatText;				
+				Counter += 1;
+				
+			};
+		return FinalText;
+	};
+	
+	//--------------------------------------read damage type(s) 
+	if(Type = 2) {	
+		var FinalText = ""
+		var Counter = 0;
+		var Length = array_length(Array);
+		
+			while(Counter < Length){
+				var Entry = Array[Counter];
+				var Letters = string_letters(Entry);
+				var Digits = string_digits(Entry);
+				
+					switch (Letters) {
+						case "physical" : FinalText += "PHYS"
+							break;
+						case "thermal" : FinalText += "THER"
+							break;
+						case "cryo" : FinalText += "CRYO"
+							break;		
+						case "corrosive" : FinalText += "CORR"
+							break;
+						case "radiation" : FinalText += "RADI"
+							break;
+						case "electric" : FinalText += "ELEC"
+							break;
+						case "biohazard" : FinalText += "HAZM"
+							break;
+						case "warp" : FinalText += "WARP"
+							break;
+					};
+					
+					var PercentText = " " + Digits + "%";
+					FinalText += PercentText;
+					
+				Counter += 1;
+				
+			};
+		return FinalText;		
+	};
+
+};//func end bracket
+
+#endregion
+
 #region melee damage calculator function
 //calculates damage, given an entity and a weapon
 function MeleeDamageCalculator(entity,weapon){

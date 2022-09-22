@@ -262,8 +262,8 @@ if(IsRanged) {
 		audio_stop_sound(aud_spoolup); aud_spoolup = 0;
 		burst_count = 0; spooled = 0; skeleton_animation_clear(3);
 		
-		var ActivePrimary = (wpn_active.weapon_slot[0] = "primary") or (wpn_active_id = -2); //we have a primary equipped
-		var ActiveSecondary = (wpn_active.weapon_slot[0] = "secondary") or (wpn_active_id = -3); //we have a secondary equipped
+		var ActivePrimary = ( (wpn_active.weapon_slot[0] = "primary") or (wpn_active_id = -2) ); //we have a primary equipped
+		var ActiveSecondary = ( (wpn_active.weapon_slot[0] = "secondary") or (wpn_active.weapon_slot[0] = "melee") or (wpn_active_id = -3) ); //we have a secondary equipped
 		
 		var SwapWeapon = function(_Slot,_Slot2,Item) {//_Slot is the slot to swap to, _Slot2 is the currently active slot
 			skeleton_animation_clear(1); skeleton_animation_clear(3);

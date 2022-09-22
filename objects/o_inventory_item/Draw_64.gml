@@ -47,8 +47,9 @@ var GridYValue = ds_grid_value_y(grid,0,0,ds_grid_width(grid),ds_grid_height(gri
 var Quantity = ds_grid_get(grid,1,GridYValue);
 var TitleText = item.name;
 
-var IsAmmo = variable_struct_exists(item,"projectile_type");
-var IsRangedWeapon = variable_struct_exists(item,"capacity");
+var IsAmmo = string_count("ammo",item.item_type)
+var IsRangedWeapon = string_count("weapon_ranged",item.item_type)
+var IsMeleeWeapon = string_count("weapon_melee",item.item_type)
 
 if(GridYValue = -1) {creator.refresh = 1};
 
@@ -129,6 +130,30 @@ if(Selected = 1) {
 		draw_text_ext_transformed_color(Xcent+(151*scale),Ycent+(94*scale),"40404",1,40000,scale*1.33,scale*1.33,0,_Color,_Color,_Color,_Color,1);
 		draw_text_ext_transformed_color(Xcent+(151*scale),Ycent+(128*scale),item.weight,1,40000,scale*1.33,scale*1.33,0,_Color,_Color,_Color,_Color,1);
 		draw_text_ext_transformed_color(Xcent+(151*scale),Ycent+(162*scale),item.durability_max,1,40000,scale*1.33,scale*1.33,0,_Color,_Color,_Color,_Color,1);
+	};
+	
+	if(IsMeleeWeapon) {
+
+		var _Color = c_yellow;
+		var ArmorPen = string(item.penetration*100) + "%";
+		var Damage = string(item.damage) + "(" + string(MeleeDamageCalculator(MyPlayer,item)) + ")";
+		
+		//draw correct stats readout for melee weapons
+		draw_sprite_ext(sp_inventory_wep_stats,3,Xcent+160*scale,Ycent+102*scale,scale,scale,0,c_white,1);
+		
+		draw_set_halign(fa_center);
+		draw_set_valign(fa_center);
+		//draw_text_ext_transformed_color(Xcent+(158*scale),Ycent-(9*scale),_String,1,40000,scale*0.75,scale*0.75,0,_Color,_Color,_Color,_Color,1);
+		draw_set_halign(fa_left);
+		draw_text_ext_transformed_color(Xcent+(68*scale),Ycent+(63.5*scale),Damage,1,40000,scale*0.97,scale*1.1,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+(70*scale),Ycent+(98*scale),ArrayToString(item.scalings,1),1,40000,scale*0.96,scale*1.05,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+(70*scale),Ycent+(134*scale),ArrayToString(item.damage_type,2),1,40000,scale*0.96,scale*1.05,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+(70*scale),Ycent+(163*scale),item.durability_max,1,40000,scale*1.33,scale*1.33,0,_Color,_Color,_Color,_Color,1);		
+		draw_text_ext_transformed_color(Xcent+(155*scale),Ycent+(62*scale),ArmorPen,1,40000,scale*1.25,scale*1.25,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+(155*scale),Ycent+(163*scale),item.weight,1,40000,scale*1.33,scale*1.33,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+(238*scale),Ycent+(62*scale),item.force,1,40000,scale*1.25,scale*1.25,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+(238*scale),Ycent+(163*scale),item.force,1,40000,scale*1.33,scale*1.33,0,_Color,_Color,_Color,_Color,1);
+		
 	};
 	
 	if(IsAmmo) {

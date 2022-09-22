@@ -61,7 +61,7 @@ AddItem(Flamer_Astartes,1,grd_inv_wepn,InventorySize);
 AddItem(Plasmagun_Thunderbolt,1,grd_inv_wepn,InventorySize);
 AddItem(Meltagun_Proteus,1,grd_inv_wepn,InventorySize);
 AddItem(Bolt_Pistol_Tigrus,1,grd_inv_wepn,InventorySize);
-
+AddItem(HeavyHammer_Proteus,1,grd_inv_wepn,InventorySize);
 
 AddItem(Ammo_Bolt_Standard,100,grd_inv_ammo,InventorySize);
 AddItem(Ammo_Bolt_Kraken,100,grd_inv_ammo,InventorySize);

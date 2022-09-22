@@ -1,4 +1,22 @@
 
+
+#region Identify Item by type
+
+function IdentifyItem(Item) {
+	
+	var Type = Item.item_type;
+	if(string_count("weapon_ranged",Type)) {return "ranged_weapon"};
+	if(string_count("weapon_melee",Type)) {return "melee_weapon"};
+	if(string_count("ammo",Type)) {return "ammo"};
+	if(string_count("armor",Type)) {return "armor"};
+	if(string_count("ingredient",Type)) {return "ingredient"};
+	if(string_count("currency",Type)) {return "currency"};
+	
+	return -1;
+};
+
+#endregion
+
 #region item ID generation function
 
 function GenerateID() { //generates a unique ID, given a list of existing IDs
@@ -29,14 +47,9 @@ function GenerateID() { //generates a unique ID, given a list of existing IDs
 function AddItem (Item,Quantity,TargetGrid,InventorySize,Durability=-1){
 	
 	var Counter = 0;
-	var ItemType = "none";
-	if(variable_struct_exists(Item,"weapon_type")) {ItemType = "weapon"};
-	if(variable_struct_exists(Item,"projectile_type")) {ItemType = "ammo"};
-	if(variable_struct_exists(Item,"physical_resist")) {ItemType = "armor"};
-	if(variable_struct_exists(Item,"FIX THIS PLEASE")) {ItemType = "aid"};
-	if(variable_struct_exists(Item,"FIX THIS PLEASE")) {ItemType = "crafting"};
+	var Type = Item.item_type;
 	
-	if(ItemType = "weapon") {
+	if(string_count("weapon_ranged",Type)) {
 		while(Counter < (InventorySize-1) ) {
 			
 			var Slot = ds_grid_get(TargetGrid,0,Counter);				
@@ -54,7 +67,25 @@ function AddItem (Item,Quantity,TargetGrid,InventorySize,Durability=-1){
 		}; //while loop
 	};//is weapon check
 	
-	if(ItemType = "ammo") {
+	if(string_count("weapon_melee",Type)) {
+		while(Counter < (InventorySize-1) ) {
+			
+			var Slot = ds_grid_get(TargetGrid,0,Counter);				
+			if(Slot = 0) {
+				ds_grid_set(TargetGrid,0,Counter,Item); //what are we adding?
+				ds_grid_set(TargetGrid,1,Counter,Quantity); //how many?
+				if(Durability = -1) {Durability = Item.durability_max};
+				ds_grid_set(TargetGrid,2,Counter,Durability); //how much durability remaining?
+				//ds_grid_set(TargetGrid,3,Counter,Item.default_ammo_type); //what is our ammo type? 
+				//ds_grid_set(TargetGrid,4,Counter,Item.capacity); //rounds left in mag?
+				ds_grid_set(TargetGrid,8,Counter,GenerateID()); //unique ID for item
+				break;
+			};		
+			Counter +=1;
+		}; //while loop
+	};//is weapon check
+	
+	if(string_count("ammo",Type)) {
 		
 		var GridHeight = ds_grid_height(TargetGrid);
 		var ItemY = ds_grid_value_y(TargetGrid,0,0,GridHeight,InventorySize-1,Item);
@@ -134,11 +165,12 @@ function SearchForItem(Grid,Keyword,Variable,ArrayKey=0) { //searches grid of it
 
 function EquipItem(Item,UniqueID,PlayerID) { //searches grid of items for a specific variable containing a keyword
 	
-	var IsWeapon = string_count("weapon_ranged",Item.item_type);
+	var IsRangedWeapon = string_count("weapon_ranged",Item.item_type);
+	var IsMeleeWeapon = string_count("weapon_melee",Item.item_type);
 	var IsAmmo = string_count("ammo",Item.item_type);
 		
-	#region Weapon Swaps
-	if(IsWeapon) {
+	#region Ranged weapon swaps
+	if(IsRangedWeapon) {
 		var Grid = grd_inv_wepn;
 		var ValueY = ds_grid_value_y(Grid,0,0,10,InventorySize,UniqueID);
 		//logs our ammunition type and rounds left in magazine
@@ -176,11 +208,56 @@ function EquipItem(Item,UniqueID,PlayerID) { //searches grid of items for a spec
 				magazine_active = magazine_primary;
 				selector_real = 0;
 				selector = wpn_active.firemodes[selector_real];
-				skeleton_animation_set(Item.animation_group.idle);
+				skeleton_animation_clear(1);
+				skeleton_animation_set_ext(Item.animation_group.idle,1);
 				skeleton_attachment_set("slot_gun",Item.weapon_attachment);
 				skeleton_attachment_set("slot_gun magazine",Item.magazine_attachment);
 			};
 		};		
+	};
+	#endregion
+	
+	#region Melee weapon swaps
+	if(IsMeleeWeapon) {
+			
+		var Grid = grd_inv_wepn;
+		var ValueY = ds_grid_value_y(Grid,0,0,10,InventorySize,UniqueID);
+		//logs our ammunition type and rounds left in magazine
+		
+		if(string_count(PlayerID.wpn_active.item_type,"weapon_ranged")){
+			var CurrentValueY = ds_grid_value_y(Grid,0,0,10,InventorySize,PlayerID.wpn_active_id);
+			ds_grid_set(Grid,3,CurrentValueY,PlayerID.ammo_secondary);
+			ds_grid_set(Grid,4,CurrentValueY,PlayerID.magazine_secondary);
+		};
+		
+		var _Hands = Item.weapon_slot[1];
+		
+		with(PlayerID) {
+			
+			if(_Hands = 2) {					
+				var SwapTo = ( (wpn_active = variable_instance_get(id,"wpn_secondary")) or (wpn_active = variable_instance_get(id,"wpn_active_melee")) );
+			
+				variable_instance_set(id,"wpn_active_melee",Item);
+				variable_instance_set(id,"wpn_melee_id",UniqueID);
+				variable_instance_set(id,"wpn_secondary",Item);
+				variable_instance_set(id,"wpn_secondary_id",UniqueID);
+				variable_instance_set(id,"ammo_secondary",-1);
+				variable_instance_set(id,"ammo_secondary_id",-1);
+					
+				if(SwapTo) {
+					wpn_active = Item;
+					wpn_active_id = UniqueID;
+					ammo_active = -1;
+					ammo_active_id = -1;
+					magazine_active = 0;
+					selector_real = 0;
+					skeleton_animation_clear(1);
+					skeleton_animation_set_ext(Item.animation_group.idle,1);
+					skeleton_attachment_set("slot_gun",Item.weapon_attachment);
+					skeleton_attachment_set("slot_gun magazine",-1);
+				};
+			};
+		};
 	};
 	#endregion
 	
