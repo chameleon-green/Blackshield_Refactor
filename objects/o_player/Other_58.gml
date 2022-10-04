@@ -1,7 +1,16 @@
-if(swinging or wpn_active != wpn_primary && !reloading) {
-	skeleton_attachment_set("slot_melee_weapon",wpn_active_melee.weapon_attachment)
+
+//---------------------------------- Melee stuff ----------------------------------------------
+
+if(swinging) {
+	skeleton_attachment_set("slot_melee_weapon",wpn_active_melee.weapon_attachment);
+	skeleton_attachment_set("slot_gun",wpn_active_melee.weapon_attachment);
 };
 
+if(wpn_active != wpn_primary && !reloading) {
+	skeleton_attachment_set("slot_melee_weapon",wpn_active_melee.weapon_attachment);
+};
+
+//--------------------------------------------------------------------------------------------
 
 var HitPointMap = ds_map_create();
 	skeleton_bone_state_get("melee hitpoint",HitPointMap);	

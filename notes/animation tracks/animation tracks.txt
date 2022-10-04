@@ -3,6 +3,6 @@
 3 : weapon firing animations
 4 : reloading
 5 : melee idles (for offhand)
-6 : melee attacks
+6 : melee attacks, and melee arm idle when no pistol is equipped
 
 8 : melee extra idles, like chain teeth

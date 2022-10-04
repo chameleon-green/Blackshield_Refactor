@@ -199,6 +199,12 @@ function EquipItem(Item,UniqueID,PlayerID) { //searches grid of items for a spec
 			variable_instance_set(id,"wpn_"+_Slot+"_id",UniqueID);
 			variable_instance_set(id,"ammo_"+_Slot,ds_grid_get(Grid,3,ValueY));
 			variable_instance_set(id,"magazine_"+_Slot,ds_grid_get(Grid,4,ValueY));
+			
+			//reset us to fists if we are holding a polearm and equip a pistol
+			if(_Slot = "secondary" && (wpn_active_melee.weapon_slot[1] = 2) ) {
+				wpn_active_melee = Unarmed_Fists;
+				wpn_melee_id = -1;
+			}; 
 					
 			if(SwapTo) {
 				wpn_active = Item;
@@ -233,7 +239,33 @@ function EquipItem(Item,UniqueID,PlayerID) { //searches grid of items for a spec
 		var _Hands = Item.weapon_slot[1];
 		
 		with(PlayerID) {
+			//one handed melee weapons
+			if(_Hands = 3) {					
+				var SwapTo = ( (wpn_active = variable_instance_get(id,"wpn_secondary")) or (wpn_active = variable_instance_get(id,"wpn_active_melee")) );
 			
+				variable_instance_set(id,"wpn_active_melee",Item);
+				variable_instance_set(id,"wpn_melee_id",UniqueID);
+					
+				if(SwapTo) {
+					if( (string_count("melee",wpn_active.item_type)) && (wpn_active.weapon_slot[1] = 2) ) {
+						skeleton_attachment_set("slot_gun",-1);	
+						wpn_active = Unarmed_Fists;
+						wpn_active_id = UniqueID;
+						variable_instance_set(id,"wpn_active_melee",Item);
+						variable_instance_set(id,"wpn_melee_id",UniqueID);
+						variable_instance_set(id,"wpn_secondary",Unarmed_Fists);
+						variable_instance_set(id,"wpn_secondary_id",UniqueID);
+						variable_instance_set(id,"ammo_secondary",-1);
+						variable_instance_set(id,"ammo_secondary_id",-1);
+						skeleton_animation_set_ext(Item.animation_group.idle,1);
+					};					
+					skeleton_animation_clear(1); skeleton_animation_clear(5);					
+					skeleton_animation_set_ext(Item.animation_group.idle,5);
+					skeleton_attachment_set("slot_melee_weapon",Item.weapon_attachment);													
+				};
+			};
+			
+			//two handed melee weapons
 			if(_Hands = 2) {					
 				var SwapTo = ( (wpn_active = variable_instance_get(id,"wpn_secondary")) or (wpn_active = variable_instance_get(id,"wpn_active_melee")) );
 			
@@ -251,7 +283,7 @@ function EquipItem(Item,UniqueID,PlayerID) { //searches grid of items for a spec
 					ammo_active_id = -1;
 					magazine_active = 0;
 					selector_real = 0;
-					skeleton_animation_clear(1);
+					skeleton_animation_clear(1); skeleton_animation_clear(5);
 					skeleton_animation_set_ext(Item.animation_group.idle,1);
 					skeleton_attachment_set("slot_gun",Item.weapon_attachment);
 					skeleton_attachment_set("slot_gun magazine",-1);

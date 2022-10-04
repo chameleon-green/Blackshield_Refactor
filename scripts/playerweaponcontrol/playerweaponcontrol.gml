@@ -64,7 +64,7 @@ function FireGun (){
 
 	//--------------------------------------------------------- visual stuff --------------------------------------
 	
-	if(is_array(wpn_active.animation_group.fire)) {skeleton_animation_set_ext(wpn_active.animation_group.fire[1],3)}; //set fire anim for spooling guns
+	if(is_array(wpn_active.animation_group.fire)) {skeleton_anim_set_step(wpn_active.animation_group.fire[1],3)}; //set fire anim for spooling guns
 	else{skeleton_animation_set_ext(wpn_active.animation_group.fire,3)}; //set fire anim for non spooling guns
 
 	if(wpn_active.flash_type != "none") {
@@ -255,12 +255,12 @@ if(IsRanged) {
 //++++++++++++++++++++++++++++++++++++++++++++++ QUICKSWAP ++++++++++++++++++++++++++++++++++++++++++++	
 //++++++++++++++++++++++++++++++++++++++++++++++ QUICKSWAP ++++++++++++++++++++++++++++++++++++++++++++	
 	
-	if(Swap_Key && !rolling && !swinging && !reloading && !mouse_check_button(mb_left)) {	
+	if(Swap_Key && !rolling && !swinging && !reloading && !mouse_check_button(mb_left) && (skeleton_animation_get_ext(3) = "") ) {	
 		
 		audio_stop_sound(aud_fireloop); aud_fireloop = 0;
 		audio_stop_sound(aud_chargeloop); aud_chargeloop = 0
 		audio_stop_sound(aud_spoolup); aud_spoolup = 0;
-		burst_count = 0; spooled = 0; skeleton_animation_clear(3);
+		burst_count = 0; spooled = 0; skeleton_animation_clear(3); skeleton_animation_clear(5);
 		
 		var ActivePrimary = ( (wpn_active.weapon_slot[0] = "primary") or (wpn_active_id = -2) ); //we have a primary equipped
 		var ActiveSecondary = ( (wpn_active.weapon_slot[0] = "secondary") or (wpn_active.weapon_slot[0] = "melee") or (wpn_active_id = -3) ); //we have a secondary equipped
@@ -281,10 +281,22 @@ if(IsRanged) {
 				selector = wpn_active.firemodes[selector_real];
 				skeleton_attachment_set("slot_gun",wpn_active.weapon_attachment);
 				skeleton_attachment_set("slot_gun magazine",wpn_active.magazine_attachment);
+				
+				if( (Item.weapon_slot[0] = "secondary") && (wpn_active_melee != Unarmed_Fists) ) {
+					var Hands = wpn_active_melee.weapon_slot[1];
+					if(Hands = 3) {
+						skeleton_anim_set_step(wpn_active_melee.animation_group.idle,5);
+						skeleton_attachment_set("slot_melee_weapon",wpn_active_melee.weapon_attachment); 
+					};
+				};
 			};	
-			else{
-				skeleton_attachment_set("slot_gun",wpn_active.weapon_attachment);
-				skeleton_attachment_set("slot_gun magazine",-1);
+			
+			else{ //2 handed melee weapons
+				var Hands = Item.weapon_slot[1];
+				if(Hands = 2) {
+					skeleton_attachment_set("slot_gun",wpn_active.weapon_attachment); 
+					skeleton_attachment_set("slot_gun magazine",-1)
+				};				
 			};
 			
 			skeleton_anim_set_step(wpn_active.animation_group.idle,1);						
@@ -294,44 +306,5 @@ if(IsRanged) {
 		if(ActiveSecondary) {SwapWeapon("primary","secondary",wpn_primary)};
 	};
 		
-		//swap to our secondary, else melee weapon----------------------------------------------------
-		/*
-		if(wpn_active = wpn_primary) {
-			
-			
-			
-						
-			if(!is_struct(wpn_secondary)){ //we do not have a secondary equipped, use melee weapon instead
-				skeleton_animation_clear(1);
-				skeleton_attachment_set("slot_melee_weapon",wpn_active_melee.weapon_attachment);
-				skeleton_anim_set_step(wpn_active_melee.animation_group.idle,1);
-				wpn_active = wpn_active_melee;
-				wpn_active_id = wpn_melee_id;
-			};
-			
-			
-
-		};
-		else{
-			wpn_active = wpn_primary;
-			wpn_active_id = wpn_primary_id;
-			magazine_secondary = magazine_active;
-			magazine_active = magazine_primary;
-			ammo_active = ammo_primary;
-			ammo_active_id = ammo_primary_id;
-			selector_real = 0;
-			selector = wpn_active.firemodes[selector_real];
-			skeleton_animation_clear(5); skeleton_animation_clear(8);
-		};
-		
-		
-		
-		skeleton_animation_clear(1); skeleton_animation_clear(3);
-		
-		skeleton_anim_set_step(wpn_active.animation_group.idle,1);		
-		skeleton_attachment_set("slot_gun",wpn_active.weapon_attachment);
-		skeleton_attachment_set("slot_gun magazine",wpn_active.magazine_attachment);		
-	};
-	*/
 };
 #endregion
