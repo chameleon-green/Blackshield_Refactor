@@ -62,8 +62,6 @@ if(AmmoKey1 != -1) {
 
 //----------------------------------- EQUIPMENT VARIABLES ----------------------------------
 
-
-
 //equipment statuses
 reloading = 0;
 spooled = 0;
@@ -87,7 +85,6 @@ magazine_primary = wpn_primary.capacity
 //wpn_secondary_id = 0;
 //ammo_secondary = wpn_secondary.default_ammo_type;
 //magazine_secondary = wpn_secondary.capacity
-
 
 skeleton_animation_set(wpn_active.animation_group.idle);
 
@@ -114,7 +111,7 @@ swing = [0,0,0,0]; //x,y,angle,killvalue
 
 aud_melee_idle = 0;
 
-wpn_active_melee = Chainsword_Thunderedge;
+wpn_active_melee = Unarmed_Fists;
 wpn_melee_id = 0;
 
 melee_reset_timer = time_source_create(time_source_game,0,time_source_units_frames,_mymethod);

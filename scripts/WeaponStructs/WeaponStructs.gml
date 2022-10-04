@@ -349,7 +349,7 @@ Powersword_Proteus = { //---------------------------- thunderedge pattern chains
 		damage : 120,
 		force : 30, //poise and guard break
 		penetration : 1, //armor penetration, as percent of damage
-		scalings : ["STR(A).030","DEX(F).020"], //scalings for damage bonus to stats
+		scalings : ["STR(S).100","DEX(F).010"], //scalings for damage bonus to stats
 		damage_type : ["physical.100"],
 		
 		//technical weapon stats

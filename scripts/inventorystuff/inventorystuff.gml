@@ -211,7 +211,7 @@ function EquipItem(Item,UniqueID,PlayerID) { //searches grid of items for a spec
 				wpn_active_id = UniqueID;
 				ammo_active = variable_instance_get(id,"ammo_"+_Slot);;
 				ammo_active_id = variable_instance_get(id,"ammo_"+_Slot+"_id");
-				magazine_active = magazine_primary;
+				magazine_active = variable_instance_get(id,"magazine_"+_Slot);;
 				selector_real = 0;
 				selector = wpn_active.firemodes[selector_real];
 				skeleton_animation_clear(1);
@@ -225,50 +225,57 @@ function EquipItem(Item,UniqueID,PlayerID) { //searches grid of items for a spec
 	
 	#region Melee weapon swaps
 	if(IsMeleeWeapon) {
-			
-		var Grid = grd_inv_wepn;
-		var ValueY = ds_grid_value_y(Grid,0,0,10,InventorySize,UniqueID);
-		//logs our ammunition type and rounds left in magazine
-		
-		if(string_count(PlayerID.wpn_active.item_type,"weapon_ranged")){
-			var CurrentValueY = ds_grid_value_y(Grid,0,0,10,InventorySize,PlayerID.wpn_active_id);
-			ds_grid_set(Grid,3,CurrentValueY,PlayerID.ammo_secondary);
-			ds_grid_set(Grid,4,CurrentValueY,PlayerID.magazine_secondary);
-		};
 		
 		var _Hands = Item.weapon_slot[1];
 		
-		with(PlayerID) {
-			//one handed melee weapons
-			if(_Hands = 3) {					
+		//one handed melee weapons
+		if(_Hands = 3) {	
+			with(PlayerID) {
 				var SwapTo = ( (wpn_active = variable_instance_get(id,"wpn_secondary")) or (wpn_active = variable_instance_get(id,"wpn_active_melee")) );
 			
 				variable_instance_set(id,"wpn_active_melee",Item);
 				variable_instance_set(id,"wpn_melee_id",UniqueID);
+				//if(wpn_secondary = Unarmed_Fists) {wpn_secondary = Item};
+				wpn_secondary = Item;
+				wpn_secondary_id = UniqueID;
 					
 				if(SwapTo) {
-					if( (string_count("melee",wpn_active.item_type)) && (wpn_active.weapon_slot[1] = 2) ) {
-						skeleton_attachment_set("slot_gun",-1);	
-						wpn_active = Unarmed_Fists;
-						wpn_active_id = UniqueID;
-						variable_instance_set(id,"wpn_active_melee",Item);
-						variable_instance_set(id,"wpn_melee_id",UniqueID);
-						variable_instance_set(id,"wpn_secondary",Unarmed_Fists);
-						variable_instance_set(id,"wpn_secondary_id",UniqueID);
-						variable_instance_set(id,"ammo_secondary",-1);
-						variable_instance_set(id,"ammo_secondary_id",-1);
-						skeleton_animation_set_ext(Item.animation_group.idle,1);
-					};					
+					
+					skeleton_attachment_set("slot_gun",-1);	
+					wpn_active = Item;//Unarmed_Fists;
+					wpn_active_id = UniqueID;
+					variable_instance_set(id,"wpn_active_melee",Item);
+					variable_instance_set(id,"wpn_melee_id",UniqueID);
+					variable_instance_set(id,"wpn_secondary",Item);
+					variable_instance_set(id,"wpn_secondary_id",UniqueID);
+					variable_instance_set(id,"ammo_secondary",-1);
+					variable_instance_set(id,"ammo_secondary_id",-1);
+					skeleton_animation_set_ext(Item.animation_group.idle,1);
+										
 					skeleton_animation_clear(1); skeleton_animation_clear(5);					
 					skeleton_animation_set_ext(Item.animation_group.idle,5);
+					skeleton_animation_set_ext(Item.animation_group.idle,1);
 					skeleton_attachment_set("slot_melee_weapon",Item.weapon_attachment);													
-				};
+				};//swapto check
+			};//with playerid
+		};//3 handed check
+			
+		//two handed melee weapons
+		if(_Hands = 2) {	
+			
+			var SwapTo = ( (PlayerID.wpn_active = PlayerID.wpn_secondary) or (PlayerID.wpn_active = PlayerID.wpn_active_melee) );
+			
+			//log our secondary ammo if we equip a 2 handed melee weapon
+			if(string_count("weapon_ranged",PlayerID.wpn_secondary.item_type)){
+				var CurrentValueY = ds_grid_value_y(grd_inv_wepn,0,0,10,InventorySize,PlayerID.wpn_secondary_id);
+				ds_grid_set(grd_inv_wepn,3,CurrentValueY,PlayerID.ammo_secondary);
+				
+				var Mag_Cap = PlayerID.magazine_secondary;
+				if(SwapTo) {Mag_Cap = PlayerID.magazine_active};
+				ds_grid_set(grd_inv_wepn,4,CurrentValueY,Mag_Cap);
 			};
-			
-			//two handed melee weapons
-			if(_Hands = 2) {					
-				var SwapTo = ( (wpn_active = variable_instance_get(id,"wpn_secondary")) or (wpn_active = variable_instance_get(id,"wpn_active_melee")) );
-			
+					
+			with(PlayerID) {
 				variable_instance_set(id,"wpn_active_melee",Item);
 				variable_instance_set(id,"wpn_melee_id",UniqueID);
 				variable_instance_set(id,"wpn_secondary",Item);
@@ -287,10 +294,10 @@ function EquipItem(Item,UniqueID,PlayerID) { //searches grid of items for a spec
 					skeleton_animation_set_ext(Item.animation_group.idle,1);
 					skeleton_attachment_set("slot_gun",Item.weapon_attachment);
 					skeleton_attachment_set("slot_gun magazine",-1);
-				};
-			};
-		};
-	};
+				}; //swap to check
+			}; //with player
+		}; //2 hands check
+	};//melee weapon check
 	#endregion
 	
 	#region Ammo Swaps

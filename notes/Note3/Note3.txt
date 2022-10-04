@@ -1,0 +1,16 @@
+physical (PHYS)
+thermal (THER)
+cryo (CRYO)
+corrosive (CORR)
+radiation (RADI)
+electric (ELEC)
+biohazard (HAZM)
+warp (WARP)
+
+S = 100%
+A = 90%
+B = 70%
+C = 50%
+D = 30%
+E = 20%
+F = 10%
