@@ -1,4 +1,7 @@
 {
+  "resourceType": "GMSound",
+  "resourceVersion": "1.0",
+  "name": "snd_plasma_charge_loop",
   "conversionMode": 0,
   "compression": 0,
   "volume": 1.0,
@@ -17,8 +20,4 @@
     "name": "Weapons, Plasma",
     "path": "folders/Sounds/Weapons, Plasma.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "snd_plasma_charge_loop",
-  "tags": [],
-  "resourceType": "GMSound",
 }

@@ -1,4 +1,7 @@
 {
+  "resourceType": "GMSound",
+  "resourceVersion": "1.0",
+  "name": "snd_flamer_windup",
   "conversionMode": 0,
   "compression": 0,
   "volume": 1.0,
@@ -17,8 +20,4 @@
     "name": "Weapons, Flame",
     "path": "folders/Sounds/Weapons, Flame.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "snd_flamer_windup",
-  "tags": [],
-  "resourceType": "GMSound",
 }

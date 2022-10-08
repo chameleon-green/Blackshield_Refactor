@@ -193,7 +193,7 @@ function EquipItem(Item,UniqueID,PlayerID) { //searches grid of items for a spec
 			
 			
 		with(PlayerID) {			
-			var SwapTo = (wpn_active = variable_instance_get(id,"wpn_"+_Slot));
+			var SwapTo = ( (wpn_active = variable_instance_get(id,"wpn_"+_Slot)) or ((wpn_active.weapon_slot[0] = "melee") && (_Slot = "secondary")) );
 				
 			variable_instance_set(id,"wpn_"+_Slot,Item);
 			variable_instance_set(id,"wpn_"+_Slot+"_id",UniqueID);
@@ -214,7 +214,7 @@ function EquipItem(Item,UniqueID,PlayerID) { //searches grid of items for a spec
 				magazine_active = variable_instance_get(id,"magazine_"+_Slot);;
 				selector_real = 0;
 				selector = wpn_active.firemodes[selector_real];
-				skeleton_animation_clear(1);
+				skeleton_animation_clear(1); skeleton_animation_clear(5);
 				skeleton_animation_set_ext(Item.animation_group.idle,1);
 				skeleton_attachment_set("slot_gun",Item.weapon_attachment);
 				skeleton_attachment_set("slot_gun magazine",Item.magazine_attachment);

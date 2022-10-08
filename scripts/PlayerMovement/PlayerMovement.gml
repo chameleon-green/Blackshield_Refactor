@@ -35,12 +35,21 @@ if (wpn_active.weapon_slot[0] = "primary") {
 };
 
 else if ((wpn_active.weapon_slot[0] = "secondary")) {
-	skeleton_anim_set_step(ranged_animgrp.idle,1);
-		
+	skeleton_anim_set_step(ranged_animgrp.idle,1);		
 	if(!reloading and !TwoHanded) {skeleton_anim_set_step(melee_animgrp.idle,5)};
 };
 
-if(sprinting && (hspd != 0) ) {skeleton_animation_clear(5)};
+else if ((wpn_active.weapon_slot[0] = "melee")) {
+	skeleton_anim_set_step(ranged_animgrp.idle,1);		
+	if(!reloading and !TwoHanded) {skeleton_anim_set_step(melee_animgrp.idle_alternate,5)};
+};
+
+if(sprinting && (hspd != 0) ) {
+	if( (wpn_active.weapon_slot[0] = "melee") ) {
+		skeleton_animation_clear(1)
+	};
+	skeleton_animation_clear(5);
+};
 
 //+++++++++++++++++++++++++++++++++++++++ Control Inputs +++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -57,18 +66,42 @@ if(CanMove) {
 	image_xscale = mouse_facing*image_yscale;
 		
 	if(D) {
-		if(face_left) {hspd = (move*CanMove)*0.5; if(col_bot) {skeleton_anim_set_step(backwalk,2)} };
+		if(face_left) {
+			hspd = (move*CanMove)*0.5; 
+			if(col_bot) {
+				if( (wpn_active.weapon_slot[0]="melee") && (wpn_active.weapon_slot[1]=3) ) {skeleton_animation_clear(5)};
+				skeleton_anim_set_step(backwalk,2)
+			}; 
+		};
 		if(face_right) {
 			if(Shift) {hspd = (move*CanMove)*1.5; if(col_bot) {skeleton_anim_set_step(sprint,2); sprinting = 1} };
-			else {hspd = move*CanMove; if(col_bot) {skeleton_anim_set_step(walk,2)} };
+			else {
+				hspd = move*CanMove; 
+				if(col_bot) {
+					if( (wpn_active.weapon_slot[0]="melee") && (wpn_active.weapon_slot[1]=3) ) {skeleton_animation_clear(5)};
+					skeleton_anim_set_step(walk,2)
+				}; 
+			};
 		};		
 	};
 	
 	if(A) {
-		if(face_right) {hspd = (move*CanMove)*0.5; if(col_bot) {skeleton_anim_set_step(backwalk,2)} };
+		if(face_right) {
+			hspd = (move*CanMove)*0.5; 
+			if(col_bot) {
+				if( (wpn_active.weapon_slot[0]="melee") && (wpn_active.weapon_slot[1]=3) ) {skeleton_animation_clear(5)};
+				skeleton_anim_set_step(backwalk,2);
+			}; 
+		};
 		if(face_left) {
 			if(Shift) {hspd = (move*CanMove)*1.5; if(col_bot) {skeleton_anim_set_step(sprint,2); sprinting = 1} };
-			else {hspd = move*CanMove; if(col_bot) {skeleton_anim_set_step(walk,2)} };
+			else {
+				hspd = move*CanMove; 
+				if(col_bot) {
+					if( (wpn_active.weapon_slot[0]="melee") && (wpn_active.weapon_slot[1]=3) ) {skeleton_animation_clear(5)};
+					skeleton_anim_set_step(walk,2)
+				}; 
+			};
 		};	
 	};
 				

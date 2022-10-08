@@ -1,4 +1,7 @@
 {
+  "resourceType": "GMSound",
+  "resourceVersion": "1.0",
+  "name": "snd_chain1",
   "conversionMode": 0,
   "compression": 0,
   "volume": 1.0,
@@ -17,8 +20,4 @@
     "name": "Weapons, Melee, Chain",
     "path": "folders/Sounds/Weapons, Melee, Chain.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "snd_chain1",
-  "tags": [],
-  "resourceType": "GMSound",
 }

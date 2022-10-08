@@ -33,6 +33,8 @@ col_right = 0;
 col_left = 0;
 
 //----------------------------------- find weapons and armor ------------------------------------
+//skeleton_animation_set("Bolt Weapons/idle_fists");
+skeleton_animation_set("Basic Movement/blank");
 
 wpn_primary = Unarmed_Fists; wpn_secondary = Unarmed_Fists; wpn_active = wpn_primary;
 wpn_primary_id = -2; wpn_secondary_id = -3; wpn_active_id = wpn_primary_id;
@@ -86,7 +88,7 @@ magazine_primary = wpn_primary.capacity
 //ammo_secondary = wpn_secondary.default_ammo_type;
 //magazine_secondary = wpn_secondary.capacity
 
-skeleton_animation_set(wpn_active.animation_group.idle);
+
 
 cycle = 1; //weapon ROF cycle check
 burst_count = 0; //count of rounds fired in burst, if this weapon is burstfire

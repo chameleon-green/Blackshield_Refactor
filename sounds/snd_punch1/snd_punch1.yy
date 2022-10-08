@@ -1,4 +1,7 @@
 {
+  "resourceType": "GMSound",
+  "resourceVersion": "1.0",
+  "name": "snd_punch1",
   "conversionMode": 0,
   "compression": 0,
   "volume": 1.0,
@@ -17,8 +20,4 @@
     "name": "Weapons, Generic",
     "path": "folders/Sounds/Weapons, Generic.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "snd_punch1",
-  "tags": [],
-  "resourceType": "GMSound",
 }

@@ -1,4 +1,7 @@
 {
+  "resourceType": "GMSound",
+  "resourceVersion": "1.0",
+  "name": "snd_melta_winddown",
   "conversionMode": 0,
   "compression": 0,
   "volume": 1.0,
@@ -17,8 +20,4 @@
     "name": "Weapons, Melta",
     "path": "folders/Sounds/Weapons, Melta.yy",
   },
-  "resourceVersion": "1.0",
-  "name": "snd_melta_winddown",
-  "tags": [],
-  "resourceType": "GMSound",
 }
