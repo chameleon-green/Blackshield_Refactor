@@ -257,6 +257,8 @@ if(IsRanged) {
 	
 	if(Swap_Key && !rolling && !swinging && !reloading && !mouse_check_button(mb_left) && (skeleton_animation_get_ext(3) = "") ) {	
 		
+		switch_toggle = 1;
+		
 		audio_stop_sound(aud_fireloop); aud_fireloop = 0;
 		audio_stop_sound(aud_chargeloop); aud_chargeloop = 0
 		audio_stop_sound(aud_spoolup); aud_spoolup = 0;
@@ -285,6 +287,7 @@ if(IsRanged) {
 				if( (Item.weapon_slot[0] = "secondary") && (wpn_active_melee != Unarmed_Fists) ) {
 					var Hands = wpn_active_melee.weapon_slot[1];
 					if(Hands = 3) {
+						skeleton_animation_clear(1); skeleton_animation_clear(3);
 						skeleton_anim_set_step(wpn_active_melee.animation_group.idle,5);
 						skeleton_attachment_set("slot_melee_weapon",wpn_active_melee.weapon_attachment); 
 					};
@@ -294,16 +297,18 @@ if(IsRanged) {
 			else{ //2 handed melee weapons
 				var Hands = Item.weapon_slot[1];
 				if(Hands = 2) {
+					skeleton_animation_clear(1); skeleton_animation_clear(3);
 					skeleton_attachment_set("slot_gun",wpn_active.weapon_attachment); 
 					skeleton_attachment_set("slot_gun magazine",-1)
 				};				
 			};
 			
-			skeleton_anim_set_step(wpn_active.animation_group.idle,1);						
+			skeleton_anim_set_step(wpn_active.animation_group.idle,1);	
 		};
 		
 		if(ActivePrimary) {SwapWeapon("secondary","primary",wpn_secondary)};
 		if(ActiveSecondary) {SwapWeapon("primary","secondary",wpn_primary)};
+		
 	};
 		
 };

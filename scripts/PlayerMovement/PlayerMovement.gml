@@ -20,9 +20,10 @@ function PlayerMovement() {
 	var D = keyboard_check(ord("D")); 
 	var A = keyboard_check(ord("A"));
 	var S = keyboard_check(ord("S"));
+	var Q = keyboard_check(ord("Q"));
 	var Shift = keyboard_check(vk_shift) * CanSprint;
 	var Space = keyboard_check_pressed(vk_space);
-	
+		
 	col_bot = place_meeting(x,y+1,o_platform);
 	
 //------------------------------- Weapon idle scripts ---------------------------------------------------
@@ -44,15 +45,20 @@ else if ((wpn_active.weapon_slot[0] = "melee")) {
 	if(!reloading and !TwoHanded) {skeleton_anim_set_step(melee_animgrp.idle_alternate,5)};
 };
 
-if(sprinting && (hspd != 0) ) {
+if(sprinting && (hspd != 0) && !switch_toggle) {
 	if( (wpn_active.weapon_slot[0] = "melee") ) {
 		skeleton_animation_clear(1)
 	};
 	skeleton_animation_clear(5);
 };
 
+if(rolling && (wpn_active.weapon_slot[0] = "melee") && (wpn_active.weapon_slot[1] = 3) ) {
+	skeleton_animation_clear(5); skeleton_animation_clear(1);
+};
+
 //+++++++++++++++++++++++++++++++++++++++ Control Inputs +++++++++++++++++++++++++++++++++++++++++++++++
 
+	//if(!rolling and !swinging) {hspd = hspd*0.95};
 	if(!rolling and !swinging) {hspd = 0};
 	sprinting = 0;
 	crouching = 0;
@@ -163,13 +169,17 @@ if(place_meeting(x+hspd*2,y,o_platform)){
 		};
 };
 
-if (hspd = 0 && !rolling and !crouching) {
+if ( (abs(hspd) <= 6) && !rolling and !crouching) {
 	skeleton_animation_clear(2)
 };
 
 if(col_bot = 0 && !rolling) {
 	skeleton_animation_clear(2);
-	skeleton_anim_set_step("Basic Movement/idle_air",2)
+	skeleton_anim_set_step("Basic Movement/idle_air",2);
+	
+	if( (wpn_active.weapon_slot[0] = "melee") && (wpn_active.weapon_slot[1] = 3) ) {
+		skeleton_animation_clear(5)
+	};
 };
 	
 x += hspd;
@@ -180,5 +190,6 @@ if (!place_meeting(x,y,o_platform) && vspd >= 0 && place_meeting(x,y+2+abs(hspd)
 };
 	
 y += vspd; //change our Y by effects of gravity and climb values
+switch_toggle = 0;
 
 }; //function end bracket <--------

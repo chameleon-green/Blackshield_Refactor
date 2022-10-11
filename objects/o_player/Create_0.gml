@@ -69,6 +69,7 @@ reloading = 0;
 spooled = 0;
 spindown_toggle = 0;
 wpn_active_heat = 0;
+switch_toggle = 0;
 
 //equipment sound stuff
 aud_fireloop = 0; //loop for guns with loop sounds
