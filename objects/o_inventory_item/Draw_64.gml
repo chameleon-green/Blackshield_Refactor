@@ -50,6 +50,7 @@ var TitleText = item.name;
 var IsAmmo = string_count("ammo",item.item_type)
 var IsRangedWeapon = string_count("weapon_ranged",item.item_type)
 var IsMeleeWeapon = string_count("weapon_melee",item.item_type)
+var IsArmor = string_count("armor",item.item_type)
 
 if(GridYValue = -1) {creator.refresh = 1};
 

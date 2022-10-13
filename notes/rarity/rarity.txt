@@ -22,8 +22,8 @@ tech level.
 
 Auto/stub weapons, chainswords and flamers are plentiful and easy to manufacture (000-300)
 Laser weapons are slightly more advanced but still quite common (300-600)
-Melta/plasma and power weapons are fairly advanced weapons, but still accessible (600-900)
-Bolt weapons are hard to acquire, even human-sized ones (900-1200)
+Bolt weapons are fairly advanced weapons, but still accessible (600-900)
+Melta/plasma and power weapons are hard to acquire  (900-1200)
 Power armor is extremely advanced and hard to find (1200-1500)
 Advanced relic gear like iron haloes and personal shields are even rarer (1500-1800)
 Terminator armor and other archaeotech are near impossible to acquire (1800+)

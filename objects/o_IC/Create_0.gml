@@ -35,6 +35,7 @@ global.Selected = [-1,-1];
 AnimationsFlashesSoundGroups();
 AmmoStructs();
 WeaponStructs();
+ArmorStructs();
 
 incrementor_weapons = 0;
 incrementor_armor = 0;
@@ -74,6 +75,11 @@ AddItem(Ammo_Plasma_Standard,300,grd_inv_ammo,InventorySize);
 AddItem(Ammo_Melta_Standard,300,grd_inv_ammo,InventorySize);
 AddItem(Ammo_Auto_Ball,300,grd_inv_ammo,InventorySize);
 AddItem(Ammo_Autocannon_Ball,300,grd_inv_ammo,InventorySize);
+
+AddItem(Armor_Torso_2000,1,grd_inv_armr,InventorySize);
+AddItem(Armor_Torso_2000,1,grd_inv_armr,InventorySize);
+AddItem(Armor_Torso_2000,1,grd_inv_armr,InventorySize);
+AddItem(Armor_Torso_2000,1,grd_inv_armr,InventorySize);
 
 //----------------------------------------- Create Player ---------------------------------------
 

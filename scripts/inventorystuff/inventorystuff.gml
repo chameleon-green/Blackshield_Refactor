@@ -116,6 +116,24 @@ function AddItem (Item,Quantity,TargetGrid,InventorySize,Durability=-1){
 			}; //while loop
 		}; //else check		
 	}; //is ammo check
+	
+	if(string_count("armor",Type)) {
+		while(Counter < (InventorySize-1) ) {
+			
+			var Slot = ds_grid_get(TargetGrid,0,Counter);				
+			if(Slot = 0) {
+				ds_grid_set(TargetGrid,0,Counter,Item); //what are we adding?
+				ds_grid_set(TargetGrid,1,Counter,Quantity); //how many?
+				if(Durability = -1) {Durability = Item.durability_max};
+				ds_grid_set(TargetGrid,2,Counter,Durability); //how much durability remaining?
+				ds_grid_set(TargetGrid,8,Counter,GenerateID()); //unique ID for item
+				break;
+			};		
+			Counter +=1;
+		}; //while loop
+	};//is weapon check
+	
+	
 	refresh = 1;
 };// func end
 #endregion

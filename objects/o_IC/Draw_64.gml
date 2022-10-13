@@ -124,7 +124,7 @@ if(Tab = "items") {
 	};
 	
 	//----------------------------------------------- Weapons Subtab ------------------------------------------
-	
+	#region weapons subtab
 	if(SubTab = "weapons") {
 		
 		if(MyScrollbar = 0) {MyScrollbar = instance_create_depth(x,y,depth-1,o_scrollbar,{creator : id})};
@@ -164,13 +164,93 @@ if(Tab = "items") {
 			incrementor_weapons += 1;	
 		};//while loop
 	};//weapons tab check
-	
+	#endregion
 	//-------------------------------------------------- Armor Subtab ----------------------------------------------
-	
+	#region armor subtab
+	if(SubTab = "armor") {
+		
+		if(MyScrollbar = 0) {MyScrollbar = instance_create_depth(x,y,depth-1,o_scrollbar,{creator : id})};
+		
+		//item stats screen and display
+		draw_sprite_ext(sp_inventory_screen,0,Xcent+160*scale,Ycent-60*scale,scale,scale,0,c_white,1);
+		draw_sprite_ext(sp_inventory_wep_stats,0,Xcent+160*scale,Ycent+102*scale,scale,scale,0,c_white,1);
+		
+		//equip button draw
+		draw_sprite_ext(sp_button,TriButtonFrames[0],Xcent+76*scale,Ycent+34*scale,scale,scale,0,c_white,1);	
+		draw_text_ext_transformed_color(Xcent+76*scale,Ycent+25*scale,TriButtonText[0],0,500,scale,scale,0,TriButtonColors[0],TriButtonColors[0],TriButtonColors[0],TriButtonColors[0],1);	
+		//desc button draw
+		draw_sprite_ext(sp_button,TriButtonFrames[1],Xcent+168*scale,Ycent+34*scale,scale,scale,0,c_white,1);
+		draw_text_ext_transformed_color(Xcent+169*scale,Ycent+26.5*scale,TriButtonText[1],0,500,scale*0.95,scale*0.95,0,TriButtonColors[1],TriButtonColors[1],TriButtonColors[1],TriButtonColors[1],1);	
+		//drop button draw
+		draw_sprite_ext(sp_button,TriButtonFrames[2],Xcent+251*scale,Ycent+34*scale,scale,scale,0,c_white,1);
+		draw_text_ext_transformed_color(Xcent+251*scale,Ycent+25*scale,TriButtonText[2],0,500,scale,scale,0,TriButtonColors[2],TriButtonColors[2],TriButtonColors[2],TriButtonColors[2],1);
+		
+		while(incrementor_armor < (InventorySize-1)) {
+			var Slot = ds_grid_get(grd_inv_armr,0,incrementor_armor)
+			if(Slot != 0) {						
+				var ID = ds_grid_get(grd_inv_armr,8,incrementor_armor);
+				instance_create_depth(x,y,depth-1,o_inventory_item,{
+					MyTab : Tab,
+					MySubTab : SubTab,
+					creator : id, 
+					yoffset : counter_armor,
+					item : Slot,
+					unique_id : ID,
+					scrollbar : MyScrollbar,
+					grid : grd_inv_armr,
+					MyPlayer : MyPlayer
+				})
+				counter_armor += 1;
+				MyScrollbar.item_count = counter_armor;
+			};
+			incrementor_armor += 1;	
+		};//while loop
+	};//armor tab check
+	#endregion
 	//-------------------------------------------------- Aid Subtab ------------------------------------------------
-	
+	#region aid subtab
+	if(SubTab = "aid") {
+		
+		if(MyScrollbar = 0) {MyScrollbar = instance_create_depth(x,y,depth-1,o_scrollbar,{creator : id})};
+		
+		//item stats screen and display
+		draw_sprite_ext(sp_inventory_screen,0,Xcent+160*scale,Ycent-60*scale,scale,scale,0,c_white,1);
+		draw_sprite_ext(sp_inventory_wep_stats,0,Xcent+160*scale,Ycent+102*scale,scale,scale,0,c_white,1);
+		
+		//equip button draw
+		draw_sprite_ext(sp_button,TriButtonFrames[0],Xcent+76*scale,Ycent+34*scale,scale,scale,0,c_white,1);	
+		draw_text_ext_transformed_color(Xcent+76*scale,Ycent+25*scale,TriButtonText[0],0,500,scale,scale,0,TriButtonColors[0],TriButtonColors[0],TriButtonColors[0],TriButtonColors[0],1);	
+		//desc button draw
+		draw_sprite_ext(sp_button,TriButtonFrames[1],Xcent+168*scale,Ycent+34*scale,scale,scale,0,c_white,1);
+		draw_text_ext_transformed_color(Xcent+169*scale,Ycent+26.5*scale,TriButtonText[1],0,500,scale*0.95,scale*0.95,0,TriButtonColors[1],TriButtonColors[1],TriButtonColors[1],TriButtonColors[1],1);	
+		//drop button draw
+		draw_sprite_ext(sp_button,TriButtonFrames[2],Xcent+251*scale,Ycent+34*scale,scale,scale,0,c_white,1);
+		draw_text_ext_transformed_color(Xcent+251*scale,Ycent+25*scale,TriButtonText[2],0,500,scale,scale,0,TriButtonColors[2],TriButtonColors[2],TriButtonColors[2],TriButtonColors[2],1);
+		
+		while(incrementor_aid < (InventorySize-1)) {
+			var Slot = ds_grid_get(grd_inv_aidd,0,incrementor_aid)
+			if(Slot != 0) {						
+				var ID = ds_grid_get(grd_inv_aidd,8,incrementor_aid);
+				instance_create_depth(x,y,depth-1,o_inventory_item,{
+					MyTab : Tab,
+					MySubTab : SubTab,
+					creator : id, 
+					yoffset : counter_aid,
+					item : Slot,
+					unique_id : ID,
+					scrollbar : MyScrollbar,
+					grid : grd_inv_aidd,
+					MyPlayer : MyPlayer
+				})
+				counter_aid += 1;
+				MyScrollbar.item_count = counter_aid;
+			};
+			incrementor_aid += 1;	
+		};//while loop
+	};//aid tab check
+	#endregion
 	//-------------------------------------------------- Ammo Subtab------------------------------------------------
-	
+	#region ammo subtab
 	if(SubTab = "ammo") {
 		
 		if(MyScrollbar = 0) {MyScrollbar = instance_create_depth(x,y,depth-1,o_scrollbar,{creator : id})};
@@ -210,5 +290,5 @@ if(Tab = "items") {
 			incrementor_ammo += 1;	
 		};//while loop
 	};//ammo tab check
-
+	#endregion
 };//items tab check

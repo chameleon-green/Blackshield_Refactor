@@ -11,6 +11,7 @@
     {"id":{"name":"snd_magin1","path":"sounds/snd_magin1/snd_magin1.yy",},"order":0,},
     {"id":{"name":"snd_flamer_magout","path":"sounds/snd_flamer_magout/snd_flamer_magout.yy",},"order":4,},
     {"id":{"name":"sp_scrollbar","path":"sprites/sp_scrollbar/sp_scrollbar.yy",},"order":4,},
+    {"id":{"name":"ArmorStructs","path":"scripts/ArmorStructs/ArmorStructs.yy",},"order":6,},
     {"id":{"name":"sp_casing_small","path":"sprites/sp_casing_small/sp_casing_small.yy",},"order":1,},
     {"id":{"name":"snd_click_empty","path":"sounds/snd_click_empty/snd_click_empty.yy",},"order":5,},
     {"id":{"name":"snd_chain1","path":"sounds/snd_chain1/snd_chain1.yy",},"order":0,},
@@ -187,6 +188,6 @@
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"desc_blank.txt","CopyToMask":-1,"filePath":"datafiles",},
   ],
   "MetaData": {
-    "IDEVersion": "2022.9.0.49",
+    "IDEVersion": "2022.9.1.51",
   },
 }
