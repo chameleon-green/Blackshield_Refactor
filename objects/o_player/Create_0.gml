@@ -81,6 +81,46 @@ if(variable_instance_exists(id,"MyIC")) {
 }; //IC exists check
 
 //----------------------------------- EQUIPMENT VARIABLES ----------------------------------
+#region set armor cosmetic attachments to blank
+skeleton_attachment_set("slot_head" , "0000_head") 
+skeleton_attachment_set("slot_eyes" , "blank")
+
+skeleton_attachment_set("slot_torso" , "0000_torso") 
+skeleton_attachment_set("slot_collar" , "blank")
+skeleton_attachment_set("slot_backpack" , "blank")
+skeleton_attachment_set("slot_backpack trim" , "blank")
+skeleton_attachment_set("slot_pelvis" , "0000_pelvis")
+
+skeleton_attachment_set("slot_front bicep" , "0000_bicep")  
+skeleton_attachment_set("slot_front forearm" , "0000_forearm")
+skeleton_attachment_set("slot_pauldron" , "blank")  
+skeleton_attachment_set("slot_pauldron trim" , "blank") 
+skeleton_attachment_set("slot_front hand", "0000_hand")
+		
+skeleton_attachment_set("slot_rear bicep" , "0000_bicep") 
+skeleton_attachment_set("slot_rear forearm" , "0000_forearm")
+skeleton_attachment_set("slot_rear pauldron" , "blank") 
+skeleton_attachment_set("slot_holding hand", "0000_holding hand")
+	
+skeleton_attachment_set("slot_front thigh" , "0000_thigh")  
+skeleton_attachment_set("slot_front thigh_trim1" , -1) 
+skeleton_attachment_set("slot_front knee" , "blank")  
+skeleton_attachment_set("slot_front shin" , "0000_shin")  
+skeleton_attachment_set("slot_front foot" , "0000_foot")  
+	
+skeleton_attachment_set("slot_rear thigh" , "0000_thigh")  
+skeleton_attachment_set("slot_rear knee" , "blank") 
+skeleton_attachment_set("slot_rear shin" , "0000_shin")  
+skeleton_attachment_set("slot_rear foot" , "0000_foot")  
+#endregion
+
+//armor durability ratios
+ArmorRatio[0] = 1; //head
+ArmorRatio[1] = 1; //torso
+ArmorRatio[2] = 1; //armL
+ArmorRatio[3] = 1; //armR
+ArmorRatio[4] = 1; //legL
+ArmorRatio[5] = 1; //legR
 
 //equipment statuses
 reloading = 0;

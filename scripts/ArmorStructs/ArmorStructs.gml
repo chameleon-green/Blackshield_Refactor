@@ -90,7 +90,7 @@ function ArmorStructs(){
 		poise : 5, //resistance to knockback and impact stunlock
 		
 		name : "MKII 'Crusade' Pattern Left Vambrace",
-		armor_attachment : ["2000_front forearm","2000_pauldron trim","front hand"],	
+		armor_attachment : ["front bicep","2000_front forearm","pauldron","2000_pauldron trim","front hand"],	
 		description : "desc_blank.txt", 
 		inventory_subimage : [sp_xhair, 6] //subimage for item to appear in inventory		
 	};
@@ -119,7 +119,8 @@ function ArmorStructs(){
 		poise : 5, //resistance to knockback and impact stunlock
 		
 		name : "MKII 'Crusade' Pattern Right Vambrace",
-		armor_attachment : ["2000_front forearm","2000_pauldron trim","front hand"],	
+		//armor_attachment : ["front bicep","2000_front forearm","pauldron","2000_pauldron trim"],	
+		armor_attachment : ["rear bicep","rear forearm","rear pauldron"],	
 		description : "desc_blank.txt", 
 		inventory_subimage : [sp_xhair, 6] //subimage for item to appear in inventory		
 	};
@@ -148,7 +149,8 @@ function ArmorStructs(){
 		poise : 8, //resistance to knockback and impact stunlock
 		
 		name : "MKII 'Crusade' Pattern Left Greave",
-		armor_attachment : ["2000_thigh","2000_knee","2000_shin","2000_foot"],	
+		armor_attachment : ["2000_thigh","2000_thigh_trim","2000_knee","2000_shin","2000_foot"],	
+		
 		description : "desc_blank.txt", 
 		inventory_subimage : [sp_xhair, 6] //subimage for item to appear in inventory		
 	};
@@ -177,7 +179,8 @@ function ArmorStructs(){
 		poise : 8, //resistance to knockback and impact stunlock
 		
 		name : "MKII 'Crusade' Pattern Right Greave",
-		armor_attachment : ["2000_thigh","2000_knee","2000_shin","2000_foot"],	
+		armor_attachment : ["2000_thigh","2000_knee","2000_shin","2000_foot"],
+		
 		description : "desc_blank.txt", 
 		inventory_subimage : [sp_xhair, 6] //subimage for item to appear in inventory		
 	};

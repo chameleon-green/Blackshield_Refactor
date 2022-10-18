@@ -186,6 +186,7 @@ function EquipItem(Item,UniqueID,PlayerID) { //searches grid of items for a spec
 	var IsRangedWeapon = string_count("weapon_ranged",Item.item_type);
 	var IsMeleeWeapon = string_count("weapon_melee",Item.item_type);
 	var IsAmmo = string_count("ammo",Item.item_type);
+	var IsArmor = string_count("armor",Item.item_type);
 		
 	#region Ranged weapon swaps
 	if(IsRangedWeapon) {
@@ -351,7 +352,66 @@ function EquipItem(Item,UniqueID,PlayerID) { //searches grid of items for a spec
 		
 	};
 	#endregion
-};
+	
+	#region armor equiping
+	if(IsArmor) {
+		var Grid = grd_inv_armr;		
+		var VarString = -1; //string for the variable to change in the player object
+		
+		if(string_count("head",Item.item_type)) {VarString = "armor_head"};
+		else if(string_count("torso",Item.item_type)) {VarString = "armor_torso"};
+		else if(string_count("armL",Item.item_type)) {VarString = "armor_armL"};
+		else if(string_count("armR",Item.item_type)) {VarString = "armor_armR"};
+		else if(string_count("legL",Item.item_type)) {VarString = "armor_legL"};
+		else if(string_count("legR",Item.item_type)) {VarString = "armor_legR"};
+		
+		var Array = variable_instance_get(PlayerID,VarString); //set the armor item 
+		Array[0] = Item;
+		Array[1] = UniqueID;		
+		variable_instance_set(PlayerID,VarString,Array); //set the unique ID for the item
+		
+		with(PlayerID) {						
+			if(VarString = "armor_head"){
+				skeleton_attachment_set("slot_head" , Item.armor_attachment[0]) 
+				skeleton_attachment_set("slot_eyes" , Item.armor_attachment[1])				
+			};
+			else if(VarString = "armor_torso"){
+				skeleton_attachment_set("slot_torso" , Item.armor_attachment[0]); 
+				skeleton_attachment_set("slot_collar" ,  Item.armor_attachment[1]);
+				skeleton_attachment_set("slot_backpack" ,  Item.armor_attachment[2]);
+				skeleton_attachment_set("slot_backpack trim" ,  Item.armor_attachment[3]);
+				skeleton_attachment_set("slot_pelvis" ,  Item.armor_attachment[4]);
+			};
+			else if(VarString = "armor_armL"){				
+				skeleton_attachment_set("slot_front bicep" , Item.armor_attachment[0])  
+				skeleton_attachment_set("slot_front forearm" ,Item.armor_attachment[1])
+				skeleton_attachment_set("slot_pauldron" , Item.armor_attachment[2])  
+				skeleton_attachment_set("slot_pauldron trim" , Item.armor_attachment[3]) 
+				skeleton_attachment_set("slot_front hand", Item.armor_attachment[4])				
+			};
+			else if(VarString = "armor_armR"){
+				skeleton_attachment_set("slot_rear bicep" , Item.armor_attachment[0]) 
+				skeleton_attachment_set("slot_rear forearm" , Item.armor_attachment[1])
+				skeleton_attachment_set("slot_rear pauldron" , Item.armor_attachment[2]) 				
+			};
+			else if(VarString = "armor_legL"){
+				skeleton_attachment_set("slot_front thigh" , Item.armor_attachment[0])  
+				skeleton_attachment_set("slot_front thigh_trim1" , Item.armor_attachment[1]) 
+				skeleton_attachment_set("slot_front knee" , Item.armor_attachment[2])  
+				skeleton_attachment_set("slot_front shin" , Item.armor_attachment[3])  
+				skeleton_attachment_set("slot_front foot" , Item.armor_attachment[4])  				
+			};
+			else if(VarString = "armor_legR"){
+				skeleton_attachment_set("slot_rear thigh" , Item.armor_attachment[0])  
+				skeleton_attachment_set("slot_rear knee" , Item.armor_attachment[1]) 
+				skeleton_attachment_set("slot_rear shin" , Item.armor_attachment[2])  
+				skeleton_attachment_set("slot_rear foot" , Item.armor_attachment[3]) 				
+			};
+						
+		};
+	};		
+	#endregion
+}; //equip item function end bracket
 
 #endregion
 

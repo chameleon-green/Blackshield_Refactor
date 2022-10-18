@@ -20,7 +20,13 @@ var IsEquipped = ( (MyPlayer.wpn_primary_id = unique_id) or
 				   (MyPlayer.ammo_primary_id = unique_id) or
 				   (MyPlayer.ammo_primary = item) or 
 				   (MyPlayer.ammo_secondary = item) or 
-				   (MyPlayer.ammo_active = item)
+				   (MyPlayer.ammo_active = item) or
+				   (MyPlayer.armor_head[1] = unique_id) or
+				   (MyPlayer.armor_torso[1] = unique_id) or
+				   (MyPlayer.armor_armL[1] = unique_id) or
+				   (MyPlayer.armor_armR[1] = unique_id) or
+				   (MyPlayer.armor_legL[1] = unique_id) or
+				   (MyPlayer.armor_legR[1] = unique_id)
 				 );
 
 //------------------------------------------ Coordinate Stuff -------------------------------------------------

@@ -77,9 +77,11 @@ AddItem(Ammo_Auto_Ball,300,grd_inv_ammo,InventorySize);
 AddItem(Ammo_Autocannon_Ball,300,grd_inv_ammo,InventorySize);
 
 AddItem(Armor_Torso_2000,1,grd_inv_armr,InventorySize);
-AddItem(Armor_Torso_2000,1,grd_inv_armr,InventorySize);
-AddItem(Armor_Torso_2000,1,grd_inv_armr,InventorySize);
-AddItem(Armor_Torso_2000,1,grd_inv_armr,InventorySize);
+AddItem(Armor_Head_2000,1,grd_inv_armr,InventorySize);
+AddItem(Armor_ArmL_2000,1,grd_inv_armr,InventorySize);
+AddItem(Armor_ArmR_2000,1,grd_inv_armr,InventorySize);
+AddItem(Armor_LegL_2000,1,grd_inv_armr,InventorySize);
+AddItem(Armor_LegR_2000,1,grd_inv_armr,InventorySize);
 
 //----------------------------------------- Create Player ---------------------------------------
 

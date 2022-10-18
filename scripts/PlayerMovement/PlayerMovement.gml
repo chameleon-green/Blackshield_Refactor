@@ -73,7 +73,7 @@ if(CanMove) {
 		
 	if(D) {
 		if(face_left) {
-			hspd = (move*CanMove)*0.5; 
+			hspd = (move*CanMove)*0.5; 			
 			if(col_bot) {
 				if( (wpn_active.weapon_slot[0]="melee") && (wpn_active.weapon_slot[1]=3) ) {skeleton_animation_clear(5)};
 				skeleton_anim_set_step(backwalk,2)
@@ -94,6 +94,7 @@ if(CanMove) {
 	if(A) {
 		if(face_right) {
 			hspd = (move*CanMove)*0.5; 
+			skeleton_anim_set_step(backwalk,2);
 			if(col_bot) {
 				if( (wpn_active.weapon_slot[0]="melee") && (wpn_active.weapon_slot[1]=3) ) {skeleton_animation_clear(5)};
 				skeleton_anim_set_step(backwalk,2);
@@ -169,7 +170,7 @@ if(place_meeting(x+hspd*2,y,o_platform)){
 		};
 };
 
-if ( (abs(hspd) <= 6) && !rolling and !crouching) {
+if (!A && !D && (abs(hspd) <= 6) && !rolling and !crouching) {
 	skeleton_animation_clear(2)
 };
 
