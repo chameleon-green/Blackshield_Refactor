@@ -148,6 +148,7 @@ if(Tab = "items") {
 			if(Slot != 0) {						
 				var ID = ds_grid_get(grd_inv_wepn,8,incrementor_weapons);
 				instance_create_depth(x,y,depth-1,o_inventory_item,{
+					GridYValue : other.incrementor_weapons,
 					MyTab : Tab,
 					MySubTab : SubTab,
 					creator : id, 
@@ -190,6 +191,7 @@ if(Tab = "items") {
 			if(Slot != 0) {						
 				var ID = ds_grid_get(grd_inv_armr,8,incrementor_armor);
 				instance_create_depth(x,y,depth-1,o_inventory_item,{
+					GridYValue : other.incrementor_armor,
 					MyTab : Tab,
 					MySubTab : SubTab,
 					creator : id, 
@@ -232,6 +234,7 @@ if(Tab = "items") {
 			if(Slot != 0) {						
 				var ID = ds_grid_get(grd_inv_aidd,8,incrementor_aid);
 				instance_create_depth(x,y,depth-1,o_inventory_item,{
+					GridYValue : other.incrementor_aid,
 					MyTab : Tab,
 					MySubTab : SubTab,
 					creator : id, 
@@ -274,6 +277,7 @@ if(Tab = "items") {
 			if(Slot != 0) {						
 				var ID = ds_grid_get(grd_inv_ammo,8,incrementor_ammo);
 				instance_create_depth(x,y,depth-1,o_inventory_item,{
+					GridYValue : other.incrementor_ammo,
 					MyTab : Tab,
 					MySubTab : SubTab,
 					creator : id, 

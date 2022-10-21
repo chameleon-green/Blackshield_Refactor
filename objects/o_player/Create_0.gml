@@ -32,6 +32,60 @@ col_bot = 1;
 col_right = 0;
 col_left = 0;
 
+//------------------------------------------- STATS STRUCTS AND HITBOXES ------------------------------------------------
+
+#region Base stats, stats and stat modifier structs
+Base = {		
+	AGI : 100, 
+	CHR : 100,
+	DEX : 100, 
+	END : 100,
+	INT : 100, 
+	LCK : 100,
+	PER : 100, 
+	STR : 100,		
+	WIL : 100						
+	};
+	
+Mod = {		
+	AGI : 00, 
+	CHR : 00,
+	DEX : 00, 
+	END : 00,
+	INT : 00, 
+	LCK : 00,
+	PER : 00, 
+	STR : 00,		
+	WIL : 00						
+	};
+#endregion
+
+resist_base = [0,0,0,0,0,0,0,0,0];
+resist_head = [0,0,0,0,0,0,0,0,0]; //phys0, ther1, cryo2, corr3, radi4, elec5, hazm6, warp7
+resist_torso = [0,0,0,0,0,0,0,0,0];
+resist_armL = [0,0,0,0,0,0,0,0,0];
+resist_armR = [0,0,0,0,0,0,0,0,0];
+resist_legL = [0,0,0,0,0,0,0,0,0];
+resist_legR = [0,0,0,0,0,0,0,0,0];
+
+hbox_head = [20,146,-20,176];
+hbox_torso = [30,85,-30,145];
+hbox_legs = [30,0,-30,84];
+
+PlayerStatsCalculator();
+
+HP = MaxHP;
+
+hp_body_head = hp_body_head_max;
+hp_body_torso = hp_body_torso_max;
+hp_body_armL = hp_body_armL_max;
+hp_body_armR = hp_body_armR_max;
+hp_body_legL = hp_body_legL_max;
+hp_body_legR = hp_body_legR_max;
+
+collisions_list_timer = time_source_create(time_source_game,60,time_source_units_frames,_mymethod);
+collisions_list = ds_list_create(); //collisions list for bullets to prevent them from continuously colliding
+
 //----------------------------------- find weapons and armor ------------------------------------
 
 //set base animation
@@ -43,13 +97,13 @@ wpn_primary_id = -2; wpn_secondary_id = -3; wpn_active_id = wpn_primary_id;
 magazine_primary = 0; magazine_secondary = 0; magazine_active = 0;
 ammo_primary = 0; ammo_secondary = 0; ammo_primary_id = -1; ammo_secondary_id = -1; 
 
-//initialize armor item and item ID as blank (we are naked)
-armor_head = ["none",-1];
-armor_torso = ["none",-1];
-armor_armL = ["none",-1];
-armor_armR = ["none",-1];
-armor_legL = ["none",-1];
-armor_legR = ["none",-1];
+//initialize armor item and item ID as blank (we are naked), set armor ratio to 1
+armor_head = ["none",-1,1];
+armor_torso = ["none",-1,1];
+armor_armL = ["none",-1,1];
+armor_armR = ["none",-1,1];
+armor_legL = ["none",-1,1];
+armor_legR = ["none",-1,1];
 
 var IC_ID = -1;
 if(variable_instance_exists(id,"MyIC")) {
@@ -113,14 +167,6 @@ skeleton_attachment_set("slot_rear knee" , "blank")
 skeleton_attachment_set("slot_rear shin" , "0000_shin")  
 skeleton_attachment_set("slot_rear foot" , "0000_foot")  
 #endregion
-
-//armor durability ratios
-ArmorRatio[0] = 1; //head
-ArmorRatio[1] = 1; //torso
-ArmorRatio[2] = 1; //armL
-ArmorRatio[3] = 1; //armR
-ArmorRatio[4] = 1; //legL
-ArmorRatio[5] = 1; //legR
 
 //equipment statuses
 reloading = 0;
@@ -204,35 +250,6 @@ Func_HeavyAttack = function(){
 	time_source_start(melee_reset_timer);
 };
 #endregion				
-
-//------------------------------------------- STATS STRUCTS ------------------------------------------------
-
-#region Base stats, stats and stat modifier structs
-Base = {		
-	AGI : 100, 
-	CHR : 100,
-	DEX : 100, 
-	END : 100,
-	INT : 100, 
-	LCK : 100,
-	PER : 100, 
-	STR : 100,		
-	WIL : 100						
-	};
-	
-Mod = {		
-	AGI : 00, 
-	CHR : 00,
-	DEX : 00, 
-	END : 00,
-	INT : 00, 
-	LCK : 00,
-	PER : 00, 
-	STR : 00,		
-	WIL : 00						
-	};
-#endregion
-PlayerStatsCalculator();
 
 //---------------------------------- INSTANCE CREATION --------------------------------
 

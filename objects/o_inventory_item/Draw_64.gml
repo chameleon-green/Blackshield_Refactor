@@ -49,7 +49,7 @@ draw_set_halign(fa_center);
 draw_set_valign(fa_center);
 
 var MyDisplacement = (Ycent - y)/scale;
-var GridYValue = ds_grid_value_y(grid,0,0,ds_grid_width(grid),ds_grid_height(grid),unique_id);
+//var GridYValue = ds_grid_value_y(grid,0,0,ds_grid_width(grid),ds_grid_height(grid),unique_id);
 var Quantity = ds_grid_get(grid,1,GridYValue);
 var TitleText = item.name;
 

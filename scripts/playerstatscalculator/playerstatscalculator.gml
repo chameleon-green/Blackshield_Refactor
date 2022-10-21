@@ -37,6 +37,16 @@ function PlayerStatsCalculator() {
 	
 	CritChance = (StatAsymptote(LCK , 500))/1000;
 	CritMod = (StatAsymptote( (100+PER) + (LCK/2) , 350 ))/100; 
+	
+	//+++++++++++++++++++++++++++++++++++++++++++++++++++ HP STUFF +++++++++++++++++++++++++++++++++++++++++++
+	
+	hp_body_head_max = round(BaseMaxHP*0.11);
+	hp_body_torso_max = round(BaseMaxHP*0.23);
+	hp_body_armL_max = round(BaseMaxHP*0.13);
+	hp_body_armR_max = round(BaseMaxHP*0.13);
+	hp_body_legL_max = round(BaseMaxHP*0.2);
+	hp_body_legR_max = round(BaseMaxHP*0.2);
+	
 	//++++++++++++++++++++++++++++++ MOVESPEED CALCS (complicated) +++++++++++++++++++++++++
 
 	/*
@@ -69,15 +79,6 @@ function PlayerStatsCalculator() {
 
 	var WeightlessMoveSpeed = clamp(AdjustedSpeed,0,38) / (LegsCrippled + 1) //clamp movespeed to min and max
 
-	//+++++++++++++++++++++++++++++++++++++++++++++++++++ HP STUFF +++++++++++++++++++++++++++++++++++++++++++
-	
-	hp_body_head_max = baseMaxHP*0.11
-	hp_body_torso_max = baseMaxHP*0.23
-	hp_body_llarm_max = baseMaxHP*0.13
-	hp_body_rarm_max = baseMaxHP*0.13
-	hp_body_lleg_max = baseMaxHP*0.2
-	hp_body_rleg_max = baseMaxHP*0.2
-	
 	//+++++++++++++++++++++++++++++++++++++++++++++++ BASE RESISTANCES ++++++++++++++++++++++++++++++++++++++++
 
 	//bolt pistol hits for 20 dmg

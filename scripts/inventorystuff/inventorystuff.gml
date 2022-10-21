@@ -372,8 +372,19 @@ function EquipItem(Item,UniqueID,PlayerID) { //searches grid of items for a spec
 		
 		with(PlayerID) {						
 			if(VarString = "armor_head"){
-				skeleton_attachment_set("slot_head" , Item.armor_attachment[0]) 
-				skeleton_attachment_set("slot_eyes" , Item.armor_attachment[1])				
+				skeleton_attachment_set("slot_head" , Item.armor_attachment[0]); 
+				skeleton_attachment_set("slot_eyes" , Item.armor_attachment[1]);	
+				var DRatio = clamp(1,0.25,1);
+				var PHYS = (Item.rPHYS + 0)*DRatio;
+				var THER = (Item.rTHER + 0)*DRatio;
+				var CRYO = (Item.rCRYO + 0)*DRatio;
+				var CORR = (Item.rCORR + 0)*DRatio;
+				var RADI = (Item.rRADI + 0)*DRatio;
+				var ELEC = (Item.rELEC + 0)*DRatio;
+				var HAZM = (Item.rHAZM + 0)*DRatio;
+				var WARP = (Item.rWARP + 0)*DRatio;	
+				
+				resist_head = [PHYS,THER,CRYO,CORR,RADI,ELEC,HAZM,WARP];
 			};
 			else if(VarString = "armor_torso"){
 				skeleton_attachment_set("slot_torso" , Item.armor_attachment[0]); 
@@ -381,31 +392,86 @@ function EquipItem(Item,UniqueID,PlayerID) { //searches grid of items for a spec
 				skeleton_attachment_set("slot_backpack" ,  Item.armor_attachment[2]);
 				skeleton_attachment_set("slot_backpack trim" ,  Item.armor_attachment[3]);
 				skeleton_attachment_set("slot_pelvis" ,  Item.armor_attachment[4]);
+				var DRatio = clamp(1,0.25,1);
+				var PHYS = (Item.rPHYS + 0)*DRatio;
+				var THER = (Item.rTHER + 0)*DRatio;
+				var CRYO = (Item.rCRYO + 0)*DRatio;
+				var CORR = (Item.rCORR + 0)*DRatio;
+				var RADI = (Item.rRADI + 0)*DRatio;
+				var ELEC = (Item.rELEC + 0)*DRatio;
+				var HAZM = (Item.rHAZM + 0)*DRatio;
+				var WARP = (Item.rWARP + 0)*DRatio;	
+				
+				resist_torso = [PHYS,THER,CRYO,CORR,RADI,ELEC,HAZM,WARP];
 			};
 			else if(VarString = "armor_armL"){				
-				skeleton_attachment_set("slot_front bicep" , Item.armor_attachment[0])  
-				skeleton_attachment_set("slot_front forearm" ,Item.armor_attachment[1])
-				skeleton_attachment_set("slot_pauldron" , Item.armor_attachment[2])  
-				skeleton_attachment_set("slot_pauldron trim" , Item.armor_attachment[3]) 
-				skeleton_attachment_set("slot_front hand", Item.armor_attachment[4])				
+				skeleton_attachment_set("slot_front bicep" , Item.armor_attachment[0]);  
+				skeleton_attachment_set("slot_front forearm" ,Item.armor_attachment[1]);
+				skeleton_attachment_set("slot_pauldron" , Item.armor_attachment[2]);  
+				skeleton_attachment_set("slot_pauldron trim" , Item.armor_attachment[3]); 
+				skeleton_attachment_set("slot_front hand", Item.armor_attachment[4]);
+				var DRatio = clamp(1,0.25,1);
+				var PHYS = (Item.rPHYS + 0)*DRatio;
+				var THER = (Item.rTHER + 0)*DRatio;
+				var CRYO = (Item.rCRYO + 0)*DRatio;
+				var CORR = (Item.rCORR + 0)*DRatio;
+				var RADI = (Item.rRADI + 0)*DRatio;
+				var ELEC = (Item.rELEC + 0)*DRatio;
+				var HAZM = (Item.rHAZM + 0)*DRatio;
+				var WARP = (Item.rWARP + 0)*DRatio;	
+				
+				resist_armL = [PHYS,THER,CRYO,CORR,RADI,ELEC,HAZM,WARP];
 			};
 			else if(VarString = "armor_armR"){
-				skeleton_attachment_set("slot_rear bicep" , Item.armor_attachment[0]) 
-				skeleton_attachment_set("slot_rear forearm" , Item.armor_attachment[1])
-				skeleton_attachment_set("slot_rear pauldron" , Item.armor_attachment[2]) 				
+				skeleton_attachment_set("slot_rear bicep" , Item.armor_attachment[0]); 
+				skeleton_attachment_set("slot_rear forearm" , Item.armor_attachment[1]);
+				skeleton_attachment_set("slot_rear pauldron" , Item.armor_attachment[2]);
+				var DRatio = clamp(1,0.25,1);
+				var PHYS = (Item.rPHYS + 0)*DRatio;
+				var THER = (Item.rTHER + 0)*DRatio;
+				var CRYO = (Item.rCRYO + 0)*DRatio;
+				var CORR = (Item.rCORR + 0)*DRatio;
+				var RADI = (Item.rRADI + 0)*DRatio;
+				var ELEC = (Item.rELEC + 0)*DRatio;
+				var HAZM = (Item.rHAZM + 0)*DRatio;
+				var WARP = (Item.rWARP + 0)*DRatio;	
+				
+				resist_armR = [PHYS,THER,CRYO,CORR,RADI,ELEC,HAZM,WARP];
 			};
 			else if(VarString = "armor_legL"){
-				skeleton_attachment_set("slot_front thigh" , Item.armor_attachment[0])  
-				skeleton_attachment_set("slot_front thigh_trim1" , Item.armor_attachment[1]) 
-				skeleton_attachment_set("slot_front knee" , Item.armor_attachment[2])  
-				skeleton_attachment_set("slot_front shin" , Item.armor_attachment[3])  
-				skeleton_attachment_set("slot_front foot" , Item.armor_attachment[4])  				
+				skeleton_attachment_set("slot_front thigh" , Item.armor_attachment[0]);  
+				skeleton_attachment_set("slot_front thigh_trim1" , Item.armor_attachment[1]); 
+				skeleton_attachment_set("slot_front knee" , Item.armor_attachment[2]);  
+				skeleton_attachment_set("slot_front shin" , Item.armor_attachment[3]);  
+				skeleton_attachment_set("slot_front foot" , Item.armor_attachment[4]);
+				var DRatio = clamp(1,0.25,1);
+				var PHYS = (Item.rPHYS + 0)*DRatio;
+				var THER = (Item.rTHER + 0)*DRatio;
+				var CRYO = (Item.rCRYO + 0)*DRatio;
+				var CORR = (Item.rCORR + 0)*DRatio;
+				var RADI = (Item.rRADI + 0)*DRatio;
+				var ELEC = (Item.rELEC + 0)*DRatio;
+				var HAZM = (Item.rHAZM + 0)*DRatio;
+				var WARP = (Item.rWARP + 0)*DRatio;	
+				
+				resist_legL = [PHYS,THER,CRYO,CORR,RADI,ELEC,HAZM,WARP];
 			};
 			else if(VarString = "armor_legR"){
-				skeleton_attachment_set("slot_rear thigh" , Item.armor_attachment[0])  
-				skeleton_attachment_set("slot_rear knee" , Item.armor_attachment[1]) 
-				skeleton_attachment_set("slot_rear shin" , Item.armor_attachment[2])  
-				skeleton_attachment_set("slot_rear foot" , Item.armor_attachment[3]) 				
+				skeleton_attachment_set("slot_rear thigh" , Item.armor_attachment[0]);  
+				skeleton_attachment_set("slot_rear knee" , Item.armor_attachment[1]); 
+				skeleton_attachment_set("slot_rear shin" , Item.armor_attachment[2]); 
+				skeleton_attachment_set("slot_rear foot" , Item.armor_attachment[3]);	
+				var DRatio = clamp(1,0.25,1);
+				var PHYS = (Item.rPHYS + 0)*DRatio;
+				var THER = (Item.rTHER + 0)*DRatio;
+				var CRYO = (Item.rCRYO + 0)*DRatio;
+				var CORR = (Item.rCORR + 0)*DRatio;
+				var RADI = (Item.rRADI + 0)*DRatio;
+				var ELEC = (Item.rELEC + 0)*DRatio;
+				var HAZM = (Item.rHAZM + 0)*DRatio;
+				var WARP = (Item.rWARP + 0)*DRatio;	
+				
+				resist_legR = [PHYS,THER,CRYO,CORR,RADI,ELEC,HAZM,WARP];
 			};
 						
 		};
