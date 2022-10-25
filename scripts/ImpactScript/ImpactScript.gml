@@ -31,15 +31,17 @@ function ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy=0){
 									
 					if(!Enemy){ //damage our armor durability based on how much the damage compares to our resist
 						var ItemID = ArmorArray[1];
-						var Grid = MyIC.grd_inv_armr;
-						var YVal = ds_grid_value_y(Grid,0,0,ds_grid_width(Grid),ds_grid_height(Grid),ItemID);
-						if(YVal != -1){
-							var CurrentDurability = ds_grid_get(Grid,2,YVal);
-							var DuraLoss = 1;//clamp(Damage*(Damage/resist),1,9999);
-							var NewDurability = clamp(CurrentDurability-DuraLoss,0,9999999999999);								
-							ds_grid_set(Grid,2,YVal,NewDurability);
-							ArmorArray[2] = clamp(NewDurability/ArmorArray[0].durability_max,0.2,1);
-						};
+						if(ItemID != -1) {					
+							var Grid = MyIC.grd_inv_armr;
+							var YVal = ds_grid_value_y(Grid,0,0,ds_grid_width(Grid),ds_grid_height(Grid),ItemID);
+							if(YVal != -1){
+								var CurrentDurability = ds_grid_get(Grid,2,YVal);
+								var DuraLoss = 1;//clamp(Damage*(Damage/resist),1,9999);
+								var NewDurability = clamp(CurrentDurability-DuraLoss,0,9999999999999);								
+								ds_grid_set(Grid,2,YVal,NewDurability);
+								ArmorArray[2] = clamp(NewDurability/ArmorArray[0].durability_max,0.2,1);
+							};
+						}; //item ID check
 					}; //enemy check
 					else{};
 					
@@ -54,15 +56,17 @@ function ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy=0){
 					variable_instance_set(id,"hp_body_"+Limb,LimbVariable-NetDamage);
 					if(!Enemy){ //damage our armor durability based on how much the damage compares to our resist
 						var ItemID = ArmorArray[1];
-						var Grid = MyIC.grd_inv_armr;
-						var YVal = ds_grid_value_y(Grid,0,0,ds_grid_width(Grid),ds_grid_height(Grid),ItemID);
-						if(YVal != -1){
-							var CurrentDurability = ds_grid_get(Grid,2,YVal);
-							var DuraLoss = NetDamage;
-							var NewDurability = clamp(CurrentDurability-DuraLoss,0,9999999999999);								
-							ds_grid_set(Grid,2,YVal,NewDurability);
-							ArmorArray[2] = clamp(NewDurability/ArmorArray[0].durability_max,0.2,1);
-						};
+						if(ItemID != -1) {	
+							var Grid = MyIC.grd_inv_armr;
+							var YVal = ds_grid_value_y(Grid,0,0,ds_grid_width(Grid),ds_grid_height(Grid),ItemID);
+							if(YVal != -1){
+								var CurrentDurability = ds_grid_get(Grid,2,YVal);
+								var DuraLoss = NetDamage;
+								var NewDurability = clamp(CurrentDurability-DuraLoss,0,9999999999999);								
+								ds_grid_set(Grid,2,YVal,NewDurability);
+								ArmorArray[2] = clamp(NewDurability/ArmorArray[0].durability_max,0.2,1);
+							};
+						}; //item ID check
 					Bullet.hp -= resist;
 					Bullet.damage = Bullet.hp;
 					if(Bullet.hp <= Bullet.fuse) {instance_destroy(Bullet)};

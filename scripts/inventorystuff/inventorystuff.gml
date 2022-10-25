@@ -365,16 +365,19 @@ function EquipItem(Item,UniqueID,PlayerID) { //searches grid of items for a spec
 		else if(string_count("legL",Item.item_type)) {VarString = "armor_legL"};
 		else if(string_count("legR",Item.item_type)) {VarString = "armor_legR"};
 		
+		var ItemDurability = ds_grid_get(Grid,2,ds_grid_value_y(Grid,0,0,ds_grid_width(Grid),ds_grid_height(Grid),UniqueID));
+		var ItemMaxDurability = Item.durability_max;
 		var Array = variable_instance_get(PlayerID,VarString); //set the armor item 
 		Array[0] = Item;
-		Array[1] = UniqueID;		
+		Array[1] = UniqueID;
+		Array[2] = clamp(ItemDurability/ItemMaxDurability,0.2,1);
 		variable_instance_set(PlayerID,VarString,Array); //set the unique ID for the item
 		
 		with(PlayerID) {						
 			if(VarString = "armor_head"){
 				skeleton_attachment_set("slot_head" , Item.armor_attachment[0]); 
 				skeleton_attachment_set("slot_eyes" , Item.armor_attachment[1]);	
-				var DRatio = clamp(1,0.25,1);
+				var DRatio = clamp(ItemDurability/ItemMaxDurability,0.2,1);
 				var PHYS = (Item.rPHYS + 0)*DRatio;
 				var THER = (Item.rTHER + 0)*DRatio;
 				var CRYO = (Item.rCRYO + 0)*DRatio;
@@ -392,7 +395,7 @@ function EquipItem(Item,UniqueID,PlayerID) { //searches grid of items for a spec
 				skeleton_attachment_set("slot_backpack" ,  Item.armor_attachment[2]);
 				skeleton_attachment_set("slot_backpack trim" ,  Item.armor_attachment[3]);
 				skeleton_attachment_set("slot_pelvis" ,  Item.armor_attachment[4]);
-				var DRatio = clamp(1,0.25,1);
+				var DRatio = clamp(ItemDurability/ItemMaxDurability,0.2,1);
 				var PHYS = (Item.rPHYS + 0)*DRatio;
 				var THER = (Item.rTHER + 0)*DRatio;
 				var CRYO = (Item.rCRYO + 0)*DRatio;
@@ -410,7 +413,7 @@ function EquipItem(Item,UniqueID,PlayerID) { //searches grid of items for a spec
 				skeleton_attachment_set("slot_pauldron" , Item.armor_attachment[2]);  
 				skeleton_attachment_set("slot_pauldron trim" , Item.armor_attachment[3]); 
 				skeleton_attachment_set("slot_front hand", Item.armor_attachment[4]);
-				var DRatio = clamp(1,0.25,1);
+				var DRatio = clamp(ItemDurability/ItemMaxDurability,0.2,1);
 				var PHYS = (Item.rPHYS + 0)*DRatio;
 				var THER = (Item.rTHER + 0)*DRatio;
 				var CRYO = (Item.rCRYO + 0)*DRatio;
@@ -426,7 +429,7 @@ function EquipItem(Item,UniqueID,PlayerID) { //searches grid of items for a spec
 				skeleton_attachment_set("slot_rear bicep" , Item.armor_attachment[0]); 
 				skeleton_attachment_set("slot_rear forearm" , Item.armor_attachment[1]);
 				skeleton_attachment_set("slot_rear pauldron" , Item.armor_attachment[2]);
-				var DRatio = clamp(1,0.25,1);
+				var DRatio = clamp(ItemDurability/ItemMaxDurability,0.2,1);
 				var PHYS = (Item.rPHYS + 0)*DRatio;
 				var THER = (Item.rTHER + 0)*DRatio;
 				var CRYO = (Item.rCRYO + 0)*DRatio;
@@ -444,7 +447,7 @@ function EquipItem(Item,UniqueID,PlayerID) { //searches grid of items for a spec
 				skeleton_attachment_set("slot_front knee" , Item.armor_attachment[2]);  
 				skeleton_attachment_set("slot_front shin" , Item.armor_attachment[3]);  
 				skeleton_attachment_set("slot_front foot" , Item.armor_attachment[4]);
-				var DRatio = clamp(1,0.25,1);
+				var DRatio = clamp(ItemDurability/ItemMaxDurability,0.2,1);
 				var PHYS = (Item.rPHYS + 0)*DRatio;
 				var THER = (Item.rTHER + 0)*DRatio;
 				var CRYO = (Item.rCRYO + 0)*DRatio;
@@ -461,7 +464,7 @@ function EquipItem(Item,UniqueID,PlayerID) { //searches grid of items for a spec
 				skeleton_attachment_set("slot_rear knee" , Item.armor_attachment[1]); 
 				skeleton_attachment_set("slot_rear shin" , Item.armor_attachment[2]); 
 				skeleton_attachment_set("slot_rear foot" , Item.armor_attachment[3]);	
-				var DRatio = clamp(1,0.25,1);
+				var DRatio = clamp(ItemDurability/ItemMaxDurability,0.2,1);
 				var PHYS = (Item.rPHYS + 0)*DRatio;
 				var THER = (Item.rTHER + 0)*DRatio;
 				var CRYO = (Item.rCRYO + 0)*DRatio;
