@@ -7,5 +7,5 @@ instance_create_depth(x,y,depth-1,o_bullet,{
 			damage : 30,
 			damage_type : "physical",
 			direction : 180,
-			speed : 25
+			speed : 10
 })

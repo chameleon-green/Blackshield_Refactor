@@ -245,7 +245,7 @@ MK2/2000_backpack
 bounds:73,53,73,33
 rotate:90
 MK2/2000_collar
-bounds:133,76,50,24
+bounds:145,76,50,24
 rotate:90
 MK2/2000_eyes
 bounds:39,2,19,5
@@ -261,10 +261,10 @@ MK2/2000_head
 bounds:153,2,33,32
 rotate:90
 MK2/2000_knee
-bounds:159,90,36,23
+bounds:171,90,36,23
 rotate:90
 MK2/2000_pelvis
-bounds:108,71,55,23
+bounds:108,71,55,35
 rotate:90
 MK2/2000_rear thigh
 bounds:39,9,42,51

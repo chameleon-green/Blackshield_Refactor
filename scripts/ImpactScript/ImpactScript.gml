@@ -27,19 +27,49 @@ function ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy=0){
 				
 				if(Damage <= resist){
 					
-					instance_destroy(Bullet);
+					audio_play_sound(choose(snd_impact_metal1,snd_impact_metal2,snd_impact_metal3),1,0,1,0,random_range(0.9,1.1));
+									
+					if(!Enemy){ //damage our armor durability based on how much the damage compares to our resist
+						var ItemID = ArmorArray[1];
+						var Grid = MyIC.grd_inv_armr;
+						var YVal = ds_grid_value_y(Grid,0,0,ds_grid_width(Grid),ds_grid_height(Grid),ItemID);
+						if(YVal != -1){
+							var CurrentDurability = ds_grid_get(Grid,2,YVal);
+							var DuraLoss = 1;//clamp(Damage*(Damage/resist),1,9999);
+							var NewDurability = clamp(CurrentDurability-DuraLoss,0,9999999999999);								
+							ds_grid_set(Grid,2,YVal,NewDurability);
+							ArmorArray[2] = clamp(NewDurability/ArmorArray[0].durability_max,0.2,1);
+						};
+					}; //enemy check
+					else{};
 					
-					if(!Enemy){
-						
-					};
+					
+					
+					instance_destroy(Bullet);
 				};
 				else if(Damage > resist) {
 					
 					var LimbVariable = variable_instance_get(id,"hp_body_"+Limb);
 					var NetDamage = Damage - resist;
 					variable_instance_set(id,"hp_body_"+Limb,LimbVariable-NetDamage);
-						if(!Enemy){
+					if(!Enemy){ //damage our armor durability based on how much the damage compares to our resist
+						var ItemID = ArmorArray[1];
+						var Grid = MyIC.grd_inv_armr;
+						var YVal = ds_grid_value_y(Grid,0,0,ds_grid_width(Grid),ds_grid_height(Grid),ItemID);
+						if(YVal != -1){
+							var CurrentDurability = ds_grid_get(Grid,2,YVal);
+							var DuraLoss = NetDamage;
+							var NewDurability = clamp(CurrentDurability-DuraLoss,0,9999999999999);								
+							ds_grid_set(Grid,2,YVal,NewDurability);
+							ArmorArray[2] = clamp(NewDurability/ArmorArray[0].durability_max,0.2,1);
 						};
+					Bullet.hp -= resist;
+					Bullet.damage = Bullet.hp;
+					if(Bullet.hp <= Bullet.fuse) {instance_destroy(Bullet)};
+					}; //enemy check
+					else{};
+					
+					
 					return NetDamage;
 				};
 				

@@ -40,7 +40,7 @@ function ArmorStructs(){
 		item_type : "power_armor_torso",
 		
 		weight : 110, //weight in lbs
-		durability_max : 1000,
+		durability_max : 100,
 		rarity : "1350.common",	
 		
 		heat_generation : 25, //heat and armor generation 

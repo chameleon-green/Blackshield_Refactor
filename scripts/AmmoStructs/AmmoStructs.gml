@@ -24,7 +24,7 @@ function AmmoStructs() {
 		damage_type : ["physical","PHYS"],
 		armor_penetration : 0.25,
 		guidance : "dumb",
-		fuse : 0.5, //how much resistance the projectile must encounter to detonate, as a factor of its dmg
+		fuse : 0.25, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive. 
 		special : "none", //an array of any special effects
 		
 		weight : 0.15, //weight in lbs
@@ -40,10 +40,10 @@ function AmmoStructs() {
 		inventory_subimage : [sp_bolt_ammo, 0]
 	};
 	
-	Ammo_Bolt_Kraken = { //---------------------------- STANDARD BOLT ROUNDS
+	Ammo_Bolt_Kraken = { //---------------------------- KRAKEN BOLT ROUNDS
 		
 		item_type : "ammo_bolt",
-		damage_mod : 1.25,
+		damage_mod : 1.2,
 		ROF_mod : 0.8,
 		range_mod : 1.25,
 		velocity_mod : 2,
@@ -51,7 +51,7 @@ function AmmoStructs() {
 		damage_type : ["physical","PHYS"],
 		armor_penetration : 0.75,
 		guidance : "dumb",
-		fuse : 0.5, //how much resistance the projectile must encounter to detonate, as a factor of its dmg
+		fuse : 0.5, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
 		special : "none", //an array of any special effects
 		
 		weight : 0.18, //weight in lbs
@@ -80,7 +80,7 @@ function AmmoStructs() {
 		damage_type : ["physical","PHYS"],
 		armor_penetration : -0.2,
 		guidance : "scatter12",
-		fuse : 0.5, //how much resistance the projectile must encounter to detonate, as a factor of its dmg
+		fuse : 0.05, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
 		special : "none", //an array of any special effects
 		
 		weight : 0.04, //weight in lbs
@@ -107,7 +107,7 @@ function AmmoStructs() {
 		damage_type : ["physical","PHYS"],
 		armor_penetration : -0.1,
 		guidance : "none",
-		fuse : 0.5, //how much resistance the projectile must encounter to detonate, as a factor of its dmg
+		fuse : 0.15, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
 		special : "none", //an array of any special effects
 		
 		weight : 0.04, //weight in lbs
@@ -134,7 +134,7 @@ function AmmoStructs() {
 		damage_type : ["physical","PHYS"],
 		armor_penetration : 0,
 		guidance : "none",
-		fuse : 0.75, //how much resistance the projectile must encounter to detonate, as a factor of its dmg
+		fuse : 0.2, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
 		special : "none", //an array of any special effects
 		
 		weight : 0.01, //weight in lbs
@@ -161,7 +161,7 @@ function AmmoStructs() {
 		damage_type : ["physical","PHYS"],
 		armor_penetration : 0.2,
 		guidance : "none",
-		fuse : 0.75, //how much resistance the projectile must encounter to detonate, as a factor of its dmg
+		fuse : 0.5, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
 		special : "none", //an array of any special effects
 		
 		weight : 0.41,//0.01, //weight in lbs
@@ -190,7 +190,7 @@ function AmmoStructs() {
 		damage_type : ["thermal","THER"],
 		armor_penetration : 0,
 		guidance : "flame",
-		fuse : 0.5, //how much resistance the projectile must encounter to detonate, as a factor of its dmg
+		fuse : 3, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
 		special : "none", //an array of any special effects
 		
 		weight : 0.02, //weight in lbs
@@ -206,7 +206,7 @@ function AmmoStructs() {
 		inventory_subimage : [sp_xhair, 6]
 	};
 	
-	Ammo_Melta_Standard = {//---------------------------- flamer fuel
+	Ammo_Melta_Standard = {//---------------------------- melta fuel
 		
 		item_type : "ammo_melta",
 		damage_mod : 1.00,
@@ -217,7 +217,7 @@ function AmmoStructs() {
 		damage_type : ["thermal","THER"],
 		armor_penetration : 3,
 		guidance : "beam",
-		fuse : 0.5, //how much resistance the projectile must encounter to detonate, as a factor of its dmg
+		fuse : 0.3, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
 		special : "none", //an array of any special effects
 		
 		weight : 0.01, //weight in lbs
@@ -233,7 +233,7 @@ function AmmoStructs() {
 		inventory_subimage : [sp_xhair, 6]
 	};
 	
-	Ammo_Plasma_Standard = {//---------------------------- Buckshot rounds
+	Ammo_Plasma_Standard = {//---------------------------- plasma fuel
 		
 		item_type : "ammo_plasma",
 		damage_mod : 1.00,
@@ -244,7 +244,7 @@ function AmmoStructs() {
 		damage_type : ["thermal","THER"],
 		armor_penetration : 0.8,
 		guidance : "none",
-		fuse : 0.99, //how much resistance the projectile must encounter to detonate, as a factor of its dmg
+		fuse : 0.01, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
 		special : "none", //an array of any special effects
 		
 		weight : 0.1, //weight in lbs
