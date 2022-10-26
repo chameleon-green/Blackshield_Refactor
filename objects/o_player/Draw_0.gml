@@ -34,10 +34,9 @@ PlayerWeaponControl();
 
 PlayerMeleeControl()
 
-//["torso","torso","torso","torso","armL","armL","armR","armR"]
 //ImpactScript(o_bullet,"armL",hbox_torso,collisions_list,[66,17,17]);
 ImpactScript(o_bullet,"head",hbox_head,collisions_list);
-ImpactScript(o_bullet,"torso",hbox_torso,collisions_list);
+ImpactScript(o_bullet,["torso","torso","torso","torso","armL","armL","armR","armR"],hbox_torso,collisions_list);
 ImpactScript(o_bullet,["legL","legR"],hbox_legs,collisions_list);
 
 //--------------------------------------------- DEBUG STUFF ------------------------------------------------
@@ -45,7 +44,7 @@ ImpactScript(o_bullet,["legL","legR"],hbox_legs,collisions_list);
 draw_rectangle(x-hbox_torso[0],y-hbox_torso[1],x-hbox_torso[2],y-hbox_torso[3],true);
 draw_rectangle(x-hbox_legs[0],y-hbox_legs[1],x-hbox_legs[2],y-hbox_legs[3],true);
 draw_rectangle(x-hbox_head[0],y-hbox_head[1],x-hbox_head[2],y-hbox_head[3],true);
-
+ 
 draw_set_halign(fa_center);
 
 draw_text(x,bbox_top-90,"head:"+string(hp_body_head)+"/"+string(hp_body_head_max));

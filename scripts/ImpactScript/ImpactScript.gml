@@ -51,6 +51,11 @@ function ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy=0){
 				};
 				else if(Damage > resist) {
 					
+					
+					audio_play_sound(choose(snd_impact_metal_penetrate1,snd_impact_metal_penetrate2,snd_impact_metal_penetrate3),1,0,1,0,random_range(0.9,1.1));
+					audio_play_sound(choose(snd_impact_gore1,snd_impact_gore2,snd_impact_gore3),1,0,0.75,0,random_range(0.9,1.1));
+					
+					
 					var LimbVariable = variable_instance_get(id,"hp_body_"+Limb);
 					var NetDamage = Damage - resist;
 					variable_instance_set(id,"hp_body_"+Limb,LimbVariable-NetDamage);

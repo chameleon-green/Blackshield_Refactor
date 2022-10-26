@@ -7,7 +7,7 @@ x = mouse_x-(owner.x - owner.flash_x)
 y = mouse_y-(owner.y - owner.flash_y)
 };
 
-draw_text(x,y,fps_real);
+draw_text(x,y,FPS);
 
 //------------------------------------------ roundcount, icon and heatbar --------------------------------------
 
