@@ -371,6 +371,7 @@ function EquipItem(Item,UniqueID,PlayerID) { //searches grid of items for a spec
 		Array[0] = Item;
 		Array[1] = UniqueID;
 		Array[2] = clamp(ItemDurability/ItemMaxDurability,0.2,1);
+		Array[3] = ItemDurability/ItemMaxDurability;
 		variable_instance_set(PlayerID,VarString,Array); //set the unique ID for the item
 		
 		with(PlayerID) {						

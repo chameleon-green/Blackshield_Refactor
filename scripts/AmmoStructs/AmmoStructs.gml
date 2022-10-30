@@ -22,7 +22,7 @@ function AmmoStructs() {
 		velocity_mod : 1.00,
 		
 		damage_type : ["physical","PHYS"],
-		armor_penetration : 0.25,
+		armor_penetration : 0.10,
 		guidance : "dumb",
 		fuse : 0.25, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive. 
 		special : "none", //an array of any special effects
@@ -43,13 +43,13 @@ function AmmoStructs() {
 	Ammo_Bolt_Kraken = { //---------------------------- KRAKEN BOLT ROUNDS
 		
 		item_type : "ammo_bolt",
-		damage_mod : 1.2,
+		damage_mod : 1.1,
 		ROF_mod : 0.8,
 		range_mod : 1.25,
 		velocity_mod : 2,
 		
 		damage_type : ["physical","PHYS"],
-		armor_penetration : 0.75,
+		armor_penetration : 0.25,
 		guidance : "dumb",
 		fuse : 0.5, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
 		special : "none", //an array of any special effects

@@ -12,6 +12,13 @@ window_set_cursor(cr_none);
 
 //----------------------------------------- UI functionality --------------------------------
 
+CL_Yellow = make_color_rgb(247,191,2);
+CL_Orange = make_color_rgb(255,121,0);
+CL_Red = make_color_rgb(255,60,40);
+CL_Screen = make_color_rgb(40,25,0);
+CL_Outline = make_colour_rgb(192,158,2);
+
+
 active = 0;
 scale = 1.75;
 bg_subimage = 0;
@@ -86,6 +93,7 @@ AddItem(Armor_LegR_2000,1,grd_inv_armr,InventorySize);
 //----------------------------------------- Create Player ---------------------------------------
 
 MyPlayer = instance_create_depth(x,y,depth,o_player,{MyIC : id});
+MyHPbar = instance_create_depth(x,y,depth+1,o_HPbar, {MyIC : id, scale : 1.33, MyPlayer : other.MyPlayer});
 
 //----------------------------------------- Zoom Functionality ------------------------------
 

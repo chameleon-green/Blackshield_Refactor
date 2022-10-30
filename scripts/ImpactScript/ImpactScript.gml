@@ -36,10 +36,11 @@ function ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy=0){
 							var YVal = ds_grid_value_y(Grid,0,0,ds_grid_width(Grid),ds_grid_height(Grid),ItemID);
 							if(YVal != -1){
 								var CurrentDurability = ds_grid_get(Grid,2,YVal);
-								var DuraLoss = 1;//clamp(Damage*(Damage/resist),1,9999);
+								var DuraLoss = clamp(Damage*(Damage/resist),1,9999);
 								var NewDurability = clamp(CurrentDurability-DuraLoss,0,9999999999999);								
 								ds_grid_set(Grid,2,YVal,NewDurability);
 								ArmorArray[2] = clamp(NewDurability/ArmorArray[0].durability_max,0.2,1);
+								ArmorArray[3] = NewDurability/ArmorArray[0].durability_max;
 							};
 						}; //item ID check
 					}; //enemy check
@@ -66,10 +67,11 @@ function ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy=0){
 							var YVal = ds_grid_value_y(Grid,0,0,ds_grid_width(Grid),ds_grid_height(Grid),ItemID);
 							if(YVal != -1){
 								var CurrentDurability = ds_grid_get(Grid,2,YVal);
-								var DuraLoss = NetDamage;
+								var DuraLoss = Damage;//NetDamage;
 								var NewDurability = clamp(CurrentDurability-DuraLoss,0,9999999999999);								
 								ds_grid_set(Grid,2,YVal,NewDurability);
 								ArmorArray[2] = clamp(NewDurability/ArmorArray[0].durability_max,0.2,1);
+								ArmorArray[3] = NewDurability/ArmorArray[0].durability_max;
 							};
 						}; //item ID check
 					Bullet.hp -= resist;

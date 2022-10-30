@@ -97,13 +97,14 @@ wpn_primary_id = -2; wpn_secondary_id = -3; wpn_active_id = wpn_primary_id;
 magazine_primary = 0; magazine_secondary = 0; magazine_active = 0;
 ammo_primary = 0; ammo_secondary = 0; ammo_primary_id = -1; ammo_secondary_id = -1; 
 
-//initialize armor item and item ID as blank (we are naked), set armor ratio to 1
-armor_head = ["none",-1,1];
-armor_torso = ["none",-1,1];
-armor_armL = ["none",-1,1];
-armor_armR = ["none",-1,1];
-armor_legL = ["none",-1,1];
-armor_legR = ["none",-1,1];
+//initialize armor item and ratio arrays. 
+//0 = item struct, 1 = item uniqueid, 2 = armor ratio (clamped), 3 = armor ratio (unclamped)
+armor_head = ["none",-1,1,0];
+armor_torso = ["none",-1,1,0];
+armor_armL = ["none",-1,1,0];
+armor_armR = ["none",-1,1,0];
+armor_legL = ["none",-1,1,0];
+armor_legR = ["none",-1,1,0];
 
 var IC_ID = -1;
 if(variable_instance_exists(id,"MyIC")) {

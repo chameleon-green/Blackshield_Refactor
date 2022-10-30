@@ -42,6 +42,7 @@
     {"id":{"name":"home2","path":"rooms/home2/home2.yy",},"order":1,},
     {"id":{"name":"sp_inventory_wep_stats","path":"sprites/sp_inventory_wep_stats/sp_inventory_wep_stats.yy",},"order":3,},
     {"id":{"name":"sp_beam","path":"sprites/sp_beam/sp_beam.yy",},"order":0,},
+    {"id":{"name":"o_HPbar","path":"objects/o_HPbar/o_HPbar.yy",},"order":4,},
     {"id":{"name":"o_IC","path":"objects/o_IC/o_IC.yy",},"order":1,},
     {"id":{"name":"snd_plasma_charge_loop","path":"sounds/snd_plasma_charge_loop/snd_plasma_charge_loop.yy",},"order":3,},
     {"id":{"name":"o_chargeparticle","path":"objects/o_chargeparticle/o_chargeparticle.yy",},"order":1,},
