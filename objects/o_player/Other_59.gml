@@ -112,10 +112,11 @@ if(event = "Melee/swing_light" or event = "Melee/swing_heavy") {
 	var rand = irandom_range(0,array_length(wpn_active_melee.sound_group.attack)-1);
 	audio_play_sound(wpn_active_melee.sound_group.attack[rand],1,0);
 	swing[3] = 1;
+	var OIFF = IFF;
 	instance_create_depth(swing[0],swing[1],depth-1,o_swing,{
 		creator : id, 
 		image_angle : swing[2],
-		IFF : other.IFF
+		IFF : OIFF
 	});
 };
 

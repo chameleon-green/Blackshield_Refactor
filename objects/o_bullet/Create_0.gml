@@ -3,8 +3,8 @@ sprite_index = type.projectile_type[0];
 if(sprite_index = sp_bullet) {image_speed = 0};
 image_blend = type.projectile_color[0];
 
-damage_type = type.damage_type[0];
-penetration = damage*type.armor_penetration;
+damage_type = "thermal"//type.damage_type[0];
+penetration = 0//damage*type.armor_penetration;
 hp = damage;
 fuse = hp*type.fuse;
 

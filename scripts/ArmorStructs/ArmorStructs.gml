@@ -18,10 +18,10 @@ function ArmorStructs(){
 		sensor_range : 2400, //effective range of directional sensors
 		sensor_cone : 60, //sensor cone total width
 		
-		rPHYS : 35, //physical damage resist
-		rTHER : 45, //thermal damage resist
+		rPHYS : 40, //physical damage resist
+		rTHER : 50, //thermal damage resist
 		rCRYO : 25, //cryo damage resist
-		rCORR : 40, //corrosive damage resist
+		rCORR : 45, //corrosive damage resist
 		rRADI : 25, //radioactive damage resist
 		rELEC : 25, //electrical damage resist
 		rHAZM : 100, //hazmat damage resist
@@ -49,12 +49,12 @@ function ArmorStructs(){
 		
 		sensor_range : 800, //range for omnidirectional sensors
 		
-		rPHYS : 65, //physical damage resist
-		rTHER : 70, //thermal damage resist
+		rPHYS : 75, //physical damage resist
+		rTHER : 85, //thermal damage resist
 		rCRYO : 35, //cryo damage resist
 		rCORR : 55, //corrosive damage resist
-		rRADI : 35, //radioactive damage resist
-		rELEC : 35, //electrical damage resist
+		rRADI : 45, //radioactive damage resist
+		rELEC : 45, //electrical damage resist
 		rHAZM : 85, //hazmat damage resist
 		rWARP : 0,  //warp damage resist
 		
@@ -78,8 +78,8 @@ function ArmorStructs(){
 		heat_capacity : 80, //overheat capacity
 		cooling_rate : 1, //cooling rate modifier, as portion of heat generation
 		
-		rPHYS : 40, //physical damage resist
-		rTHER : 50, //thermal damage resist
+		rPHYS : 60, //physical damage resist
+		rTHER : 60, //thermal damage resist
 		rCRYO : 22, //cryo damage resist
 		rCORR : 35, //corrosive damage resist
 		rRADI : 22, //radioactive damage resist
@@ -107,8 +107,8 @@ function ArmorStructs(){
 		heat_capacity : 80, //overheat capacity
 		cooling_rate : 1, //cooling rate modifier, as portion of heat generation
 		
-		rPHYS : 40, //physical damage resist
-		rTHER : 50, //thermal damage resist
+		rPHYS : 60, //physical damage resist
+		rTHER : 60, //thermal damage resist
 		rCRYO : 22, //cryo damage resist
 		rCORR : 35, //corrosive damage resist
 		rRADI : 22, //radioactive damage resist
@@ -137,8 +137,8 @@ function ArmorStructs(){
 		heat_capacity : 120, //overheat capacity
 		cooling_rate : 1, //cooling rate modifier, as portion of heat generation
 		
-		rPHYS : 50, //physical damage resist
-		rTHER : 55, //thermal damage resist
+		rPHYS : 65, //physical damage resist
+		rTHER : 65, //thermal damage resist
 		rCRYO : 30, //cryo damage resist
 		rCORR : 40, //corrosive damage resist
 		rRADI : 30, //radioactive damage resist
@@ -167,8 +167,8 @@ function ArmorStructs(){
 		heat_capacity : 120, //overheat capacity
 		cooling_rate : 1, //cooling rate modifier, as portion of heat generation
 		
-		rPHYS : 50, //physical damage resist
-		rTHER : 55, //thermal damage resist
+		rPHYS : 65, //physical damage resist
+		rTHER : 65, //thermal damage resist
 		rCRYO : 30, //cryo damage resist
 		rCORR : 40, //corrosive damage resist
 		rRADI : 30, //radioactive damage resist

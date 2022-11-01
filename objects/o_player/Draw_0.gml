@@ -54,7 +54,13 @@ draw_text(x+110,y-100,"armR:"+string(hp_body_armR)+"/"+string(hp_body_armR_max))
 draw_text(x-90,y-50,"legL:"+string(hp_body_legL)+"/"+string(hp_body_legL_max));
 draw_text(x+90,y-50,"legR:"+string(hp_body_legR)+"/"+string(hp_body_legR_max));
 
-draw_text(x,bbox_top-140,armor_torso[3]);
+
+draw_text(x,bbox_top-170,armor_head[4]);
+draw_text(x,bbox_top-160,armor_torso[4]);
+draw_text(x,bbox_top-150,armor_armL[4]);
+draw_text(x,bbox_top-140,armor_armR[4]);
+draw_text(x,bbox_top-130,armor_legL[4]);
+draw_text(x,bbox_top-120,armor_legR[4]);
 
 
 

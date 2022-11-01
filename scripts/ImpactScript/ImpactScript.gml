@@ -49,6 +49,7 @@ function ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy=0){
 					
 					
 					instance_destroy(Bullet);
+					return 0;
 				};
 				else if(Damage > resist) {
 					
@@ -85,9 +86,9 @@ function ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy=0){
 				};
 				
 			}; //IFF check
-			 
+			return 0;
 	}; //bullet instance exists bracket
-		 
+	return 0;	 
 }; //function end bracket
 
 #endregion
@@ -100,26 +101,47 @@ function ImpactScript(BulletObject,Limb,HitboxArray,CollisionsList,Precise=0){
 	var Impacts = collision_rectangle_list(x-HitboxArray[0],y-HitboxArray[1],x-HitboxArray[2],y-HitboxArray[3],BulletObject,Precise,false,Impacts_List,false);
 	var ImpactCount = 0; //impact counter for while loop
 	var TotalDamage = 0; //damage this frame, used to measure amputations
+	var MultipleLimbs = is_array(Limb);
 	
-	while(ImpactCount < Impacts) {
-		var MultipleLimbs = is_array(Limb);
-		var Bullet = Impacts_List[| ImpactCount];
-		
+	while(ImpactCount < Impacts) {	
+		var Bullet = Impacts_List[| ImpactCount];		
 		//if we have one limb, do the stuff to that limb
 			if(!MultipleLimbs){
-				ImpactDamageProcessing(Bullet,Limb,CollisionsList);
+				var AmputationThreshold = variable_instance_get(id,"hp_body_" + Limb + "_max");
+				var LimbArray = variable_instance_get(id, "armor_" + Limb);
+				LimbArray[4] += ImpactDamageProcessing(Bullet,Limb,CollisionsList);
+				if(LimbArray[4] >= AmputationThreshold) {LimbArray[5] = true};
 			};
 		//if we have an array of limbs, randomly determine one to be hit
 			else{
-				var Pick = irandom_range(0,array_length(Limb)-1); 						
-				ImpactDamageProcessing(Bullet,Limb[Pick],CollisionsList);			
+				var Pick = irandom_range(0,array_length(Limb)-1);
+				var ChosenLimb = Limb[Pick];
+				var LimbArray = variable_instance_get(id, "armor_" + ChosenLimb);
+				LimbArray[4] += ImpactDamageProcessing(Bullet,ChosenLimb,CollisionsList);
+				var AmputationThreshold = variable_instance_get(id,"hp_body_" + ChosenLimb + "_max");
+				if(LimbArray[4] >= AmputationThreshold) {LimbArray[5] = true};			
 			};
 			
 			//add our projectile to the collisions list, so it doesn't continuously damage us 
 			if(ds_list_find_index(CollisionsList,Bullet) = -1) {ds_list_add(CollisionsList,Bullet)};
 			ImpactCount++;
-	}; //for loop bracket
-		
+	}; //while loop bracket
+	
+	//clear out delta damage
+	if(!MultipleLimbs){
+		var LimbArray = variable_instance_get(id, "armor_" + Limb);
+		LimbArray[4] = 0;
+	};
+	else{
+		var i = 0;
+		while (i<(array_length(Limb))) {
+			var ChosenLimb = Limb[i];
+			var LimbArray = variable_instance_get(id, "armor_" + ChosenLimb);
+			LimbArray[4] = 0;
+			i++;
+		};			
+	};
+			
 	ds_list_destroy(Impacts_List);
 }; //function end bracket
 #endregion 
