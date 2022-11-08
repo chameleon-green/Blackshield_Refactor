@@ -8,7 +8,7 @@ function StatAsymptote(Input,PeakValue,PeakDivisor=100,Divisor=100) {
 	
 	var X = Input;
 	var Numerator = PeakAdjusted*X;
-	var Denominator = ( (1/Divisor)*X )+1;
+	var Denominator = ( (1/Divisor)*X )+3;
 	
 	return round(Numerator/Denominator);
 	
@@ -28,10 +28,10 @@ function PlayerStatsCalculator() {
 	STR = Base.STR + Mod.STR;	
 	WIL = Base.WIL + Mod.WIL;
 	 
-	BaseMaxHP = StatAsymptote( (Base.END*7) + (Base.LCK/4) + (Base.WIL/2) , 1000);
-	MaxHP = StatAsymptote( (END*7) + (LCK/4) + (WIL/2) , 1000);
-	MaxStamina = StatAsymptote( (END*1.5) + (AGI/4) + (WIL/4) , 300); 
-	MaxWill = WIL*2; 
+	BaseMaxHP = StatAsymptote( (Base.END*9) + (Base.LCK/3) + (Base.WIL/2) , 800);
+	MaxHP = StatAsymptote( (END*9) + (LCK/3) + (WIL/2) , 800);
+	MaxStamina = StatAsymptote( (END*2.5) + (AGI/4) + (WIL/4) , 300); 
+	MaxWill = StatAsymptote(WIL*3, 300);
 	
 	CarryWeight = StatAsymptote( (STR*4) + (END/2) + (WIL/4) , 600);  
 	
@@ -40,12 +40,12 @@ function PlayerStatsCalculator() {
 	
 	//+++++++++++++++++++++++++++++++++++++++++++++++++++ HP STUFF +++++++++++++++++++++++++++++++++++++++++++
 	
-	hp_body_head_max = round(BaseMaxHP*0.11);
-	hp_body_torso_max = round(BaseMaxHP*0.23);
-	hp_body_armL_max = round(BaseMaxHP*0.13);
-	hp_body_armR_max = round(BaseMaxHP*0.13);
-	hp_body_legL_max = round(BaseMaxHP*0.2);
-	hp_body_legR_max = round(BaseMaxHP*0.2);
+	hp_body_head_max = (BaseMaxHP*0.11);
+	hp_body_torso_max = (BaseMaxHP*0.23);
+	hp_body_armL_max = (BaseMaxHP*0.13);
+	hp_body_armR_max = (BaseMaxHP*0.13);
+	hp_body_legL_max = (BaseMaxHP*0.2);
+	hp_body_legR_max = (BaseMaxHP*0.2);
 	
 	//++++++++++++++++++++++++++++++ MOVESPEED CALCS (complicated) +++++++++++++++++++++++++
 

@@ -210,7 +210,7 @@ Shotgun_Astartes = { //---------------------------- ASTARTES SHOTGUN
 		ROF : 45, //FindROF(330), //rounds per minute
 		range : 1000, //effective range before gravity takes hold, rounds can mod this
 		capacity : 8,		
-		spread : 0.65,
+		spread : 0.25,
 		muzzle_velocity : 60,
 		
 		//technical weapon stats

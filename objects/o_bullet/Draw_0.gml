@@ -20,6 +20,3 @@ if(Flames){
 
 if(kill = 1) {time_source_start(kill_timer)};
 
-
-
-draw_text(x,y,damage);

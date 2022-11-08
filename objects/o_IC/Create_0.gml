@@ -1,3 +1,4 @@
+
 global.debug = 1;
 //audio_debug(global.debug);
 FPS = 0;
@@ -7,6 +8,7 @@ if(global.debug = 1) {
 };
 
 visible = 0;
+depth = 0;
 
 window_set_cursor(cr_none);
 
@@ -20,7 +22,7 @@ CL_Outline = make_colour_rgb(192,158,2);
 
 
 active = 0;
-scale = 1.75;
+scale = 1.33;
 bg_subimage = 0;
 enable_mouseaim = 1;
 pos_at_close = [0,0,0,0];
@@ -92,7 +94,7 @@ AddItem(Armor_LegR_2000,1,grd_inv_armr,InventorySize);
 
 //----------------------------------------- Create Player ---------------------------------------
 
-MyPlayer = instance_create_depth(x,y,depth,o_player,{MyIC : id});
+MyPlayer = instance_create_depth(x,y,depth+1,o_player,{MyIC : id});
 MyHPbar = instance_create_depth(x,y,depth+1,o_HPbar, {MyIC : id, scale : 1.33, MyPlayer : other.MyPlayer});
 
 //----------------------------------------- Zoom Functionality ------------------------------

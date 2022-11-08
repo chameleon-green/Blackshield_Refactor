@@ -22,7 +22,7 @@ function FireGun (){
 
 	if(string_count("scatter",ammo_active.guidance)){
 		var Count = string_digits(ammo_active.guidance);
-		var Cone = wpn_active.spread*3
+		var Cone = wpn_active.spread*5;
 		repeat(Count) {
 			instance_create_depth(flash_x+hspd,flash_y+vspd_readonly,depth+1,o_bullet,{
 				origin_x : other.flash_x,

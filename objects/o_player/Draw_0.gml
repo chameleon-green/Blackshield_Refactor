@@ -1,13 +1,10 @@
 
 audio_listener_set_position(0,x,y,0);
 
-
-
-
 //------------------------------------------- STATE TOGGLES --------------------------------------------
 
 var IsRanged = string_count("ranged",wpn_active.item_type);
-CanShoot = (!MyIC.visible && !sprinting && !rolling && !reloading && !swinging && IsRanged);
+CanShoot = (!sprinting && !rolling && !reloading && !swinging && IsRanged);
 CanReload = (!rolling && !reloading && !swinging);
 CanMove = (!rolling && !swinging);
 CanRoll = (!rolling && !swinging);
@@ -41,6 +38,9 @@ ImpactScript(o_bullet,["legL","legR"],hbox_legs,collisions_list);
 
 //--------------------------------------------- DEBUG STUFF ------------------------------------------------
 
+
+
+/*
 draw_rectangle(x-hbox_torso[0],y-hbox_torso[1],x-hbox_torso[2],y-hbox_torso[3],true);
 draw_rectangle(x-hbox_legs[0],y-hbox_legs[1],x-hbox_legs[2],y-hbox_legs[3],true);
 draw_rectangle(x-hbox_head[0],y-hbox_head[1],x-hbox_head[2],y-hbox_head[3],true);
@@ -62,5 +62,6 @@ draw_text(x,bbox_top-140,armor_armR[4]);
 draw_text(x,bbox_top-130,armor_legL[4]);
 draw_text(x,bbox_top-120,armor_legR[4]);
 
-
+Angle_Timer[0] += 1;
+if(Angle_Timer[0] > Angle_Timer[1]) {Angle_Timer[0] = 0};
 

@@ -93,7 +93,6 @@ function ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy=0){
 
 #endregion
 
-
 #region impact script
 function ImpactScript(BulletObject,Limb,HitboxArray,CollisionsList,Precise=0){
 	
@@ -145,3 +144,7 @@ function ImpactScript(BulletObject,Limb,HitboxArray,CollisionsList,Precise=0){
 	ds_list_destroy(Impacts_List);
 }; //function end bracket
 #endregion 
+
+function TestScript(Value){
+	x+=Value;
+};

@@ -118,6 +118,7 @@ if(Selected = 1) {
 	draw_sprite_ext(item.inventory_subimage[0],item.inventory_subimage[1],Xcent+(158*scale),Ycent-(62*scale),ImageScale,ImageScale,0,c_white,1);
 	
 	if(IsRangedWeapon) {
+		if(IsEquipped) {creator.TriButtonText[0] = "Unequip"};		
 		var Ammo = ds_grid_get(grid,3,GridYValue);		
 		var AmmoCap = item.capacity;
 		var AmmoLeft = ds_grid_get(grid,4,GridYValue);	
@@ -173,6 +174,26 @@ if(Selected = 1) {
 		draw_text_ext_transformed_color(Xcent+(156*scale),Ycent+(96*scale),item.weight,1,40000,scale*1.25,scale*1.25,0,_Color,_Color,_Color,_Color,1);	
 		draw_text_ext_transformed_color(Xcent+(240*scale),Ycent+(61*scale),PenString,1,40000,scale*1.125,scale*1.25,0,_Color,_Color,_Color,_Color,1);
 		draw_text_ext_transformed_color(Xcent+(240*scale),Ycent+(96*scale),AmmoCost(item),1,40000,scale*1.125,scale*1.25,0,_Color,_Color,_Color,_Color,1);
+		
+	};
+	
+	if(IsArmor) {
+		var _Color = c_yellow;
+		var _Durability = ds_grid_get(grid,2,GridYValue);
+		var _DuraRatio = round((_Durability/item.durability_max)*100);
+		draw_set_halign(fa_left);
+		draw_text_ext_transformed_color(Xcent+(68*scale),Ycent+(61*scale),string(item.rPHYS) + "(" + string(round((item.rPHYS*_DuraRatio/100))) + ")",1,40000,scale*1.0,scale*1.125,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+(68*scale),Ycent+(94*scale),string(item.rTHER) + "(" + string(round((item.rTHER*_DuraRatio/100))) + ")",1,40000,scale*1.0,scale*1.125,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+(68*scale),Ycent+(127*scale),string(item.rCRYO) + "(" + string(round((item.rCRYO*_DuraRatio/100))) + ")",1,40000,scale*1.0,scale*1.125,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+(68*scale),Ycent+(160*scale),string(item.rELEC) + "(" + string(round((item.rELEC*_DuraRatio/100))) + ")",1,40000,scale*1.0,scale*1.125,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+(152*scale),Ycent+(61*scale),string(item.rCORR) + "(" + string(round((item.rCORR*_DuraRatio/100))) + ")",1,40000,scale*1.0,scale*1.125,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+(152*scale),Ycent+(94*scale),string(item.rHAZM) + "(" + string(round((item.rHAZM*_DuraRatio/100))) + ")",1,40000,scale*1.0,scale*1.125,0,_Color,_Color,_Color,_Color,1);	
+		draw_text_ext_transformed_color(Xcent+(152*scale),Ycent+(127*scale),string(item.rRADI) + "(" + string(round((item.rRADI*_DuraRatio/100))) + ")",1,40000,scale*1.0,scale*1.125,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+(152*scale),Ycent+(160*scale),string(item.rWARP) + "(" + string(round((item.rWARP*_DuraRatio/100))) + ")",1,40000,scale*1.0,scale*1.125,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+(236*scale),Ycent+(61*scale),string(item.poise),1,40000,scale*1.25,scale*1.25,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+(236*scale),Ycent+(94*scale),string(_DuraRatio) + "%",1,40000,scale*1.25,scale*1.25,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+(236*scale),Ycent+(127*scale),string(item.weight),1,40000,scale*1.25,scale*1.25,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+(236*scale),Ycent+(160*scale),string(404),1,40000,scale*1.25,scale*1.25,0,_Color,_Color,_Color,_Color,1);
 		
 	};
 };

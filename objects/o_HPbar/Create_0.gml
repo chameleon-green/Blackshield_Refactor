@@ -1,5 +1,8 @@
-image_speed = 0;
-image_index = 0;
+
+MaxBarScale = 2.5;
+
+
+//---------------------------------------- Color stuff -------------------------------
 
 CL_Yellow = make_color_rgb(247,191,2);
 CL_Orange = make_color_rgb(255,121,0);

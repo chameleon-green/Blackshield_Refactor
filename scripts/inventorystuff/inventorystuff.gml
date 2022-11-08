@@ -179,7 +179,7 @@ function SearchForItem(Grid,Keyword,Variable,ArrayKey=0) { //searches grid of it
 
 #endregion
 
-#region equip items from IC equip button
+#region Equip items from IC equip button
 
 function EquipItem(Item,UniqueID,PlayerID) { //searches grid of items for a specific variable containing a keyword
 	
@@ -481,6 +481,284 @@ function EquipItem(Item,UniqueID,PlayerID) { //searches grid of items for a spec
 		};
 	};		
 	#endregion
+}; //equip item function end bracket
+
+#endregion
+
+#region Unequip items from IC equip button
+
+function UnequipItem(Item,UniqueID,PlayerID) { //searches grid of items for a specific variable containing a keyword
+	
+	var IsRangedWeapon = string_count("weapon_ranged",Item.item_type);
+	var IsMeleeWeapon = string_count("weapon_melee",Item.item_type);
+	var IsAmmo = string_count("ammo",Item.item_type);
+	var IsArmor = string_count("armor",Item.item_type);
+		
+	#region Ranged weapon unequip
+	if(IsRangedWeapon) {
+		var Grid = grd_inv_wepn;
+		var ValueY = ds_grid_value_y(Grid,0,0,10,InventorySize,UniqueID);
+		//logs our ammunition type and rounds left in magazine
+		var CurrentValueY = ds_grid_value_y(Grid,0,0,10,InventorySize,PlayerID.wpn_active_id);
+		ds_grid_set(Grid,3,CurrentValueY,PlayerID.ammo_active);
+		ds_grid_set(Grid,4,CurrentValueY,PlayerID.magazine_active);
+		
+		//PlayerID.spread_angle = 0; //need this to avoid crashes, for some reason
+		
+		var _Slot = Item.weapon_slot[0];		
+		//if(UniqueID = PlayerID.wpn_primary_id) {exit};
+			
+		//if we have any of the ammo type currently in the mag of the gun we are switching to, equip it
+		var AmmoY = -1;
+		var AmmoToSwapTo = ds_grid_get(Grid,3,ValueY);
+		if( ds_grid_value_exists(grd_inv_ammo,0,0,10,InventorySize,AmmoToSwapTo) ) {
+			var AmmoY = ds_grid_value_y(grd_inv_ammo,0,0,10,InventorySize,AmmoToSwapTo);
+		};
+		if(AmmoY != -1) {variable_instance_set(MyPlayer,"ammo_"+_Slot+"_id",ds_grid_get(grd_inv_ammo,8,AmmoY))} else{variable_instance_set(MyPlayer,"ammo_"+_Slot+"_id",-1)};
+			
+			
+		with(PlayerID) {			
+			var SwapTo = ( (wpn_active = variable_instance_get(id,"wpn_"+_Slot)) or ((wpn_active.weapon_slot[0] = "melee") && (_Slot = "secondary")) );
+				
+			variable_instance_set(id,"wpn_"+_Slot,Item);
+			variable_instance_set(id,"wpn_"+_Slot+"_id",UniqueID);
+			variable_instance_set(id,"ammo_"+_Slot,ds_grid_get(Grid,3,ValueY));
+			variable_instance_set(id,"magazine_"+_Slot,ds_grid_get(Grid,4,ValueY));
+			
+			//reset us to fists if we are holding a polearm and equip a pistol
+			if(_Slot = "secondary" && (wpn_active_melee.weapon_slot[1] = 2) ) {
+				wpn_active_melee = Unarmed_Fists;
+				wpn_melee_id = -1;
+			}; 
+					
+			if(SwapTo) {
+				wpn_active = Item;
+				wpn_active_id = UniqueID;
+				ammo_active = variable_instance_get(id,"ammo_"+_Slot);;
+				ammo_active_id = variable_instance_get(id,"ammo_"+_Slot+"_id");
+				magazine_active = variable_instance_get(id,"magazine_"+_Slot);;
+				selector_real = 0;
+				selector = wpn_active.firemodes[selector_real];
+				skeleton_animation_clear(1); skeleton_animation_clear(5);
+				skeleton_animation_set_ext(Item.animation_group.idle,1);
+				skeleton_attachment_set("slot_gun",Item.weapon_attachment);
+				skeleton_attachment_set("slot_gun magazine",Item.magazine_attachment);
+			};
+		};		
+	};
+	#endregion
+	
+	#region Melee weapon unequip
+	if(IsMeleeWeapon) {
+		
+		var _Hands = Item.weapon_slot[1];
+		
+		//one handed melee weapons
+		if(_Hands = 3) {	
+			with(PlayerID) {
+				var SwapTo = ( (wpn_active = variable_instance_get(id,"wpn_secondary")) or (wpn_active = variable_instance_get(id,"wpn_active_melee")) );
+			
+				variable_instance_set(id,"wpn_active_melee",Item);
+				variable_instance_set(id,"wpn_melee_id",UniqueID);
+				//if(wpn_secondary = Unarmed_Fists) {wpn_secondary = Item};
+				wpn_secondary = Item;
+				wpn_secondary_id = UniqueID;
+					
+				if(SwapTo) {
+					
+					skeleton_attachment_set("slot_gun",-1);	
+					wpn_active = Item;//Unarmed_Fists;
+					wpn_active_id = UniqueID;
+					variable_instance_set(id,"wpn_active_melee",Item);
+					variable_instance_set(id,"wpn_melee_id",UniqueID);
+					variable_instance_set(id,"wpn_secondary",Item);
+					variable_instance_set(id,"wpn_secondary_id",UniqueID);
+					variable_instance_set(id,"ammo_secondary",-1);
+					variable_instance_set(id,"ammo_secondary_id",-1);
+					skeleton_animation_set_ext(Item.animation_group.idle,1);
+										
+					skeleton_animation_clear(1); skeleton_animation_clear(5);					
+					skeleton_animation_set_ext(Item.animation_group.idle,5);
+					skeleton_animation_set_ext(Item.animation_group.idle,1);
+					skeleton_attachment_set("slot_melee_weapon",Item.weapon_attachment);													
+				};//swapto check
+			};//with playerid
+		};//3 handed check
+			
+		//two handed melee weapons
+		if(_Hands = 2) {	
+			
+			var SwapTo = ( (PlayerID.wpn_active = PlayerID.wpn_secondary) or (PlayerID.wpn_active = PlayerID.wpn_active_melee) );
+			
+			//log our secondary ammo if we equip a 2 handed melee weapon
+			if(string_count("weapon_ranged",PlayerID.wpn_secondary.item_type)){
+				var CurrentValueY = ds_grid_value_y(grd_inv_wepn,0,0,10,InventorySize,PlayerID.wpn_secondary_id);
+				ds_grid_set(grd_inv_wepn,3,CurrentValueY,PlayerID.ammo_secondary);
+				
+				var Mag_Cap = PlayerID.magazine_secondary;
+				if(SwapTo) {Mag_Cap = PlayerID.magazine_active};
+				ds_grid_set(grd_inv_wepn,4,CurrentValueY,Mag_Cap);
+			};
+					
+			with(PlayerID) {
+				variable_instance_set(id,"wpn_active_melee",Item);
+				variable_instance_set(id,"wpn_melee_id",UniqueID);
+				variable_instance_set(id,"wpn_secondary",Item);
+				variable_instance_set(id,"wpn_secondary_id",UniqueID);
+				variable_instance_set(id,"ammo_secondary",-1);
+				variable_instance_set(id,"ammo_secondary_id",-1);
+					
+				if(SwapTo) {
+					wpn_active = Item;
+					wpn_active_id = UniqueID;
+					ammo_active = -1;
+					ammo_active_id = -1;
+					magazine_active = 0;
+					selector_real = 0;
+					skeleton_animation_clear(1); skeleton_animation_clear(5);
+					skeleton_animation_set_ext(Item.animation_group.idle,1);
+					skeleton_attachment_set("slot_gun",Item.weapon_attachment);
+					skeleton_attachment_set("slot_gun magazine",-1);
+				}; //swap to check
+			}; //with player
+		}; //2 hands check
+	};//melee weapon check
+	#endregion
+	
+	#region Armor UNequiping
+	if(IsArmor) {
+		var Grid = grd_inv_armr;		
+		var VarString = -1; //string for the variable to change in the player object
+		
+		if(string_count("head",Item.item_type)) {VarString = "armor_head"};
+		else if(string_count("torso",Item.item_type)) {VarString = "armor_torso"};
+		else if(string_count("armL",Item.item_type)) {VarString = "armor_armL"};
+		else if(string_count("armR",Item.item_type)) {VarString = "armor_armR"};
+		else if(string_count("legL",Item.item_type)) {VarString = "armor_legL"};
+		else if(string_count("legR",Item.item_type)) {VarString = "armor_legR"};
+		
+		var Array = variable_instance_get(PlayerID,VarString); //set the armor item 
+		Array[0] = "none";
+		Array[1] = -1;
+		Array[2] = 1;
+		Array[3] = 0;
+		variable_instance_set(PlayerID,VarString,Array); //set the unique ID for the item
+		
+		with(PlayerID) {						
+			if(VarString = "armor_head"){	
+				
+				skeleton_attachment_set("slot_head" , "0000_head"); 
+				skeleton_attachment_set("slot_eyes" , "blank");
+				
+				var PHYS = 0;
+				var THER = 0;
+				var CRYO = 0;
+				var CORR = 0;
+				var RADI = 0;
+				var ELEC = 0;
+				var HAZM = 0;
+				var WARP = 0;
+				
+				resist_head = [PHYS,THER,CRYO,CORR,RADI,ELEC,HAZM,WARP];
+			};
+			else if(VarString = "armor_torso"){
+				
+				skeleton_attachment_set("slot_torso" , "0000_torso"); 
+				skeleton_attachment_set("slot_collar" , "blank");
+				skeleton_attachment_set("slot_backpack" , "blank");
+				skeleton_attachment_set("slot_backpack trim" , "blank");
+				skeleton_attachment_set("slot_pelvis" , "0000_pelvis");
+				
+				var PHYS = 0;
+				var THER = 0;
+				var CRYO = 0;
+				var CORR = 0;
+				var RADI = 0;
+				var ELEC = 0;
+				var HAZM = 0;
+				var WARP = 0;	
+				
+				resist_torso = [PHYS,THER,CRYO,CORR,RADI,ELEC,HAZM,WARP];
+			};
+			else if(VarString = "armor_armL"){
+				
+				skeleton_attachment_set("slot_front bicep" , "0000_bicep");  
+				skeleton_attachment_set("slot_front forearm" , "0000_forearm");
+				skeleton_attachment_set("slot_pauldron" , "blank");  
+				skeleton_attachment_set("slot_pauldron trim" , "blank"); 
+				skeleton_attachment_set("slot_front hand", "0000_hand");
+				
+				var PHYS = 0;
+				var THER = 0;
+				var CRYO = 0;
+				var CORR = 0;
+				var RADI = 0;
+				var ELEC = 0;
+				var HAZM = 0;
+				var WARP = 0;
+				
+				resist_armL = [PHYS,THER,CRYO,CORR,RADI,ELEC,HAZM,WARP];
+			};
+			else if(VarString = "armor_armR"){
+				
+				skeleton_attachment_set("slot_rear bicep" , "0000_bicep"); 
+				skeleton_attachment_set("slot_rear forearm" , "0000_forearm");
+				skeleton_attachment_set("slot_rear pauldron" , "blank"); 
+				skeleton_attachment_set("slot_holding hand", "0000_holding hand");
+				
+				var PHYS = 0;
+				var THER = 0;
+				var CRYO = 0;
+				var CORR = 0;
+				var RADI = 0;
+				var ELEC = 0;
+				var HAZM = 0;
+				var WARP = 0;
+				
+				resist_armR = [PHYS,THER,CRYO,CORR,RADI,ELEC,HAZM,WARP];
+			};
+			else if(VarString = "armor_legL"){
+				
+				skeleton_attachment_set("slot_front thigh" , "0000_thigh"); 
+				skeleton_attachment_set("slot_front thigh_trim1" , -1); 
+				skeleton_attachment_set("slot_front knee" , "blank");  
+				skeleton_attachment_set("slot_front shin" , "0000_shin");  
+				skeleton_attachment_set("slot_front foot" , "0000_foot"); 
+				
+				var PHYS = 0;
+				var THER = 0;
+				var CRYO = 0;
+				var CORR = 0;
+				var RADI = 0;
+				var ELEC = 0;
+				var HAZM = 0;
+				var WARP = 0;
+				
+				resist_legL = [PHYS,THER,CRYO,CORR,RADI,ELEC,HAZM,WARP];
+			};
+			else if(VarString = "armor_legR"){
+				
+				skeleton_attachment_set("slot_rear thigh" , "0000_thigh");  
+				skeleton_attachment_set("slot_rear knee" , "blank");
+				skeleton_attachment_set("slot_rear shin" , "0000_shin");  
+				skeleton_attachment_set("slot_rear foot" , "0000_foot");  
+				
+				var PHYS = 0;
+				var THER = 0;
+				var CRYO = 0;
+				var CORR = 0;
+				var RADI = 0;
+				var ELEC = 0;
+				var HAZM = 0;
+				var WARP = 0;
+				
+				resist_legR = [PHYS,THER,CRYO,CORR,RADI,ELEC,HAZM,WARP];
+			};
+						
+		};
+	};		
+	#endregion
+	
 }; //equip item function end bracket
 
 #endregion

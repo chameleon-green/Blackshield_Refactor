@@ -3,6 +3,10 @@ AmmoStructs();
 WeaponStructs();
 var _mymethod = function(){};
 
+//MyFunction = TestScript;
+
+Angle_Timer = [0,2];
+
 image_xscale = 1;
 image_yscale = 1;
 //----------------------------------- MOVEMENT VARIABLES -----------------------------------
@@ -75,6 +79,8 @@ hbox_legs = [30,0,-30,84];
 PlayerStatsCalculator();
 
 HP = MaxHP;
+Stamina = MaxStamina;
+Will = MaxWill;
 
 hp_body_head = hp_body_head_max;
 hp_body_torso = hp_body_torso_max;
@@ -95,7 +101,7 @@ skeleton_animation_set("Basic Movement/blank");
 wpn_primary = Unarmed_Fists; wpn_secondary = Unarmed_Fists; wpn_active = wpn_primary;
 wpn_primary_id = -2; wpn_secondary_id = -3; wpn_active_id = wpn_primary_id;
 magazine_primary = 0; magazine_secondary = 0; magazine_active = 0;
-ammo_primary = 0; ammo_secondary = 0; ammo_primary_id = -1; ammo_secondary_id = -1; 
+ammo_active = 0; ammo_active_id = -1; ammo_primary = 0; ammo_secondary = 0; ammo_primary_id = -1; ammo_secondary_id = -1; 
 
 /*initialize armor item and ratio arrays. 
 0 = item struct, 
@@ -260,7 +266,7 @@ Func_HeavyAttack = function(){
 
 //---------------------------------- INSTANCE CREATION --------------------------------
 
-xhair = instance_create_depth(x,y,depth,o_xhair,{
+xhair = instance_create_depth(x,y,depth-3,o_xhair,{
 	owner : other.id,
 	MyIC : IC_ID	
 });
@@ -270,9 +276,12 @@ xhair = instance_create_depth(x,y,depth,o_xhair,{
 
 
 
-
-
-
+/* 
+//debug stuff for stress testing
+wpn_primary = Boltgun_Phobos;
+wpn_active = wpn_primary;
+ammo_active = wpn_primary.default_ammo_type;
+selector = "Auto";
 
 	
 	

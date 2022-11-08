@@ -2,10 +2,7 @@
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
   "name": "o_IC",
-  "spriteId": {
-    "name": "sp_charge_flash",
-    "path": "sprites/sp_charge_flash/sp_charge_flash.yy",
-  },
+  "spriteId": null,
   "solid": false,
   "visible": true,
   "managed": true,
