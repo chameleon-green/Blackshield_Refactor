@@ -53,30 +53,28 @@ function ds_list_nearest(list,x,y,cover,popcap=-1) {
 		if(cover) {var distance = point_distance(x,y,instance.x,instance.y)-90000*instance.cover};
 		else{var distance = point_distance(x,y,instance.x,instance.y)};
 	
-	if(popcap > 0) {
-		var plist = ds_list_create()
-		collision_ellipse_list(instance.x-16,instance.y-16,instance.x+16,instance.y+16,o_enemy,0,true,plist,true)
-		var count1 = ds_list_size(plist)	
-			if(count1 > 0){
-				for(var c=0; c < count1; c++){
-					var npc = plist[|c];
-					if(npc.hspeed = 0) {distance+=500};
+		if(popcap > 0) {
+			var plist = ds_list_create()
+			collision_ellipse_list(instance.x-16,instance.y-16,instance.x+16,instance.y+16,o_enemy,0,true,plist,true)
+			var count1 = ds_list_size(plist)	
+				if(count1 > 0){
+					for(var c=0; c < count1; c++){
+						var npc = plist[|c];
+						if(npc.hspeed = 0) {distance+=500};
+					};
 				};
-			};
 			ds_list_destroy(plist);
-	};
+		};
 			
-	ds_grid_add(distance_grid,0,i,instance);
-	ds_grid_add(distance_grid,1,i,distance);
+		ds_grid_add(distance_grid,0,i,instance);
+		ds_grid_add(distance_grid,1,i,distance);
 	};
 	
-
-
 	var min_distance = ds_grid_get_min(distance_grid,1,0,1,size-1);
 	var yy = ds_grid_value_y(distance_grid,1,0,1,299,min_distance);
 	var nearest_instance = ds_grid_get(distance_grid,0,yy);
 
-	if(toggle = 1) {var result = nearest_instance toggle = 0}; //weird bit needed to terminate ds grid before returning
+	if(toggle = 1) {var result = nearest_instance; toggle = 0}; //weird bit needed to terminate ds grid before returning
 	ds_grid_destroy(distance_grid);
 
 	return result;
@@ -316,7 +314,31 @@ function nodes_calculate_cost_array(start_node,search_radius,target_node,max_sea
 
 #endregion
 
+#region Movement based on A-star
 
+function AStarMovement(PathList,ClosedList) {
+	
+	//supply the function with a dslist of the path itself and a closed list of nodes
+	
+	//find our starting node
+	var LOSList = ds_list_create();
+	var NodesInLos = nodes_in_los(600,o_platform,o_navnode,x,y-50,ClosedList);
+	ds_list_read(LOSList,NodesInLos);	
+	StartNode = ds_list_nearest(LOSList,x,y-50,0);
+	ds_list_destroy(LOSList);
+	
+	//If we are not actively engaged, and our target refresh is available, find a new target node
+	if(!firing && (TargetNodeTimer[0] > TargetNodeTimer[1])) {
+	var LOSList = ds_list_create();
+	var NodesInLos = nodes_in_los(600,o_platform,o_navnode,MyTarget.x,MyTarget.y-50,-1);
+	ds_list_read(LOSList,NodesInLos);
+	TargetNode = ds_list_nearest(LOSList,MyTarget.x,MyTarget.y-50,0);
+	ds_list_destroy(LOSList);
+	TargetNodeTimer[0] = 0;
+	};
+	
+}; //function end bracket astar movement
+#endregion
 
 
 

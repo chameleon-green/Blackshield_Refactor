@@ -157,8 +157,8 @@ if(place_meeting(x, y+vspd, o_platform)) { //vertical collisions
 if(place_meeting(x+hspd*2,y,o_platform)){
 	var MaxGrade = 3;
 	var Hspd2 = hspd+(sign(hspd)*2);
-	var climb = 0; //our variable used to attempt to find a clear position to ascend to
-	while ( place_meeting(x+Hspd2,y-climb,o_platform) && (climb <= abs(MaxGrade*hspd)) ) {climb += 1}; //attempts to find a clear position to ascend to, the maximum height of which is determined by our speed and maxgrade value
+	var climb = 2; //our variable used to attempt to find a clear position to ascend to
+	while ( place_meeting(x+Hspd2,y-climb,o_platform) && (climb <= clamp(abs(MaxGrade*hspd),12,9100)) ) {climb += 1}; //attempts to find a clear position to ascend to, the maximum height of which is determined by our speed and maxgrade value
 		if (place_meeting(x+Hspd2,y-climb+vspd,o_platform) or (vspd != 0)) { //if we fail to find a position in range of our maximum climb, the player moves forward horizontally until it hits the wall			
 			move_outside_solid(180,100);
 			move_outside_solid(0,100);
@@ -186,7 +186,7 @@ if(col_bot = 0 && !rolling) {
 x += hspd;
 		
 // Downward slopes
-if (!place_meeting(x,y,o_platform) && vspd >= 0 && place_meeting(x,y+2+abs(hspd),o_platform)) {
+if (!place_meeting(x,y,o_platform) && (vspd >= 0) && place_meeting(x,y+2+abs(hspd),o_platform)) {
 	while(!place_meeting(x,y+1,o_platform)) {y += 1; vspd_readonly+=1}
 };
 	

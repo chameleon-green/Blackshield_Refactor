@@ -62,7 +62,7 @@ draw_sprite_ext(sp_xhair,1,gui_x-HairOffset,gui_y,1,HairScale,90,c_white,1); //l
 
 
 
-
+draw_text(gui_x,gui_y,FPS);
 
 
 

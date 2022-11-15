@@ -40,6 +40,7 @@ ImpactScript(o_bullet,["legL","legR"],hbox_legs,collisions_list);
 
 
 
+
 /*
 draw_rectangle(x-hbox_torso[0],y-hbox_torso[1],x-hbox_torso[2],y-hbox_torso[3],true);
 draw_rectangle(x-hbox_legs[0],y-hbox_legs[1],x-hbox_legs[2],y-hbox_legs[3],true);

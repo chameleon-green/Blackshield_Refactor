@@ -1,11 +1,11 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "ImpactScript",
+  "name": "Infantry",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Generic",
-    "path": "folders/Scripts/Generic.yy",
+    "name": "Enemy Scripts",
+    "path": "folders/Scripts/Enemy Scripts.yy",
   },
 }

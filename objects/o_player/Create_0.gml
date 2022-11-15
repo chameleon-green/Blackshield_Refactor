@@ -1,15 +1,13 @@
 AnimationsFlashesSoundGroups();
 AmmoStructs();
 WeaponStructs();
-var _mymethod = function(){};
-
-//MyFunction = TestScript;
-
-Angle_Timer = [0,2];
+var _mymethod = function(){}; 
 
 image_xscale = 1;
 image_yscale = 1;
 //----------------------------------- MOVEMENT VARIABLES -----------------------------------
+
+cover = 0;
 
 //movement toggles
 CanMove = 1;
@@ -18,7 +16,7 @@ CanRoll = 1;
 CanSprint = 1;
 
 //movement values
-MoveSpeed = 10; //11 = max agil
+MoveSpeed = 11; //11 = max agil
 JumpHeight = 20;
 hspd = 0;
 vspd = 0;
