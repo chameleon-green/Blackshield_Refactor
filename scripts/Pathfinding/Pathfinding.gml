@@ -44,7 +44,7 @@ function ds_list_nearest(list,x,y,cover,popcap=-1) {
 	var distance_grid = ds_grid_create(2,300);
 	var size = ds_list_size(list);
 
-	if(size = 0) {return 0};
+	if(size = 0) {ds_grid_destroy(distance_grid); return 0};
 
 	var i;
 
@@ -87,7 +87,7 @@ function ds_list_farthest(list,x,y,cover,popcap=-1) {
 	var distance_grid = ds_grid_create(2,300);
 	var size = ds_list_size(list);
 
-	if(size = 0) {return 0};
+	if(size = 0) {ds_grid_destroy(distance_grid); return 0};
 
 	var i;
 
@@ -154,6 +154,11 @@ function nodes_in_los(search_radius,wall_object,node_object,x,y,closed_list,area
 		)
 		
 	var SLSize = ds_list_size(SearchList);
+	if(SLSize = 0) {
+		ds_list_destroy(ValidList);
+		ds_list_destroy(SearchList);
+		return -1
+	};
 
 	for(i = 0; i < SLSize; i++) {
 		var node = SearchList[|i]
@@ -323,18 +328,22 @@ function AStarMovement(PathList,ClosedList) {
 	//find our starting node
 	var LOSList = ds_list_create();
 	var NodesInLos = nodes_in_los(600,o_platform,o_navnode,x,y-50,ClosedList);
-	ds_list_read(LOSList,NodesInLos);	
-	StartNode = ds_list_nearest(LOSList,x,y-50,0);
+	if(NodesInLos != 1){
+		ds_list_read(LOSList,NodesInLos);	
+		StartNode = ds_list_nearest(LOSList,x,y-50,0);
+	};
 	ds_list_destroy(LOSList);
 	
 	//If we are not actively engaged, and our target refresh is available, find a new target node
 	if(!firing && (TargetNodeTimer[0] > TargetNodeTimer[1])) {
-	var LOSList = ds_list_create();
-	var NodesInLos = nodes_in_los(600,o_platform,o_navnode,MyTarget.x,MyTarget.y-50,-1);
-	ds_list_read(LOSList,NodesInLos);
-	TargetNode = ds_list_nearest(LOSList,MyTarget.x,MyTarget.y-50,0);
-	ds_list_destroy(LOSList);
-	TargetNodeTimer[0] = 0;
+		var LOSList = ds_list_create();
+		var NodesInLos = nodes_in_los(600,o_platform,o_navnode,MyTarget.x,MyTarget.y-50,-1);	
+		if(NodesInLos != 1){
+			ds_list_read(LOSList,NodesInLos);	
+			TargetNode = ds_list_nearest(LOSList,MyTarget.x,MyTarget.y-50,0);
+		};
+		ds_list_destroy(LOSList);
+		TargetNodeTimer[0] = 0;
 	};
 	
 }; //function end bracket astar movement
