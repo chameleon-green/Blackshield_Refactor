@@ -28,3 +28,10 @@ function ButtonDrawCenter(Left,Right,Top,Bottom,Scale=1){
 	
 	draw_rectangle(LeftBorder,TopBorder,RightBorder,BottomBorder,1);
 };
+
+function ds_list_draw(list,X,Y) {
+	var size = ds_list_size(list);
+	for(var i = 0; i < size; i++){
+		draw_text(X,Y-(12*size)+(12*i),ds_list_find_value(list,i))
+	};
+};

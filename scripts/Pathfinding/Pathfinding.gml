@@ -217,7 +217,7 @@ function nodes_calculate_cost_array(start_node,search_radius,target_node,max_sea
 
 	while (!PathComplete and ds_priority_size(OpenList) < max_search_size) { //while our target is not found and we still have nodes unsearched, continue 
 	
-		if(target_node = 0 or start_node = 0) {break};
+		if(target_node = -1 or start_node = -1) {break};
 	
 		var Node = ds_priority_find_min(OpenList);//find cheapest node array 
 		ds_priority_delete_value(OpenList,Node); //remove our node from the openlist	
@@ -328,7 +328,7 @@ function AStarMovement(PathList,ClosedList) {
 	//find our starting node
 	var LOSList = ds_list_create();
 	var NodesInLos = nodes_in_los(600,o_platform,o_navnode,x,y-50,ClosedList);
-	if(NodesInLos != 1){
+	if(NodesInLos != -1) {
 		ds_list_read(LOSList,NodesInLos);	
 		StartNode = ds_list_nearest(LOSList,x,y-50,0);
 	};
@@ -338,13 +338,16 @@ function AStarMovement(PathList,ClosedList) {
 	if(!firing && (TargetNodeTimer[0] > TargetNodeTimer[1])) {
 		var LOSList = ds_list_create();
 		var NodesInLos = nodes_in_los(600,o_platform,o_navnode,MyTarget.x,MyTarget.y-50,-1);	
-		if(NodesInLos != 1){
+		if(NodesInLos != -1) {
 			ds_list_read(LOSList,NodesInLos);	
 			TargetNode = ds_list_nearest(LOSList,MyTarget.x,MyTarget.y-50,0);
 		};
 		ds_list_destroy(LOSList);
 		TargetNodeTimer[0] = 0;
 	};
+	
+	
+	
 	
 }; //function end bracket astar movement
 #endregion

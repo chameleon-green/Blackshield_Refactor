@@ -38,6 +38,7 @@ ImpactScript(o_bullet,["legL","legR"],hbox_legs,collisions_list);
 
 //--------------------------------------------- DEBUG STUFF ------------------------------------------------
 
+draw_text(x,bbox_top-20,id);
 
 
 

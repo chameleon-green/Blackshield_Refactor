@@ -27,7 +27,7 @@ function InfantryCreateGeneric() {
 
 function InfantryStepGeneric() {
 	
-	hspd = 5;
+	//hspd = 5;
 	TargetNodeTimer[0] += 1;
 	if(firing or (TargetNodeTimer[0] > (TargetNodeTimer[1]+60) )) {TargetNodeTimer[0] = 0};
 	
