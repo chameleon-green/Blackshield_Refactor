@@ -6,10 +6,12 @@
 function InfantryCreateGeneric() {
 	StartNode = -1;
 	TargetNode = -1;
-	OpenList = ds_list_create();
-	ClosedList = ds_list_create();
+	TargetNodePrevious = -1;
 	PathList = ds_list_create();
-
+	OpenList = ds_priority_create();
+	ClosedList = ds_list_create();
+	ClosedParentList = ds_list_create();
+	
 	vspd = 0;
 	vspd_readonly = 0;
 	hspd = 0;
@@ -18,6 +20,8 @@ function InfantryCreateGeneric() {
 	firing = 0;
 	
 	TargetNodeTimer = [0,irandom_range(45,60)];
+	
+	NewPath = 1;
 			
 }; //function end bracket
 
@@ -27,9 +31,49 @@ function InfantryCreateGeneric() {
 
 function InfantryStepGeneric() {
 	
-	//hspd = 5;
+	firing = 0;
+	var LOS = !collision_line(x,y-15,o_player.x,o_player.y-15,o_platform,1,false);
+	if(LOS) {firing = 1};
+	
+	//if we have lost LOS to player, begin to calculate a new path
+	if(!LOS && (ds_list_size(PathList) = 0)) {NewPath = 1};
+	
+	//If we are not actively engaged, and our target refresh is available, find a new target node
 	TargetNodeTimer[0] += 1;
-	if(firing or (TargetNodeTimer[0] > (TargetNodeTimer[1]+60) )) {TargetNodeTimer[0] = 0};
+	if(firing or (TargetNodeTimer[0] > (TargetNodeTimer[1]+3) )) {TargetNodeTimer[0] = 0};
+	
+	if(!firing && (TargetNodeTimer[0] > TargetNodeTimer[1])) {
+		TargetNodePrevious = TargetNode;
+		var LOSList = ds_list_create();
+		var NodesInLos = nodes_in_los(600,o_platform,o_navnode,MyTarget.x,MyTarget.y-50,-1);	
+		if(NodesInLos != -1) {
+			ds_list_read(LOSList,NodesInLos);	
+			TargetNode = ds_list_nearest(LOSList,MyTarget.x,MyTarget.y-50,0);
+		};
+		ds_list_destroy(LOSList);
+		TargetNodeTimer[0] = 0;
+	};
+	
+	//Find a new path when commanded to
+	if(NewPath ) {
+
+		NewPath = 0;
+		//get us a new starting node for this new path
+		var LOSList = ds_list_create();
+		var NodesInLos = nodes_in_los(600,o_platform,o_navnode,x,y-50,-1);
+		if(NodesInLos != -1) {
+			ds_list_read(LOSList,NodesInLos);	
+			StartNode = ds_list_nearest(LOSList,x,y-50,0);
+		};
+		ds_list_destroy(LOSList);
+		
+		var PathText = nodes_calculate_cost_array(StartNode,600,TargetNode,999);
+		ds_list_read(PathList,PathText);		
+	};
+		
+ //------------------------------------------- actual movement code -------------------------------------------
+ 
+	AStarMovement(PathList,ClosedList);
 	
 	vspd_readonly = vspd;
 

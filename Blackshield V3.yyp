@@ -4,7 +4,7 @@
   "name": "Blackshield V3",
   "resources": [
     {"id":{"name":"sp_inventory_bg","path":"sprites/sp_inventory_bg/sp_inventory_bg.yy",},"order":0,},
-    {"id":{"name":"sp_navnode","path":"sprites/sp_navnode/sp_navnode.yy",},"order":9,},
+    {"id":{"name":"sp_navnode","path":"sprites/sp_navnode/sp_navnode.yy",},"order":2,},
     {"id":{"name":"sp_flamer_flames_bw","path":"sprites/sp_flamer_flames_bw/sp_flamer_flames_bw.yy",},"order":3,},
     {"id":{"name":"snd_chain_idle_loop1","path":"sounds/snd_chain_idle_loop1/snd_chain_idle_loop1.yy",},"order":3,},
     {"id":{"name":"snd_punch2","path":"sounds/snd_punch2/snd_punch2.yy",},"order":8,},
