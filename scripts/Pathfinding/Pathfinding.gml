@@ -4,7 +4,7 @@ function GenerateNodes(NodeDensity){
 
 	var Width = abs(bbox_left - bbox_right);
 	var NodeCount = floor(Width/NodeDensity);
-	var NodeHoverHeight = 55;
+	var NodeHoverHeight = 75;
 	
 	var Angle = degtorad(image_angle);
 	var Yoff = tan(Angle)*Width;
@@ -12,8 +12,8 @@ function GenerateNodes(NodeDensity){
 	var LeftNodeOffset = clamp(sign(Angle),0,1)*Yoff
 	var RightNodeOffset = clamp(sign(Angle),-1,0)*Yoff
 	
-	instance_create_depth(bbox_left+10,bbox_top+LeftNodeOffset-NodeHoverHeight,depth-1,o_navnode,{parent : id});
-	instance_create_depth(bbox_right-10,bbox_top+RightNodeOffset-NodeHoverHeight,depth-1,o_navnode,{parent : id});
+	instance_create_depth(bbox_left+10,bbox_top+LeftNodeOffset-NodeHoverHeight,depth-1,o_navnode,{creator : id, corner : 1});
+	instance_create_depth(bbox_right-10,bbox_top+RightNodeOffset-NodeHoverHeight,depth-1,o_navnode,{creator : id, corner : 1});
 	
 	var i = 1;
 	while(i < NodeCount) {
@@ -26,7 +26,7 @@ function GenerateNodes(NodeDensity){
 			YPos = bbox_top+Yoff2;
 		};
 		
-		instance_create_depth(bbox_left+Spacing*i,YPos-NodeHoverHeight,depth-1,o_navnode,{parent : id});
+		instance_create_depth(bbox_left+Spacing*i,YPos-NodeHoverHeight,depth-1,o_navnode,{creator : id, corner : 0});
 		i++;
 	};	
 };
@@ -180,6 +180,64 @@ function nodes_in_los(SearchRadius,wall_object,node_object,x,y,closed_list,area=
 };
 #endregion
 
+#region check if our next node parent collides with current platform (jump check for hills)
+
+function NodeParentCollisionCheck(X,CurrentPlatform,NodeToCheck,Loops) {
+	
+	var NextPlatform = 0;
+	var LoopCount = 0;
+	
+	if(instance_exists(NodeToCheck)) {
+				
+		var NodeNextParent = NodeToCheck.creator;
+		var NodeToLeft = (NodeToCheck.x < X);
+		var NodeToRight = (NodeToCheck.x > X);	
+		if(!NodeToLeft && !NodeToRight) {return 1};
+		if(NodeNextParent = CurrentPlatform) {return 1};
+			
+		with(NodeNextParent){
+		
+			var YCoord = [0,0,0];
+			if(image_angle < 0) {YCoord = [bbox_top,bbox_bottom,-1,-1]} 
+			if(image_angle = 0) {YCoord = [bbox_bottom,bbox_bottom,1,-1]};
+			if(image_angle > 0) {YCoord = [bbox_bottom,bbox_top,1,1]};
+			var Thickness = 32*image_yscale;
+			
+			if(NodeToRight) {NextPlatform = collision_circle(bbox_left,YCoord[0]-(YCoord[2]*Thickness/2),Thickness*0.75,o_platform,1,true)};
+			if(NodeToLeft) {NextPlatform = collision_circle(bbox_right,YCoord[1]+(YCoord[3]*Thickness/2),Thickness*0.75,o_platform,1,true)}
+		};
+
+		if(NextPlatform = noone) {return 0};
+		if(NextPlatform = CurrentPlatform) {return 1};	
+		
+		while( (NextPlatform != CurrentPlatform) ) {
+			
+			with(NextPlatform) {
+		
+			var YCoord = [0,0,0];
+			if(image_angle < 0) {YCoord = [bbox_top,bbox_bottom,-1,-1]} 
+			if(image_angle = 0) {YCoord = [bbox_bottom,bbox_bottom,1,-1]};
+			if(image_angle > 0) {YCoord = [bbox_bottom,bbox_top,1,1]};
+			var Thickness = 32*image_yscale;
+			
+			if(NodeToRight) {NextPlatform = collision_circle(bbox_left,YCoord[0]-(YCoord[2]*Thickness/2),Thickness*0.75,o_platform,1,true)};
+			if(NodeToLeft) {NextPlatform = collision_circle(bbox_right,YCoord[1]+(YCoord[3]*Thickness/2),Thickness*0.75,o_platform,1,true)}
+			};
+			
+			LoopCount += 1;	
+			if( (LoopCount > Loops) or (NextPlatform = 0) ) {return 0};
+			if(NextPlatform = CurrentPlatform) {return 1};
+		};
+		
+		
+	} //else{return 0}; //node did not exist, return 0
+	
+	return 7;
+	
+};
+
+#endregion
+
 #region  A-Star path calculator
 
 //calculates a path using A* and returns a path of sequential nodes in a ds_list 
@@ -229,6 +287,7 @@ function nodes_calculate_cost_array(StartNode,SearchRadius,TargetNode,max_search
 		ds_priority_delete_value(OpenList,Node); //remove our node from the openlist	
 	
 		if(is_array(Node)){
+			if(!instance_exists(Node[4])) {break};
 			if(ds_list_find_index(ClosedList,Node[4]) = -1) {ds_list_add(ClosedList,Node[4]) ds_list_add(ClosedParentList,Node[3])}; //add to the closed list
 			if(Node[4] = TargetNode) {break}; //if we have added target to closed list, break the loop and stop expanding nodes
 	
@@ -244,8 +303,8 @@ function nodes_calculate_cost_array(StartNode,SearchRadius,TargetNode,max_search
 				var NodeID = LOSList[| i];
 				var CostG = abs(point_distance(StartNode.x,StartNode.y,NodeID.x,NodeID.y)) + abs(point_distance(StartNode.x,StartNode.y,Node[4].x,Node[4].y))
 				var CostH = abs(point_distance(TargetNode.x,TargetNode.y,NodeID.x,NodeID.y));
-				var CostF = ( (1*CostG) + (3*CostH) )/4
-		
+				var CostF = ( (1*CostG) + (9*CostH) )/10;
+				
 				NodeArray[4] = NodeID; //set node itself
 				NodeArray[3] = Node[4]; //set parent
 				NodeArray[2] = CostG;
@@ -469,26 +528,38 @@ function AStarMovement(PathList,ClosedList) {
 		
 	//----------------------------------------------------- Movement ----------------------------------------------------------
 	
-	hspd = 0;
+	
 	//var HaveValidPath = (ds_list_find_index(PathList,TargetNode) != -1);
 	var HaveValidPath = (ds_list_size(PathList) > 0);
 		
 	if(HaveValidPath) {
 			
 		var NodeNext = ds_list_find_value(PathList,0);
-		var InRange = (abs(x-NodeNext.x) < 80) && (abs(y-NodeNext.y) < 80) && !collision_line(x,y,NodeNext.x,NodeNext.y,o_platform,1,1);
-		
-		var MyPlatform = instance_place(x,y,o_platform);
-		
-		if(InRange) {ds_list_delete(PathList,ds_list_find_index(PathList,NodeNext))};
-		if(NodeNext != 0) {
+
+		if(NodeNext != 0 && instance_exists(NodeNext)) {
 			
-			if(NodeNext) {};
+			var LOStoNode = !collision_line(x,y-15,NodeNext.x,NodeNext.y,o_platform,1,1)
+			var InRange = (abs(x-NodeNext.x) < 20) && (abs(y-NodeNext.y) < 100) && LOStoNode;
+			if(InRange) {ds_list_delete(PathList,ds_list_find_index(PathList,NodeNext))};
+			if(!LOStoNode) {NewPath = 1};
 			
-			//if(NodeNext.x > x) {hspd = 15};
-			//if(NodeNext.x < x) {hspd = -15};			
+			var Above = ( ((y-55)-NodeNext.y) > 40);
+			var Dist_X = abs(NodeNext.x - x);
+			var Dist_Y = abs(NodeNext.y - y); // mid_y)
+			var JumpDistance = 5*sqr(MoveSpeed)
+			
+			//jump when we are approaching a node above us. modify dist_X inequality to jump earlier
+			if(Above && (Dist_X < clamp(JumpDistance,250,1750)) && instance_place(x,y+2+vspd,o_platform)) {				
+				var ShouldJump = !NodeParentCollisionCheck(x,instance_place(x,y+2+vspd,o_platform),NodeNext,4);
+				if(ShouldJump) {JumpForce = 1.7*(sqrt(Dist_Y)); Jump = 1};
+			};
+					
+			if((NodeNext.x > x) && (Dist_X > MoveSpeed)) {Right = 1};
+			if((NodeNext.x < x) && (Dist_X > MoveSpeed)) {Left = 1};
 		};	
 	};
+	
+	
 		
 }; //function end bracket astar movement
 #endregion

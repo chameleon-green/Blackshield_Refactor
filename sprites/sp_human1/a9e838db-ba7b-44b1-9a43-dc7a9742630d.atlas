@@ -1,0 +1,166 @@
+skeleton.png
+size:256,256
+filter:Linear,Linear
+pma:true
+flash med 1
+bounds:2,11,78,56
+flash med 1 core
+bounds:142,64,78,56
+flash med 2
+bounds:164,2,80,60
+flash med 2 core
+bounds:82,2,80,60
+flash med 3
+bounds:72,69,68,55
+flash med 3 core
+bounds:2,69,68,55
+flash med 4
+bounds:55,126,95,39
+flash med 4 core
+bounds:131,167,95,39
+flash_red1
+bounds:152,122,61,43
+flash_red2
+bounds:2,145,51,39
+flash_red3
+bounds:82,171,47,35
+flash_red4
+bounds:2,186,78,20
+
+skeleton_2.png
+size:256,64
+filter:Linear,Linear
+pma:true
+Cadian Flak Armor/calf_flak
+bounds:2,24,16,38
+Cadian Flak Armor/forearm_flak
+bounds:150,34,28,12
+rotate:90
+Cadian Flak Armor/front bicep_flak
+bounds:56,27,19,35
+Cadian Flak Armor/front bicep_flak_sarge
+bounds:77,27,19,35
+Cadian Flak Armor/front hand_flak
+bounds:102,8,17,11
+rotate:90
+Cadian Flak Armor/front thigh_flak
+bounds:39,3,21,35
+rotate:90
+Cadian Flak Armor/head_flak
+bounds:129,2,25,25
+Cadian Flak Armor/head_flak_sarge
+bounds:76,2,24,23
+Cadian Flak Armor/holding hand_flak
+bounds:115,10,15,12
+rotate:90
+Cadian Flak Armor/pelvis_flak
+bounds:118,29,33,30
+rotate:90
+Cadian Flak Armor/rear bicep_flak
+bounds:98,27,18,35
+Cadian Flak Armor/rear thigh_flak
+bounds:2,2,20,35
+rotate:90
+Cadian Flak Armor/torso_flak
+bounds:20,26,36,34
+rotate:90
+
+skeleton_3.png
+size:64,32
+filter:Linear,Linear
+pma:true
+Gun Anims/anim_auto1
+bounds:46,8,11,4
+rotate:90
+Gun Anims/anim_auto2
+bounds:46,2,11,4
+Gun Anims/anim_auto3
+bounds:52,8,11,4
+rotate:90
+Gun Anims/anim_thumper_voss1
+bounds:2,5,14,20
+rotate:90
+Gun Anims/anim_thumper_voss2
+bounds:24,5,14,20
+rotate:90
+
+skeleton_4.png
+size:32,64
+filter:Linear,Linear
+pma:true
+Magazines/mag_bolter1
+bounds:2,13,15,18
+Magazines/mag_lasgun1
+bounds:19,17,8,14
+Magazines/mag_thump_single
+bounds:2,2,14,9
+
+skeleton_5.png
+size:512,64
+filter:Linear,Linear
+pma:true
+Scion Carapace Armor/backpack
+bounds:248,17,45,26
+Scion Carapace Armor/calf
+bounds:157,25,18,50
+rotate:90
+Scion Carapace Armor/foot
+bounds:209,29,20,14
+Scion Carapace Armor/front bicep
+bounds:295,2,23,37
+rotate:90
+Scion Carapace Armor/front forearm
+bounds:369,43,34,19
+Scion Carapace Armor/front hand
+bounds:242,45,17,14
+rotate:90
+Scion Carapace Armor/front thigh
+bounds:160,4,19,42
+rotate:90
+Scion Carapace Armor/grav_flames_1
+bounds:157,45,83,17
+Scion Carapace Armor/grav_flames_2
+bounds:80,4,78,13
+Scion Carapace Armor/gravchute
+bounds:2,15,76,47
+Scion Carapace Armor/head
+bounds:334,9,29,28
+rotate:90
+Scion Carapace Armor/holding hand
+bounds:231,25,18,15
+rotate:90
+Scion Carapace Armor/pelvis
+bounds:295,27,35,33
+rotate:90
+Scion Carapace Armor/rear bicep
+bounds:330,40,22,37
+rotate:90
+Scion Carapace Armor/rear forearm
+bounds:364,4,34,20
+rotate:90
+Scion Carapace Armor/rear thigh
+bounds:204,4,19,42
+rotate:90
+Scion Carapace Armor/thumper_loading_hand
+bounds:248,2,13,13
+Scion Carapace Armor/torso
+bounds:80,19,43,75
+rotate:90
+
+skeleton_6.png
+size:256,128
+filter:Linear,Linear
+pma:true
+Weapons/bolter_munitorum
+bounds:84,2,56,38
+rotate:90
+Weapons/hotshot
+bounds:2,60,125,62
+Weapons/lasgun_kantrael
+bounds:2,32,80,26
+Weapons/thumper_voss
+bounds:2,8,55,22
+Weapons/volleygun
+bounds:129,66,108,56
+Weapons/volleygun_ryza
+bounds:129,8,108,56

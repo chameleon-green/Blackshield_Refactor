@@ -1,2 +1,2 @@
 depth = 15;
-GenerateNodes(350);
+GenerateNodes(550);

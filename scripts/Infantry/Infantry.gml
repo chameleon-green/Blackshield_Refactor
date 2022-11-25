@@ -12,9 +12,14 @@ function InfantryCreateGeneric() {
 	ClosedList = ds_list_create();
 	ClosedParentList = ds_list_create();
 	
+	ClearToProcess = 0;
+	
 	vspd = 0;
 	vspd_readonly = 0;
 	hspd = 0;
+	
+	MoveSpeed = 12;
+	JumpForce = 0;
 	
 	MyTarget = o_player;
 	firing = 0;
@@ -55,25 +60,41 @@ function InfantryStepGeneric() {
 	};
 	
 	//Find a new path when commanded to
-	if(NewPath ) {
-
+	if(NewPath) {
 		NewPath = 0;
-		//get us a new starting node for this new path
-		var LOSList = ds_list_create();
-		var NodesInLos = nodes_in_los(600,o_platform,o_navnode,x,y-50,-1);
-		if(NodesInLos != -1) {
-			ds_list_read(LOSList,NodesInLos);	
-			StartNode = ds_list_nearest(LOSList,x,y-50,0);
-		};
-		ds_list_destroy(LOSList);
+		if(ds_list_find_index(global.AIQueue,id) = -1) {ds_list_add(global.AIQueue,id)};
+		if(ClearToProcess) {
+			ClearToProcess = 0;
+			//get us a new starting node for this new path
+			var LOSList = ds_list_create();
+			var NodesInLos = nodes_in_los(600,o_platform,o_navnode,x,y-50,-1);
+			if(NodesInLos != -1) {
+				ds_list_read(LOSList,NodesInLos);	
+				StartNode = ds_list_nearest(LOSList,x,y-50,0);
+			};
+			ds_list_destroy(LOSList);
 		
-		var PathText = nodes_calculate_cost_array(StartNode,600,TargetNode,999);
-		ds_list_read(PathList,PathText);		
+			var PathText = nodes_calculate_cost_array(StartNode,800,TargetNode,9999);
+			ds_list_read(PathList,PathText);	
+		};
 	};
 		
  //------------------------------------------- actual movement code -------------------------------------------
- 
+	
+	hspd = 0;
+	Left = 0;
+	Right = 0;
+	Jump = 0;
+	
 	AStarMovement(PathList,ClosedList);
+	
+	col_bot = place_meeting(x,y+1+vspd,o_platform);
+	
+	skeleton_anim_set_step("idle_hotshot",1)
+	if(!Left && !Right) {skeleton_animation_clear(2)};
+	if(Left) {image_xscale = 1 hspd = -MoveSpeed skeleton_anim_set_step("sprint_rifle",2)};
+	if(Right) {image_xscale = -1 hspd = MoveSpeed skeleton_anim_set_step("sprint_rifle",2)};
+	if(Jump && col_bot) {vspd = -JumpForce};
 	
 	vspd_readonly = vspd;
 
