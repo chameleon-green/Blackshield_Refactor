@@ -55,6 +55,7 @@
     {"id":{"name":"snd_impact_metal_penetrate2","path":"sounds/snd_impact_metal_penetrate2/snd_impact_metal_penetrate2.yy",},"order":5,},
     {"id":{"name":"ImpactScript","path":"scripts/ImpactScript/ImpactScript.yy",},"order":3,},
     {"id":{"name":"snd_impact_gore1","path":"sounds/snd_impact_gore1/snd_impact_gore1.yy",},"order":7,},
+    {"id":{"name":"IF AI BREAKS","path":"notes/IF AI BREAKS/IF AI BREAKS.yy",},"order":3,},
     {"id":{"name":"snd_bolterlight1","path":"sounds/snd_bolterlight1/snd_bolterlight1.yy",},"order":1,},
     {"id":{"name":"AnimationsFlashesSoundGroups","path":"scripts/AnimationsFlashesSoundGroups/AnimationsFlashesSoundGroups.yy",},"order":0,},
     {"id":{"name":"sp_xhair","path":"sprites/sp_xhair/sp_xhair.yy",},"order":0,},

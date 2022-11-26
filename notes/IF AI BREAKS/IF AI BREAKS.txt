@@ -1,0 +1,3 @@
+
+-Check AI Queue in alarm event of IC. Queue tests if AI object's instance ID is "ref", which is needed
+as instance IDs are now not just numbers (100579 vs "ref 100579"). This may change.
