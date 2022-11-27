@@ -27,6 +27,23 @@ function InfantryCreateGeneric() {
 	TargetNodeTimer = [0,irandom_range(45,60)];
 	
 	NewPath = 1;
+	
+	fleeing = 0;
+	aware = 1;
+	dead = 0;
+	sprinting = 0;
+	state = "default";
+	angle = 0;
+	LOSandRange = 0;
+	morale = 10;
+	direc = 0;
+	canshoot = 1;
+	reloading = 0;
+	
+	max_range = 5000;
+	
+	LOSTimer = timer_create(45,0);
+	LOSCheck = 0;
 			
 }; //function end bracket
 
@@ -36,12 +53,33 @@ function InfantryCreateGeneric() {
 
 function InfantryStepGeneric() {
 	
-	firing = 0;
-	var LOS = !collision_line(x,y-15,o_player.x,o_player.y-15,o_platform,1,false);
-	if(LOS) {firing = 1};
+	//------------------------------------------- Target finding code --------------------------------------------
 	
+	var AI_Enabled = 1 
+	aware = 1//(distance_to_object(obj_player) < radius_detection) //* AI_Enabled
+	LOSCheck = timer_tick(LOSTimer,0);
+	if(LOSCheck) {
+		LOSandRange = check_los_and_range(1,x,y-100,MyTarget,o_platform,max_range); //can we see target, and have range?
+		timer_reset(LOSTimer,1);
+	}
+	
+	if(LOSandRange and canshoot and !dead and !fleeing) {firing = 1} else{firing = 0}
+	
+	if(instance_exists(MyTarget) and !dead) {
+		//if we are not fleeing, face our target
+		if(morale > 0 and LOSandRange and !sprinting) {
+		//if(target.x > x) {image_xscale = -1} else{image_xscale = 1}
+		};
+	
+		var pl_offset = MyTarget.y+(MyTarget.bbox_top - MyTarget.bbox_bottom)/2;
+		var yyy = y+(bbox_top-bbox_bottom)/2;
+		direc = point_direction(x,yyy,MyTarget.x,pl_offset);
+	};
+ 
+	//--------------------------------------- Pathfinding related code -------------------------------------------------------
+		
 	//if we have lost LOS to player, begin to calculate a new path
-	if(!LOS && (ds_list_size(PathList) = 0)) {NewPath = 1};
+	if(!LOSandRange && (ds_list_size(PathList) = 0)) {NewPath = 1};
 	
 	//If we are not actively engaged, and our target refresh is available, find a new target node
 	TargetNodeTimer[0] += 1;
@@ -78,7 +116,7 @@ function InfantryStepGeneric() {
 			ds_list_read(PathList,PathText);	
 		};
 	};
-		
+
  //------------------------------------------- actual movement code -------------------------------------------
 	
 	hspd = 0;
@@ -134,6 +172,71 @@ function InfantryStepGeneric() {
 	
 	y += vspd; //change our Y by effects of gravity and climb values
 	
+	
 }; //function end bracket
 
 #endregion
+
+#region Infantry animation update generic
+
+function InfantryAnimGeneric() {
+
+	//aware = 1 LOSandRange = 1 //DELETE ME
+	
+	if(state != "dying" and state != "dead" and !reloading) {
+	
+	//skeleton_attachment_set("gun",attachment_gun)
+
+	var torsomap = ds_map_create()
+	var headmap = ds_map_create()
+	var front_bicep_map = ds_map_create()
+	var rear_bicep_map = ds_map_create()
+	var AngOffset = 0
+
+
+	skeleton_bone_state_get("head", headmap);
+	skeleton_bone_state_get("torso", torsomap)
+	var torso_ang = ds_map_find_value(torsomap, "angle") - 90
+	//var deltax = MyTarget.x - (x + 0)
+	//var deltay = MyTarget.y - (y + 50) 
+	//var melee = 0
+
+	if(aware and !sprinting and !dead and !fleeing) {
+	//altering calculated triangle sides based on facing to make them positive/negative.
+	//future me, set up a diagram and do the math, it makes sense
+	//unclamp arm values once you get constraints in pro version of Spine, only reason they are there is because arms look weird without
+
+		if(MyTarget.x > x and LOSandRange){
+			image_xscale = -1
+			angle =	-direc - 180 + image_angle 
+			ds_map_replace(headmap, "angle",angle + 180)
+			ds_map_replace(front_bicep_map, "angle", angle - AngOffset - torso_ang)
+			ds_map_replace(rear_bicep_map, "angle", angle + clamp( (360/angle)*35, -50,50 )  )
+		};
+	
+		else if (MyTarget.x < x and LOSandRange){
+			image_xscale = 1
+			angle =	direc - image_angle 
+			ds_map_replace(headmap, "angle",angle + 180)
+			ds_map_replace(front_bicep_map, "angle", angle - AngOffset - torso_ang)
+			ds_map_replace(rear_bicep_map, "angle", angle - clamp( (180/angle)*35, -50,50 )  )
+		};
+	
+	
+		//sets values we just made
+		skeleton_bone_state_set("front bicep", front_bicep_map);
+		skeleton_bone_state_set("rear bicep", rear_bicep_map);
+		skeleton_bone_state_set("head", headmap);	
+	};
+	
+	//destroys dsmap each execution, these things takes a lot of memory
+	ds_map_destroy(headmap);
+	ds_map_destroy(torsomap);
+	ds_map_destroy(front_bicep_map);
+	ds_map_destroy(rear_bicep_map);	
+	}
+	
+}; //function end bracket
+
+#endregion
+

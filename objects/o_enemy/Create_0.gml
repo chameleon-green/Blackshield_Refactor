@@ -1,10 +1,8 @@
 CreateScript = InfantryCreateGeneric;
 StepScript = InfantryStepGeneric;
+AnimScript = InfantryAnimGeneric;
 
 CreateScript();
-
-timer = irandom_range(55,75)
-alarm[0] = timer;
 
 /*
 if(leader) {

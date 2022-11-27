@@ -101,7 +101,7 @@ AddItem(Armor_LegR_2000,1,grd_inv_armr,InventorySize);
 MyPlayer = instance_create_depth(x,y,depth+1,o_player,{MyIC : id});
 MyHPbar = instance_create_depth(x,y,depth+1,o_HPbar, {MyIC : id, scale : 1.33, MyPlayer : other.MyPlayer});
 
-repeat (100) {instance_create_depth(x,y,depth,o_enemy,{leader : 1})};
+repeat (300) {instance_create_depth(x,y,depth,o_enemy,{leader : 1})};
 
 //----------------------------------------- Zoom Functionality ------------------------------
 
