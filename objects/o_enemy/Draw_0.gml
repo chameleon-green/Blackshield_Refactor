@@ -1,7 +1,7 @@
 
 draw_self();
 
-
+draw_text(x,bbox_top,AimTimer[0]);
 /*
 draw_text(x,bbox_top-145,"Start Node:" + string(StartNode));
 draw_text(x,bbox_top-130,"Target Node:" + string(TargetNode));

@@ -1,2 +1,1 @@
-VisualCulling();
 draw_self();

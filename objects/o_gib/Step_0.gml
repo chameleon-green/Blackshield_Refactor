@@ -1,4 +1,4 @@
-visible = 1;
+VisualCulling();
 
 if(kill_toggle) {
 	kill_toggle = 0;
