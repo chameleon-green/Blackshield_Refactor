@@ -3,6 +3,7 @@ StepScript = InfantryStepGeneric;
 AnimScript = InfantryAnimGeneric;
 
 CreateScript();
+visible = 1;
 
 /*
 if(leader) {

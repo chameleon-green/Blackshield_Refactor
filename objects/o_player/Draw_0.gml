@@ -4,7 +4,9 @@ audio_listener_set_position(0,x,y,0);
 //------------------------------------------- STATE TOGGLES --------------------------------------------
 
 var IsRanged = string_count("ranged",wpn_active.item_type);
-CanShoot = (!sprinting && !rolling && !reloading && !swinging && IsRanged);
+var ICActive = 0;
+if(variable_instance_exists(id,"MyIC")) {var ICActive = MyIC.active};
+CanShoot = (!sprinting && !rolling && !reloading && !swinging && IsRanged && !ICActive);
 CanReload = (!rolling && !reloading && !swinging);
 CanMove = (!rolling && !swinging);
 CanRoll = (!rolling && !swinging);
