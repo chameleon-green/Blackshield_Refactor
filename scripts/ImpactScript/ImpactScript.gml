@@ -45,9 +45,7 @@ function ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy=0){
 						}; //item ID check
 					}; //enemy check
 					else{};
-					
-					
-					
+									
 					instance_destroy(Bullet);
 					return 0;
 				};
@@ -80,8 +78,7 @@ function ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy=0){
 					if(Bullet.hp <= Bullet.fuse) {instance_destroy(Bullet)};
 					}; //enemy check
 					else{};
-					
-					
+									
 					return NetDamage;
 				};
 				
@@ -144,7 +141,3 @@ function ImpactScript(BulletObject,Limb,HitboxArray,CollisionsList,Precise=0){
 	ds_list_destroy(Impacts_List);
 }; //function end bracket
 #endregion 
-
-function TestScript(Value){
-	x+=Value;
-};
