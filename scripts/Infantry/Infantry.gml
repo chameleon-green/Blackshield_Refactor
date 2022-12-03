@@ -40,7 +40,7 @@ function InfantryCreateGeneric() {
 	canshoot = 1;
 	reloading = 0;
 	
-	max_range = 5000;
+	max_range = 600;
 	
 	LOSTimer = timer_create(45,0);
 	LOSCheck = 0;
@@ -69,13 +69,16 @@ function InfantryStepGeneric() {
 	
 	var AI_Enabled = 1 
 	aware = 1//(distance_to_object(obj_player) < radius_detection) //* AI_Enabled
+	firing = 0;
 	LOSCheck = timer_tick(LOSTimer,0);
 	if(LOSCheck) {
 		LOSandRange = check_los_and_range(1,x,y-100,MyTarget,o_platform,max_range); //can we see target, and have range?
 		timer_reset(LOSTimer,1);
 	}
 	
-	if(LOSandRange and canshoot and !dead and !fleeing) {firing = 1} else{firing = 0}
+	col_bot = place_meeting(x,y+2,o_platform);
+	
+	if(canshoot && LOSandRange && col_bot && !dead && !fleeing) {firing = 1};
 	
 	if(instance_exists(MyTarget) and !dead) {
 		//if we are not fleeing, face our target
@@ -136,9 +139,7 @@ function InfantryStepGeneric() {
 	Right = 0;
 	Jump = 0;
 	
-	AStarMovement(PathList,ClosedList);
-	
-	col_bot = place_meeting(x,y+1+vspd,o_platform);
+	if(!firing) {AStarMovement(PathList,ClosedList)};
 	
 	skeleton_anim_set_step("idle_hotshot",1)
 	if(!Left && !Right) {skeleton_animation_clear(2)};

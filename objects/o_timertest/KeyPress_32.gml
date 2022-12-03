@@ -1,0 +1,1 @@
+ActivateEffect(o_IC.Drug_Combat_Somatogen,id,BuffList);
