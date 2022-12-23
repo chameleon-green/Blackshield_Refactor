@@ -9,7 +9,7 @@ function ConsumableStructs(){
 		item_type : "consumable_med_drug_combat",
 		
 		//buff related stats
-		item_effects : [ ["buff","END",20,1200], ["per/sec","HP",0.25,600] ],
+		item_effects : [ ["buff","END",20,1200], ["per/sec","HP",0.25,600], ["instant","HP",100,1] ],
 		
 		//technical weapon stats
 		weight : 0.01,
@@ -50,6 +50,11 @@ function ActivateEffect(Item,ID,BuffDSList) {	//-------------------------- effec
 			var CurrentValue = variable_struct_get(StatStruct,EffectVariable);
 			var NewValue = CurrentValue + EffectStrength;
 			variable_struct_set(StatStruct,EffectVariable,NewValue);
+		};
+		if(EffectType = "instant"){
+			var CurrentValue = variable_instance_get(ID,EffectVariable);
+			var NewValue = CurrentValue + EffectStrength;
+			variable_instance_set(ID,EffectVariable,NewValue);
 		};
 		
 		i++;

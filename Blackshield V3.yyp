@@ -15,6 +15,7 @@
     {"id":{"name":"ArmorStructs","path":"scripts/ArmorStructs/ArmorStructs.yy",},"order":6,},
     {"id":{"name":"sp_casing_small","path":"sprites/sp_casing_small/sp_casing_small.yy",},"order":1,},
     {"id":{"name":"snd_click_empty","path":"sounds/snd_click_empty/snd_click_empty.yy",},"order":5,},
+    {"id":{"name":"sp_status_icons","path":"sprites/sp_status_icons/sp_status_icons.yy",},"order":3,},
     {"id":{"name":"snd_chain1","path":"sounds/snd_chain1/snd_chain1.yy",},"order":0,},
     {"id":{"name":"ConsumableStructs","path":"scripts/ConsumableStructs/ConsumableStructs.yy",},"order":7,},
     {"id":{"name":"snd_impact_gore2","path":"sounds/snd_impact_gore2/snd_impact_gore2.yy",},"order":8,},
@@ -218,6 +219,6 @@
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"desc_blank.txt","CopyToMask":-1,"filePath":"datafiles",},
   ],
   "MetaData": {
-    "IDEVersion": "2022.11.0.54",
+    "IDEVersion": "2022.11.1.56",
   },
 }
