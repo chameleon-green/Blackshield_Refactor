@@ -35,6 +35,7 @@ if(Tab = "items") {
 	);	
 	if(IsEquipped) {TriButtonText[0] = "Unequip"};
 	if(IsEquippedAmmo) {TriButtonText[0] = "Equipped"; TriButtonColors[0] = c_yellow};
+	if(SubTab = "aid") {TriButtonText[0] = "Use"};
 	
 	if(ButtonRegionCenter(Mouse_X,Mouse_Y,-40,-112,-49,-19,scale)){
 		TriButtonColors[0] = c_yellow;
@@ -223,6 +224,8 @@ if(Tab = "items") {
 	};//ammo tab check
 	#endregion
 	
+};//items tab check	
+
 	//+++++++++++++++++++++++++++++++++++++++ BUTTON CHECKS ++++++++++++++++++++++++++++++++++++++++++++
 
 #region Button Checks
@@ -231,53 +234,61 @@ if(Click) {
 	
 	if(ButtonRegionCenter(Mouse_X,Mouse_Y,300,220,180,200,scale) && (Tab != "items")) {
 		Tab = "items"; bg_subimage = 0; 
-		global.Selected = [-1,-1];
+		global.Selected = ["none","none"];
+		if(SubTab = "weapons") {bg_subimage = 0};
+		else if(SubTab = "armor") {bg_subimage = 1};
+		else if(SubTab = "aid") {bg_subimage = 2};
+		else if(SubTab = "ammo") {bg_subimage = 3};
+		else if(SubTab = "currency") {bg_subimage = 4};
+		else if(SubTab = "crafting") {bg_subimage = 5};
 		refresh = 1; 
 	};
-	if(ButtonRegionCenter(Mouse_X,Mouse_Y,210,120,180,200,scale)) {Tab = "status"; bg_subimage = 6; global.Selected = [-1,-1]};
-	if(ButtonRegionCenter(Mouse_X,Mouse_Y,114,24,180,200,scale)) {Tab = "skills"; bg_subimage = 7; global.Selected = [-1,-1]};
-	if(ButtonRegionCenter(Mouse_X,Mouse_Y,18,-72,180,200,scale)) {Tab = "log"; bg_subimage = 8; global.Selected = [-1,-1]};
+	
+	if(ButtonRegionCenter(Mouse_X,Mouse_Y,210,120,180,200,scale)) {Tab = "status"; bg_subimage = 6; global.Selected = ["none","none"]};
+	if(ButtonRegionCenter(Mouse_X,Mouse_Y,114,24,180,200,scale)) {Tab = "skills"; bg_subimage = 7; global.Selected = ["none","none"]};
+	if(ButtonRegionCenter(Mouse_X,Mouse_Y,18,-72,180,200,scale)) {Tab = "log"; bg_subimage = 8; global.Selected = ["none","none"]};
 	
 	if(Tab = "items") {
 		if(ButtonRegionCenter(Mouse_X,Mouse_Y,302,272,140,170,scale) && (SubTab != "weapons")) {
 			SubTab = "weapons"; 
 			bg_subimage = 0; counter_weapons = 0; incrementor_weapons = 0; 
-			global.Selected = [-1,-1];
+			global.Selected = ["none","none"];
 			if(instance_exists(MyScrollbar)) {MyScrollbar.reset = 1};
 		};
 		if(ButtonRegionCenter(Mouse_X,Mouse_Y,264,234,140,170,scale) && (SubTab != "armor")) {
 			SubTab = "armor"; 
 			bg_subimage = 1; counter_armor = 0; incrementor_armor = 0; 
-			global.Selected = [-1,-1];
+			global.Selected = ["none","none"];
 			if(instance_exists(MyScrollbar)) {MyScrollbar.reset = 1};
 		};
 		if(ButtonRegionCenter(Mouse_X,Mouse_Y,226,196,140,170,scale) && (SubTab != "aid")) {
 			SubTab = "aid"; 
 			bg_subimage = 2 counter_aid = 0; incrementor_aid = 0; 
-			global.Selected = [-1,-1];
+			global.Selected = ["none","none"];
 			if(instance_exists(MyScrollbar)) {MyScrollbar.reset = 1};
 		};
 		if(ButtonRegionCenter(Mouse_X,Mouse_Y,188,158,140,170,scale) && (SubTab != "ammo")) {
 			SubTab = "ammo"; 
 			bg_subimage = 3 counter_ammo = 0; incrementor_ammo = 0; 
-			global.Selected = [-1,-1];
+			global.Selected = ["none","none"];
 			if(instance_exists(MyScrollbar)) {MyScrollbar.reset = 1};
 		};
 		if(ButtonRegionCenter(Mouse_X,Mouse_Y,150,120,140,170,scale) && (SubTab != "currency")) {
 			SubTab = "currency"; bg_subimage = 4; 
-			global.Selected = [-1,-1];
+			global.Selected = ["none","none"];
 			if(instance_exists(MyScrollbar)) {MyScrollbar.reset = 1};
 		};
 		if(ButtonRegionCenter(Mouse_X,Mouse_Y,112,82,140,170,scale) && (SubTab != "crafting")) {
 			SubTab = "crafting"; 
 			bg_subimage = 5 counter_crafting = 0; incrementor_crafting = 0; 
-			global.Selected = [-1,-1];
+			global.Selected = ["none","none"];
 			if(instance_exists(MyScrollbar)) {MyScrollbar.reset = 1};
 		};
 		
 		if(ButtonRegionCenter(Mouse_X,Mouse_Y,-40,-112,-49,-19,scale) and is_struct(global.Selected[1]) ){
 			if(TriButtonText[0] = "Unequip") {UnequipItem(global.Selected[1],global.Selected[0],MyPlayer)};
 			if(TriButtonText[0] = "Equip") {EquipItem(global.Selected[1],global.Selected[0],MyPlayer)};
+			if(TriButtonText[0] = "Use") {ActivateEffect(global.Selected[1],MyPlayer,MyPlayer.BuffList)};
 		};
 		if(ButtonRegionCenter(Mouse_X,Mouse_Y,-122,-216,-19,-49,scale)){
 			Description = 1;
@@ -287,8 +298,8 @@ if(Click) {
 		};
 
 	};
-};
-/*
+};//click check
+
 ButtonDrawCenter(305,215,180,200,scale);
 ButtonDrawCenter(210,120,180,200,scale);
 ButtonDrawCenter(114,24,180,200,scale);
@@ -300,7 +311,8 @@ ButtonDrawCenter(226,196,140,170,scale);
 ButtonDrawCenter(188,158,140,170,scale);
 ButtonDrawCenter(150,120,140,170,scale);
 ButtonDrawCenter(112,82,140,170,scale);
-*/
+#endregion
+
 if(refresh) {
 	instance_destroy(o_inventory_item);
 	refresh = 0;
@@ -315,5 +327,5 @@ if(refresh) {
 	ds_grid_alphabetize(grd_inv_armr);
 };
 
-#endregion
-};//items tab check
+
+draw_text(Xcent,Ycent,Tab);

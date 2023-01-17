@@ -7,7 +7,7 @@ if(active = 1) {
 	x = pos_at_close[2]; y = pos_at_close[3]; 
 	
 	enable_mouseaim = 1;
-	global.Selected = [-1,-1];
+	global.Selected = ["none","none"];
 	exit;
 };
 

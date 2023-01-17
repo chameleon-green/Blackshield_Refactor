@@ -303,7 +303,7 @@ function nodes_calculate_cost_array(StartNode,SearchRadius,TargetNode,max_search
 				var NodeID = LOSList[| i];
 				var CostG = abs(point_distance(StartNode.x,StartNode.y,NodeID.x,NodeID.y)) + abs(point_distance(StartNode.x,StartNode.y,Node[4].x,Node[4].y))
 				var CostH = abs(point_distance(TargetNode.x,TargetNode.y,NodeID.x,NodeID.y));
-				var CostF = ( (1*CostG) + (9*CostH) )/10;
+				var CostF = ( (4*CostG) + (6*CostH) )/10;
 				
 				NodeArray[4] = NodeID; //set node itself
 				NodeArray[3] = Node[4]; //set parent

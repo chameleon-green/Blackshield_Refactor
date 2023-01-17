@@ -9,7 +9,7 @@ function ConsumableStructs(){
 		item_type : "consumable_med_drug_combat",
 		
 		//buff related stats
-		item_effects : [ ["buff","END",20,1200], ["per/sec","HP",0.25,600], ["instant","HP",100,1] ],
+		item_effects : [ ["buff","END",40,6000], ["per/sec","HP",0.05,6000], ["instant","HP",50,1] ],
 		
 		//technical weapon stats
 		weight : 0.01,
@@ -19,7 +19,7 @@ function ConsumableStructs(){
 		name : "Somatogen",
 		description : "desc_blank.txt", 
 		use_sound : -1,		
-		inventory_subimage : [sp_xhair, 6],
+		inventory_subimage : [sp_combat_drug_icons, 0],
 	};
 	//ds_list_add(ListComWP,pistol_bolt_tigrus[27]+".pistol_bolt_tigrus") //fix this later
 	#endregion
@@ -30,7 +30,7 @@ function ConsumableStructs(){
 
 #region  buff-related functions
 
-function ActivateEffect(Item,ID,BuffDSList) {	//-------------------------- effect activation 
+function ActivateEffect(Item,TargetID,BuffDSList) {	//-------------------------- effect activation 
 			
 	var ItemEffectArray = Item.item_effects;
 	var ItemEffectCount = array_length(ItemEffectArray);
@@ -46,15 +46,23 @@ function ActivateEffect(Item,ID,BuffDSList) {	//-------------------------- effec
 		ds_list_add(BuffDSList,ArrayToAdd);
 		
 		if(EffectType = "buff"){
-			var StatStruct = variable_instance_get(id,"Mod");
+			var StatStruct = variable_instance_get(TargetID,"Mod");
 			var CurrentValue = variable_struct_get(StatStruct,EffectVariable);
 			var NewValue = CurrentValue + EffectStrength;
 			variable_struct_set(StatStruct,EffectVariable,NewValue);
 		};
 		if(EffectType = "instant"){
-			var CurrentValue = variable_instance_get(ID,EffectVariable);
+			
+			var CurrentValue = variable_instance_get(TargetID,EffectVariable);
+			
+			//check if this value is capped and adjust instant buff to fit this
+			if(variable_instance_exists(TargetID,"Max"+EffectVariable)) {
+				var StatMax = variable_instance_get(TargetID,"Max"+EffectVariable);
+				if(clamp(StatMax - CurrentValue,0,100000000000) < EffectStrength) {EffectStrength = (StatMax - CurrentValue)};
+			};
+						
 			var NewValue = CurrentValue + EffectStrength;
-			variable_instance_set(ID,EffectVariable,NewValue);
+			variable_instance_set(TargetID,EffectVariable,NewValue);
 		};
 		
 		i++;

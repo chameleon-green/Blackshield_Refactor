@@ -50,15 +50,15 @@ Base = {
 	};
 	
 Mod = {		
-	AGI : 00, 
-	CHR : 00,
-	DEX : 00, 
-	END : 00,
-	INT : 00, 
-	LCK : 00,
-	PER : 00, 
-	STR : 00,		
-	WIL : 00						
+	AGI : 0, 
+	CHR : 0,
+	DEX : 0, 
+	END : 0,
+	INT : 0, 
+	LCK : 0,
+	PER : 0, 
+	STR : 0,		
+	WIL : 0						
 	};
 #endregion
 
@@ -76,7 +76,7 @@ hbox_legs = [30,0,-30,84];
 
 PlayerStatsCalculator();
 
-HP = MaxHP;
+HP = MaxHP/3;
 Stamina = MaxStamina;
 Will = MaxWill;
 
@@ -89,6 +89,8 @@ hp_body_legR = hp_body_legR_max;
 
 collisions_list_timer = time_source_create(time_source_game,60,time_source_units_frames,_mymethod);
 collisions_list = ds_list_create(); //collisions list for bullets to prevent them from continuously colliding
+
+BuffList = ds_list_create();
 
 //----------------------------- Set equipment variables to default, then find weapons/armor ------------------------------------
 

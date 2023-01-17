@@ -53,14 +53,16 @@ var MyDisplacement = (Ycent - y)/scale;
 var Quantity = ds_grid_get(grid,1,GridYValue);
 var TitleText = item.name;
 
-var IsAmmo = string_count("ammo",item.item_type)
-var IsRangedWeapon = string_count("weapon_ranged",item.item_type)
-var IsMeleeWeapon = string_count("weapon_melee",item.item_type)
-var IsArmor = string_count("armor",item.item_type)
+var IType = item.item_type
+var IsAmmo = string_count("ammo",IType);
+var IsRangedWeapon = string_count("weapon_ranged",IType);
+var IsMeleeWeapon = string_count("weapon_melee",IType);
+var IsArmor = string_count("armor",IType);
+var IsConsumable = string_count("consumable",IType);
 
 if(GridYValue = -1) {creator.refresh = 1};
 
-if(IsAmmo) {TitleText = item.name + " (" + string(Quantity) + ")"};
+if(IsAmmo or IsConsumable) {TitleText = item.name + " (" + string(Quantity) + ")"};
 if(IsEquipped) {TitleText = TitleText + " (equipped)"};
 
 if ( (MyDisplacement >= -158) and (MyDisplacement <= 135) ){
@@ -107,13 +109,39 @@ if ( (MyDisplacement > 135) and (MyDisplacement < 166) ){
 #endregion
 
 if(Selected = 1) {
-	var ImageScale = 3;
+	
+	var Image = item.inventory_subimage;
+	
+	//scaling sprite to fit in the draw area
+	var DrawAreaX = scale*251;
+	var DrawAreaY = scale*133;
+	
+	var SpriteArray = sprite_get_uvs(Image[0],Image[1]);
+	var TexW = 1/texture_get_texel_width(sprite_get_texture(Image[0],Image[1]));
+	var TexH = 1/texture_get_texel_height(sprite_get_texture(Image[0],Image[1]));
+	
+	var SpriteWidth = abs(SpriteArray[0] - SpriteArray[2])*TexW*scale*3;
+	var SpriteHeight = abs(SpriteArray[1] - SpriteArray[3])*TexH*scale*3;
+	
+	if(SpriteWidth > SpriteHeight) {
+		var OffsetScaleFactor = SpriteWidth/DrawAreaX;
+		var ScaleFactor = DrawAreaX/SpriteWidth;	
+		var ImageScale = ScaleFactor*scale*3*0.5;
+		};
+		else {
+		var OffsetScaleFactor = SpriteHeight/DrawAreaY;
+		var ScaleFactor = DrawAreaY/SpriteHeight;
+		var ImageScale = ScaleFactor*scale*3*0.8;
+		};
+	
+	//draw the inventory image and its outline on the screen
 	var _Color = make_color_rgb(164,128,2);
 	gpu_set_fog(1,_Color,1,1);
-	draw_sprite_ext(item.inventory_subimage[0],item.inventory_subimage[1],Xcent+(156*scale),Ycent-(60*scale),ImageScale,ImageScale,0,c_white,1);
-	draw_sprite_ext(item.inventory_subimage[0],item.inventory_subimage[1],Xcent+(160*scale),Ycent-(64*scale),ImageScale,ImageScale,0,c_white,1);
-	draw_sprite_ext(item.inventory_subimage[0],item.inventory_subimage[1],Xcent+(156*scale),Ycent-(64*scale),ImageScale,ImageScale,0,c_white,1);
-	draw_sprite_ext(item.inventory_subimage[0],item.inventory_subimage[1],Xcent+(160*scale),Ycent-(60*scale),ImageScale,ImageScale,0,c_white,1);
+	var OutlineOffset = 1.25*ScaleFactor;
+	draw_sprite_ext(Image[0],Image[1],Xcent+((158-OutlineOffset)*scale),Ycent-((62+OutlineOffset)*scale),ImageScale,ImageScale,0,c_white,1);
+	draw_sprite_ext(Image[0],Image[1],Xcent+((158-OutlineOffset)*scale),Ycent-((62-OutlineOffset)*scale),ImageScale,ImageScale,0,c_white,1);
+	draw_sprite_ext(Image[0],Image[1],Xcent+((158+OutlineOffset)*scale),Ycent-((62-OutlineOffset)*scale),ImageScale,ImageScale,0,c_white,1);
+	draw_sprite_ext(Image[0],Image[1],Xcent+((158+OutlineOffset)*scale),Ycent-((62+OutlineOffset)*scale),ImageScale,ImageScale,0,c_white,1);
 	gpu_set_fog(0,_Color,1,1);
 	draw_sprite_ext(item.inventory_subimage[0],item.inventory_subimage[1],Xcent+(158*scale),Ycent-(62*scale),ImageScale,ImageScale,0,c_white,1);
 	

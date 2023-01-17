@@ -40,7 +40,7 @@ function InfantryCreateGeneric() {
 	canshoot = 1;
 	reloading = 0;
 	
-	max_range = 600;
+	max_range = 6000;
 	
 	LOSTimer = timer_create(45,0);
 	LOSCheck = 0;

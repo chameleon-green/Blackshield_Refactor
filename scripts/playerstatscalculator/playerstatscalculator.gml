@@ -10,7 +10,7 @@ function StatAsymptote(Input,PeakValue,PeakDivisor=100,Divisor=100) {
 	var Numerator = PeakAdjusted*X;
 	var Denominator = ( (1/Divisor)*X )+3;
 	
-	return round(Numerator/Denominator);
+	return (Numerator/Denominator);
 	
 }; //asymptote function end bracket
 #endregion

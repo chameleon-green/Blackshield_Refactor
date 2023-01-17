@@ -133,7 +133,33 @@ function AddItem (Item,Quantity,TargetGrid,InventorySize,Durability=-1){
 		}; //while loop
 	};//is weapon check
 	
-	
+	if(string_count("consumable",Type)) {
+		
+		var GridHeight = ds_grid_height(TargetGrid);
+		var ItemY = ds_grid_value_y(TargetGrid,0,0,GridHeight,InventorySize-1,Item);
+		
+		if(ItemY != -1) {
+			var CurrentQuantity = ds_grid_get(TargetGrid,1,ItemY);
+			ds_grid_set(TargetGrid,1,ItemY,CurrentQuantity+Quantity);
+			
+		};
+		else{
+		
+			while(Counter < (InventorySize-1) ) {
+			
+				var Slot = ds_grid_get(TargetGrid,0,Counter);				
+				if(Slot = 0) {
+					ds_grid_set(TargetGrid,0,Counter,Item); //what are we adding?
+					ds_grid_set(TargetGrid,1,Counter,Quantity); //how many?
+					ds_grid_set(TargetGrid,8,Counter,GenerateID()); //unique ID for item
+					break;
+				};		
+			Counter +=1;
+			
+			}; //while loop
+		}; //else check		
+	}; //is consumable check
+		
 	refresh = 1;
 };// func end
 #endregion

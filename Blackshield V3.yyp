@@ -23,6 +23,7 @@
     {"id":{"name":"sp_flamer_flames","path":"sprites/sp_flamer_flames/sp_flamer_flames.yy",},"order":2,},
     {"id":{"name":"snd_flamer_loop1","path":"sounds/snd_flamer_loop1/snd_flamer_loop1.yy",},"order":0,},
     {"id":{"name":"sp_swing","path":"sprites/sp_swing/sp_swing.yy",},"order":4,},
+    {"id":{"name":"sp_combat_drug_icons","path":"sprites/sp_combat_drug_icons/sp_combat_drug_icons.yy",},"order":0,},
     {"id":{"name":"snd_swing_heavy3","path":"sounds/snd_swing_heavy3/snd_swing_heavy3.yy",},"order":12,},
     {"id":{"name":"snd_shotgun_reload_single1","path":"sounds/snd_shotgun_reload_single1/snd_shotgun_reload_single1.yy",},"order":3,},
     {"id":{"name":"snd_impact_melee1","path":"sounds/snd_impact_melee1/snd_impact_melee1.yy",},"order":0,},
@@ -181,6 +182,7 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Weapons","folderPath":"folders/Sprites/Sprites: UI/Item Icons/Weapons.yy","order":5,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Tile Sets","folderPath":"folders/Tile Sets.yy","order":1,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Timelines","folderPath":"folders/Timelines.yy","order":6,},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Consumables","folderPath":"folders/Sprites/Sprites: UI/Item Icons/Consumables.yy","order":6,},
   ],
   "AudioGroups": [
     {"resourceType":"GMAudioGroup","resourceVersion":"1.3","name":"audiogroup_default","targets":-1,},

@@ -1,6 +1,7 @@
 
 global.debug = 1;
 global.AIQueue = ds_list_create();
+global.Selected = ["none","none"];
 
 
 //audio_debug(global.debug);
@@ -26,7 +27,7 @@ CL_Outline = make_colour_rgb(192,158,2);
 
 
 active = 0;
-scale = 1.33;
+scale = 1;//1.33;
 bg_subimage = 0;
 enable_mouseaim = 1;
 pos_at_close = [0,0,0,0];
@@ -43,7 +44,6 @@ MyScrollbar = 0;
 //------------------------------------------ Inventory functionality -------------------------------------------
 
 global.IDList = ds_list_create();
-global.Selected = [-1,-1];
 
 AnimationsFlashesSoundGroups();
 AmmoStructs();
@@ -96,6 +96,8 @@ AddItem(Armor_ArmL_2000,1,grd_inv_armr,InventorySize);
 AddItem(Armor_ArmR_2000,1,grd_inv_armr,InventorySize);
 AddItem(Armor_LegL_2000,1,grd_inv_armr,InventorySize);
 AddItem(Armor_LegR_2000,1,grd_inv_armr,InventorySize);
+
+AddItem(Drug_Combat_Somatogen,10,grd_inv_aidd,InventorySize);
 
 //----------------------------------------- Create Player ---------------------------------------
 
