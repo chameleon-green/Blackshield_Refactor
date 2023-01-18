@@ -24,9 +24,10 @@ function InfantryCreateGeneric() {
 	MyTarget = o_player;
 	firing = 0;
 	
-	TargetNodeTimer = [0,irandom_range(45,60)];
+	TargetNodeTimer = [0,irandom_range(8,15)];
 	
-	NewPath = 1;
+	NewPath = 0;
+	NewPathToggle = 1;
 	
 	fleeing = 0;
 	aware = 1;
@@ -94,7 +95,9 @@ function InfantryStepGeneric() {
 	//--------------------------------------- Pathfinding related code -------------------------------------------------------
 		
 	//if we have lost LOS to player, begin to calculate a new path
-	if(!LOSandRange && (ds_list_size(PathList) = 0)) {NewPath = 1};
+	if(!LOSandRange and (ds_list_size(PathList) = 0)) {NewPath = 1};
+	if(LOSandRange and col_bot) {ds_list_clear(PathList); NewPath = 0};
+	
 	
 	//If we are not actively engaged, and our target refresh is available, find a new target node
 	TargetNodeTimer[0] += 1;
@@ -112,11 +115,13 @@ function InfantryStepGeneric() {
 		TargetNodeTimer[0] = 0;
 	};
 	
+	
 	//Find a new path when commanded to
-	if(NewPath) {
+	if(NewPath) {	
 		NewPath = 0;
-		if(ds_list_find_index(global.AIQueue,id) = -1) {ds_list_add(global.AIQueue,id)};
-		if(ClearToProcess) {
+		//ClearToProcess = 0;
+		if(ds_list_find_index(global.AIQueue,id) = -1 and !ClearToProcess) {ds_list_add(global.AIQueue,id)};
+		if(ClearToProcess) {		
 			ClearToProcess = 0;
 			//get us a new starting node for this new path
 			var LOSList = ds_list_create();
@@ -131,7 +136,9 @@ function InfantryStepGeneric() {
 			ds_list_read(PathList,PathText);	
 		};
 	};
-
+	
+	
+		
  //------------------------------------------- actual movement code -------------------------------------------
 	
 	hspd = 0;

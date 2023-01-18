@@ -4,12 +4,12 @@
 function ConsumableStructs(){
 	
 	#region Combat Drugs
-		Drug_Combat_Somatogen = { //---------------------------- somatogen
+	Drug_Combat_Somatogen = { //---------------------------- somatogen
 		
 		item_type : "consumable_med_drug_combat",
 		
-		//buff related stats
-		item_effects : [ ["buff","END",40,6000], ["per/sec","HP",0.05,6000], ["instant","HP",50,1] ],
+		//buff related stats [type,variable,strength,duration,subimage]
+		item_effects : [ ["buff","END",40,6000,3], ["per/sec","HP",0.05,6000,9], ["instant","HP",50,1,9] ],
 		
 		//technical weapon stats
 		weight : 0.01,
@@ -20,7 +20,26 @@ function ConsumableStructs(){
 		description : "desc_blank.txt", 
 		use_sound : -1,		
 		inventory_subimage : [sp_combat_drug_icons, 0],
-	};
+		};
+	//ds_list_add(ListComWP,pistol_bolt_tigrus[27]+".pistol_bolt_tigrus") //fix this later
+	
+	Drug_Combat_Satrophine = { //---------------------------- somatogen
+		
+		item_type : "consumable_med_drug_combat",
+		
+		//buff related stats [type,variable,strength,duration,subimage]
+		item_effects : [ ["buff","AGI",10,6000,0], ["per/sec","Stamina",0.05,6000,10], ["instant","Stamina",25,1,10] ],
+		
+		//technical weapon stats
+		weight : 0.01,
+		rarity : "100.common",
+		
+		//cosmetic stuff, animations, sounds, etc.
+		name : "Satrophine",
+		description : "desc_blank.txt", 
+		use_sound : -1,		
+		inventory_subimage : [sp_combat_drug_icons, 1],
+		};
 	//ds_list_add(ListComWP,pistol_bolt_tigrus[27]+".pistol_bolt_tigrus") //fix this later
 	#endregion
 
@@ -42,7 +61,8 @@ function ActivateEffect(Item,TargetID,BuffDSList) {	//--------------------------
 		var EffectVariable = EffectArray[1];
 		var EffectStrength = EffectArray[2];
 		var EffectDuration = EffectArray[3];
-		var ArrayToAdd = [EffectType,EffectVariable,EffectStrength,timer_create(EffectDuration,0)];
+		var EffectIcon = EffectArray[4];
+		var ArrayToAdd = [EffectType,EffectVariable,EffectStrength,timer_create(EffectDuration,0),EffectIcon];
 		ds_list_add(BuffDSList,ArrayToAdd);
 		
 		if(EffectType = "buff"){

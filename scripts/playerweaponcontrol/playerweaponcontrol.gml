@@ -3,9 +3,10 @@
 function FireGun (){
 	
 	var Overclock = (selector = "Overcharge");
+	var Burst = string_count("Burst",selector);
 	
 	cycle = 0;
-	alarm[0] = wpn_active.ROF / (1+Overclock); //timer to cycle weapon
+	alarm[0] = wpn_active.ROF / (1+Overclock+(Burst/2)); //timer to cycle weapon
 	alarm[1] = 2; //timer to reset flash
 
 	var Max_Spread = wpn_active.spread*10;
@@ -138,10 +139,10 @@ if(IsRanged) {
 			var _Cycle = function() {cycle = 1};
 			alarm[0] = 1; cycle = 0;
 			var ROF3 = round(wpn_active.ROF*4); 
-			if((time_source_get_state(burst_timer) = time_source_state_stopped) or (time_source_get_state(burst_timer) = time_source_state_initial)){
+			if((time_source_get_state(burst_timer) = time_source_state_stopped) or (time_source_get_state(burst_timer) = time_source_state_initial)) {
 				time_source_reconfigure(burst_timer,ROF3,time_source_units_frames,_Cycle);
-				time_source_start(burst_timer)
-			}
+				time_source_start(burst_timer);
+			};
 		};
 		
 		audio_stop_sound(aud_fireloop); aud_fireloop = 0;
@@ -173,10 +174,12 @@ if(IsRanged) {
 //--------------------------------------- SHOOT BULLETS IN VARIOUS MODES ------------------------------
 
 	if(Semi_Fire and _CanFire) {
-		FireGun()
+		time_source_reset(burst_timer);
+		FireGun();
 	};	
 	
 	if(Auto_Fire and _CanFire) {
+		time_source_reset(burst_timer);
 		if(is_array(wpn_active.animation_group.fire) and !spooled) {
 			skeleton_anim_set_step(wpn_active.animation_group.fire[0],3)
 		};
@@ -184,11 +187,12 @@ if(IsRanged) {
 	};
 	
 	if(Burst_Fire && _CanFire and (burst_count < string_digits(selector))) {
-		FireGun()
+		FireGun();
 	};
 
 //---------------------------------------- Charge type weapon code -----------------------------------
 	if(Charge_Fire and _CanFire and charge_toggle) {
+		time_source_reset(burst_timer);
 		burst_count += 1;
 		
 		var Direction = random(360);

@@ -49,7 +49,7 @@ ImpactScript(o_bullet,["legL","legR"],hbox_legs,collisions_list);
 
 
 
-//ds_list_draw(global.AIQueue,x,bbox_top);
+ds_list_draw(global.AIQueue,x,bbox_top);
 
 /*
 draw_rectangle(x-hbox_torso[0],y-hbox_torso[1],x-hbox_torso[2],y-hbox_torso[3],true);

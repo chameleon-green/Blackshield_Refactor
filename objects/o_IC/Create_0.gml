@@ -98,13 +98,14 @@ AddItem(Armor_LegL_2000,1,grd_inv_armr,InventorySize);
 AddItem(Armor_LegR_2000,1,grd_inv_armr,InventorySize);
 
 AddItem(Drug_Combat_Somatogen,10,grd_inv_aidd,InventorySize);
+AddItem(Drug_Combat_Satrophine,5,grd_inv_aidd,InventorySize);
 
 //----------------------------------------- Create Player ---------------------------------------
 
 MyPlayer = instance_create_depth(x,y,depth+1,o_player,{MyIC : id});
 MyHPbar = instance_create_depth(x,y,depth+1,o_HPbar, {MyIC : id, scale : 1.33, MyPlayer : other.MyPlayer});
 
-repeat (150) {instance_create_depth(x,y,depth,o_enemy,{leader : 1})};
+repeat (200) {instance_create_depth(x,y,depth,o_enemy,{leader : 1})};
 
 //----------------------------------------- Zoom Functionality ------------------------------
 
