@@ -285,7 +285,7 @@ if(Click) {
 			if(instance_exists(MyScrollbar)) {MyScrollbar.reset = 1};
 		};
 		
-		if(ButtonRegionCenter(Mouse_X,Mouse_Y,-40,-112,-49,-19,scale) and is_struct(global.Selected[1]) ){
+		if(ButtonRegionCenter(Mouse_X,Mouse_Y,-40,-112,-49,-19,scale) && !MyPlayer.reloading and is_struct(global.Selected[1]) ){
 			if(TriButtonText[0] = "Unequip") {UnequipItem(global.Selected[1],global.Selected[0],MyPlayer)};
 			if(TriButtonText[0] = "Equip") {EquipItem(global.Selected[1],global.Selected[0],MyPlayer)};
 			if(TriButtonText[0] = "Use") {ActivateEffect(global.Selected[1],MyPlayer,MyPlayer.BuffList)};
@@ -300,6 +300,8 @@ if(Click) {
 	};
 };//click check
 
+/*
+//draw rectangles around button regions 
 ButtonDrawCenter(305,215,180,200,scale);
 ButtonDrawCenter(210,120,180,200,scale);
 ButtonDrawCenter(114,24,180,200,scale);
@@ -311,6 +313,8 @@ ButtonDrawCenter(226,196,140,170,scale);
 ButtonDrawCenter(188,158,140,170,scale);
 ButtonDrawCenter(150,120,140,170,scale);
 ButtonDrawCenter(112,82,140,170,scale);
+*/
+
 #endregion
 
 if(refresh) {

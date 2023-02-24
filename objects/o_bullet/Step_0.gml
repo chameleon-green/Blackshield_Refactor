@@ -45,8 +45,16 @@ if(IsBeam) {
 	var lx = x + lengthdir_x(i, direction);
 	var ly = y + lengthdir_y(i, direction);
 	
-	image_xscale = i/64;
-	image_yscale = 2;
+	var Image = type.projectile_type;
+		
+	var SpriteArray = sprite_get_uvs(Image[0],Image[1]);
+	var TexW = 1/texture_get_texel_width(sprite_get_texture(Image[0],Image[1]));
+	
+	var XscaleFactor = abs(SpriteArray[0] - SpriteArray[2])*TexW;
+	var YscaleFactor = type.projectile_type[2]
+		
+	image_xscale = i/XscaleFactor;
+	image_yscale = YscaleFactor;
 	
 	if(collision_point(lx, ly, o_platform, false, true)) {
 		kill = 1

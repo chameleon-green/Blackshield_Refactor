@@ -21,9 +21,18 @@ function InfantryCreateGeneric() {
 	MoveSpeed = 12;
 	JumpForce = 0;
 	
-	MyTarget = o_player;
+	//weapon and combat stuff
+	IFF = "ENEMY1";
 	firing = 0;
+	reloading = 0;
+		
+	weapon_ranged = o_IC.Lasgun_Kantrael;	
+	CurrentMag = weapon_ranged.capacity;
 	
+	cycle_timer = timer_create(weapon_ranged.ROF,false);
+	
+	// Pathfinding stuff
+	MyTarget = o_player;
 	TargetNodeTimer = [0,irandom_range(8,15)];
 	
 	NewPath = 0;
@@ -139,7 +148,7 @@ function InfantryStepGeneric() {
 	
 	
 		
- //------------------------------------------- actual movement code -------------------------------------------
+//------------------------------------------- actual movement code -------------------------------------------
 	
 	hspd = 0;
 	Left = 0;
@@ -191,6 +200,30 @@ function InfantryStepGeneric() {
 	};
 	
 	y += vspd; //change our Y by effects of gravity and climb values
+	
+//------------------------------------------------- Ranged Combat Code -----------------------------------------------
+
+	if(firing) {
+		
+		var Shoot = timer_tick(cycle_timer,0);
+		if(Shoot) {
+			var FlashMap = ds_map_create();		
+			skeleton_bone_state_get("muzzleflash", FlashMap);
+			var FlashX = ds_map_find_value(FlashMap, "worldX");
+			var FlashY = ds_map_find_value(FlashMap, "worldY");
+			
+			instance_create_depth(FlashX,FlashY,depth-1,o_bullet,{
+				direction : direc,
+				speed : 30,
+				type : o_IC.Ammo_Bolt_Kraken,
+				damage : 100,
+				IFF : other.IFF
+			});
+			timer_reset(cycle_timer,1);
+		};
+	};
+	
+	
 	
 	
 }; //function end bracket

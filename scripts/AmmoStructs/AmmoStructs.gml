@@ -191,7 +191,7 @@ function AmmoStructs() {
 		armor_penetration : 0,
 		guidance : "flame",
 		fuse : 3, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
-		special : "none", //an array of any special effects
+		special : ["ignite"], //an array of any special effects
 		
 		weight : 0.02, //weight in lbs
 		wear : 1, //durability cost on weapon when fired
@@ -205,6 +205,34 @@ function AmmoStructs() {
 		casing_sound : "none", //impact sound and pitch
 		inventory_subimage : [sp_xhair, 6]
 	};
+	
+	Ammo_Flamer_Balefire = {//---------------------------- radioactive flamer fuel
+		
+		item_type : "ammo_flamer",
+		damage_mod : 1.00,
+		ROF_mod : 1.00,
+		range_mod : 1.00,
+		velocity_mod : 1.00,
+		
+		damage_type : ["radiation","RADI"],
+		armor_penetration : 0,
+		guidance : "flame",
+		fuse : 3, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
+		special : ["ignite","irradiate"], //an array of any special effects
+		
+		weight : 0.02, //weight in lbs
+		wear : 1, //durability cost on weapon when fired
+		rarity : "080.common",	
+		
+		name : "Flamer Fuel, Balefire",
+		projectile_type : [sp_flamer_flames_bw, 0], //sprite and subimage, if relevant
+		projectile_color : [c_lime, c_lime],
+		flash_color : "none", //color override for flash, if relevant
+		casing_type : "none", //sprite and subimage of casing
+		casing_sound : "none", //impact sound and pitch
+		inventory_subimage : [sp_xhair, 6]
+	};
+	
 	
 	Ammo_Melta_Standard = {//---------------------------- melta fuel
 		
@@ -225,7 +253,7 @@ function AmmoStructs() {
 		rarity : "600.common",	
 		
 		name : "Melta Fuel, Standard",
-		projectile_type : [sp_beam, 0], //sprite and subimage, if relevant
+		projectile_type : [sp_beam, 0, 2], //sprite, subimage and scaling, if relevant
 		projectile_color : [c_orange, c_white],
 		flash_color : "none", //color override for flash, if relevant
 		casing_type : "none", //sprite and subimage of casing
@@ -254,6 +282,35 @@ function AmmoStructs() {
 		name : "Plasma Fuel, Standard",
 		projectile_type : [sp_bullet, 0], //sprite and subimage, if relevant
 		projectile_color : [make_color_rgb(0,198,229), c_white],
+		flash_color : "none", //color override for flash, if relevant
+		casing_type : "none", //sprite and subimage of casing
+		casing_sound : "none", //impact sound and pitch
+		inventory_subimage : [sp_xhair, 6]
+	};
+	#endregion
+	
+	#region laser power packs 
+	Ammo_Laser_Pack_Standard = {//---------------------------- lasgun power packs
+		
+		item_type : "ammo_laser_small",
+		damage_mod : 1.00,
+		ROF_mod : 1.00,
+		range_mod : 1.00,
+		velocity_mod : 1.00,
+		
+		damage_type : ["thermal","THER"],
+		armor_penetration : 0,
+		guidance : "beam",
+		fuse : 3, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
+		special : ["ignite"], //an array of any special effects
+		
+		weight : 0.02, //weight in lbs
+		wear : 1, //durability cost on weapon when fired
+		rarity : "080.common",	
+		
+		name : "Lasgun Charge Pack, Standard",
+		projectile_type : [sp_beam, 1, 0.5], //sprite, subimage and scaling, if relevant
+		projectile_color : [c_red, c_white],
 		flash_color : "none", //color override for flash, if relevant
 		casing_type : "none", //sprite and subimage of casing
 		casing_sound : "none", //impact sound and pitch

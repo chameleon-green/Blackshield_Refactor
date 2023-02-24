@@ -1,4 +1,4 @@
-
+/*
 draw_self();
 draw_text(x,bbox_top,id);
 draw_line(x,y,creator.x,creator.y);

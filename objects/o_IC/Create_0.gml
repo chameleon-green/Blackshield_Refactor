@@ -27,7 +27,7 @@ CL_Outline = make_colour_rgb(192,158,2);
 
 
 active = 0;
-scale = 1;//1.33;
+scale = 1.33;
 bg_subimage = 0;
 enable_mouseaim = 1;
 pos_at_close = [0,0,0,0];
@@ -79,16 +79,19 @@ AddItem(Bolt_Pistol_Tigrus,1,grd_inv_wepn,InventorySize);
 AddItem(HeavyHammer_Proteus,1,grd_inv_wepn,InventorySize);
 AddItem(Chainsword_Thunderedge,1,grd_inv_wepn,InventorySize);
 AddItem(Bolt_Pistol_Tigrus,1,grd_inv_wepn,InventorySize);
+AddItem(Lasgun_Kantrael,1,grd_inv_wepn,InventorySize);
 
 AddItem(Ammo_Bolt_Standard,100,grd_inv_ammo,InventorySize);
 AddItem(Ammo_Bolt_Kraken,100,grd_inv_ammo,InventorySize);
 AddItem(Ammo_Shotgun_Buckshot,3,grd_inv_ammo,InventorySize);
 AddItem(Ammo_Shotgun_Slug,30,grd_inv_ammo,InventorySize);
 AddItem(Ammo_Flamer_Standard,300,grd_inv_ammo,InventorySize);
+AddItem(Ammo_Flamer_Balefire,300,grd_inv_ammo,InventorySize);
 AddItem(Ammo_Plasma_Standard,300,grd_inv_ammo,InventorySize);
 AddItem(Ammo_Melta_Standard,300,grd_inv_ammo,InventorySize);
 AddItem(Ammo_Auto_Ball,300,grd_inv_ammo,InventorySize);
 AddItem(Ammo_Autocannon_Ball,300,grd_inv_ammo,InventorySize);
+AddItem(Ammo_Laser_Pack_Standard,300,grd_inv_ammo,InventorySize);
 
 AddItem(Armor_Torso_2000,1,grd_inv_armr,InventorySize);
 AddItem(Armor_Head_2000,1,grd_inv_armr,InventorySize);
@@ -105,7 +108,7 @@ AddItem(Drug_Combat_Satrophine,5,grd_inv_aidd,InventorySize);
 MyPlayer = instance_create_depth(x,y,depth+1,o_player,{MyIC : id});
 MyHPbar = instance_create_depth(x,y,depth+1,o_HPbar, {MyIC : id, scale : 1.33, MyPlayer : other.MyPlayer});
 
-repeat (200) {instance_create_depth(x,y,depth,o_enemy,{leader : 1})};
+repeat (10) {instance_create_depth(x,y,depth,o_enemy,{leader : 1})};
 
 //----------------------------------------- Zoom Functionality ------------------------------
 
