@@ -40,18 +40,20 @@ PlayerWeaponControl();
 
 PlayerMeleeControl()
 
-//ImpactScript(o_bullet,"armL",hbox_torso,collisions_list,[66,17,17]);
-ImpactScript(o_bullet,"head",hbox_head,collisions_list);
-ImpactScript(o_bullet,["torso","torso","torso","torso","armL","armL","armR","armR"],hbox_torso,collisions_list);
-ImpactScript(o_bullet,["legL","legR"],hbox_legs,collisions_list);
+
+
+
+
 
 //--------------------------------------------- DEBUG STUFF ------------------------------------------------
 
 
 
-ds_list_draw(global.AIQueue,x,bbox_top);
+
 
 /*
+ds_list_draw(global.AIQueue,x,bbox_top);
+ds_list_draw(collisions_list,x,bbox_top);
 draw_rectangle(x-hbox_torso[0],y-hbox_torso[1],x-hbox_torso[2],y-hbox_torso[3],true);
 draw_rectangle(x-hbox_legs[0],y-hbox_legs[1],x-hbox_legs[2],y-hbox_legs[3],true);
 draw_rectangle(x-hbox_head[0],y-hbox_head[1],x-hbox_head[2],y-hbox_head[3],true);

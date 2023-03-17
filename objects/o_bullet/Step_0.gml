@@ -1,9 +1,13 @@
-VisualCulling();
+
+
+if(!IsBeam) {VisualCulling()};
 
 //-------------------------------------- Collision Code --------------------------------------------------
 
-//x+=hspd; y+=vspd;
+x+=hspd; y+=vspd;
 
+
+if(!IsBeam && !Flames){
 var _XX = x+lengthdir_x(base_speed,direction);
 var _YY = y+lengthdir_y(base_speed,direction);
 
@@ -20,7 +24,7 @@ if(collision_line(x,y,_XX,_YY,o_platform,0,1)){
 	if(Line_Length < base_speed) {instance_destroy(self)};
 	speed = base_speed;
 };
-
+};
 //---------------------------------------- special projectile code -------------------------------------
 
 if(Flames) {
@@ -35,33 +39,58 @@ if(Flames) {
 	image_alpha = image_alpha * (1 - 0.05*cycle_speed);
 };	
 
-var IsBeam = string_count("beam",type.guidance); 
-
+//------------------------------------------------------------------------------------------------------
 if(IsBeam) {
+	
 	var max_length = 6000;
-
-	for(var i = 0; i < max_length; i+=6){
-
-	var lx = x + lengthdir_x(i, direction);
-	var ly = y + lengthdir_y(i, direction);
 	
-	var Image = type.projectile_type;
+	while(!endBeam && (beamLength < max_length) ){
+	
+		beamLength+=15;
+		var lx = x + lengthdir_x(beamLength, direction);
+		var ly = y + lengthdir_y(beamLength, direction);
+		var lxa = x + lengthdir_x(beamLength-45, direction);
+		var lya = y + lengthdir_y(beamLength-45, direction);
 		
-	var SpriteArray = sprite_get_uvs(Image[0],Image[1]);
-	var TexW = 1/texture_get_texel_width(sprite_get_texture(Image[0],Image[1]));
-	
-	var XscaleFactor = abs(SpriteArray[0] - SpriteArray[2])*TexW;
-	var YscaleFactor = type.projectile_type[2]
+		if(collision_point(lx, ly, o_platform, false, true)) {
+			kill = 1; //trigger death after step event to allow beam a frame to actually exist
+			break;	
+		};		
 		
-	image_xscale = i/XscaleFactor;
-	image_yscale = YscaleFactor;
-	
-	if(collision_point(lx, ly, o_platform, false, true)) {
-		kill = 1
-		break;	
-	}
-	
-	}
-x+=hspd; y+=vspd;
-kill = 1;
+		//-----------------------------------------------------------------------------------------------------
+		var ActorList = ds_list_create();
+		var ActorCollision = collision_line_list(x,y,lxa,lya,o_actorParent,0,true,ActorList,true);
+		var ActorCounter = 0;
+		var MainBreak = 0;
+		while (ActorCounter<ActorCollision) {
+			var Actor = ds_list_find_value(ActorList,ActorCounter);		
+			if(instance_exists(Actor)){
+				if( (Actor.IFF != IFF) && (ds_list_find_index(Actor.collisions_list,id) = -1) ) {MainBreak = 1};
+				};
+			ActorCounter+=1;
+		};
+		ds_list_destroy(ActorList);
+		if(MainBreak) {break};
+		//------------------------------------------------------------------------------------------------------
+	};
 };
+
+if(beamLength >= 6000) {kill = 1};
+if(hp <= 0) {instance_destroy(self)};
+/*
+
+
+/*
+		//-----------------------------------------------------------------------------------------------------
+		var ActorList = ds_list_create();
+		var ActorCollision = collision_line_list(x,y,lxa,lya,o_actorParent,0,true,ActorList,true);
+		var ActorCounter = 0;
+		while (ActorCounter<ActorCollision) {
+			var Actor = ds_list_find_value(ActorList,ActorCounter);		
+			if(instance_exists(Actor)){
+				if( (Actor.IFF != creator.IFF) && (ds_list_find_index(Actor.collisions_list,id) != -1) ) {BreakMain = 1; break};
+				};
+			ActorCounter+=1;
+		};
+		ds_list_destroy(ActorList);
+		//------------------------------------------------------------------------------------------------------

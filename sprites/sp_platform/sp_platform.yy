@@ -2,7 +2,7 @@
   "resourceType": "GMSprite",
   "resourceVersion": "1.0",
   "name": "sp_platform",
-  "bbox_bottom": 17,
+  "bbox_bottom": 31,
   "bbox_left": 0,
   "bbox_right": 31,
   "bbox_top": 0,

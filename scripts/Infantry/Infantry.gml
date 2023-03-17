@@ -4,6 +4,9 @@
 #region Infantry create event generic
 
 function InfantryCreateGeneric() {
+	
+	beamLength = 0;
+	
 	StartNode = -1;
 	TargetNode = -1;
 	TargetNodePrevious = -1;
@@ -27,8 +30,13 @@ function InfantryCreateGeneric() {
 	reloading = 0;
 		
 	weapon_ranged = o_IC.Lasgun_Kantrael;	
-	CurrentMag = weapon_ranged.capacity;
+	current_mag = weapon_ranged.capacity;
+	burst_size_base = clamp(weapon_ranged.capacity/30,1,40);
+	burst_size = clamp(burst_size_base+irandom_range(-burst_size_base,burst_size_base),1,40);
+	burst_count = 0;
+	burst_ready = 1;
 	
+	burst_timer = timer_create(600,false);	
 	cycle_timer = timer_create(weapon_ranged.ROF,false);
 	
 	// Pathfinding stuff
@@ -205,20 +213,45 @@ function InfantryStepGeneric() {
 
 	if(firing) {
 		
-		var Shoot = timer_tick(cycle_timer,0);
+		if(burst_count >= burst_size) {burst_ready = timer_tick(burst_timer,1)};
+		if(burst_ready) {
+			burst_count = 0;
+			burst_ready = 0; 
+			timer_reset(burst_timer,1);
+			timer_reset(cycle_timer,1);
+			var BurstBase = clamp(weapon_ranged.capacity/10,1,40);
+			var BurstModified = BurstBase + irandom_range(-BurstBase/2, BurstBase/2);
+			burst_size = clamp(BurstModified,1,50);
+			
+			var DistRatio = clamp(point_distance(x,y,MyTarget.x,MyTarget.y)/2000,0.01,1);
+			burst_timer = timer_create(100*DistRatio,false);			
+		};
+		
+		var Shoot = (timer_tick(cycle_timer,0) and (burst_count < burst_size));
 		if(Shoot) {
-			var FlashMap = ds_map_create();		
-			skeleton_bone_state_get("muzzleflash", FlashMap);
-			var FlashX = ds_map_find_value(FlashMap, "worldX");
-			var FlashY = ds_map_find_value(FlashMap, "worldY");
+			
+			var FlashMap = "none";	
+			if(visible){
+				FlashMap = ds_map_create();		
+				skeleton_bone_state_get("muzzleflash", FlashMap);
+				var FlashX = ds_map_find_value(FlashMap, "worldX");
+				var FlashY = ds_map_find_value(FlashMap, "worldY");
+			};
+			else{var FlashX = x var FlashY = bbox_top};
 			
 			instance_create_depth(FlashX,FlashY,depth-1,o_bullet,{
-				direction : direc,
-				speed : 30,
-				type : o_IC.Ammo_Bolt_Kraken,
-				damage : 100,
-				IFF : other.IFF
+				direction : direc + random_range(-other.weapon_ranged.spread,other.weapon_ranged.spread),
+				speed : 0,
+				type : o_IC.Ammo_Laser_Pack_Standard,
+				damage : weapon_ranged.damage,
+				IFF : other.IFF,
+				vspd : other.vspd_readonly,
+				hspd : other.hspd,
+				creator : other.id
 			});
+			burst_count += 1;
+			
+			if(FlashMap != "none") {ds_map_destroy(FlashMap)};
 			timer_reset(cycle_timer,1);
 		};
 	};
@@ -234,7 +267,7 @@ function InfantryStepGeneric() {
 
 function InfantryAnimGeneric() {
 
-	if(state != "dying" and state != "dead" and !reloading) {
+	if(visible && state != "dying" and state != "dead" and !reloading) {
 	
 		var AngOffset = 0;
 		var Aim = timer_tick(AimTimer,0);

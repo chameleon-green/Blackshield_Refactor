@@ -4,6 +4,7 @@
 function VisualCulling(MiddleCheck=1){
 	
 	visible = 1;
+	
 	var cam = view_camera[0];
 	var x1 = camera_get_view_x(cam);
 	var y1 = camera_get_view_y(cam);
@@ -24,6 +25,6 @@ function VisualCulling(MiddleCheck=1){
 		LowerMiddleInView = point_in_rectangle(MiddleX,bbox_bottom,x1,y1,x2,y2);
 	};
 
-	
 	if(!UpperLeftInView && !UpperRightInView && !LowerLeftInView && !LowerRightInView && !UpperMiddleInView && !LowerMiddleInView) {visible = 0};
+
 };

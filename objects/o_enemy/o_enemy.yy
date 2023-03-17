@@ -16,7 +16,10 @@
     "name": "Objects: Actors",
     "path": "folders/Objects/Objects: Actors.yy",
   },
-  "parentObjectId": null,
+  "parentObjectId": {
+    "name": "o_actorParent",
+    "path": "objects/o_actorParent/o_actorParent.yy",
+  },
   "persistent": false,
   "physicsAngularDamping": 0.1,
   "physicsDensity": 0.5,

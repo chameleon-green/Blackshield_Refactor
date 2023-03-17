@@ -3,6 +3,8 @@ sprite_index = type.projectile_type[0];
 if(sprite_index = sp_bullet) {image_speed = 0};
 image_blend = type.projectile_color[0];
 
+image_speed = 0
+
 damage_type = "thermal"//type.damage_type[0];
 penetration = 0//damage*type.armor_penetration;
 hp = damage;
@@ -11,12 +13,12 @@ fuse = hp*type.fuse;
 base_speed = speed;
 
 kill = 0;
+endBeam = 0;
+beamLength = 0;
 
 KillMe = function(){
 	instance_destroy(self)
 };
-
-
 
 kill_timer = time_source_create(time_source_game,2,time_source_units_frames,KillMe,);
 
@@ -40,3 +42,5 @@ if(Flames){
 	image_speed = 1;
 };
 	
+	
+IsBeam = string_count("beam",type.guidance);

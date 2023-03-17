@@ -28,7 +28,7 @@ function ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy=0){
 				if(Damage <= resist){
 					
 					audio_play_sound(choose(snd_impact_metal1,snd_impact_metal2,snd_impact_metal3),1,0,1,0,random_range(0.9,1.1));
-									
+			
 					if(!Enemy){ //damage our armor durability based on how much the damage compares to our resist
 						var ItemID = ArmorArray[1];
 						if(ItemID != -1) {					
@@ -45,8 +45,10 @@ function ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy=0){
 						}; //item ID check
 					}; //enemy check
 					else{};
-									
-					instance_destroy(Bullet);
+
+
+					Bullet.hp = 0;
+					Bullet.endBeam = 1;
 					return 0;
 				};
 				else if(Damage > resist) {
@@ -75,7 +77,7 @@ function ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy=0){
 						}; //item ID check
 					Bullet.hp -= resist;
 					Bullet.damage = Bullet.hp;
-					if(Bullet.hp <= Bullet.fuse) {instance_destroy(Bullet)};
+					if(Bullet.hp <= Bullet.fuse) {Bullet.kill = 1};
 					}; //enemy check
 					else{};
 									

@@ -62,13 +62,13 @@ Mod = {
 	};
 #endregion
 
-resist_base = [0,0,0,0,0,0,0,0,0];
-resist_head = [0,0,0,0,0,0,0,0,0]; //phys0, ther1, cryo2, corr3, radi4, elec5, hazm6, warp7
-resist_torso = [0,0,0,0,0,0,0,0,0];
-resist_armL = [0,0,0,0,0,0,0,0,0];
-resist_armR = [0,0,0,0,0,0,0,0,0];
-resist_legL = [0,0,0,0,0,0,0,0,0];
-resist_legR = [0,0,0,0,0,0,0,0,0];
+resist_base = [0,5,0,0,0,0,0,0,0];
+resist_head = [0,5,0,0,0,0,0,0,0]; //phys0, ther1, cryo2, corr3, radi4, elec5, hazm6, warp7
+resist_torso = [0,5,0,0,0,0,0,0,0];
+resist_armL = [0,5,0,0,0,0,0,0,0];
+resist_armR = [0,5,0,0,0,0,0,0,0];
+resist_legL = [0,5,0,0,0,0,0,0,0];
+resist_legR = [0,5,0,0,0,0,0,0,0];
 
 hbox_head = [20,146,-20,176];
 hbox_torso = [30,85,-30,145];
@@ -89,6 +89,7 @@ hp_body_legR = hp_body_legR_max;
 
 collisions_list_timer = time_source_create(time_source_game,60,time_source_units_frames,_mymethod);
 collisions_list = ds_list_create(); //collisions list for bullets to prevent them from continuously colliding
+alarm[2] = 20;
 
 BuffList = ds_list_create();
 

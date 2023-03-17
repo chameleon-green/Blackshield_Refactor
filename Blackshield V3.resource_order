@@ -95,6 +95,8 @@
     {"name":"PlayerStatsCalculator","order":2,"path":"scripts/PlayerStatsCalculator/PlayerStatsCalculator.yy",},
     {"name":"snd_impact_metal2","order":2,"path":"sounds/snd_impact_metal2/snd_impact_metal2.yy",},
     {"name":"WeaponStructs","order":4,"path":"scripts/WeaponStructs/WeaponStructs.yy",},
+    {"name":"o_actorParent","order":2,"path":"objects/o_actorParent/o_actorParent.yy",},
+    {"name":"oprt_beam","order":4,"path":"objects/oprt_beam/oprt_beam.yy",},
     {"name":"snd_shotgun_rackslide1","order":1,"path":"sounds/snd_shotgun_rackslide1/snd_shotgun_rackslide1.yy",},
     {"name":"snd_melta_loop1","order":2,"path":"sounds/snd_melta_loop1/snd_melta_loop1.yy",},
     {"name":"AmmoStructs","order":5,"path":"scripts/AmmoStructs/AmmoStructs.yy",},
