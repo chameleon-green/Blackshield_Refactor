@@ -8,21 +8,21 @@ x+=hspd; y+=vspd;
 
 
 if(!IsBeam && !Flames){
-var _XX = x+lengthdir_x(base_speed,direction);
-var _YY = y+lengthdir_y(base_speed,direction);
+	var _XX = x+lengthdir_x(base_speed,direction);
+	var _YY = y+lengthdir_y(base_speed,direction);
 
-if(collision_line(x,y,_XX,_YY,o_platform,0,1)){	
-	speed = 0;
-	var Line_Length = 0;
-	var Collided = place_meeting(x,y,o_platform);
-	while(!Collided and (Line_Length < base_speed)) {
-		Line_Length += 1;		
-		x = x+lengthdir_x(Line_Length,direction);
-		y = y+lengthdir_y(Line_Length,direction);
+	if(collision_line(x,y,_XX,_YY,o_platform,0,1)){	
+		speed = 0;
+		var Line_Length = 0;
 		var Collided = place_meeting(x,y,o_platform);
-	};
-	if(Line_Length < base_speed) {instance_destroy(self)};
-	speed = base_speed;
+		while(!Collided and (Line_Length < base_speed)) {
+			Line_Length += 1;		
+			x = x+lengthdir_x(Line_Length,direction);
+			y = y+lengthdir_y(Line_Length,direction);
+			var Collided = place_meeting(x,y,o_platform);
+		};
+		if(Line_Length < base_speed) {instance_destroy(self)};
+		speed = base_speed;
 };
 };
 //---------------------------------------- special projectile code -------------------------------------
@@ -40,24 +40,25 @@ if(Flames) {
 };	
 
 //------------------------------------------------------------------------------------------------------
+
 if(IsBeam) {
 	
 	var max_length = 6000;
+	var Beam_Mod = 200; //beam length increase per tick, modified when detecting something
 	
 	while(!endBeam && (beamLength < max_length) ){
-	
-		beamLength+=15;
+		
 		var lx = x + lengthdir_x(beamLength, direction);
 		var ly = y + lengthdir_y(beamLength, direction);
-		var lxa = x + lengthdir_x(beamLength-45, direction);
-		var lya = y + lengthdir_y(beamLength-45, direction);
+		var lxa = x + lengthdir_x(beamLength-48, direction);
+		var lya = y + lengthdir_y(beamLength-48, direction);
 		
 		if(collision_point(lx, ly, o_platform, false, true)) {
 			kill = 1; //trigger death after step event to allow beam a frame to actually exist
 			break;	
 		};		
 		
-		//-----------------------------------------------------------------------------------------------------
+		//-----------------------------------------------------------------------------------------------------	
 		var ActorList = ds_list_create();
 		var ActorCollision = collision_line_list(x,y,lxa,lya,o_actorParent,0,true,ActorList,true);
 		var ActorCounter = 0;
@@ -72,25 +73,10 @@ if(IsBeam) {
 		ds_list_destroy(ActorList);
 		if(MainBreak) {break};
 		//------------------------------------------------------------------------------------------------------
+		
+		beamLength+=16;
 	};
 };
 
 if(beamLength >= 6000) {kill = 1};
 if(hp <= 0) {instance_destroy(self)};
-/*
-
-
-/*
-		//-----------------------------------------------------------------------------------------------------
-		var ActorList = ds_list_create();
-		var ActorCollision = collision_line_list(x,y,lxa,lya,o_actorParent,0,true,ActorList,true);
-		var ActorCounter = 0;
-		while (ActorCounter<ActorCollision) {
-			var Actor = ds_list_find_value(ActorList,ActorCounter);		
-			if(instance_exists(Actor)){
-				if( (Actor.IFF != creator.IFF) && (ds_list_find_index(Actor.collisions_list,id) != -1) ) {BreakMain = 1; break};
-				};
-			ActorCounter+=1;
-		};
-		ds_list_destroy(ActorList);
-		//------------------------------------------------------------------------------------------------------

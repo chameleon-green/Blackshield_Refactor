@@ -35,7 +35,9 @@ function FireGun (){
 				direction : other.AimAngleBullet + other.instant_spread + random_range(-Cone,Cone),
 				speed : other.wpn_active.muzzle_velocity * other.ammo_active.velocity_mod,
 				image_xscale : 0.75,
-				image_yscale : 0.25
+				image_yscale : 0.25,
+				vspd : 0,//other.vspd_readonly,
+				hspd : 0//other.hspd,
 			});
 		};
 	};
@@ -49,11 +51,12 @@ function FireGun (){
 			damage : other.wpn_active.damage*ChargeMult,
 			damage_type : other.ammo_active.damage_type[0],
 			direction : other.AimAngleBullet + other.instant_spread,
+			image_angle : direction,
 			speed : other.wpn_active.muzzle_velocity * other.ammo_active.velocity_mod,
 			//image_xscale : ChargeMult,
 			image_yscale : ChargeMult,
-			vspd : other.vspd_readonly,
-			hspd : other.hspd,
+			vspd : 0,//other.vspd_readonly,
+			hspd : 0//other.hspd,
 		});
 	};
 	

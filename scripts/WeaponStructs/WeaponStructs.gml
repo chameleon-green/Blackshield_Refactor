@@ -206,12 +206,12 @@ Lasgun_Kantrael = { //---------------------------- KANTRAEL LASGUN
 		item_type : "weapon_ranged_laser_lasgun",
 		
 		//combat stats
-		damage : 30,
-		ROF : FindROF(300), //rounds per minute
+		damage : 2,
+		ROF : FindROF(280), //rounds per minute
 		range : 1000, //effective range before gravity takes hold, rounds can mod this
 		capacity : 60,		
-		spread : 3,
-		muzzle_velocity : 60,
+		spread : 2,
+		muzzle_velocity : 0,
 		
 		//technical weapon stats
 		weapon_type : "rifle_laser",

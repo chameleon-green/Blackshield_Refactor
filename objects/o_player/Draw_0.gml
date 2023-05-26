@@ -50,9 +50,9 @@ PlayerMeleeControl()
 
 
 
-
+draw_text(x,bbox_top,o_IC.AIQ);
 /*
-ds_list_draw(global.AIQueue,x,bbox_top);
+ds_list_draw(AIQueue,x,bbox_top);
 ds_list_draw(collisions_list,x,bbox_top);
 draw_rectangle(x-hbox_torso[0],y-hbox_torso[1],x-hbox_torso[2],y-hbox_torso[3],true);
 draw_rectangle(x-hbox_legs[0],y-hbox_legs[1],x-hbox_legs[2],y-hbox_legs[3],true);

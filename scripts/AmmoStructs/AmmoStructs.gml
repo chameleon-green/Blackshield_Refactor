@@ -72,14 +72,14 @@ function AmmoStructs() {
 	Ammo_Shotgun_Buckshot = {//---------------------------- Buckshot rounds
 		
 		item_type : "ammo_shotgun",
-		damage_mod : 1.00,
+		damage_mod : 1.25,
 		ROF_mod : 1.00,
 		range_mod : 1.00,
 		velocity_mod : 1.00,
 		
 		damage_type : ["physical","PHYS"],
-		armor_penetration : -0.2,
-		guidance : "scatter12",
+		armor_penetration : -0.05,
+		guidance : "scatter6",
 		fuse : 0.05, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
 		special : "none", //an array of any special effects
 		
@@ -301,7 +301,7 @@ function AmmoStructs() {
 		damage_type : ["thermal","THER"],
 		armor_penetration : 0,
 		guidance : "beam",
-		fuse : 3, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
+		fuse : 0.25, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
 		special : ["ignite"], //an array of any special effects
 		
 		weight : 0.02, //weight in lbs

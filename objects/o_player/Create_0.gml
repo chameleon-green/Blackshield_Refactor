@@ -71,8 +71,8 @@ resist_legL = [0,5,0,0,0,0,0,0,0];
 resist_legR = [0,5,0,0,0,0,0,0,0];
 
 hbox_head = [20,146,-20,176];
-hbox_torso = [30,85,-30,145];
-hbox_legs = [30,0,-30,84];
+hbox_torso = [30,85,-30,146];
+hbox_legs = [30,0,-30,85];
 
 PlayerStatsCalculator();
 

@@ -103,6 +103,7 @@
     {"name":"sp_inventory_screen","order":2,"path":"sprites/sp_inventory_screen/sp_inventory_screen.yy",},
     {"name":"snd_flamer_windup","order":1,"path":"sounds/snd_flamer_windup/snd_flamer_windup.yy",},
     {"name":"snd_plasma_magin","order":2,"path":"sounds/snd_plasma_magin/snd_plasma_magin.yy",},
+    {"name":"CollisionStuff","order":5,"path":"scripts/CollisionStuff/CollisionStuff.yy",},
     {"name":"sp_human1","order":2,"path":"sprites/sp_human1/sp_human1.yy",},
     {"name":"snd_melta_winddown","order":1,"path":"sounds/snd_melta_winddown/snd_melta_winddown.yy",},
     {"name":"snd_chain2","order":1,"path":"sounds/snd_chain2/snd_chain2.yy",},

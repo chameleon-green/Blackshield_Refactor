@@ -1,4 +1,4 @@
-
+image_angle = direction;
 
 //------------------------------------------- Special projectile code -------------------------
 
@@ -18,14 +18,15 @@ if(IsBeam) {
 
 //--------------------------------------------- drawing self ---------------------------------------------------------------
 
-draw_self();
-image_angle = direction;
 
+draw_self();
 //draw core of bullet
-if(sprite_index = sp_bullet) {draw_sprite_ext(sp_bullet,1,x,y,image_xscale,image_yscale,direction,type.projectile_color[1],1)};
+if(sprite_index = sp_bullet) {draw_sprite_ext(sp_bullet,1,x,y,image_xscale,image_yscale,image_angle,type.projectile_color[1],1)};
 if(sprite_index = sp_beam) {draw_sprite_ext(sp_beam,1,x,y,image_xscale,image_yscale*0.3,direction,type.projectile_color[1],1)};
 
 
 if(kill = 1) {	
 	time_source_start(kill_timer);
 }
+draw_text(x,y,damage);
+draw_text(x,y-12,damage_type);

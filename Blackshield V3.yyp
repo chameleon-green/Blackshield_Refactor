@@ -87,7 +87,7 @@
   "isEcma": false,
   "LibraryEmitters": [],
   "MetaData": {
-    "IDEVersion": "2023.2.1.75",
+    "IDEVersion": "2023.4.0.84",
   },
   "resources": [
     {"id":{"name":"sp_inventory_bg","path":"sprites/sp_inventory_bg/sp_inventory_bg.yy",},},
@@ -170,6 +170,7 @@
     {"id":{"name":"snd_flamer_windup","path":"sounds/snd_flamer_windup/snd_flamer_windup.yy",},},
     {"id":{"name":"o_player","path":"objects/o_player/o_player.yy",},},
     {"id":{"name":"snd_plasma_magin","path":"sounds/snd_plasma_magin/snd_plasma_magin.yy",},},
+    {"id":{"name":"CollisionStuff","path":"scripts/CollisionStuff/CollisionStuff.yy",},},
     {"id":{"name":"Infantry","path":"scripts/Infantry/Infantry.yy",},},
     {"id":{"name":"sp_human1","path":"sprites/sp_human1/sp_human1.yy",},},
     {"id":{"name":"snd_melta_winddown","path":"sounds/snd_melta_winddown/snd_melta_winddown.yy",},},

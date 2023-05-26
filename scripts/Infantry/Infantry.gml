@@ -4,9 +4,7 @@
 #region Infantry create event generic
 
 function InfantryCreateGeneric() {
-	
-	beamLength = 0;
-	
+		
 	StartNode = -1;
 	TargetNode = -1;
 	TargetNodePrevious = -1;
@@ -14,6 +12,8 @@ function InfantryCreateGeneric() {
 	OpenList = ds_priority_create();
 	ClosedList = ds_list_create();
 	ClosedParentList = ds_list_create();
+	
+
 	
 	ClearToProcess = 0;
 	
@@ -28,6 +28,51 @@ function InfantryCreateGeneric() {
 	IFF = "ENEMY1";
 	firing = 0;
 	reloading = 0;
+	collisions_list = ds_list_create();
+	
+	resist_base = [5,0,0,0,0,0,0,0,0];
+	resist_head = [0,0,0,0,0,0,0,0,0]; //phys0, ther1, cryo2, corr3, radi4, elec5, hazm6, warp7
+	resist_torso = [0,0,0,0,0,0,0,0,0];
+	resist_armL = [0,0,0,0,0,0,0,0,0];
+	resist_armR = [0,0,0,0,0,0,0,0,0];
+	resist_legL = [0,0,0,0,0,0,0,0,0];
+	resist_legR = [0,0,0,0,0,0,0,0,0];
+
+	hbox_head = [-17,135,17,106];
+	hbox_torso = [-20,105,20,61];
+	hbox_legs = [-20,60,20,0];
+	
+	hp_body_head_max = 10;
+	hp_body_torso_max = 40;
+	hp_body_armL_max = 18;
+	hp_body_armR_max = 18;
+	hp_body_legL_max = 27;
+	hp_body_legR_max = 27;
+	max_hp = hp_body_head_max + hp_body_torso_max + hp_body_armL_max + hp_body_armR_max + hp_body_legL_max + hp_body_legR_max;
+	
+	hp_body_head = hp_body_head_max;
+	hp_body_torso = hp_body_torso_max;
+	hp_body_armL = hp_body_armL_max;
+	hp_body_armR = hp_body_armR_max;
+	hp_body_legL = hp_body_legL_max;
+	hp_body_legR = hp_body_legR_max;
+	hp = max_hp;
+	
+	/*initialize armor item and ratio arrays. 
+	0 = item struct, 
+	1 = item uniqueid, (UNUSED) 
+	2 = armor ratio (clamped), used for minimum armor effectiveness at 0 durability 
+	3 = armor ratio (unclamped), raw ratio used for UI 
+	4 = limb per frame damage (for amputations)
+	5 = limb is amputated (true or false)
+	*/
+	
+	armor_head = ["none",-1,1,0,0,false];
+	armor_torso = ["none",-1,1,0,0,false];
+	armor_armL = ["none",-1,1,0,0,false];
+	armor_armR = ["none",-1,1,0,0,false];
+	armor_legL = ["none",-1,1,0,0,false];
+	armor_legR = ["none",-1,1,0,0,false];
 		
 	weapon_ranged = o_IC.Lasgun_Kantrael;	
 	current_mag = weapon_ranged.capacity;
@@ -82,6 +127,17 @@ function InfantryCreateGeneric() {
 #region Infantry step event generic
 
 function InfantryStepGeneric() {
+	
+	//----------------------------------------------- Impact Code ---------------------------------------
+	ImpactScript(o_bullet,"head",hbox_head,collisions_list);
+	ImpactScript(o_bullet,["torso","torso","torso","torso","armL","armL","armR","armR"],hbox_torso,collisions_list);
+	ImpactScript(o_bullet,["legL","legR"],hbox_legs,collisions_list);
+	
+	//-------------------------------------------------- Death States ---------------------------------------
+	
+	hp = hp_body_head + hp_body_torso + hp_body_armL + hp_body_armR + hp_body_legL + hp_body_legR;
+	if((armor_head[5] = true) or (armor_torso[5] = true)) {skeleton_attachment_set("head",-1) instance_destroy(self) exit};
+	if(hp <= 0) {instance_destroy(self) exit};
 		
 	//------------------------------------------- Target finding code --------------------------------------------
 	
@@ -137,7 +193,7 @@ function InfantryStepGeneric() {
 	if(NewPath) {	
 		NewPath = 0;
 		//ClearToProcess = 0;
-		if(ds_list_find_index(global.AIQueue,id) = -1 and !ClearToProcess) {ds_list_add(global.AIQueue,id)};
+		if(ds_list_find_index(o_IC.AIQ,id) = -1 and !ClearToProcess) {ds_list_add(o_IC.AIQ,id)};
 		if(ClearToProcess) {		
 			ClearToProcess = 0;
 			//get us a new starting node for this new path
@@ -255,7 +311,6 @@ function InfantryStepGeneric() {
 			timer_reset(cycle_timer,1);
 		};
 	};
-	
 	
 	
 	

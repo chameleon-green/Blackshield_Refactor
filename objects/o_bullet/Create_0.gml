@@ -5,8 +5,8 @@ image_blend = type.projectile_color[0];
 
 image_speed = 0
 
-damage_type = "thermal"//type.damage_type[0];
-penetration = 0//damage*type.armor_penetration;
+damage_type = type.damage_type[0];
+penetration = damage*type.armor_penetration;
 hp = damage;
 fuse = hp*type.fuse;
 
@@ -21,6 +21,9 @@ KillMe = function(){
 };
 
 kill_timer = time_source_create(time_source_game,2,time_source_units_frames,KillMe,);
+
+
+speed = 10;
 
 //------------------------------------------ Special projectile code ------------------------------------	
 
