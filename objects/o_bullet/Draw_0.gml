@@ -28,5 +28,6 @@ if(sprite_index = sp_beam) {draw_sprite_ext(sp_beam,1,x,y,image_xscale,image_ysc
 if(kill = 1) {	
 	time_source_start(kill_timer);
 }
+/*
 draw_text(x,y,damage);
 draw_text(x,y-12,damage_type);

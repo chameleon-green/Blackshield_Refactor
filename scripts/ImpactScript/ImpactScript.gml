@@ -9,6 +9,7 @@ The limb string name must have array variables associated with it to work as fol
 function ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy=0){
 	if(instance_exists(Bullet)){
 			if((Bullet.IFF != IFF) && (ds_list_find_index(CollisionsList,Bullet) = -1)){
+				
 				//determine what we will use to resist the incoming damage, and the durability of our armor
 				var ResistArray = variable_instance_get(id,"resist_" + Limb);
 				var ArmorArray = variable_instance_get(id, "armor_" + Limb);
@@ -58,6 +59,7 @@ function ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy=0){
 					var LimbVariable = variable_instance_get(id,"hp_body_"+Limb);
 					var NetDamage = Damage - resist;
 					variable_instance_set(id,"hp_body_"+Limb,LimbVariable-NetDamage);
+					HP -= NetDamage;
 					if(!Enemy){ //damage our armor durability based on how much the damage compares to our resist
 						var ItemID = ArmorArray[1];
 						if(ItemID != -1) {	
@@ -102,7 +104,7 @@ function ImpactScript(BulletObject,Limb,HitboxArray,CollisionsList,Precise=0){
 		var Bullet = Impacts_List[| ImpactCount];		
 		//if we have one limb, do the stuff to that limb
 			if(!MultipleLimbs){
-				var AmputationThreshold = variable_instance_get(id,"hp_body_" + Limb + "_max");
+				var AmputationThreshold = 1.5*variable_instance_get(id,"hp_body_" + Limb + "_max");
 				var LimbArray = variable_instance_get(id, "armor_" + Limb);
 				LimbArray[4] += ImpactDamageProcessing(Bullet,Limb,CollisionsList);
 				if(LimbArray[4] >= AmputationThreshold) {LimbArray[5] = true};
@@ -113,7 +115,7 @@ function ImpactScript(BulletObject,Limb,HitboxArray,CollisionsList,Precise=0){
 				var ChosenLimb = Limb[Pick];
 				var LimbArray = variable_instance_get(id, "armor_" + ChosenLimb);
 				LimbArray[4] += ImpactDamageProcessing(Bullet,ChosenLimb,CollisionsList);
-				var AmputationThreshold = variable_instance_get(id,"hp_body_" + ChosenLimb + "_max");
+				var AmputationThreshold = 1.5*variable_instance_get(id,"hp_body_" + ChosenLimb + "_max");
 				if(LimbArray[4] >= AmputationThreshold) {LimbArray[5] = true};			
 			};
 			

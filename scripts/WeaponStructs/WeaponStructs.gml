@@ -44,12 +44,12 @@ Boltgun_Phobos = { //---------------------------- PHOBOS BOLTER
 		item_type : "weapon_ranged_bolt",
 		
 		//combat stats
-		damage : 70,
+		damage : 65, //65
 		ROF : FindROF(450), //rounds per minute
 		range : 1000, //effective range before gravity takes hold, rounds can mod this
 		capacity : 30,		
 		spread : 0.2,
-		muzzle_velocity : 35,
+		muzzle_velocity : 70,
 		
 		//technical weapon stats
 		weapon_type : "rifle_bolt",
@@ -206,8 +206,8 @@ Lasgun_Kantrael = { //---------------------------- KANTRAEL LASGUN
 		item_type : "weapon_ranged_laser_lasgun",
 		
 		//combat stats
-		damage : 2,
-		ROF : FindROF(280), //rounds per minute
+		damage : 42,
+		ROF : FindROF(10), //rounds per minute
 		range : 1000, //effective range before gravity takes hold, rounds can mod this
 		capacity : 60,		
 		spread : 2,
@@ -247,12 +247,12 @@ Shotgun_Astartes = { //---------------------------- ASTARTES SHOTGUN
 		item_type : "weapon_ranged_shotgun",
 		
 		//combat stats
-		damage : 80,
+		damage : 90,
 		ROF : 45, //FindROF(330), //rounds per minute
 		range : 1000, //effective range before gravity takes hold, rounds can mod this
 		capacity : 8,		
 		spread : 0.25,
-		muzzle_velocity : 60,
+		muzzle_velocity : 80,
 		
 		//technical weapon stats
 		weapon_type : "shotgun",

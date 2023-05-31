@@ -71,6 +71,7 @@
     {"name":"snd_impact_metal3","order":3,"path":"sounds/snd_impact_metal3/snd_impact_metal3.yy",},
     {"name":"sp_charge_flash","order":6,"path":"sprites/sp_charge_flash/sp_charge_flash.yy",},
     {"name":"o_timertest","order":1,"path":"objects/o_timertest/o_timertest.yy",},
+    {"name":"spr_collision_mask_marine","order":3,"path":"sprites/spr_collision_mask_marine/spr_collision_mask_marine.yy",},
     {"name":"o_enemy","order":1,"path":"objects/o_enemy/o_enemy.yy",},
     {"name":"snd_impact_metal1","order":1,"path":"sounds/snd_impact_metal1/snd_impact_metal1.yy",},
     {"name":"home2","order":1,"path":"rooms/home2/home2.yy",},

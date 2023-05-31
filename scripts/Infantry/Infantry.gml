@@ -30,24 +30,24 @@ function InfantryCreateGeneric() {
 	reloading = 0;
 	collisions_list = ds_list_create();
 	
-	resist_base = [5,0,0,0,0,0,0,0,0];
-	resist_head = [0,0,0,0,0,0,0,0,0]; //phys0, ther1, cryo2, corr3, radi4, elec5, hazm6, warp7
-	resist_torso = [0,0,0,0,0,0,0,0,0];
-	resist_armL = [0,0,0,0,0,0,0,0,0];
-	resist_armR = [0,0,0,0,0,0,0,0,0];
-	resist_legL = [0,0,0,0,0,0,0,0,0];
-	resist_legR = [0,0,0,0,0,0,0,0,0];
+	resist_base = [0,0,0,0,0,0,0,0,0];
+	resist_head = [25,0,0,0,0,0,0,0,0]; //phys0, ther1, cryo2, corr3, radi4, elec5, hazm6, warp7
+	resist_torso = [25,0,0,0,0,0,0,0,0];
+	resist_armL = [17,0,0,0,0,0,0,0,0];
+	resist_armR = [17,0,0,0,0,0,0,0,0];
+	resist_legL = [17,0,0,0,0,0,0,0,0];
+	resist_legR = [17,0,0,0,0,0,0,0,0];
 
-	hbox_head = [-17,135,17,106];
-	hbox_torso = [-20,105,20,61];
-	hbox_legs = [-20,60,20,0];
+	hbox_head = [-25,135,25,105];
+	hbox_torso = [-30,105,30,60];
+	hbox_legs = [-30,60,30,0];
 	
-	hp_body_head_max = 10;
-	hp_body_torso_max = 40;
-	hp_body_armL_max = 18;
-	hp_body_armR_max = 18;
-	hp_body_legL_max = 27;
-	hp_body_legR_max = 27;
+	hp_body_head_max = 12;
+	hp_body_torso_max = 38;
+	hp_body_armL_max = 16;
+	hp_body_armR_max = 16;
+	hp_body_legL_max = 23;
+	hp_body_legR_max = 23;
 	max_hp = hp_body_head_max + hp_body_torso_max + hp_body_armL_max + hp_body_armR_max + hp_body_legL_max + hp_body_legR_max;
 	
 	hp_body_head = hp_body_head_max;
@@ -56,7 +56,7 @@ function InfantryCreateGeneric() {
 	hp_body_armR = hp_body_armR_max;
 	hp_body_legL = hp_body_legL_max;
 	hp_body_legR = hp_body_legR_max;
-	hp = max_hp;
+	HP = max_hp;
 	
 	/*initialize armor item and ratio arrays. 
 	0 = item struct, 
@@ -113,8 +113,7 @@ function InfantryCreateGeneric() {
 	front_bicep_map = ds_map_create();
 	rear_bicep_map = ds_map_create();
 	AimTimer = timer_create(8,0);
-	
-	SkToggle = 1;
+
 	skeleton_bone_data_get("head",headmap);
 	skeleton_bone_data_get("torso",torsomap);
 	skeleton_bone_data_get("front bicep",front_bicep_map);
@@ -135,9 +134,9 @@ function InfantryStepGeneric() {
 	
 	//-------------------------------------------------- Death States ---------------------------------------
 	
-	hp = hp_body_head + hp_body_torso + hp_body_armL + hp_body_armR + hp_body_legL + hp_body_legR;
+	HP = hp_body_head + hp_body_torso + hp_body_armL + hp_body_armR + hp_body_legL + hp_body_legR;
 	if((armor_head[5] = true) or (armor_torso[5] = true)) {skeleton_attachment_set("head",-1) instance_destroy(self) exit};
-	if(hp <= 0) {instance_destroy(self) exit};
+	if(HP <= 0) {instance_destroy(self) exit};
 		
 	//------------------------------------------- Target finding code --------------------------------------------
 	

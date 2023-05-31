@@ -23,8 +23,6 @@ KillMe = function(){
 kill_timer = time_source_create(time_source_game,2,time_source_units_frames,KillMe,);
 
 
-speed = 10;
-
 //------------------------------------------ Special projectile code ------------------------------------	
 
 Flames = (string_count("flames",sprite_get_name(sprite_index)));

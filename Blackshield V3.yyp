@@ -131,6 +131,7 @@
     {"id":{"name":"sp_boltgun_icons","path":"sprites/sp_boltgun_icons/sp_boltgun_icons.yy",},},
     {"id":{"name":"sp_platform","path":"sprites/sp_platform/sp_platform.yy",},},
     {"id":{"name":"o_timertest","path":"objects/o_timertest/o_timertest.yy",},},
+    {"id":{"name":"spr_collision_mask_marine","path":"sprites/spr_collision_mask_marine/spr_collision_mask_marine.yy",},},
     {"id":{"name":"o_enemy","path":"objects/o_enemy/o_enemy.yy",},},
     {"id":{"name":"snd_shotgun1","path":"sounds/snd_shotgun1/snd_shotgun1.yy",},},
     {"id":{"name":"snd_impact_metal1","path":"sounds/snd_impact_metal1/snd_impact_metal1.yy",},},

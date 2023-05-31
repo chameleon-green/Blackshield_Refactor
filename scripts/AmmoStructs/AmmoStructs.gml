@@ -72,7 +72,7 @@ function AmmoStructs() {
 	Ammo_Shotgun_Buckshot = {//---------------------------- Buckshot rounds
 		
 		item_type : "ammo_shotgun",
-		damage_mod : 1.25,
+		damage_mod : 1.5,
 		ROF_mod : 1.00,
 		range_mod : 1.00,
 		velocity_mod : 1.00,

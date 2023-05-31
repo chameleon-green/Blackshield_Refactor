@@ -4,27 +4,42 @@ if(!IsBeam) {VisualCulling()};
 
 //-------------------------------------- Collision Code --------------------------------------------------
 
+if(hp <= 0) {instance_destroy(self)};
 x+=hspd; y+=vspd;
-
+speed = base_speed;
 
 if(!IsBeam && !Flames){
 	var _XX = x+lengthdir_x(base_speed,direction);
 	var _YY = y+lengthdir_y(base_speed,direction);
+	var _XXA = x+lengthdir_x(base_speed*5,direction);
+	var _YYA = y+lengthdir_y(base_speed*5,direction);
 
 	if(collision_line(x,y,_XX,_YY,o_platform,0,1)){	
 		speed = 0;
 		var Line_Length = 0;
 		var Collided = place_meeting(x,y,o_platform);
 		while(!Collided and (Line_Length < base_speed)) {
-			Line_Length += 1;		
+			Line_Length += 2;		
 			x = x+lengthdir_x(Line_Length,direction);
 			y = y+lengthdir_y(Line_Length,direction);
 			var Collided = place_meeting(x,y,o_platform);
 		};
 		if(Line_Length < base_speed) {instance_destroy(self)};
-		speed = base_speed;
+	};
+	
+	if(collision_line(x,y,_XXA,_YYA,o_actorParent,0,1) && !place_meeting(x,y,o_actorParent)){	
+		speed = 0;
+		var Line_Length = 0;
+		var Collided = place_meeting(x,y,o_actorParent);
+		while(!Collided and (Line_Length < base_speed*5)) {
+			Line_Length += 1;		
+			x = x+lengthdir_x(Line_Length,direction);
+			y = y+lengthdir_y(Line_Length,direction);
+			var Collided = place_meeting(x,y,o_actorParent);
+		};		
+	};
 };
-};
+
 //---------------------------------------- special projectile code -------------------------------------
 
 if(Flames) {
@@ -79,4 +94,4 @@ if(IsBeam) {
 };
 
 if(beamLength >= 6000) {kill = 1};
-if(hp <= 0) {instance_destroy(self)};
+

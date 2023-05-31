@@ -42,8 +42,8 @@
     "path": "sprites/sp_marine/sp_marine.yy",
   },
   "spriteMaskId": {
-    "name": "spr_collision_mask_human",
-    "path": "sprites/spr_collision_mask_human/spr_collision_mask_human.yy",
+    "name": "spr_collision_mask_marine",
+    "path": "sprites/spr_collision_mask_marine/spr_collision_mask_marine.yy",
   },
   "visible": true,
 }
