@@ -39,6 +39,7 @@
     {"name":"Weapons","order":5,"path":"folders/Sprites/Sprites: UI/Item Icons/Weapons.yy",},
     {"name":"Tile Sets","order":1,"path":"folders/Tile Sets.yy",},
     {"name":"Timelines","order":6,"path":"folders/Timelines.yy",},
+    {"name":"Gibs","order":9,"path":"folders/Sprites/Sprites: Gibs and Projectiles/Gibs.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"sp_navnode","order":2,"path":"sprites/sp_navnode/sp_navnode.yy",},

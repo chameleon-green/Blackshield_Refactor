@@ -1,6 +1,7 @@
 CreateScript = InfantryCreateGeneric;
 StepScript = InfantryStepGeneric;
 AnimScript = InfantryAnimGeneric;
+EventScript = InfantryEventGeneric;
 
 CreateScript();
 visible = 1;

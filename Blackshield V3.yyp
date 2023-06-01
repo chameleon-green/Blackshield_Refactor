@@ -53,6 +53,7 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Weapons","folderPath":"folders/Sprites/Sprites: UI/Item Icons/Weapons.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Tile Sets","folderPath":"folders/Tile Sets.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Timelines","folderPath":"folders/Timelines.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Gibs","folderPath":"folders/Sprites/Sprites: Gibs and Projectiles/Gibs.yy",},
   ],
   "IncludedFiles": [
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"desc_ammo_auto_ball.txt","CopyToMask":-1,"filePath":"datafiles/Ammo Descriptions",},
@@ -202,6 +203,7 @@
     {"id":{"name":"Combat","path":"scripts/Combat/Combat.yy",},},
     {"id":{"name":"snd_chain3","path":"sounds/snd_chain3/snd_chain3.yy",},},
     {"id":{"name":"snd_plasma_magout","path":"sounds/snd_plasma_magout/snd_plasma_magout.yy",},},
+    {"id":{"name":"sp_gibs_human","path":"sprites/sp_gibs_human/sp_gibs_human.yy",},},
     {"id":{"name":"snd_bolter1","path":"sounds/snd_bolter1/snd_bolter1.yy",},},
     {"id":{"name":"snd_punch3","path":"sounds/snd_punch3/snd_punch3.yy",},},
     {"id":{"name":"o_gib","path":"objects/o_gib/o_gib.yy",},},

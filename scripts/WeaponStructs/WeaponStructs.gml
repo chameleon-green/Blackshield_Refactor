@@ -166,11 +166,11 @@ Flamer_Astartes = { //---------------------------- ASTARTES SHOTGUN
 		
 		//combat stats
 		damage : 20,
-		ROF : 2, //FindROF(330), //rounds per minute
+		ROF : 3, //FindROF(330), //rounds per minute
 		range : 1000, //effective range before gravity takes hold, rounds can mod this
 		capacity : 75,		
 		spread : 0.1,
-		muzzle_velocity : 12,
+		muzzle_velocity : 21,
 		
 		//technical weapon stats
 		weapon_type : "flamer",
@@ -207,7 +207,7 @@ Lasgun_Kantrael = { //---------------------------- KANTRAEL LASGUN
 		
 		//combat stats
 		damage : 42,
-		ROF : FindROF(10), //rounds per minute
+		ROF : FindROF(250), //rounds per minute
 		range : 1000, //effective range before gravity takes hold, rounds can mod this
 		capacity : 60,		
 		spread : 2,

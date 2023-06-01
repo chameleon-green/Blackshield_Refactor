@@ -13,8 +13,6 @@ function InfantryCreateGeneric() {
 	ClosedList = ds_list_create();
 	ClosedParentList = ds_list_create();
 	
-
-	
 	ClearToProcess = 0;
 	
 	vspd = 0;
@@ -29,6 +27,7 @@ function InfantryCreateGeneric() {
 	firing = 0;
 	reloading = 0;
 	collisions_list = ds_list_create();
+	death = [0,0,0]; //0=dead, 1=dying, 2=anim toggle
 	
 	resist_base = [0,0,0,0,0,0,0,0,0];
 	resist_head = [25,0,0,0,0,0,0,0,0]; //phys0, ther1, cryo2, corr3, radi4, elec5, hazm6, warp7
@@ -127,90 +126,131 @@ function InfantryCreateGeneric() {
 
 function InfantryStepGeneric() {
 	
+	
+	
 	//----------------------------------------------- Impact Code ---------------------------------------
-	ImpactScript(o_bullet,"head",hbox_head,collisions_list);
-	ImpactScript(o_bullet,["torso","torso","torso","torso","armL","armL","armR","armR"],hbox_torso,collisions_list);
-	ImpactScript(o_bullet,["legL","legR"],hbox_legs,collisions_list);
+	if(death[0] != 1) {
+		ImpactScript(o_bullet,"head",hbox_head,collisions_list);
+		ImpactScript(o_bullet,["torso","torso","torso","torso","armL","armL","armR","armR"],hbox_torso,collisions_list);
+		ImpactScript(o_bullet,["legL","legR"],hbox_legs,collisions_list);
+	};
 	
 	//-------------------------------------------------- Death States ---------------------------------------
 	
 	HP = hp_body_head + hp_body_torso + hp_body_armL + hp_body_armR + hp_body_legL + hp_body_legR;
-	if((armor_head[5] = true) or (armor_torso[5] = true)) {skeleton_attachment_set("head",-1) instance_destroy(self) exit};
-	if(HP <= 0) {instance_destroy(self) exit};
+	if(HP <= 0) {death[1] = 1};
+	
+	if(((armor_head[5] = true) or (armor_torso[5] = true)) && (death[2] = 0)) {
+		skeleton_attachment_set("head",-1);
+		death[1] = 1;
 		
+		var gib_map = ds_map_create();
+		skeleton_bone_state_get("head", gib_map);
+		var EjectX = ds_map_find_value(gib_map, "worldX");
+		var EjectY = ds_map_find_value(gib_map, "worldY");
+		//var EjectAng = ds_map_find_value(ejection_map, "worldAngleX");
+		
+		var gib_count = 0;
+		while(gib_count < 6) {
+			instance_create_depth(EjectX,EjectY,depth+1,o_gib,{
+				sprite_index : sp_gibs_human,
+				image_index : gib_count,
+				hspd : choose(irandom_range(1,7),-irandom_range(1,7)),
+				vspd : -random_range(12,14),
+				angspeed : irandom_range(-25,25),
+				impact_sound : snd_impact_gore1,
+				impact_sound_pitch : 1
+			});
+			gib_count+=1;
+		};
+
+	ds_map_destroy(gib_map);
+		
+	};
+	
+	if((death[1] = 1) && (death[2] = 0)) {
+		death[2] = 1;
+		death[0] = 1;
+		skeleton_animation_clear(1);
+		skeleton_animation_clear(2);
+		skeleton_anim_set_step(choose("die_1","die_2"),1,false);
+	};
+	
+	var Dead = (death[0] = 1);
+	var Dying = (death[1] = 1);
+	
 	//------------------------------------------- Target finding code --------------------------------------------
 	
-	var AI_Enabled = 1 
-	aware = 1//(distance_to_object(obj_player) < radius_detection) //* AI_Enabled
-	firing = 0;
-	LOSCheck = timer_tick(LOSTimer,0);
-	if(LOSCheck) {
-		LOSandRange = check_los_and_range(1,x,y-100,MyTarget,o_platform,max_range); //can we see target, and have range?
-		timer_reset(LOSTimer,1);
-	}
+	if(!Dead && !Dying) {
+		var AI_Enabled = 1 
+		aware = 1//(distance_to_object(obj_player) < radius_detection) //* AI_Enabled
+		firing = 0;
+		LOSCheck = timer_tick(LOSTimer,0);
+		if(LOSCheck) {
+			LOSandRange = check_los_and_range(1,x,y-100,MyTarget,o_platform,max_range); //can we see target, and have range?
+			timer_reset(LOSTimer,1);
+		}
 	
-	col_bot = place_meeting(x,y+2,o_platform);
+		col_bot = place_meeting(x,y+2,o_platform);
 	
-	if(canshoot && LOSandRange && col_bot && !dead && !fleeing) {firing = 1};
+		if(canshoot && LOSandRange && col_bot && !fleeing) {firing = 1};
 	
-	if(instance_exists(MyTarget) and !dead) {
-		//if we are not fleeing, face our target
-		if(morale > 0 and LOSandRange and !sprinting) {
-		//if(target.x > x) {image_xscale = -1} else{image_xscale = 1}
+		if(instance_exists(MyTarget)) {
+			//if we are not fleeing, face our target
+			if(morale > 0 and LOSandRange and !sprinting) {
+			//if(target.x > x) {image_xscale = -1} else{image_xscale = 1}
+			};
+	
+			var pl_offset = MyTarget.y+(MyTarget.bbox_top - MyTarget.bbox_bottom)/2;
+			var yyy = y+(bbox_top-bbox_bottom)/2;
+			direc = point_direction(x,yyy,MyTarget.x,pl_offset);
 		};
-	
-		var pl_offset = MyTarget.y+(MyTarget.bbox_top - MyTarget.bbox_bottom)/2;
-		var yyy = y+(bbox_top-bbox_bottom)/2;
-		direc = point_direction(x,yyy,MyTarget.x,pl_offset);
-	};
- 
+
 	//--------------------------------------- Pathfinding related code -------------------------------------------------------
 		
-	//if we have lost LOS to player, begin to calculate a new path
-	if(!LOSandRange and (ds_list_size(PathList) = 0)) {NewPath = 1};
-	if(LOSandRange and col_bot) {ds_list_clear(PathList); NewPath = 0};
+		//if we have lost LOS to player, begin to calculate a new path
+		if(!LOSandRange and (ds_list_size(PathList) = 0)) {NewPath = 1};
+		if(LOSandRange and col_bot) {ds_list_clear(PathList); NewPath = 0};
 	
 	
-	//If we are not actively engaged, and our target refresh is available, find a new target node
-	TargetNodeTimer[0] += 1;
-	if(firing or (TargetNodeTimer[0] > (TargetNodeTimer[1]+3) )) {TargetNodeTimer[0] = 0};
+		//If we are not actively engaged, and our target refresh is available, find a new target node
+		TargetNodeTimer[0] += 1;
+		if(firing or (TargetNodeTimer[0] > (TargetNodeTimer[1]+3) )) {TargetNodeTimer[0] = 0};
 	
-	if(!firing && (TargetNodeTimer[0] > TargetNodeTimer[1])) {
-		TargetNodePrevious = TargetNode;
-		var LOSList = ds_list_create();
-		var NodesInLos = nodes_in_los(600,o_platform,o_navnode,MyTarget.x,MyTarget.y-50,-1);	
-		if(NodesInLos != -1) {
-			ds_list_read(LOSList,NodesInLos);	
-			TargetNode = ds_list_nearest(LOSList,MyTarget.x,MyTarget.y-50,0);
-		};
-		ds_list_destroy(LOSList);
-		TargetNodeTimer[0] = 0;
-	};
-	
-	
-	//Find a new path when commanded to
-	if(NewPath) {	
-		NewPath = 0;
-		//ClearToProcess = 0;
-		if(ds_list_find_index(o_IC.AIQ,id) = -1 and !ClearToProcess) {ds_list_add(o_IC.AIQ,id)};
-		if(ClearToProcess) {		
-			ClearToProcess = 0;
-			//get us a new starting node for this new path
+		if(!firing && (TargetNodeTimer[0] > TargetNodeTimer[1])) {
+			TargetNodePrevious = TargetNode;
 			var LOSList = ds_list_create();
-			var NodesInLos = nodes_in_los(600,o_platform,o_navnode,x,y-50,-1);
+			var NodesInLos = nodes_in_los(600,o_platform,o_navnode,MyTarget.x,MyTarget.y-50,-1);	
 			if(NodesInLos != -1) {
 				ds_list_read(LOSList,NodesInLos);	
-				StartNode = ds_list_nearest(LOSList,x,y-50,0);
+				TargetNode = ds_list_nearest(LOSList,MyTarget.x,MyTarget.y-50,0);
 			};
 			ds_list_destroy(LOSList);
-		
-			var PathText = nodes_calculate_cost_array(StartNode,800,TargetNode,9999);
-			ds_list_read(PathList,PathText);	
+			TargetNodeTimer[0] = 0;
 		};
-	};
 	
 	
+		//Find a new path when commanded to
+		if(NewPath) {	
+			NewPath = 0;
+			//ClearToProcess = 0;
+			if(ds_list_find_index(o_IC.AIQ,id) = -1 and !ClearToProcess) {ds_list_add(o_IC.AIQ,id)};
+			if(ClearToProcess) {		
+				ClearToProcess = 0;
+				//get us a new starting node for this new path
+				var LOSList = ds_list_create();
+				var NodesInLos = nodes_in_los(600,o_platform,o_navnode,x,y-50,-1);
+				if(NodesInLos != -1) {
+					ds_list_read(LOSList,NodesInLos);	
+					StartNode = ds_list_nearest(LOSList,x,y-50,0);
+				};
+				ds_list_destroy(LOSList);
 		
+				var PathText = nodes_calculate_cost_array(StartNode,800,TargetNode,9999);
+				ds_list_read(PathList,PathText);	
+			};
+		};
+	};	
 //------------------------------------------- actual movement code -------------------------------------------
 	
 	hspd = 0;
@@ -218,13 +258,14 @@ function InfantryStepGeneric() {
 	Right = 0;
 	Jump = 0;
 	
-	if(!firing) {AStarMovement(PathList,ClosedList)};
-	
-	skeleton_anim_set_step("idle_hotshot",1)
-	if(!Left && !Right) {skeleton_animation_clear(2)};
-	if(Left) {image_xscale = 1 hspd = -MoveSpeed skeleton_anim_set_step("sprint_rifle",2)};
-	if(Right) {image_xscale = -1 hspd = MoveSpeed skeleton_anim_set_step("sprint_rifle",2)};
-	if(Jump && col_bot) {vspd = -JumpForce};
+	if(!Dead && !Dying) {
+		if(!firing) {AStarMovement(PathList,ClosedList)};	
+		skeleton_anim_set_step("idle_hotshot",1)
+		if(!Left && !Right) {skeleton_animation_clear(2)};
+		if(Left) {image_xscale = 1 hspd = -MoveSpeed skeleton_anim_set_step("sprint_rifle",2)};
+		if(Right) {image_xscale = -1 hspd = MoveSpeed skeleton_anim_set_step("sprint_rifle",2)};
+		if(Jump && col_bot) {vspd = -JumpForce};
+	};
 	
 	vspd_readonly = vspd;
 
@@ -266,7 +307,7 @@ function InfantryStepGeneric() {
 	
 //------------------------------------------------- Ranged Combat Code -----------------------------------------------
 
-	if(firing) {
+	if(firing && !Dead && !Dying) {
 		
 		if(burst_count >= burst_size) {burst_ready = timer_tick(burst_timer,1)};
 		if(burst_ready) {
@@ -320,8 +361,11 @@ function InfantryStepGeneric() {
 #region Infantry animation update generic
 
 function InfantryAnimGeneric() {
-
-	if(visible && state != "dying" and state != "dead" and !reloading) {
+	
+	var Dead = (death[0] = 1);
+	var Dying = (death[1] = 1);
+	
+	if(visible && !Dead and !Dying and !reloading) {
 	
 		var AngOffset = 0;
 		var Aim = timer_tick(AimTimer,0);
@@ -360,3 +404,13 @@ function InfantryAnimGeneric() {
 
 #endregion
 
+#region Infantry animation event generic
+
+function InfantryEventGeneric() {
+	
+	var event = ds_map_find_value(event_data, "name");
+		
+}; //function end bracket
+
+#endregion
+	
