@@ -300,7 +300,7 @@ function AmmoStructs() {
 		
 		damage_type : ["thermal","THER"],
 		armor_penetration : 0,
-		guidance : "beam",
+		guidance : "none", //"beam",
 		fuse : 0.25, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
 		special : ["ignite"], //an array of any special effects
 		
@@ -309,7 +309,7 @@ function AmmoStructs() {
 		rarity : "080.common",	
 		
 		name : "Lasgun Charge Pack, Standard",
-		projectile_type : [sp_beam, 1, 1], //sprite, subimage and scaling, if relevant
+		projectile_type : [sp_bullet,1], //[sp_beam, 1, 1], //sprite, subimage and scaling, if relevant
 		projectile_color : [c_red, c_white],
 		flash_color : "none", //color override for flash, if relevant
 		casing_type : "none", //sprite and subimage of casing

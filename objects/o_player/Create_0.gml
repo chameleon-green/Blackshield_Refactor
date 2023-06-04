@@ -62,6 +62,8 @@ Mod = {
 	};
 #endregion
 
+death = [0,0,0]; //0=dead, 1=dying, 2=anim toggle
+
 resist_base = [0,0,0,0,0,0,0,0,0];
 resist_head = [0,0,0,0,0,0,0,0,0]; //phys0, ther1, cryo2, corr3, radi4, elec5, hazm6, warp7
 resist_torso = [0,0,0,0,0,0,0,0,0];

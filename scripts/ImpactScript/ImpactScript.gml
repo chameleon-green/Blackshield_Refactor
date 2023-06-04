@@ -52,10 +52,26 @@ function ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy=0){
 					return 0;
 				};
 				else if(Damage > resist) {
-										
+					
 					audio_play_sound(choose(snd_impact_metal_penetrate1,snd_impact_metal_penetrate2,snd_impact_metal_penetrate3),1,0,1,0,random_range(0.9,1.1));
 					audio_play_sound(choose(snd_impact_gore1,snd_impact_gore2,snd_impact_gore3),1,0,0.75,0,random_range(0.9,1.1));
-									
+					
+					if(Bullet.IsBeam) {
+						var oX = Bullet.x;
+						var oY = Bullet.y;
+						var BeamDirection = Bullet.direction;
+						var BeamLength = Bullet.beamLength; //point_distance(oX,oY,x,y)-10;
+						var SplashX = oX + (lengthdir_x(BeamLength,BeamDirection));
+						var SplashY = oY + (lengthdir_y(BeamLength,BeamDirection));
+					};
+					else{
+						var SplashX = Bullet.x;
+						var SplashY = Bullet.y;
+						
+					};
+				
+					instance_create_depth(SplashX,SplashY,depth-1,oprt_splatter,{image_angle : Bullet.direction-90});
+					
 					var LimbVariable = variable_instance_get(id,"hp_body_"+Limb);
 					var NetDamage = Damage - resist;
 					variable_instance_set(id,"hp_body_"+Limb,LimbVariable-NetDamage);

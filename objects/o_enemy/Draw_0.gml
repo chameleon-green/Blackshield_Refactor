@@ -1,5 +1,8 @@
 
 draw_self();
+
+draw_text(x,y,death);
+/*
 draw_text(x,bbox_top,string(HP) + "/" + string(max_hp));
 draw_rectangle(bbox_left,bbox_top,bbox_right,bbox_bottom,1);
 //draw_text(x,bbox_top,point_distance(x,y,MyTarget.x,MyTarget.y));

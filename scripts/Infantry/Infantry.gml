@@ -102,7 +102,7 @@ function InfantryCreateGeneric() {
 	canshoot = 1;
 	reloading = 0;
 	
-	max_range = 6000;
+	max_range = (weapon_ranged.range);
 	
 	LOSTimer = timer_create(45,0);
 	LOSCheck = 0;
@@ -163,7 +163,7 @@ function InfantryStepGeneric() {
 			});
 			gib_count+=1;
 		};
-
+		instance_create_depth(EjectX,EjectY,depth-1,oprt_splatter);
 	ds_map_destroy(gib_map);
 		
 	};
@@ -181,7 +181,7 @@ function InfantryStepGeneric() {
 	
 	//------------------------------------------- Target finding code --------------------------------------------
 	
-	if(!Dead && !Dying) {
+	if(!Dead) {
 		var AI_Enabled = 1 
 		aware = 1//(distance_to_object(obj_player) < radius_detection) //* AI_Enabled
 		firing = 0;
@@ -258,7 +258,7 @@ function InfantryStepGeneric() {
 	Right = 0;
 	Jump = 0;
 	
-	if(!Dead && !Dying) {
+	if(!Dead) {
 		if(!firing) {AStarMovement(PathList,ClosedList)};	
 		skeleton_anim_set_step("idle_hotshot",1)
 		if(!Left && !Right) {skeleton_animation_clear(2)};
@@ -307,7 +307,7 @@ function InfantryStepGeneric() {
 	
 //------------------------------------------------- Ranged Combat Code -----------------------------------------------
 
-	if(firing && !Dead && !Dying) {
+	if(firing && !Dead) {
 		
 		if(burst_count >= burst_size) {burst_ready = timer_tick(burst_timer,1)};
 		if(burst_ready) {
@@ -337,13 +337,15 @@ function InfantryStepGeneric() {
 			
 			instance_create_depth(FlashX,FlashY,depth-1,o_bullet,{
 				direction : direc + random_range(-other.weapon_ranged.spread,other.weapon_ranged.spread),
-				speed : 0,
+				speed : weapon_ranged.muzzle_velocity,
 				type : o_IC.Ammo_Laser_Pack_Standard,
 				damage : weapon_ranged.damage,
 				IFF : other.IFF,
 				vspd : other.vspd_readonly,
 				hspd : other.hspd,
-				creator : other.id
+				creator : other.id,
+				origin_x : FlashX,
+				origin_y : FlashY
 			});
 			burst_count += 1;
 			

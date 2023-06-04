@@ -46,7 +46,7 @@ Boltgun_Phobos = { //---------------------------- PHOBOS BOLTER
 		//combat stats
 		damage : 65, //65
 		ROF : FindROF(450), //rounds per minute
-		range : 1000, //effective range before gravity takes hold, rounds can mod this
+		range : 4000, //effective range before gravity takes hold, rounds can mod this
 		capacity : 30,		
 		spread : 0.2,
 		muzzle_velocity : 70,
@@ -211,7 +211,7 @@ Lasgun_Kantrael = { //---------------------------- KANTRAEL LASGUN
 		range : 1000, //effective range before gravity takes hold, rounds can mod this
 		capacity : 60,		
 		spread : 2,
-		muzzle_velocity : 0,
+		muzzle_velocity : 60,//0,
 		
 		//technical weapon stats
 		weapon_type : "rifle_laser",

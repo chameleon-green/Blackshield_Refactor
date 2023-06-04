@@ -1,59 +1,18 @@
 
-audio_listener_set_position(0,x,y,0);
 
-//------------------------------------------- STATE TOGGLES --------------------------------------------
-
-var IsRanged = string_count("ranged",wpn_active.item_type);
-var ICActive = 0;
-if(variable_instance_exists(id,"MyIC")) {var ICActive = MyIC.active};
-CanShoot = (!sprinting && !rolling && !reloading && !swinging && IsRanged && !ICActive);
-CanReload = (!rolling && !reloading && !swinging);
-CanMove = (!rolling && !swinging);
-CanRoll = (!rolling && !swinging);
-
-
-PlayerStatsCalculator();
-TickEffect(BuffList);
-if(HP > MaxHP) {HP = MaxHP};
-if(Stamina > MaxStamina) {Stamina = MaxStamina};
-if(Will > MaxWill) {Will = MaxWill};
-
-//------------------------------------------- MOVEMENT STUFF -----------------------------------------------
-
-PlayerMovement();
 draw_self();
-
-//-------------------------------------------- SHOOTY STUFF --------------------------------------------------
-
-if(IsRanged){
-	
-	if(spread_angle > (wpn_active.spread)) {spread_angle = spread_angle*0.97};
-	if(spread_angle < (wpn_active.spread)) {spread_angle = wpn_active.spread};
-	var HeatReduction = clamp(1/wpn_active_heat,2/wpn_active.heat_capacity,2);
-	if(wpn_active_heat > 0) {wpn_active_heat -= HeatReduction};
-	if(wpn_active_heat < 0) {wpn_active_heat = 0};
-	
-};
-PlayerWeaponControl();
-
-//--------------------------------------------- MELEE STUFF ----------------------------------------------------
-
-PlayerMeleeControl()
-
-
-
 
 
 
 //--------------------------------------------- DEBUG STUFF ------------------------------------------------
 
 
+ds_list_draw(collisions_list,x,bbox_top);
 
-
-draw_text(x,bbox_top,o_IC.AIQ);
+//draw_text(x,bbox_top,o_IC.AIQ);
 /*
 ds_list_draw(AIQueue,x,bbox_top);
-ds_list_draw(collisions_list,x,bbox_top);
+
 draw_rectangle(x-hbox_torso[0],y-hbox_torso[1],x-hbox_torso[2],y-hbox_torso[3],true);
 draw_rectangle(x-hbox_legs[0],y-hbox_legs[1],x-hbox_legs[2],y-hbox_legs[3],true);
 draw_rectangle(x-hbox_head[0],y-hbox_head[1],x-hbox_head[2],y-hbox_head[3],true);
