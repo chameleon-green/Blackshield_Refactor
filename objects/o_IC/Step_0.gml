@@ -16,11 +16,8 @@ if(xx < 1) {xx = 1}; //if(xx < 683) {xx = 683};
 if(yy > 1536) {yy = 1536};
 if(yy < 1) {yy = 1}; //if(yy < 384) {yy = 384};
 
-
-
 var LightSurf = o_LightController.srf_light;
 if( surface_exists(LightSurf) ) {surface_resize(LightSurf,xx,yy)};
-
 
 view_wport[0] = xx; view_hport[0] = yy;
 camera_set_view_size(view_camera[0],view_wport[0],view_hport[0]);

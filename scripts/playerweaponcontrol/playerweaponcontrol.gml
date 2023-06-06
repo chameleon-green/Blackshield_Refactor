@@ -65,7 +65,8 @@ function FireGun (){
 			if(IsCharge) {wpn_active_heat += wpn_active.heat_generation*ChargeMult*ChargeMult}
 			else {wpn_active_heat += wpn_active.heat_generation}
 	};
-
+	
+	instance_create_depth(flash_x,flash_y,depth-1,oprt_light);
 
 	//--------------------------------------------------------- visual stuff --------------------------------------
 	

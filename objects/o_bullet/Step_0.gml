@@ -70,15 +70,15 @@ if(IsBeam && beamToggle) {
 		
 		var lx = x + lengthdir_x(beamLength, direction);
 		var ly = y + lengthdir_y(beamLength, direction);
-		var lxa = x + lengthdir_x(beamLength-48, direction);
-		var lya = y + lengthdir_y(beamLength-48, direction);
+		var lxa = x + lengthdir_x(beamLength-10, direction);
+		var lya = y + lengthdir_y(beamLength-10, direction);
 		
 		if(collision_point(lx, ly, o_platform, false, true)) {
 			kill = 1; //trigger death after step event to allow beam a frame to actually exist
 			break;	
 		};		
 		
-		beamLength+=16;
+		beamLength+=12;
 		
 		//-----------------------------------------------------------------------------------------------------	
 		var ActorCollision = collision_line_list(x,y,lxa,lya,o_actorParent,0,true,col_list,true);

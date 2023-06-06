@@ -107,7 +107,7 @@ AddItem(Drug_Combat_Satrophine,5,grd_inv_aidd,InventorySize);
 MyPlayer = instance_create_depth(x,y,depth+1,o_player,{MyIC : id});
 //repeat (10) {instance_create_depth(x,y,depth+1,o_player,{MyIC : id})};
 MyHPbar = instance_create_depth(x,y,depth+1,o_HPbar, {MyIC : id, scale : 1.33, MyPlayer : other.MyPlayer});
-repeat (1) {instance_create_depth(x,y,depth,o_enemy,{leader : 1})};
+repeat (1) {instance_create_depth(x,y,-101,o_enemy,{leader : 1})};
 
 //----------------------------------------- Zoom Functionality ------------------------------
 

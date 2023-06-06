@@ -17,7 +17,10 @@
     "name": "Objects: Particles, Projectiles, Gibs",
     "path": "folders/Objects/Objects: Particles, Projectiles, Gibs.yy",
   },
-  "parentObjectId": null,
+  "parentObjectId": {
+    "name": "o_lightParent",
+    "path": "objects/o_lightParent/o_lightParent.yy",
+  },
   "persistent": false,
   "physicsAngularDamping": 0.1,
   "physicsDensity": 0.5,

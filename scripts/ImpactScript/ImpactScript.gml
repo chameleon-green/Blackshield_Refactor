@@ -60,7 +60,7 @@ function ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy=0){
 						var oX = Bullet.x;
 						var oY = Bullet.y;
 						var BeamDirection = Bullet.direction;
-						var BeamLength = Bullet.beamLength; //point_distance(oX,oY,x,y)-10;
+						var BeamLength = Bullet.image_xscale*128; //point_distance(oX,oY,x,y)-10;
 						var SplashX = oX + (lengthdir_x(BeamLength,BeamDirection));
 						var SplashY = oY + (lengthdir_y(BeamLength,BeamDirection));
 					};

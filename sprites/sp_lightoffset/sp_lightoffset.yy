@@ -1,11 +1,11 @@
 {
   "resourceType": "GMSprite",
   "resourceVersion": "1.0",
-  "name": "sp_light",
+  "name": "sp_lightoffset",
   "bbox_bottom": 381,
   "bbox_left": 0,
-  "bbox_right": 381,
-  "bbox_top": 0,
+  "bbox_right": 127,
+  "bbox_top": 21,
   "bboxMode": 0,
   "collisionKind": 1,
   "collisionTolerance": 0,
@@ -14,7 +14,6 @@
   "For3D": false,
   "frames": [
     {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"01dd5240-78d4-4404-b917-bb5d8226c45d",},
-    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"693f675a-c083-41e8-98f6-e6f5c7811601",},
   ],
   "gridX": 0,
   "gridY": 0,
@@ -24,7 +23,7 @@
     {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"6fac7f42-cb61-4da6-9c27-aba1f89f0363","blendMode":0,"displayName":"default","isLocked":false,"opacity":100.0,"visible":true,},
   ],
   "nineSlice": null,
-  "origin": 4,
+  "origin": 3,
   "parent": {
     "name": "Sprites: Gibs and Projectiles",
     "path": "folders/Sprites/Sprites: Gibs and Projectiles.yy",
@@ -33,7 +32,7 @@
   "sequence": {
     "resourceType": "GMSequence",
     "resourceVersion": "1.4",
-    "name": "sp_light",
+    "name": "sp_lightoffset",
     "autoRecord": true,
     "backdropHeight": 768,
     "backdropImageOpacity": 0.5,
@@ -44,7 +43,7 @@
     "events": {"resourceType":"KeyframeStore<MessageEventKeyframe>","resourceVersion":"1.0","Keyframes":[],},
     "eventStubScript": null,
     "eventToFunction": {},
-    "length": 2.0,
+    "length": 1.0,
     "lockOrigin": false,
     "moments": {"resourceType":"KeyframeStore<MomentsEventKeyframe>","resourceVersion":"1.0","Keyframes":[],},
     "playback": 1,
@@ -55,13 +54,12 @@
     "timeUnits": 1,
     "tracks": [
       {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"1.0","Keyframes":[
-            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"01dd5240-78d4-4404-b917-bb5d8226c45d","path":"sprites/sp_light/sp_light.yy",},},},"Disabled":false,"id":"3cfe6b44-ecd3-4454-9668-924ab124c1e5","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
-            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"693f675a-c083-41e8-98f6-e6f5c7811601","path":"sprites/sp_light/sp_light.yy",},},},"Disabled":false,"id":"18e34557-a4c3-4885-a67a-a08771713174","IsCreationKey":false,"Key":1.0,"Length":1.0,"Stretch":false,},
+            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"01dd5240-78d4-4404-b917-bb5d8226c45d","path":"sprites/sp_lightoffset/sp_lightoffset.yy",},},},"Disabled":false,"id":"2bf2761b-4483-4b0e-98a1-1e62cbd91492","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
           ],},"modifiers":[],"spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange": null,
     "volume": 1.0,
-    "xorigin": 200,
+    "xorigin": 0,
     "yorigin": 200,
   },
   "swatchColours": null,
@@ -72,5 +70,5 @@
   },
   "type": 0,
   "VTile": false,
-  "width": 400,
+  "width": 128,
 }
