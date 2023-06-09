@@ -1,10 +1,10 @@
 {
   "resourceType": "GMSprite",
   "resourceVersion": "1.0",
-  "name": "sp_lightoffset",
+  "name": "sp_lightoffsetend",
   "bbox_bottom": 364,
   "bbox_left": 0,
-  "bbox_right": 255,
+  "bbox_right": 154,
   "bbox_top": 29,
   "bboxMode": 0,
   "collisionKind": 1,
@@ -13,7 +13,7 @@
   "edgeFiltering": false,
   "For3D": false,
   "frames": [
-    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"36fd4609-9c66-4583-b5d1-9d50691852b5",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"a5330d6c-9ca7-4f34-ab5b-3bffa394160d",},
   ],
   "gridX": 0,
   "gridY": 0,
@@ -25,7 +25,7 @@
   "nineSlice": {
     "resourceType": "GMNineSliceData",
     "resourceVersion": "1.0",
-    "bottom": 185,
+    "bottom": 199,
     "enabled": false,
     "guideColour": [
       4294902015,
@@ -34,17 +34,17 @@
       4294902015,
     ],
     "highlightColour": 1728023040,
-    "highlightStyle": 1,
-    "left": 25,
-    "right": 23,
+    "highlightStyle": 0,
+    "left": 83,
+    "right": 95,
     "tileMode": [
-      1,
       0,
-      1,
+      0,
+      0,
       0,
       0,
     ],
-    "top": 185,
+    "top": 175,
   },
   "origin": 3,
   "parent": {
@@ -55,7 +55,7 @@
   "sequence": {
     "resourceType": "GMSequence",
     "resourceVersion": "1.4",
-    "name": "sp_lightoffset",
+    "name": "sp_lightoffsetend",
     "autoRecord": true,
     "backdropHeight": 768,
     "backdropImageOpacity": 0.5,
@@ -77,7 +77,7 @@
     "timeUnits": 1,
     "tracks": [
       {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"1.0","Keyframes":[
-            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"36fd4609-9c66-4583-b5d1-9d50691852b5","path":"sprites/sp_lightoffset/sp_lightoffset.yy",},},},"Disabled":false,"id":"ada30646-59ce-43d2-a0f4-ad3c9bc3764e","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
+            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"a5330d6c-9ca7-4f34-ab5b-3bffa394160d","path":"sprites/sp_lightoffsetend/sp_lightoffsetend.yy",},},},"Disabled":false,"id":"cb07777f-710c-4013-9ff2-eefc232c3ec2","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
           ],},"modifiers":[],"spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange": null,

@@ -46,7 +46,7 @@ function AmmoStructs() {
 		damage_mod : 1.1,
 		ROF_mod : 0.8,
 		range_mod : 1.25,
-		velocity_mod : 2,
+		velocity_mod : 1.25,
 		
 		damage_type : ["physical","PHYS"],
 		armor_penetration : 0.25,

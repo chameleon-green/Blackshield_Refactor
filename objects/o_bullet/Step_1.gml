@@ -1,0 +1,1 @@
+light_enable += 1;

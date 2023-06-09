@@ -17,14 +17,14 @@ if(yy > 1536) {yy = 1536};
 if(yy < 1) {yy = 1}; //if(yy < 384) {yy = 384};
 
 var LightSurf = o_LightController.srf_light;
-if( surface_exists(LightSurf) ) {surface_resize(LightSurf,xx,yy)};
+if( surface_exists(LightSurf) ) {surface_resize(LightSurf,xx+50,yy+50)};
 
 view_wport[0] = xx; view_hport[0] = yy;
 camera_set_view_size(view_camera[0],view_wport[0],view_hport[0]);
 camera_set_view_border(view_camera[0],xx/2,yy/2);
 
-//surface_resize(application_surface,683,384);
-//view_multiplier = xx/1366;
+
+
 
 if(equalize = 1) { 
 	if(xx > 1366) {view_momentum = -1*(abs(xx-1366)/4)};

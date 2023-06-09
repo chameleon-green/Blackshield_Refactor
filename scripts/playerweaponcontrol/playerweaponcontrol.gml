@@ -66,7 +66,7 @@ function FireGun (){
 			else {wpn_active_heat += wpn_active.heat_generation}
 	};
 	
-	instance_create_depth(flash_x,flash_y,depth-1,oprt_light);
+	instance_create_depth(flash_x,flash_y,depth+1,oprt_light);
 
 	//--------------------------------------------------------- visual stuff --------------------------------------
 	

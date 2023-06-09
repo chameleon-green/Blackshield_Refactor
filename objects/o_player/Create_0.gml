@@ -3,6 +3,7 @@ AmmoStructs();
 WeaponStructs();
 var _mymethod = function(){}; 
 
+depth = -99;
 image_xscale = 1;
 image_yscale = 1;
 //----------------------------------- MOVEMENT VARIABLES -----------------------------------

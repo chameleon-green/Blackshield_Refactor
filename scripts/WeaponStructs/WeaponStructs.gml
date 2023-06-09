@@ -208,7 +208,7 @@ Lasgun_Kantrael = { //---------------------------- KANTRAEL LASGUN
 		//combat stats
 		damage : 42,
 		ROF : FindROF(250), //rounds per minute
-		range : 1000, //effective range before gravity takes hold, rounds can mod this
+		range : 4000, //effective range before gravity takes hold, rounds can mod this
 		capacity : 60,		
 		spread : 2,
 		muzzle_velocity : 0,//0,
