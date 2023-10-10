@@ -10,16 +10,17 @@ surface_set_target(srf_light);
 var ViewX = camera_get_view_x(view_camera[0]);
 var ViewY = camera_get_view_y(view_camera[0]);
 
-draw_clear_alpha(make_color_rgb(0,20,0),1);
-
+//draw_clear_alpha(make_color_rgb(10,10,10),1);
+draw_clear_alpha(make_color_rgb(254,254,254),1);
+/*
 with(o_player) {
 		
 	//gpu_set_blendmode(bm_add);
 	//draw_sprite_ext(sp_light, 0, (x/3)-(ViewX/3), (y/3)-(ViewY/3), 1/3, 1/3, 0, c_red, 0.5);
 	//gpu_set_blendmode_ext(bm_one,bm_inv_src_color);
 	gpu_set_blendmode(bm_normal);
-	draw_sprite_ext(sp_light, 0, (x/SurfScale)-(ViewX/SurfScale), ((bbox_top+90)/SurfScale)-(ViewY/SurfScale), 1/5, 1/2, 0, c_white, 0.75);
-	//draw_sprite_ext(sp_NODcone, 0, (x/SurfScale)-(ViewX/SurfScale), (bbox_top/SurfScale)-(ViewY/SurfScale), 3, 2, AimAngleBullet, c_green, 0.75);
+	draw_sprite_ext(sp_light, 0, (x/SurfScale)-(ViewX/SurfScale), ((bbox_top+45)/SurfScale)-(ViewY/SurfScale), 1/3, 3/4, 0, c_white, 0.25);
+	//draw_sprite_ext(sp_NODcone, 0, (x/SurfScale)-(ViewX/SurfScale), (bbox_top/SurfScale)-(ViewY/SurfScale), 12, 4, AimAngleBullet, c_green, 0.75);
 };
 
 
@@ -46,10 +47,16 @@ with(o_lightParent) {
 		case oprt_light:
 			draw_sprite_ext(sp_light, 0, (x/SurfScale)-(ViewX/SurfScale), (y/SurfScale)-(ViewY/SurfScale), 1, 1, 0, c_white, 1)
 			break;
+		
+		case o_explosion_scalable:
+			if(image_index >= 0) {
+				draw_sprite_ext(sp_light, 0, (x/SurfScale)-(ViewX/SurfScale), (y/SurfScale)-(ViewY/SurfScale), 1, 1, 0, c_white, 1)
+			};
+			break;
 		};
 };
 
-
+*/
 
 gpu_set_blendmode_ext(bm_dest_color,bm_zero);
 //gpu_set_blendmode(bm_normal);

@@ -3,9 +3,9 @@ var Ycent = window_get_height()/2;
 scale = creator.scale;
 image_xscale = scale;
 
-x = Xcent-(298*scale);
-var BgY = Ycent - (133*scale);
-var BgYBar = Ycent - (118*scale);
+x = (Xcent-(298*scale));
+var BgY = (Ycent - (133*scale));
+var BgYBar = (Ycent - (118*scale));
 
 if(!creator.visible) {instance_destroy(self); creator.MyScrollbar = 0};
 
