@@ -235,12 +235,12 @@ if(Click) {
 	if(ButtonRegionCenter(Mouse_X,Mouse_Y,300,220,180,200,scale) && (Tab != "items")) {
 		Tab = "items"; bg_subimage = 0; 
 		global.Selected = ["none","none"];
-		if(SubTab = "weapons") {bg_subimage = 0};
-		else if(SubTab = "armor") {bg_subimage = 1};
-		else if(SubTab = "aid") {bg_subimage = 2};
-		else if(SubTab = "ammo") {bg_subimage = 3};
-		else if(SubTab = "currency") {bg_subimage = 4};
-		else if(SubTab = "crafting") {bg_subimage = 5};
+		if(SubTab = "weapons") {bg_subimage = 0}
+		else if(SubTab = "armor") {bg_subimage = 1}
+		else if(SubTab = "aid") {bg_subimage = 2}
+		else if(SubTab = "ammo") {bg_subimage = 3}
+		else if(SubTab = "currency") {bg_subimage = 4}
+		else if(SubTab = "crafting") {bg_subimage = 5}
 		refresh = 1; 
 	};
 	

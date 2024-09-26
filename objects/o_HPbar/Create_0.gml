@@ -14,11 +14,11 @@ CL_Outline = make_colour_rgb(192,158,2);
 ChooseColor = function(Ratio,ColorLock=0,LockInput=false){
 	//Color lock allows us to lock color to red unless condition is filled
 	if(Ratio <= 0 ) {
-		if(!ColorLock) {return CL_Screen};
-		else if(ColorLock && (LockInput=false)) {return CL_Red};
-		else if(ColorLock && (LockInput=true)) {return CL_Screen};
-	};
-	else if(Ratio > 0 and Ratio <= 0.33) {return CL_Red};
-	else if(Ratio > 0.33 and Ratio <= 0.75) {return CL_Orange};
+		if(!ColorLock) {return CL_Screen}
+		else if(ColorLock && (LockInput=false)) {return CL_Red}
+		else if(ColorLock && (LockInput=true)) {return CL_Screen}
+	}
+	else if(Ratio > 0 and Ratio <= 0.33) {return CL_Red}
+	else if(Ratio > 0.33 and Ratio <= 0.75) {return CL_Orange}
 	else if(Ratio > 0.75) {return CL_Yellow};
 };

@@ -50,7 +50,7 @@ function ds_list_nearest(list,x,y,cover,popcap=-1) {
 
 	for(i=0; i<size; i++) {
 		var instance = list[|i];		
-		if(cover) {var distance = point_distance(x,y,instance.x,instance.y)-90000*instance.cover};
+		if(cover) {var distance = point_distance(x,y,instance.x,instance.y)-90000*instance.cover}
 		else{var distance = point_distance(x,y,instance.x,instance.y)};
 	
 		if(popcap > 0) {
@@ -93,7 +93,7 @@ function ds_list_farthest(list,x,y,cover,popcap=-1) {
 
 	for(i=0; i<size; i++) {
 	var instance = list[|i];
-	if(cover) {var distance = point_distance(x,y,instance.x,instance.y)+90000*instance.cover};
+	if(cover) {var distance = point_distance(x,y,instance.x,instance.y)+90000*instance.cover}
 	else{var distance = point_distance(x,y,instance.x,instance.y)};
 	
 		if(popcap > 0) {
@@ -315,7 +315,7 @@ function nodes_calculate_cost_array(StartNode,SearchRadius,TargetNode,max_search
 				if(!ClosedNode) {ds_priority_add(OpenList,NodeArray,CostF)};		
 			};
 			ds_list_destroy(LOSList);
-		}; else{break}; //is Node an array?
+		} else{break}; //is Node an array?
 	
 	};
 
@@ -460,7 +460,7 @@ function nodes_calculate_cost_array2(PathList,OpenList,ClosedList,ClosedParentLi
 				if(!ClosedNode) {ds_priority_add(OpenList,NodeArray,CostF)};		
 			};
 			ds_list_destroy(LOSList);
-		}; else{break}; //is Node an array?
+		} else{break}; //is Node an array?
 	
 	};
 
@@ -522,7 +522,7 @@ function nodes_calculate_cost_array2(PathList,OpenList,ClosedList,ClosedParentLi
 
 #region Movement based on A-star
 
-function AStarMovement(PathList,ClosedList) {
+function AStarMovement(PathList,ClosedList,MoveSpeed,NewPath) {
 	
 	//supply the function with a dslist of the path itself and a closed list of nodes
 		

@@ -37,7 +37,7 @@ if(event = "Ranged/Reloaded") {
 	if(!is_array(wpn_active.animation_group.reload)){
 		var _Grid = MyIC.grd_inv_ammo;
 		var _AmmoY = ds_grid_value_y(_Grid,0,0,ds_grid_width(_Grid),ds_grid_height(_Grid),ammo_active_id);
-		var _AmmoPool = ds_grid_get(_Grid,1,_AmmoY,);
+		var _AmmoPool = ds_grid_get(_Grid,1,_AmmoY);
 	
 		if( !is_array(wpn_active.animation_group.reload)) {		
 			if(_AmmoPool > wpn_active.capacity) {magazine_active = wpn_active.capacity; ds_grid_add(_Grid,1,_AmmoY,-wpn_active.capacity)}
@@ -64,7 +64,7 @@ if(event = "Ranged/reload_single") {
 		
 		var _Grid = MyIC.grd_inv_ammo;
 		var _AmmoY = ds_grid_value_y(_Grid,0,0,ds_grid_width(_Grid),ds_grid_height(_Grid),ammo_active_id);
-		var _AmmoPool = ds_grid_get(_Grid,1,_AmmoY,);
+		var _AmmoPool = ds_grid_get(_Grid,1,_AmmoY);
 	
 	    if(_AmmoPool > 1) {magazine_active += 1; ds_grid_add(_Grid,1,_AmmoY,-1); audio_play_sound(wpn_active.sound_group.mag_in,1,0)};	
 		if(_AmmoPool = 1) {magazine_active += 1; ds_grid_add(_Grid,1,_AmmoY,-1); audio_play_sound(wpn_active.sound_group.mag_in,1,0); ClearItem(ammo_active_id,_Grid,id)};

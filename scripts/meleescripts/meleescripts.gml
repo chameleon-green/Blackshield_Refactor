@@ -181,7 +181,7 @@ function PlayerMeleeControl(){
 		
 	//---------------------------------------------------------- HEAVY ATTACK CODE --------------------------------------------------------
 	
-		if( (melee_charge >= 35) && heavy_melee_toggle) {Func_HeavyAttack()};
+		if( (melee_charge >= 35) && heavy_melee_toggle) {Func_HeavyAttack()}
 		else if ( (skeleton_animation_get_ext(6) = wpn_active_melee.animation_group.windup) && (melee_charge < 35) ) {time_source_reset(melee_reset_timer); Func_EndMelee()};
 		
 		heavy_melee_toggle = 1;

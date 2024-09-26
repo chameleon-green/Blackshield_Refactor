@@ -33,12 +33,12 @@ var TwoHanded = (wpn_active_melee.weapon_slot[1] = 2);
 if (wpn_active.weapon_slot[0] = "primary") {
 	skeleton_anim_set_step(ranged_animgrp.idle,1)
 	if(aud_melee_idle != 0) {audio_stop_sound(aud_melee_idle); aud_melee_idle = 0};
-};
+}
 
 else if ((wpn_active.weapon_slot[0] = "secondary")) {
 	skeleton_anim_set_step(ranged_animgrp.idle,1);		
 	if(!reloading and !TwoHanded) {skeleton_anim_set_step(melee_animgrp.idle,5)};
-};
+}
 
 else if ((wpn_active.weapon_slot[0] = "melee")) {
 	skeleton_anim_set_step(ranged_animgrp.idle,1);		
@@ -80,7 +80,7 @@ if(CanMove) {
 			}; 
 		};
 		if(face_right) {
-			if(Shift) {hspd = (move*CanMove)*1.5; if(col_bot) {skeleton_anim_set_step(sprint,2); sprinting = 1} };
+			if(Shift) {hspd = (move*CanMove)*1.5; if(col_bot) {skeleton_anim_set_step(sprint,2); sprinting = 1} }
 			else {
 				hspd = move*CanMove; 
 				if(col_bot) {
@@ -101,7 +101,7 @@ if(CanMove) {
 			}; 
 		};
 		if(face_left) {
-			if(Shift) {hspd = (move*CanMove)*1.5; if(col_bot) {skeleton_anim_set_step(sprint,2); sprinting = 1} };
+			if(Shift) {hspd = (move*CanMove)*1.5; if(col_bot) {skeleton_anim_set_step(sprint,2); sprinting = 1} }
 			else {
 				hspd = move*CanMove; 
 				if(col_bot) {
@@ -149,7 +149,7 @@ if (place_free(x,y+sign(vspd))) {
 };
 
 if(place_meeting(x, y+vspd, o_platform)) { //vertical collisions
-	if(vspd < 0) {move_outside_solid(270,vspd)}; //if we are going up and hit something, try to get out of ceiling collision
+	if(vspd < 0) {move_outside_solid(270,vspd)} //if we are going up and hit something, try to get out of ceiling collision
 	else{move_contact_solid(270,10)}; //if we are going down and hit something, touch down on the floor
 	vspd = 0; //kill our vertical momentum in either case
 };
@@ -163,7 +163,7 @@ if(place_meeting(x+hspd*2,y,o_platform)){
 			move_outside_solid(180,100);
 			move_outside_solid(0,100);
 			hspd = 0
-		};
+		}
 		else { //if we succeed in finding a clear position, move to it
 			y -= climb;
 			vspd_readonly = (vspd - climb)

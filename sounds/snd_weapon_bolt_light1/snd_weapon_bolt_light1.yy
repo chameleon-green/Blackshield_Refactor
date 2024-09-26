@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"snd_weapon_bolt_light1",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":0,
+  "conversionMode":0,
+  "duration":1.327104,
+  "name":"snd_weapon_bolt_light1",
+  "parent":{
+    "name":"Weapons, Bolt",
+    "path":"folders/Sounds/Weapons, Bolt.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"snd_weapon_bolt_light1.wav",
+  "type":0,
+  "volume":1.0,
+}

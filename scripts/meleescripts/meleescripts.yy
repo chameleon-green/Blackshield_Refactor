@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "MeleeScripts",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "Player Related",
-    "path": "folders/Scripts/Player Related.yy",
+  "$GMScript":"v1",
+  "%Name":"MeleeScripts",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"MeleeScripts",
+  "parent":{
+    "name":"Player Related",
+    "path":"folders/Scripts/Player Related.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

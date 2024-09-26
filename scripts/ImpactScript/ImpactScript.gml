@@ -16,14 +16,14 @@ function ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy=0){
 				var DRatio = ArmorArray[2];
 				var Damage = Bullet.damage;
 								
-				if(Bullet.damage_type = "physical") {var resist = clamp((ResistArray[0]*DRatio)+resist_base[0]-Bullet.penetration,0,9999999)};
-				else if(Bullet.damage_type = "thermal") {var resist = clamp((ResistArray[1]*DRatio)+resist_base[1]-Bullet.penetration,0,9999999)};
-				else if(Bullet.damage_type = "cryo") {var resist = clamp((ResistArray[2]*DRatio)+resist_base[2]-Bullet.penetration,0,9999999)};
-				else if(Bullet.damage_type = "corrosive") {var resist = clamp((ResistArray[3]*DRatio)+resist_base[3]-Bullet.penetration,0,9999999)};
-				else if(Bullet.damage_type = "radiation") {var resist = clamp((ResistArray[4]*DRatio)+resist_base[4]-Bullet.penetration,0,9999999)};
-				else if(Bullet.damage_type = "electric") {var resist = clamp((ResistArray[5]*DRatio)+resist_base[5]-Bullet.penetration,0,9999999)};
-				else if(Bullet.damage_type = "biohazard") {var resist = clamp((ResistArray[6]*DRatio)+resist_base[6]-Bullet.penetration,0,9999999)};
-				else if(Bullet.damage_type = "warp") {var resist = clamp((ResistArray[7]*DRatio)+resist_base[7]-Bullet.penetration,0,9999999)};
+				if(Bullet.damage_type = "physical") {var resist = clamp((ResistArray[0]*DRatio)+resist_base[0]-Bullet.penetration,0,9999999)}
+				else if(Bullet.damage_type = "thermal") {var resist = clamp((ResistArray[1]*DRatio)+resist_base[1]-Bullet.penetration,0,9999999)}
+				else if(Bullet.damage_type = "cryo") {var resist = clamp((ResistArray[2]*DRatio)+resist_base[2]-Bullet.penetration,0,9999999)}
+				else if(Bullet.damage_type = "corrosive") {var resist = clamp((ResistArray[3]*DRatio)+resist_base[3]-Bullet.penetration,0,9999999)}
+				else if(Bullet.damage_type = "radiation") {var resist = clamp((ResistArray[4]*DRatio)+resist_base[4]-Bullet.penetration,0,9999999)}
+				else if(Bullet.damage_type = "electric") {var resist = clamp((ResistArray[5]*DRatio)+resist_base[5]-Bullet.penetration,0,9999999)}
+				else if(Bullet.damage_type = "biohazard") {var resist = clamp((ResistArray[6]*DRatio)+resist_base[6]-Bullet.penetration,0,9999999)}
+				else if(Bullet.damage_type = "warp") {var resist = clamp((ResistArray[7]*DRatio)+resist_base[7]-Bullet.penetration,0,9999999)}
 				else {return 0; exit};
 				
 				if(Damage <= resist){
@@ -44,13 +44,13 @@ function ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy=0){
 								ArmorArray[3] = NewDurability/ArmorArray[0].durability_max;
 							};
 						}; //item ID check
-					}; //enemy check
+					} //enemy check
 					else{};
 
 					Bullet.hp = 0;
 					Bullet.endBeam = 1;
 					return 0;
-				};
+				}
 				else if(Damage > resist) {
 					
 					audio_play_sound(choose(snd_impact_metal_penetrate1,snd_impact_metal_penetrate2,snd_impact_metal_penetrate3),1,0,1,0,random_range(0.9,1.1));
@@ -63,7 +63,7 @@ function ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy=0){
 						var BeamLength = Bullet.image_xscale*128; //point_distance(oX,oY,x,y)-10;
 						var SplashX = oX + (lengthdir_x(BeamLength,BeamDirection));
 						var SplashY = oY + (lengthdir_y(BeamLength,BeamDirection));
-					};
+					}
 					else{
 						var SplashX = Bullet.x;
 						var SplashY = Bullet.y;
@@ -93,7 +93,7 @@ function ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy=0){
 					Bullet.hp -= resist;
 					Bullet.damage = Bullet.hp;
 					if(Bullet.hp <= Bullet.fuse) {Bullet.kill = 1};
-					}; //enemy check
+					} //enemy check
 					else{};
 									
 					return NetDamage;
@@ -124,7 +124,7 @@ function ImpactScript(BulletObject,Limb,HitboxArray,CollisionsList,Precise=0){
 				var LimbArray = variable_instance_get(id, "armor_" + Limb);
 				LimbArray[4] += ImpactDamageProcessing(Bullet,Limb,CollisionsList);
 				if(LimbArray[4] >= AmputationThreshold) {LimbArray[5] = true};
-			};
+			}
 		//if we have an array of limbs, randomly determine one to be hit
 			else{
 				var Pick = irandom_range(0,array_length(Limb)-1);
@@ -144,7 +144,7 @@ function ImpactScript(BulletObject,Limb,HitboxArray,CollisionsList,Precise=0){
 	if(!MultipleLimbs){
 		var LimbArray = variable_instance_get(id, "armor_" + Limb);
 		LimbArray[4] = 0;
-	};
+	}
 	else{
 		var i = 0;
 		while (i<(array_length(Limb))) {

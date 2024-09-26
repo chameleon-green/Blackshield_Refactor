@@ -300,7 +300,7 @@ function AmmoStructs() {
 		
 		damage_type : ["thermal","THER"],
 		armor_penetration : 0,
-		guidance : "beam", //"none", //
+		guidance : "beam",
 		fuse : 0.25, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
 		special : ["ignite"], //an array of any special effects
 		

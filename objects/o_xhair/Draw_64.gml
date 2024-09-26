@@ -21,9 +21,9 @@ if(IsRanged) {
 	
 	var Firemode = owner.selector;
 	var Firemode_Icon = 2;
-	if(Firemode = "Burst (2)") {Firemode_Icon = 3};
-	else if(Firemode = "Burst (3)") {Firemode_Icon = 4};
-	else if(Firemode = "Auto") {Firemode_Icon = 5};
+	if(Firemode = "Burst (2)") {Firemode_Icon = 3}
+	else if(Firemode = "Burst (3)") {Firemode_Icon = 4}
+	else if(Firemode = "Auto") {Firemode_Icon = 5}
 	else if(Firemode = "Supercharge" or Firemode = "Overcharge") {Firemode_Icon = 6};
 	var Selector_Text = owner.selector;
 

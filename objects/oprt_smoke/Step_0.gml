@@ -3,7 +3,7 @@ if(firey = 1) {
 	sprite_index = spr_flames_dirty;
 	var frame_count = sprite_get_number(spr_flames_dirty);
 	if(image_index < 5) {image_index = 5};
-	if(image_index >= frame_count-1) {image_speed = 0};
+	if(image_index >= frame_count-1) {image_speed = 0}
 	else{image_speed = 1.1};
 };
 

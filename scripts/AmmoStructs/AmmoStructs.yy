@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "AmmoStructs",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "Struct Initializers",
-    "path": "folders/Scripts/Struct Initializers.yy",
+  "$GMScript":"v1",
+  "%Name":"AmmoStructs",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"AmmoStructs",
+  "parent":{
+    "name":"Struct Initializers",
+    "path":"folders/Scripts/Struct Initializers.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

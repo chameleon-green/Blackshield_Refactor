@@ -94,7 +94,7 @@ function AddItem (Item,Quantity,TargetGrid,InventorySize,Durability=-1){
 			var CurrentQuantity = ds_grid_get(TargetGrid,1,ItemY);
 			ds_grid_set(TargetGrid,1,ItemY,CurrentQuantity+Quantity);
 			
-		};
+		}
 		else{
 		
 			while(Counter < (InventorySize-1) ) {
@@ -142,7 +142,7 @@ function AddItem (Item,Quantity,TargetGrid,InventorySize,Durability=-1){
 			var CurrentQuantity = ds_grid_get(TargetGrid,1,ItemY);
 			ds_grid_set(TargetGrid,1,ItemY,CurrentQuantity+Quantity);
 			
-		};
+		}
 		else{
 		
 			while(Counter < (InventorySize-1) ) {
@@ -296,7 +296,7 @@ function EquipItem(Item,UniqueID,PlayerID) { //searches grid of items for a spec
 						variable_instance_set(id,"wpn_melee_id",UniqueID);
 						skeleton_animation_set_ext(Item.animation_group.idle,5);
 						skeleton_attachment_set("slot_melee_weapon",Item.weapon_attachment);
-					};
+					}
 					else{
 						skeleton_attachment_set("slot_gun",-1);	
 						wpn_active = Item;//Unarmed_Fists;
@@ -382,7 +382,7 @@ function EquipItem(Item,UniqueID,PlayerID) { //searches grid of items for a spec
 				skeleton_animation_clear(4); skeleton_animation_clear(5);		
 				skeleton_animation_clear(6); skeleton_animation_clear(8);
 		
-				if(is_array(wpn_active.animation_group.reload)) {skeleton_animation_set_ext(wpn_active.animation_group.reload[0],4)};
+				if(is_array(wpn_active.animation_group.reload)) {skeleton_animation_set_ext(wpn_active.animation_group.reload[0],4)}
 				else{skeleton_animation_set_ext(wpn_active.animation_group.reload,4)};			
 			};
 		};
@@ -395,12 +395,12 @@ function EquipItem(Item,UniqueID,PlayerID) { //searches grid of items for a spec
 		var Grid = grd_inv_armr;		
 		var VarString = -1; //string for the variable to change in the player object
 		
-		if(string_count("head",Item.item_type)) {VarString = "armor_head"};
-		else if(string_count("torso",Item.item_type)) {VarString = "armor_torso"};
-		else if(string_count("armL",Item.item_type)) {VarString = "armor_armL"};
-		else if(string_count("armR",Item.item_type)) {VarString = "armor_armR"};
-		else if(string_count("legL",Item.item_type)) {VarString = "armor_legL"};
-		else if(string_count("legR",Item.item_type)) {VarString = "armor_legR"};
+		if(string_count("head",Item.item_type)) {VarString = "armor_head"}
+		else if(string_count("torso",Item.item_type)) {VarString = "armor_torso"}
+		else if(string_count("armL",Item.item_type)) {VarString = "armor_armL"}
+		else if(string_count("armR",Item.item_type)) {VarString = "armor_armR"}
+		else if(string_count("legL",Item.item_type)) {VarString = "armor_legL"}
+		else if(string_count("legR",Item.item_type)) {VarString = "armor_legR"}
 		
 		var ItemDurability = ds_grid_get(Grid,2,ds_grid_value_y(Grid,0,0,ds_grid_width(Grid),ds_grid_height(Grid),UniqueID));
 		var ItemMaxDurability = Item.durability_max;
@@ -426,7 +426,7 @@ function EquipItem(Item,UniqueID,PlayerID) { //searches grid of items for a spec
 				var WARP = (Item.rWARP + 0)*DRatio;	
 				
 				resist_head = [PHYS,THER,CRYO,CORR,RADI,ELEC,HAZM,WARP];
-			};
+			}
 			else if(VarString = "armor_torso"){
 				skeleton_attachment_set("slot_torso" , Item.armor_attachment[0]); 
 				skeleton_attachment_set("slot_collar" ,  Item.armor_attachment[1]);
@@ -444,7 +444,7 @@ function EquipItem(Item,UniqueID,PlayerID) { //searches grid of items for a spec
 				var WARP = (Item.rWARP + 0)*DRatio;	
 				
 				resist_torso = [PHYS,THER,CRYO,CORR,RADI,ELEC,HAZM,WARP];
-			};
+			}
 			else if(VarString = "armor_armL"){				
 				skeleton_attachment_set("slot_front bicep" , Item.armor_attachment[0]);  
 				skeleton_attachment_set("slot_front forearm" ,Item.armor_attachment[1]);
@@ -462,7 +462,7 @@ function EquipItem(Item,UniqueID,PlayerID) { //searches grid of items for a spec
 				var WARP = (Item.rWARP + 0)*DRatio;	
 				
 				resist_armL = [PHYS,THER,CRYO,CORR,RADI,ELEC,HAZM,WARP];
-			};
+			}
 			else if(VarString = "armor_armR"){
 				skeleton_attachment_set("slot_rear bicep" , Item.armor_attachment[0]); 
 				skeleton_attachment_set("slot_rear forearm" , Item.armor_attachment[1]);
@@ -478,7 +478,7 @@ function EquipItem(Item,UniqueID,PlayerID) { //searches grid of items for a spec
 				var WARP = (Item.rWARP + 0)*DRatio;	
 				
 				resist_armR = [PHYS,THER,CRYO,CORR,RADI,ELEC,HAZM,WARP];
-			};
+			}
 			else if(VarString = "armor_legL"){
 				skeleton_attachment_set("slot_front thigh" , Item.armor_attachment[0]);  
 				skeleton_attachment_set("slot_front thigh_trim1" , Item.armor_attachment[1]); 
@@ -496,7 +496,7 @@ function EquipItem(Item,UniqueID,PlayerID) { //searches grid of items for a spec
 				var WARP = (Item.rWARP + 0)*DRatio;	
 				
 				resist_legL = [PHYS,THER,CRYO,CORR,RADI,ELEC,HAZM,WARP];
-			};
+			}
 			else if(VarString = "armor_legR"){
 				skeleton_attachment_set("slot_rear thigh" , Item.armor_attachment[0]);  
 				skeleton_attachment_set("slot_rear knee" , Item.armor_attachment[1]); 
@@ -667,12 +667,12 @@ function UnequipItem(Item,UniqueID,PlayerID) { //searches grid of items for a sp
 		var Grid = grd_inv_armr;		
 		var VarString = -1; //string for the variable to change in the player object
 		
-		if(string_count("head",Item.item_type)) {VarString = "armor_head"};
-		else if(string_count("torso",Item.item_type)) {VarString = "armor_torso"};
-		else if(string_count("armL",Item.item_type)) {VarString = "armor_armL"};
-		else if(string_count("armR",Item.item_type)) {VarString = "armor_armR"};
-		else if(string_count("legL",Item.item_type)) {VarString = "armor_legL"};
-		else if(string_count("legR",Item.item_type)) {VarString = "armor_legR"};
+		if(string_count("head",Item.item_type)) {VarString = "armor_head"}
+		else if(string_count("torso",Item.item_type)) {VarString = "armor_torso"}
+		else if(string_count("armL",Item.item_type)) {VarString = "armor_armL"}
+		else if(string_count("armR",Item.item_type)) {VarString = "armor_armR"}
+		else if(string_count("legL",Item.item_type)) {VarString = "armor_legL"}
+		else if(string_count("legR",Item.item_type)) {VarString = "armor_legR"}
 		
 		var Array = variable_instance_get(PlayerID,VarString); //set the armor item 
 		Array[0] = "none";
@@ -697,7 +697,7 @@ function UnequipItem(Item,UniqueID,PlayerID) { //searches grid of items for a sp
 				var WARP = 0;
 				
 				resist_head = [PHYS,THER,CRYO,CORR,RADI,ELEC,HAZM,WARP];
-			};
+			}
 			else if(VarString = "armor_torso"){
 				
 				skeleton_attachment_set("slot_torso" , "0000_torso"); 
@@ -716,7 +716,7 @@ function UnequipItem(Item,UniqueID,PlayerID) { //searches grid of items for a sp
 				var WARP = 0;	
 				
 				resist_torso = [PHYS,THER,CRYO,CORR,RADI,ELEC,HAZM,WARP];
-			};
+			}
 			else if(VarString = "armor_armL"){
 				
 				skeleton_attachment_set("slot_front bicep" , "0000_bicep");  
@@ -735,7 +735,7 @@ function UnequipItem(Item,UniqueID,PlayerID) { //searches grid of items for a sp
 				var WARP = 0;
 				
 				resist_armL = [PHYS,THER,CRYO,CORR,RADI,ELEC,HAZM,WARP];
-			};
+			}
 			else if(VarString = "armor_armR"){
 				
 				skeleton_attachment_set("slot_rear bicep" , "0000_bicep"); 
@@ -753,7 +753,7 @@ function UnequipItem(Item,UniqueID,PlayerID) { //searches grid of items for a sp
 				var WARP = 0;
 				
 				resist_armR = [PHYS,THER,CRYO,CORR,RADI,ELEC,HAZM,WARP];
-			};
+			}
 			else if(VarString = "armor_legL"){
 				
 				skeleton_attachment_set("slot_front thigh" , "0000_thigh"); 
@@ -772,7 +772,7 @@ function UnequipItem(Item,UniqueID,PlayerID) { //searches grid of items for a sp
 				var WARP = 0;
 				
 				resist_legL = [PHYS,THER,CRYO,CORR,RADI,ELEC,HAZM,WARP];
-			};
+			}
 			else if(VarString = "armor_legR"){
 				
 				skeleton_attachment_set("slot_rear thigh" , "0000_thigh");  
@@ -853,7 +853,7 @@ function scr_grid_alphabetize(grid,TitleIndex,IDIndex=9){ //feed grid to organiz
 		ds_list_set(StatsList,Index,array);
 
 		Counter+=1;
-		};
+		}
 		else Counter+=1;
 	};
 	
@@ -923,7 +923,7 @@ function ds_grid_alphabetize(grid,IDIndex=8){//feed grid to organize and what gr
 		ds_list_set(StatsList,Index,array);
 
 		Counter+=1;
-		};
+		}
 		else Counter+=1;
 	};
 	

@@ -22,7 +22,7 @@ KillMe = function(){
 	instance_destroy(self)
 };
 
-kill_timer = time_source_create(time_source_game,2,time_source_units_frames,KillMe,);
+kill_timer = time_source_create(time_source_game,2,time_source_units_frames,KillMe);
 
 IsBeam = 0; Flames = 0;
 //-------------------------------------------------------------------------------------

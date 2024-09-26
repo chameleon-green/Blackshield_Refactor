@@ -74,6 +74,7 @@ function InfantryCreateGeneric() {
 	armor_legR = ["none",-1,1,0,0,false];
 		
 	weapon_ranged = o_IC.Lasgun_Kantrael;	
+	ammo_type_primary = o_IC.Lasgun_Kantrael.default_ammo_type;
 	current_mag = weapon_ranged.capacity;
 	burst_size_base = clamp(weapon_ranged.capacity/30,1,40);
 	burst_size = clamp(burst_size_base+irandom_range(-burst_size_base,burst_size_base),1,40);
@@ -259,7 +260,7 @@ function InfantryStepGeneric() {
 	Jump = 0;
 	
 	if(!Dead) {
-		if(!firing) {AStarMovement(PathList,ClosedList)};	
+		if(!firing) {AStarMovement(PathList,ClosedList,MoveSpeed,NewPath)};	
 		skeleton_anim_set_step("idle_hotshot",1)
 		if(!Left && !Right) {skeleton_animation_clear(2)};
 		if(Left) {image_xscale = 1 hspd = -MoveSpeed skeleton_anim_set_step("sprint_rifle",2)};
@@ -274,7 +275,7 @@ function InfantryStepGeneric() {
 	};
 
 	if(place_meeting(x, y+vspd, o_platform)) { //vertical collisions
-		if(vspd < 0) {move_outside_solid(270,vspd)}; //if we are going up and hit something, try to get out of ceiling collision
+		if(vspd < 0) {move_outside_solid(270,vspd)} //if we are going up and hit something, try to get out of ceiling collision
 		else{move_contact_solid(270,10)}; //if we are going down and hit something, touch down on the floor
 		vspd = 0; //kill our vertical momentum in either case
 	};
@@ -288,7 +289,7 @@ function InfantryStepGeneric() {
 			move_outside_solid(180,100);
 			move_outside_solid(0,100);
 			hspd = 0
-		};
+		}
 		else{ //if we succeed in finding a clear position, move to it
 			y -= climb;
 			vspd_readonly = (vspd - climb);
@@ -332,13 +333,13 @@ function InfantryStepGeneric() {
 				skeleton_bone_state_get("muzzleflash", FlashMap);
 				var FlashX = ds_map_find_value(FlashMap, "worldX");
 				var FlashY = ds_map_find_value(FlashMap, "worldY");
-			};
+			}
 			else{var FlashX = x var FlashY = bbox_top};
 			
 			instance_create_depth(FlashX,FlashY,depth-1,o_bullet,{
 				direction : direc + random_range(-other.weapon_ranged.spread,other.weapon_ranged.spread),
 				speed : weapon_ranged.muzzle_velocity,
-				type : o_IC.Ammo_Laser_Pack_Standard,
+				type : ammo_type_primary,
 				damage : weapon_ranged.damage,
 				IFF : other.IFF,
 				vspd : other.vspd_readonly,
@@ -385,7 +386,7 @@ function InfantryAnimGeneric() {
 				ds_map_replace(headmap, "angle",angle + 180);
 				ds_map_replace(front_bicep_map, "angle", angle - AngOffset - torso_ang);
 				ds_map_replace(rear_bicep_map, "angle", angle + clamp( (360/angle)*35, -50,50 )  );
-			};
+			}
 	
 			else if (MyTarget.x < x and LOSandRange){
 				image_xscale = 1;

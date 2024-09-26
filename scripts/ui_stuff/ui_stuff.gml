@@ -13,7 +13,7 @@ function ButtonRegionCenter(x,y,Left,Right,Top,Bottom,Scale=1){
 	
 	if( (x>LeftBorder) && (x<RightBorder) && (y>BottomBorder) && (y<TopBorder) ) {
 		return 1;
-	};
+	}
 	else{return 0};
 };
 

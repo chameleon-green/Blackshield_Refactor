@@ -41,7 +41,7 @@ function FireGun (){
 				hspd : 0//other.hspd,
 			});
 		};
-	};
+	}
 	
 	else {
 		instance_create_depth(flash_x+hspd,flash_y+vspd_readonly,depth+1,o_bullet,{
@@ -70,12 +70,12 @@ function FireGun (){
 
 	//--------------------------------------------------------- visual stuff --------------------------------------
 	
-	if(is_array(wpn_active.animation_group.fire)) {skeleton_anim_set_step(wpn_active.animation_group.fire[1],3)}; //set fire anim for spooling guns
+	if(is_array(wpn_active.animation_group.fire)) {skeleton_anim_set_step(wpn_active.animation_group.fire[1],3)} //set fire anim for spooling guns
 	else{skeleton_animation_set_ext(wpn_active.animation_group.fire,3)}; //set fire anim for non spooling guns
 
 	if(wpn_active.flash_type != "none") {
 		var flash = irandom(3);
-		if(ammo_active.flash_color != "none") {skeleton_slot_color_set("slot_flash",ammo_active.flash_color[0],1)};
+		if(ammo_active.flash_color != "none") {skeleton_slot_color_set("slot_flash",ammo_active.flash_color[0],1)}
 		else {skeleton_slot_color_set("slot_flash",wpn_active.flash_color[0],1)};
 		skeleton_attachment_set("slot_flash",wpn_active.flash_type[flash]);
 		skeleton_attachment_set("slot_flash_core",wpn_active.flash_type[flash] + " core");
@@ -83,7 +83,7 @@ function FireGun (){
 
 	if( variable_struct_exists(wpn_active.sound_group, "fire_loop") ) {
 		if(aud_fireloop = 0) {aud_fireloop = audio_play_sound(wpn_active.sound_group.fire_loop,1,1)};
-	};
+	}
 	else{
 		var FireSound = audio_play_sound(wpn_active.sound_group.fire,1,0);
 		audio_sound_pitch(FireSound, random_range(0.85,1.05));	
@@ -187,7 +187,7 @@ if(IsRanged) {
 		time_source_reset(burst_timer);
 		if(is_array(wpn_active.animation_group.fire) and !spooled) {
 			skeleton_anim_set_step(wpn_active.animation_group.fire[0],3)
-		};
+		}
 		else{FireGun()};
 	};
 	
@@ -245,7 +245,7 @@ if(IsRanged) {
 		skeleton_animation_clear(4); skeleton_animation_clear(5);		
 		skeleton_animation_clear(6); skeleton_animation_clear(8);
 		
-		if(is_array(wpn_active.animation_group.reload)) {skeleton_animation_set_ext(wpn_active.animation_group.reload[0],4)};
+		if(is_array(wpn_active.animation_group.reload)) {skeleton_animation_set_ext(wpn_active.animation_group.reload[0],4)}
 		else{skeleton_animation_set_ext(wpn_active.animation_group.reload,4)};
 	};
 	
@@ -280,7 +280,7 @@ if(IsRanged) {
 			skeleton_animation_clear(1); skeleton_animation_clear(3);
 			variable_instance_set(id,"magazine_" + _Slot2, magazine_active);
 						
-			var Ranged = (string_count("ranged",Item.item_type,));			
+			var Ranged = (string_count("ranged",Item.item_type));			
 			wpn_active = variable_instance_get(id,"wpn_" + _Slot); 
 			wpn_active_id = variable_instance_get(id,"wpn_" + _Slot + "_id");
 						
@@ -301,7 +301,7 @@ if(IsRanged) {
 						skeleton_attachment_set("slot_melee_weapon",wpn_active_melee.weapon_attachment); 
 					};
 				};
-			};	
+			}	
 			
 			else{ //2 handed melee weapons
 				var Hands = Item.weapon_slot[1];

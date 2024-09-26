@@ -127,7 +127,7 @@ if(Selected = 1) {
 		var OffsetScaleFactor = SpriteWidth/DrawAreaX;
 		var ScaleFactor = DrawAreaX/SpriteWidth;	
 		var ImageScale = ScaleFactor*scale*3*0.5;
-		};
+		}
 		else {
 		var OffsetScaleFactor = SpriteHeight/DrawAreaY;
 		var ScaleFactor = DrawAreaY/SpriteHeight;

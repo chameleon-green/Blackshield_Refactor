@@ -92,7 +92,7 @@ function AnimationsFlashesSoundGroups(){
 //+++++++++++++++++++++++++++++++++++++++++++ SOUND GROUPS ++++++++++++++++++++++++++++++++++++++++++++++++
 
 	sndgrp_boltgun1 = {
-		fire : snd_bolter1,
+		fire : snd_weapon_bolt_med1,
 		mag_in : snd_magin1,
 		mag_out : snd_magout1,
 		rack_slide : snd_rackslide1,
@@ -101,7 +101,7 @@ function AnimationsFlashesSoundGroups(){
 	};
 	
 	sndgrp_boltgun2 = {
-		fire : snd_bolterlight1,
+		fire : snd_weapon_bolt_light1,
 		mag_in : snd_magin1,
 		mag_out : snd_magout1,
 		rack_slide : snd_rackslide1,

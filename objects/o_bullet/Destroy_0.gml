@@ -10,7 +10,7 @@ if(IsBeam) {
 }
 */
 
-instance_create_depth(x,y,depth-1,o_explosion_scalable);
+//instance_create_depth(x,y,depth-1,o_explosion_scalable);
 
 if(time_source_exists(kill_timer)) {time_source_destroy(kill_timer)};
 

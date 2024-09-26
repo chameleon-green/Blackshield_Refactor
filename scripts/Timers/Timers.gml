@@ -63,7 +63,7 @@ and continuously setting timer to 0 and not allowing it to tick at all.
 */
 function timer_reset(timer,interrupt){
 
-	if(interrupt) {timer[0] = 0};
+	if(interrupt) {timer[0] = 0}
 	else if(timer[0] > timer[1]) {timer[0] = 0};
 
 };

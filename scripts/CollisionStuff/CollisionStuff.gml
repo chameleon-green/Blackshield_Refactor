@@ -10,7 +10,7 @@ function collision_line_proximity(x1,y1,x2,y2,obj,prec,notme,nearest=1){
 	if((_num > 0) && Target_Toggle) {	
 		
 		Target_Toggle=0;
-		if(nearest=1) {var Target = Col_List[| 0]}; 
+		if(nearest=1) {var Target = Col_List[| 0]} 
 		else{var Target = Col_List[| ds_list_size(Col_List)]};
 	
 	} else {return 0};

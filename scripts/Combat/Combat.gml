@@ -19,7 +19,7 @@ function check_los_and_range(ai_enabled,ix,iy,target,wall_object,max_range){
 		var LOS = collision_line(x,yyy,target.x,pl_offset,wall_object,true,1);
 		var LOS2 = collision_line(x,yyy,target.x,pl_offset,wall_object,true,1);
 		var LOS3 = collision_line(x,yyy,target.x,pl_offset,wall_object,true,1);
-		};
+		}
 	
 		else {
 		var LOS = collision_line(ix,iy,target.x,pl_offset,wall_object,true,1)	

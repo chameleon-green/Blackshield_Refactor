@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "Infantry",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "Enemy Scripts",
-    "path": "folders/Scripts/Enemy Scripts.yy",
+  "$GMScript":"v1",
+  "%Name":"Infantry",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"Infantry",
+  "parent":{
+    "name":"Enemy Scripts",
+    "path":"folders/Scripts/Enemy Scripts.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }
