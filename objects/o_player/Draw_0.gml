@@ -5,9 +5,9 @@ draw_self();
 
 
 //--------------------------------------------- DEBUG STUFF ------------------------------------------------
+draw_text(x,bbox_top,reloading);
 
-
-ds_list_draw(collisions_list,x,bbox_top);
+//ds_list_draw(collisions_list,x,bbox_top);
 
 //draw_text(x,bbox_top,o_IC.AIQ);
 /*

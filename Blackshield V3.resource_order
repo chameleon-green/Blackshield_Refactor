@@ -44,6 +44,7 @@
   ],
   "ResourceOrderSettings":[
     {"name":"IF AI BREAKS","order":3,"path":"notes/IF AI BREAKS/IF AI BREAKS.yy",},
+    {"name":"Inventory Tips","order":4,"path":"notes/Inventory Tips/Inventory Tips.yy",},
     {"name":"Note3","order":2,"path":"notes/Note3/Note3.yy",},
     {"name":"Rarity","order":1,"path":"notes/Rarity/Rarity.yy",},
     {"name":"o_actorParent","order":2,"path":"objects/o_actorParent/o_actorParent.yy",},

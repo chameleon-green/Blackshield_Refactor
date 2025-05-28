@@ -288,7 +288,10 @@ if(Click) {
 		if(ButtonRegionCenter(Mouse_X,Mouse_Y,-40,-112,-49,-19,scale) && !MyPlayer.reloading and is_struct(global.Selected[1]) ){
 			if(TriButtonText[0] = "Unequip") {UnequipItem(global.Selected[1],global.Selected[0],MyPlayer)};
 			if(TriButtonText[0] = "Equip") {EquipItem(global.Selected[1],global.Selected[0],MyPlayer)};
-			if(TriButtonText[0] = "Use") {ActivateEffect(global.Selected[1],MyPlayer,MyPlayer.BuffList)};
+			if(TriButtonText[0] = "Use") {
+				ActivateEffect(global.Selected[1],MyPlayer,MyPlayer.BuffList);
+				AddItem(global.Selected[1],-1,grd_inv_aidd,InventorySize,global.Selected[0]);
+			};
 		};
 		if(ButtonRegionCenter(Mouse_X,Mouse_Y,-122,-216,-19,-49,scale)){
 			Description = 1;

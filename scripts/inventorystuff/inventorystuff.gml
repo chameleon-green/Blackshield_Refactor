@@ -43,8 +43,27 @@ function GenerateID() { //generates a unique ID, given a list of existing IDs
 
 #endregion
 
+#region clear item entry function
+
+function ClearItem (UniqueID,TargetGrid,PlayerID){
+
+	if(UniqueID = PlayerID.ammo_primary_id) {PlayerID.ammo_primary_id = -1};
+	if(UniqueID = PlayerID.ammo_secondary_id) {PlayerID.ammo_secondary_id = -1};
+	if(UniqueID = PlayerID.ammo_active_id) {PlayerID.ammo_active_id = -1};
+	if(UniqueID = PlayerID.wpn_primary_id) {PlayerID.wpn_primary_id = -1};
+	if(UniqueID = PlayerID.wpn_secondary_id) {PlayerID.wpn_secondary_id = -1};
+	if(UniqueID = PlayerID.wpn_melee_id) {PlayerID.wpn_melee_id = -1};
+	if(UniqueID = PlayerID.wpn_active_id) {PlayerID.wpn_active_id = -1};
+	
+	var ItemY = ds_grid_value_y(TargetGrid,0,0,ds_grid_width(TargetGrid),ds_grid_height(TargetGrid),UniqueID);
+	ds_grid_set_region(TargetGrid,0,ItemY,ds_grid_width(TargetGrid),ItemY,0);
+	
+}; //end function bracket
+
+#endregion
+
 #region add item function
-function AddItem (Item,Quantity,TargetGrid,InventorySize,Durability=-1){
+function AddItem (Item,Quantity,TargetGrid,InventorySize,UniqueID=-1,Durability=-1){
 	
 	var Counter = 0;
 	var Type = Item.item_type;
@@ -94,8 +113,13 @@ function AddItem (Item,Quantity,TargetGrid,InventorySize,Durability=-1){
 			var CurrentQuantity = ds_grid_get(TargetGrid,1,ItemY);
 			ds_grid_set(TargetGrid,1,ItemY,CurrentQuantity+Quantity);
 			
-		}
-		else{
+			if((CurrentQuantity+Quantity) < 1) {
+				var ItemY = ds_grid_value_y(TargetGrid,0,0,ds_grid_width(TargetGrid),ds_grid_height(TargetGrid),UniqueID);
+				ds_grid_set_region(TargetGrid,0,ItemY,ds_grid_width(TargetGrid),ItemY,0);
+				global.Selected = ["none", "none"];
+			};//delete entry if the count is reduced to zero for any reason
+		};
+		else if(Quantity > 0) {
 		
 			while(Counter < (InventorySize-1) ) {
 			
@@ -142,8 +166,14 @@ function AddItem (Item,Quantity,TargetGrid,InventorySize,Durability=-1){
 			var CurrentQuantity = ds_grid_get(TargetGrid,1,ItemY);
 			ds_grid_set(TargetGrid,1,ItemY,CurrentQuantity+Quantity);
 			
-		}
-		else{
+			if((CurrentQuantity+Quantity) < 1) {
+				var ItemY = ds_grid_value_y(TargetGrid,0,0,ds_grid_width(TargetGrid),ds_grid_height(TargetGrid),UniqueID);
+				ds_grid_set_region(TargetGrid,0,ItemY,ds_grid_width(TargetGrid),ItemY,0);
+				global.Selected = ["none", "none"];
+			};//delete entry if the count is reduced to zero for any reason
+			
+		};
+		else if(Quantity > 0) {
 		
 			while(Counter < (InventorySize-1) ) {
 			
@@ -162,25 +192,6 @@ function AddItem (Item,Quantity,TargetGrid,InventorySize,Durability=-1){
 		
 	refresh = 1;
 };// func end
-#endregion
-
-#region clear item entry function
-
-function ClearItem (UniqueID,TargetGrid,PlayerID){
-
-	if(UniqueID = PlayerID.ammo_primary_id) {PlayerID.ammo_primary_id = -1};
-	if(UniqueID = PlayerID.ammo_secondary_id) {PlayerID.ammo_secondary_id = -1};
-	if(UniqueID = PlayerID.ammo_active_id) {PlayerID.ammo_active_id = -1};
-	if(UniqueID = PlayerID.wpn_primary_id) {PlayerID.wpn_primary_id = -1};
-	if(UniqueID = PlayerID.wpn_secondary_id) {PlayerID.wpn_secondary_id = -1};
-	if(UniqueID = PlayerID.wpn_melee_id) {PlayerID.wpn_melee_id = -1};
-	if(UniqueID = PlayerID.wpn_active_id) {PlayerID.wpn_active_id = -1};
-	
-	var ItemY = ds_grid_value_y(TargetGrid,0,0,ds_grid_width(TargetGrid),ds_grid_height(TargetGrid),UniqueID);
-	ds_grid_set_region(TargetGrid,0,ItemY,ds_grid_width(TargetGrid),ItemY,0);
-	
-}; //end function bracket
-
 #endregion
 
 #region item search function

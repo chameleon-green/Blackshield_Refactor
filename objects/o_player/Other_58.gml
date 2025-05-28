@@ -112,11 +112,12 @@ if(CanShoot = 1) {
 	if(wpn_active_heat < 0) {wpn_active_heat = 0};
 	
 	};
-	PlayerWeaponControl();
+	
 
 	//--------------------------------------------- MELEE STUFF ----------------------------------------------------
 
-	PlayerMeleeControl()
+	
 };
 
- 
+PlayerWeaponControl();
+PlayerMeleeControl()
