@@ -368,7 +368,7 @@ function InfantryAnimGeneric() {
 	var Dead = (death[0] = 1);
 	var Dying = (death[1] = 1);
 	
-	if(visible && !Dead and !Dying and !reloading) {
+	if(visible && !Dead and !Dying and !reloading and LOSandRange) {
 	
 		var AngOffset = 0;
 		var Aim = timer_tick(AimTimer,0);
@@ -380,7 +380,7 @@ function InfantryAnimGeneric() {
 			skeleton_bone_state_get("torso", torsomap)
 			var torso_ang = ds_map_find_value(torsomap, "angle") - 90;
 			
-			if(MyTarget.x > x and LOSandRange){
+			if((MyTarget.x > x) and LOSandRange){
 				image_xscale = -1;
 				angle =	-direc - 180 + image_angle ;
 				ds_map_replace(headmap, "angle",angle + 180);
@@ -388,7 +388,7 @@ function InfantryAnimGeneric() {
 				ds_map_replace(rear_bicep_map, "angle", angle + clamp( (360/angle)*35, -50,50 )  );
 			}
 	
-			else if (MyTarget.x < x and LOSandRange){
+			else if ((MyTarget.x < x) and LOSandRange){
 				image_xscale = 1;
 				angle =	direc - image_angle ;
 				ds_map_replace(headmap, "angle",angle + 180);
