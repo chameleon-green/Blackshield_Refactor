@@ -1,5 +1,5 @@
-var Xcent = window_get_width()/2;
-var Ycent = window_get_height()/2; 
+var Xcent = display_get_gui_width()/2;
+var Ycent = display_get_gui_height()/2; 
 scale = creator.scale;
 image_xscale = scale;
 

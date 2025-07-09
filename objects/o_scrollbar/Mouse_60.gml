@@ -1,5 +1,6 @@
 
-var Ycent = window_get_height()/2; 
+var Xcent = display_get_gui_width()/2;
+var Ycent = display_get_gui_height()/2; 
 
 var BgY = Ycent - (133*scale);
 var BgYBar = Ycent - (118*scale);

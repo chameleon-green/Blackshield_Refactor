@@ -1,6 +1,6 @@
 
 
-//camera_xspd = camera_x - camera_xprev;
+camera_xspd = camera_x - camera_xprev;
 
 //cancel zoom momentum if inventory is brought up
 if(visible) {view_momentum = 0; window_set_cursor(cr_default)};
@@ -63,4 +63,9 @@ if(!visible and enable_mouseaim){
 	camera_set_view_target(view_camera[0],track);
 	window_set_cursor(cr_none);
 };
+
+var cspd = camera_xspd/12
+layer_hspeed("bg_layer_1",cspd*1.25)
+layer_hspeed("bg_layer_2",cspd*2.5)
+layer_hspeed("bg_layer_clouds",cspd*3.5)
 	

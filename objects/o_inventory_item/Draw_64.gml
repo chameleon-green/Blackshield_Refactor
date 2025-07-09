@@ -7,7 +7,8 @@ image_yscale = scale;
 
 Mouse_X = creator.Mouse_X;
 Mouse_Y = creator.Mouse_Y;
-var Ycent = window_get_height()/2; var Xcent = window_get_width()/2
+var Xcent = display_get_gui_width()/2;
+var Ycent = display_get_gui_height()/2; 
 var Click = mouse_check_button_pressed(mb_left);
 
 var Color = c_dkgray;

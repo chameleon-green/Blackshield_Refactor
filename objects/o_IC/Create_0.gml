@@ -114,3 +114,5 @@ view_momentum = 0;
 xx = 1366;
 yy = 768;
 equalize = 0;
+camera_x = 0;
+camera_xprev = 0;
