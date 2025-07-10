@@ -74,7 +74,8 @@ Boltgun_Phobos = { //---------------------------- PHOBOS BOLTER
 		animation_group : anmgrp_boltgun_phobos,
 		sound_group : sndgrp_boltgun1,
 		angular_offset : 90, //angular offset for animation related stuff
-		vertical_offset : -150 // Y axis offset for crosshair stuff		
+		vertical_offset : -150, // Y axis offset for crosshair stuff		
+		gun_smoke : [c_gray, 9, 0.75, [4,7],"no"] //color, smoke mass, smoke max scale, smoke velocity, twin smoke
 	};
 	//ds_list_add(ListComWP,pistol_bolt_tigrus[27]+".pistol_bolt_tigrus") //fix this later
 	
@@ -113,7 +114,8 @@ Boltgun_Phobos = { //---------------------------- PHOBOS BOLTER
 		animation_group : anmgrp_boltpistol_tigrus,
 		sound_group : sndgrp_boltgun2,
 		angular_offset : 150, //angular offset for animation related stuff
-		vertical_offset : -150 // Y axis offset for crosshair stuff		
+		vertical_offset : -150, // Y axis offset for crosshair stuff	
+		gun_smoke : [c_gray, 9, 0.75, [4,7],"no"] //color, smoke mass, smoke max scale, smoke velocity, twin smoke
 	};
 	//ds_list_add(ListComWP,pistol_bolt_tigrus[27]+".pistol_bolt_tigrus") //fix this later
 #endregion
@@ -154,7 +156,8 @@ Meltagun_Proteus = { //---------------------------- proteus melter
 		animation_group : anmgrp_meltagun_proteus,
 		sound_group : sndgrp_melta1,
 		angular_offset : 90, //angular offset for animation related stuff
-		vertical_offset : -150 // Y axis offset for crosshair stuff		
+		vertical_offset : -150, // Y axis offset for crosshair stuff
+		gun_smoke : "none" //color, smoke mass, smoke max scale, smoke velocity, twin smoke
 	};
 	//ds_list_add(ListComWP,pistol_bolt_tigrus[27]+".pistol_bolt_tigrus") //fix this later
 #endregion	
@@ -195,7 +198,8 @@ Flamer_Astartes = { //---------------------------- ASTARTES SHOTGUN
 		animation_group : anmgrp_flamer_astartes,
 		sound_group : sndgrp_flamer1,
 		angular_offset : 90, //angular offset for animation related stuff
-		vertical_offset : -150 // Y axis offset for crosshair stuff		
+		vertical_offset : -150, // Y axis offset for crosshair stuff		
+		gun_smoke : "none" //color, smoke mass, smoke max scale, smoke velocity, twin smoke
 	};
 	//ds_list_add(ListComWP,pistol_bolt_tigrus[27]+".pistol_bolt_tigrus") //fix this later
 #endregion	
@@ -236,7 +240,8 @@ Lasgun_Kantrael = { //---------------------------- KANTRAEL LASGUN
 		animation_group : anmgrp_boltgun_phobos,
 		sound_group : sndgrp_boltgun1,
 		angular_offset : 90, //angular offset for animation related stuff
-		vertical_offset : -150 // Y axis offset for crosshair stuff		
+		vertical_offset : -150, // Y axis offset for crosshair stuff		
+		gun_smoke : "none"
 	};
 	//ds_list_add(ListComWP,pistol_bolt_tigrus[27]+".pistol_bolt_tigrus") //fix this later
 #endregion	
@@ -277,7 +282,8 @@ Shotgun_Astartes = { //---------------------------- ASTARTES SHOTGUN
 		animation_group : anmgrp_shotgun_astartes,
 		sound_group : sndgrp_shotgun1,
 		angular_offset : 90, //angular offset for animation related stuff
-		vertical_offset : -150 // Y axis offset for crosshair stuff		
+		vertical_offset : -150, // Y axis offset for crosshair stuff	
+		gun_smoke : [c_gray, 10, 1, [4,7],"no"] //color, smoke mass, smoke max scale, smoke velocity, twin smoke
 	};
 	//ds_list_add(ListComWP,pistol_bolt_tigrus[27]+".pistol_bolt_tigrus") //fix this later
 #endregion	
@@ -318,7 +324,8 @@ Plasmagun_Thunderbolt = { //---------------------------- Thunderbolt pattern pla
 		animation_group : anmgrp_plasmagun_thunderbolt,
 		sound_group : sndgrp_plasma1,
 		angular_offset : 90, //angular offset for animation related stuff
-		vertical_offset : -150 // Y axis offset for crosshair stuff		
+		vertical_offset : -150, // Y axis offset for crosshair stuff	
+		gun_smoke : "none" //color, smoke mass, smoke max scale, smoke velocity, twin smoke
 	};
 	//ds_list_add(ListComWP,pistol_bolt_tigrus[27]+".pistol_bolt_tigrus") //fix this later
 #endregion

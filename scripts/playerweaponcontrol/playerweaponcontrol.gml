@@ -63,14 +63,17 @@ function FireGun (){
 	
 	//------------------------------------------------------ make smoke ---------------------------------------------------
 	
-	with(instance_create_depth(flash_x+hspd,flash_y+vspd_readonly,0,oprt_smoke)) {
-		image_blend = c_gray
-		direction = other.AimAngleBullet + other.instant_spread
-		depth = other.depth+1
-		mass = 10
-		max_scale = 0.75
-		speed = other.hspd + random_range(5,8)
-		};
+	if(wpn_active.gun_smoke != "none"){
+		with(instance_create_depth(flash_x+hspd,flash_y+vspd_readonly,0,oprt_smoke)) {
+			image_blend = other.wpn_active.gun_smoke[0]
+			direction = other.AimAngleBullet + other.instant_spread
+			depth = other.depth+1
+			mass = other.wpn_active.gun_smoke[1]
+			max_scale = other.wpn_active.gun_smoke[2]
+			var speedArray = other.wpn_active.gun_smoke[3]
+			speed = other.hspd + random_range(speedArray[0],speedArray[1])
+			};
+	};
 	
 	if(wpn_active.heat_generation > 0) {
 			if(IsCharge) {wpn_active_heat += wpn_active.heat_generation*ChargeMult*ChargeMult}
