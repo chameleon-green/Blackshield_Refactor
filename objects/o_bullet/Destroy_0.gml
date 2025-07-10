@@ -9,8 +9,14 @@ if(IsBeam) {
 	yy = y + lengthdir_y(i, direction);
 }
 */
+if(impact_type[0] = "explosion") {
+	
+	with(instance_create_depth(x,y,depth,o_explosion_scalable)) {
+		explosion_type = other.impact_type;
+		};
+};
 
-//instance_create_depth(x,y,depth-1,o_explosion_scalable);
+
 
 if(time_source_exists(kill_timer)) {time_source_destroy(kill_timer)};
 

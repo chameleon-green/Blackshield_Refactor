@@ -1,4 +1,4 @@
-depth = 15;
+depth = -102;
 GenerateNodes(550);
 creator = undefined;
 draw_tiles_top = 1;//!place_meeting(x,y-1,obj_platform);

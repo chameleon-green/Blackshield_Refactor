@@ -26,6 +26,7 @@ function AmmoStructs() {
 		guidance : "dumb",
 		fuse : 0.25, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive. 
 		special : "none", //an array of any special effects
+		impact_type : ["explosion", 3, 4, 1, c_gray, 0, 0, snd_explode_small1], //type, boom size, smoke mass, smoke max scale, smoke color, frag count, frag lifetime, sound
 		
 		weight : 0.15, //weight in lbs
 		wear : 1, //durability cost on weapon when fired
@@ -53,6 +54,7 @@ function AmmoStructs() {
 		guidance : "dumb",
 		fuse : 0.5, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
 		special : "none", //an array of any special effects
+		impact_type : ["dust",4,1,c_gray], //type, smoke mass, smoke max scale, smoke count
 		
 		weight : 0.18, //weight in lbs
 		wear : 1, //durability cost on weapon when fired
@@ -82,6 +84,7 @@ function AmmoStructs() {
 		guidance : "scatter6",
 		fuse : 0.05, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
 		special : "none", //an array of any special effects
+		impact_type : ["dust",8,1,c_gray], //type, smoke mass, smoke max scale, smoke color, frag count, frag lifetime, sound
 		
 		weight : 0.04, //weight in lbs
 		wear : 1, //durability cost on weapon when fired
@@ -109,6 +112,7 @@ function AmmoStructs() {
 		guidance : "none",
 		fuse : 0.15, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
 		special : "none", //an array of any special effects
+		impact_type : ["dust",8,1,c_gray], //type, smoke mass, smoke max scale, smoke color, frag count, frag lifetime, sound
 		
 		weight : 0.04, //weight in lbs
 		wear : 1, //durability cost on weapon when fired
@@ -136,6 +140,7 @@ function AmmoStructs() {
 		guidance : "none",
 		fuse : 0.2, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
 		special : "none", //an array of any special effects
+		impact_type : ["dust",8,1,c_gray], //type, smoke mass, smoke max scale, smoke color, frag count, frag lifetime, sound
 		
 		weight : 0.01, //weight in lbs
 		wear : 1, //durability cost on weapon when fired
@@ -163,6 +168,7 @@ function AmmoStructs() {
 		guidance : "none",
 		fuse : 0.5, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
 		special : "none", //an array of any special effects
+		impact_type : ["dust",8,1,c_gray], //type, smoke mass, smoke max scale, smoke color, frag count, frag lifetime, sound
 		
 		weight : 0.41,//0.01, //weight in lbs
 		wear : 1, //durability cost on weapon when fired
@@ -192,6 +198,7 @@ function AmmoStructs() {
 		guidance : "flame",
 		fuse : 3, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
 		special : ["ignite"], //an array of any special effects
+		impact_type : ["firey",8,1,c_gray], //type, smoke mass, smoke max scale, smoke color, frag count, frag lifetime, sound
 		
 		weight : 0.02, //weight in lbs
 		wear : 1, //durability cost on weapon when fired
@@ -219,6 +226,7 @@ function AmmoStructs() {
 		guidance : "flame",
 		fuse : 3, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
 		special : ["ignite","irradiate"], //an array of any special effects
+		impact_type : ["firey",8,1,c_gray],
 		
 		weight : 0.02, //weight in lbs
 		wear : 1, //durability cost on weapon when fired
@@ -246,7 +254,8 @@ function AmmoStructs() {
 		armor_penetration : 3,
 		guidance : "beam",
 		fuse : 0.3, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
-		special : "none", //an array of any special effects
+		special : ["ignite"], //an array of any special effects
+		impact_type : ["firey",8,1,c_gray],
 		
 		weight : 0.01, //weight in lbs
 		wear : 1, //durability cost on weapon when fired
@@ -273,7 +282,8 @@ function AmmoStructs() {
 		armor_penetration : 0.8,
 		guidance : "none",
 		fuse : 0.01, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
-		special : "none", //an array of any special effects
+		special : ["ignite"], //an array of any special effects
+		impact_type : ["dust",8,1,c_gray],
 		
 		weight : 0.1, //weight in lbs
 		wear : 4, //durability cost on weapon when fired
@@ -303,6 +313,7 @@ function AmmoStructs() {
 		guidance : "beam",
 		fuse : 0.25, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
 		special : ["ignite"], //an array of any special effects
+		impact_type : ["dust",8,1,c_gray],
 		
 		weight : 0.02, //weight in lbs
 		wear : 1, //durability cost on weapon when fired

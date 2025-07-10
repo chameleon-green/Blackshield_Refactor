@@ -10,6 +10,7 @@ damage_type = type.damage_type[0];
 penetration = damage*type.armor_penetration;
 hp = damage;
 fuse = hp*type.fuse;
+impact_type = type.impact_type;
 
 base_speed = speed;
 
