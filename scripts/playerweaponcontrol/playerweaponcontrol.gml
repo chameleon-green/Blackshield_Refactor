@@ -22,7 +22,7 @@ function FireGun (){
 	burst_count += 1;
 
 	if(string_count("scatter",ammo_active.guidance)){
-		var Count = string_digits(ammo_active.guidance);
+		var Count = real(string_digits(ammo_active.guidance));
 		var Cone = wpn_active.spread*5;
 		repeat(Count) {
 			instance_create_depth(flash_x+hspd,flash_y+vspd_readonly,depth+1,o_bullet,{
@@ -75,6 +75,29 @@ function FireGun (){
 			};
 	};
 	
+	//------------------------------------------------------ make casing ----------------------------------------------------
+	
+	
+	if(ammo_active.casing_type != "none" ) {
+		var ejection_map = ds_map_create();
+		skeleton_bone_state_get("gun_anim", ejection_map);
+		var EjectX = ds_map_find_value(ejection_map, "worldX");
+		var EjectY = ds_map_find_value(ejection_map, "worldY");
+		//var EjectAng = ds_map_find_value(ejection_map, "worldAngleX");
+
+		instance_create_depth(EjectX,EjectY,depth-1,o_gib,{
+			sprite_index : other.ammo_active.casing_type[0],
+			image_index : other.ammo_active.casing_type[1],
+			hspd : -irandom_range(8,12)*other.image_xscale,
+			vspd : -random_range(3,5),
+			angspeed : irandom_range(-25,25),
+			impact_sound : other.ammo_active.casing_sound[0],
+			impact_sound_pitch : other.ammo_active.casing_sound[1]
+		});
+
+		ds_map_destroy(ejection_map);
+	}; // eject event end
+	
 	if(wpn_active.heat_generation > 0) {
 			if(IsCharge) {wpn_active_heat += wpn_active.heat_generation*ChargeMult*ChargeMult}
 			else {wpn_active_heat += wpn_active.heat_generation}
@@ -96,10 +119,22 @@ function FireGun (){
 	};
 
 	if( variable_struct_exists(wpn_active.sound_group, "fire_loop") ) {
-		if(aud_fireloop = 0) {aud_fireloop = audio_play_sound(wpn_active.sound_group.fire_loop,1,1)};
+		var SNDGRP = wpn_active.sound_group;
+		var FIRELOOP = SNDGRP.fire_loop;
+		
+			if(is_array(FIRELOOP)) {
+				if(aud_fireloop = 0) {aud_fireloop = audio_play_sound(FIRELOOP[0],1,1)};
+				if(aud_fireloop1 = 0) {aud_fireloop1 = audio_play_sound(FIRELOOP[1],1,1)};
+			}
+			
+			else{
+				if(aud_fireloop = 0) {aud_fireloop = audio_play_sound(wpn_active.sound_group.fire_loop,1,1)};
+			};
 	}
-	else{
-		var FireSound = audio_play_sound(wpn_active.sound_group.fire,1,0);
+	else{		
+		var ArraySize = array_length(wpn_active.sound_group.fire);
+		var i = irandom_range(0,ArraySize-1);
+		var FireSound = audio_play_sound(wpn_active.sound_group.fire[i],1,0);
 		audio_sound_pitch(FireSound, random_range(0.85,1.05));	
 	};
 	
@@ -130,6 +165,7 @@ if(IsRanged) {
 	
 	if(!CanShoot) {
 		audio_stop_sound(aud_fireloop); aud_fireloop = 0;
+		audio_stop_sound(aud_fireloop1); aud_fireloop1 = 0;
 		audio_stop_sound(aud_chargeloop); aud_chargeloop = 0;
 		audio_stop_sound(aud_spoolup); aud_spoolup = 0;
 		if(is_array(wpn_active.animation_group.fire)) {skeleton_animation_clear(3)}
@@ -165,6 +201,7 @@ if(IsRanged) {
 		};
 		
 		audio_stop_sound(aud_fireloop); aud_fireloop = 0;
+		audio_stop_sound(aud_fireloop1); aud_fireloop1 = 0;
 		audio_stop_sound(aud_chargeloop); aud_chargeloop = 0
 		audio_stop_sound(aud_spoolup); aud_spoolup = 0;
 	};
@@ -188,6 +225,7 @@ if(IsRanged) {
 	if(magazine_active = 0 && is_array(wpn_active.animation_group.fire) && spindown_toggle) {
 			skeleton_anim_set_step(wpn_active.animation_group.fire[2],3)
 			audio_stop_sound(aud_fireloop); aud_fireloop = 0;
+			audio_stop_sound(aud_fireloop1); aud_fireloop1 = 0;
 	};
 	
 //--------------------------------------- SHOOT BULLETS IN VARIOUS MODES ------------------------------
@@ -283,6 +321,7 @@ if(IsRanged) {
 		switch_toggle = 1;
 		
 		audio_stop_sound(aud_fireloop); aud_fireloop = 0;
+		audio_stop_sound(aud_fireloop1); aud_fireloop1 = 0;
 		audio_stop_sound(aud_chargeloop); aud_chargeloop = 0
 		audio_stop_sound(aud_spoolup); aud_spoolup = 0;
 		burst_count = 0; spooled = 0; skeleton_animation_clear(3); skeleton_animation_clear(5);

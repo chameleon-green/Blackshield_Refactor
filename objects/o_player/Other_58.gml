@@ -101,18 +101,6 @@ if(CanShoot = 1) {
 	ds_map_destroy(rear_forearm_map);
 	ds_map_destroy(flash_map);
 	
-	//-------------------------------------------- SHOOTY STUFF --------------------------------------------------
-	var IsRanged = string_count("ranged",wpn_active.item_type);
-	if(IsRanged){
-	
-	if(spread_angle > (wpn_active.spread)) {spread_angle = spread_angle*0.97};
-	if(spread_angle < (wpn_active.spread)) {spread_angle = wpn_active.spread};
-	var HeatReduction = clamp(1/wpn_active_heat,2/wpn_active.heat_capacity,2);
-	if(wpn_active_heat > 0) {wpn_active_heat -= HeatReduction};
-	if(wpn_active_heat < 0) {wpn_active_heat = 0};
-	
-	};
-	
 
 	//--------------------------------------------- MELEE STUFF ----------------------------------------------------
 

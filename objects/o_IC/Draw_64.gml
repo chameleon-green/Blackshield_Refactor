@@ -119,7 +119,7 @@ if(Tab = "items") {
 			if(Slot != 0) {						
 				var ID = ds_grid_get(grd_inv_armr,8,incrementor_armor);
 				instance_create_depth(x,y,depth-1,o_inventory_item,{
-					GridYValue : other.incrementor_armor,
+					GridYValue : incrementor_armor,
 					MyTab : Tab,
 					MySubTab : SubTab,
 					creator : id, 

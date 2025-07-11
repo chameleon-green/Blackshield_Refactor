@@ -1,3 +1,5 @@
+audio_group_load(audiogroup1);
+
 
 global.debug = 1;
 global.Selected = ["none","none"];
@@ -77,8 +79,9 @@ AddItem(Meltagun_Proteus,1,grd_inv_wepn,InventorySize);
 AddItem(Bolt_Pistol_Tigrus,1,grd_inv_wepn,InventorySize);
 AddItem(HeavyHammer_Proteus,1,grd_inv_wepn,InventorySize);
 AddItem(Chainsword_Thunderedge,1,grd_inv_wepn,InventorySize);
-AddItem(Bolt_Pistol_Tigrus,1,grd_inv_wepn,InventorySize);
 AddItem(Lasgun_Kantrael,1,grd_inv_wepn,InventorySize);
+AddItem(Rotorcannon_Proteus,1,grd_inv_wepn,InventorySize);
+AddItem(Autocannon_Kalibrax,1,grd_inv_wepn,InventorySize);
 
 AddItem(Ammo_Bolt_Standard,1000,grd_inv_ammo,InventorySize);
 AddItem(Ammo_Bolt_Kraken,100,grd_inv_ammo,InventorySize);
@@ -88,7 +91,7 @@ AddItem(Ammo_Flamer_Standard,300,grd_inv_ammo,InventorySize);
 AddItem(Ammo_Flamer_Balefire,300,grd_inv_ammo,InventorySize);
 AddItem(Ammo_Plasma_Standard,300,grd_inv_ammo,InventorySize);
 AddItem(Ammo_Melta_Standard,300,grd_inv_ammo,InventorySize);
-AddItem(Ammo_Auto_Ball,300,grd_inv_ammo,InventorySize);
+AddItem(Ammo_Auto_Ball,1000,grd_inv_ammo,InventorySize);
 AddItem(Ammo_Autocannon_Ball,300,grd_inv_ammo,InventorySize);
 AddItem(Ammo_Laser_Pack_Standard,300,grd_inv_ammo,InventorySize);
 

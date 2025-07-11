@@ -247,9 +247,48 @@ Lasgun_Kantrael = { //---------------------------- KANTRAEL LASGUN
 #endregion	
 
 	#region Shotguns, auto and stub weapons
+	
+Rotorcannon_Proteus = { //------------------------- PROTEUS ROTORCANNON
+		
+		item_type : "weapon_ranged_auto",
+		
+		//combat stats
+		damage : 14,
+		ROF : FindROF(3000), //FindROF(330), //rounds per minute
+		range : 1000, //effective range before gravity takes hold, rounds can mod this
+		capacity : 500,		
+		spread : 0.1,
+		muzzle_velocity : 80,
+		
+		//technical weapon stats
+		weapon_type : "auto",
+		weapon_slot : ["primary",2], //1 = single hand, 2 = both hands, 3 = offhand,
+		ammo_type: "ammo_auto",
+		default_ammo_type: Ammo_Auto_Ball,
+		firemodes: ["Auto"],
+		weight : 35,
+		durability_max : 2000,
+		rarity : "300.common",
+		heat_generation : 19,
+		heat_capacity : 5000,
+		
+		//cosmetic stuff, animations, sounds, etc.
+		name : "Proteus Pattern Rotorcannon",
+		description : "desc_blank.txt", 
+		inventory_subimage : [sp_shotgun_icons, 0], //subimage for item to appear in inventory
+		weapon_attachment : "rotorcannon_proteus", //spine attachment name
+		magazine_attachment : "mag_belt_rotor", //spine attachment name
+		flash_type : flash_med_normal,
+		flash_color : [make_colour_rgb(255, 230, 90), c_white], 
+		animation_group : anmgrp_rotorcannon_proteus,
+		sound_group : sndgrp_rotor1,
+		angular_offset : 90, //angular offset for animation related stuff
+		vertical_offset : -150, // Y axis offset for crosshair stuff	
+		gun_smoke : [c_gray, 6, 0.66, [4,7],"no"] //color, smoke mass, smoke max scale, smoke velocity, twin smoke
+	};
 Shotgun_Astartes = { //---------------------------- ASTARTES SHOTGUN
 		
-		item_type : "weapon_ranged_shotgun",
+		item_type : "weapon_ranged_shotgun_auto",
 		
 		//combat stats
 		damage : 90,
@@ -285,7 +324,45 @@ Shotgun_Astartes = { //---------------------------- ASTARTES SHOTGUN
 		vertical_offset : -150, // Y axis offset for crosshair stuff	
 		gun_smoke : [c_gray, 10, 1, [4,7],"no"] //color, smoke mass, smoke max scale, smoke velocity, twin smoke
 	};
-	//ds_list_add(ListComWP,pistol_bolt_tigrus[27]+".pistol_bolt_tigrus") //fix this later
+Autocannon_Kalibrax = { //------------------------- KALIBRAX AUTOCANNON
+		
+		item_type : "weapon_ranged_auto",
+		
+		//combat stats
+		damage : 300,
+		ROF : 25,//FindROF(80), //rounds per minute
+		range : 1000, //effective range before gravity takes hold, rounds can mod this
+		capacity : 20,		
+		spread : 0.1,
+		muzzle_velocity : 90,
+		
+		//technical weapon stats
+		weapon_type : "auto",
+		weapon_slot : ["primary",2], //1 = single hand, 2 = both hands, 3 = offhand,
+		ammo_type: "ammo_autocannon",
+		default_ammo_type: Ammo_Autocannon_Ball,
+		firemodes: ["Semi", "Auto"],
+		weight : 40,
+		durability_max : 1000,
+		rarity : "300.common",
+		heat_generation : -1,
+		heat_capacity : 1,
+		
+		//cosmetic stuff, animations, sounds, etc.
+		name : "Kalibrax Pattern Autocannon",
+		description : "desc_blank.txt", 
+		inventory_subimage : [sp_shotgun_icons, 0], //subimage for item to appear in inventory
+		weapon_attachment : "autocannon_kalibrax", //spine attachment name
+		magazine_attachment : "mag_kalibrax_1", //spine attachment name
+		flash_type : flash_med_normal,
+		flash_color : [make_colour_rgb(255, 230, 90), c_white], 
+		animation_group : anmgrp_autocannon_kalibrax,
+		sound_group : sndgrp_autocannon1,
+		angular_offset : 90, //angular offset for animation related stuff
+		vertical_offset : -150, // Y axis offset for crosshair stuff	
+		gun_smoke : [c_gray, 12, 1.3, [6,9],"no"] //color, smoke mass, smoke max scale, smoke velocity, twin smoke
+	};
+	
 #endregion	
 
 	#region Plasma cannons, guns, pistols
@@ -310,8 +387,8 @@ Plasmagun_Thunderbolt = { //---------------------------- Thunderbolt pattern pla
 		weight : 20,
 		durability_max : 1000,
 		rarity : "1400.common",
-		heat_generation : 4,
-		heat_capacity : 15, //26
+		heat_generation : 20,
+		heat_capacity : 50, //26
 		
 		//cosmetic stuff, animations, sounds, etc.
 		name : "Thunderbolt Pattern Plasma Gun",
@@ -327,7 +404,7 @@ Plasmagun_Thunderbolt = { //---------------------------- Thunderbolt pattern pla
 		vertical_offset : -150, // Y axis offset for crosshair stuff	
 		gun_smoke : "none" //color, smoke mass, smoke max scale, smoke velocity, twin smoke
 	};
-	//ds_list_add(ListComWP,pistol_bolt_tigrus[27]+".pistol_bolt_tigrus") //fix this later
+	
 #endregion
 
 	#region Chain swords and axes

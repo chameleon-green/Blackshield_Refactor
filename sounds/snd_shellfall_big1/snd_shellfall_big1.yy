@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":1.70127,
+  "duration":1.7012699,
   "name":"snd_shellfall_big1",
   "parent":{
     "name":"Weapons, Generic",
@@ -21,5 +21,5 @@
   "sampleRate":44100,
   "soundFile":"snd_shellfall_big1.wav",
   "type":0,
-  "volume":0.75,
+  "volume":1.0,
 }

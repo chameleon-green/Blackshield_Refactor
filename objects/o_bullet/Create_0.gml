@@ -2,7 +2,7 @@ sprite_index = type.projectile_type[0];
 
 if(sprite_index = sp_bullet) {image_speed = 0};
 image_blend = type.projectile_color[0];
-depth = -101;
+//depth = -101;
 image_speed = 0;
 light_enable = -1;
 

@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":0.679274,
+  "duration":0.6792744,
   "name":"snd_shotgun_rackslide1",
   "parent":{
     "name":"Weapons, Auto",

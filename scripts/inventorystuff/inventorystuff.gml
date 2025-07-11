@@ -118,7 +118,7 @@ function AddItem (Item,Quantity,TargetGrid,InventorySize,UniqueID=-1,Durability=
 				ds_grid_set_region(TargetGrid,0,ItemY,ds_grid_width(TargetGrid),ItemY,0);
 				global.Selected = ["none", "none"];
 			};//delete entry if the count is reduced to zero for any reason
-		};
+		}
 		else if(Quantity > 0) {
 		
 			while(Counter < (InventorySize-1) ) {
@@ -172,7 +172,7 @@ function AddItem (Item,Quantity,TargetGrid,InventorySize,UniqueID=-1,Durability=
 				global.Selected = ["none", "none"];
 			};//delete entry if the count is reduced to zero for any reason
 			
-		};
+		}
 		else if(Quantity > 0) {
 		
 			while(Counter < (InventorySize-1) ) {

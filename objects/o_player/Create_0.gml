@@ -194,6 +194,7 @@ switch_toggle = 0;
 
 //equipment sound stuff
 aud_fireloop = 0; //loop for guns with loop sounds
+aud_fireloop1 = 0; //loop for guns with loop sounds, second layer
 aud_chargeloop = 0; //loop for guns with charging
 aud_spoolup = 0; //sound for spooling up
 aud_spooldown = 0; //sound for spooling down

@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":0.623719,
+  "duration":0.6237188,
   "name":"snd_magin1",
   "parent":{
     "name":"Weapons, Generic",

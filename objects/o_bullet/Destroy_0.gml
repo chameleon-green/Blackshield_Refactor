@@ -14,9 +14,17 @@ if(impact_type[0] = "explosion") {
 	with(instance_create_depth(x,y,depth,o_explosion_scalable)) {
 		explosion_type = other.impact_type;
 		};
+}
+
+else if(impact_type[0] = "dust"){
+	with(instance_create_depth(x,y,depth-1,oprt_smoke)) {
+		image_blend = other.impact_type[3];
+		direction = other.direction + 180;
+		speed = random_range(4,7)
+		mass = other.impact_type[1]; 
+		max_scale = other.impact_type[2];
+		};
 };
-
-
 
 if(time_source_exists(kill_timer)) {time_source_destroy(kill_timer)};
 

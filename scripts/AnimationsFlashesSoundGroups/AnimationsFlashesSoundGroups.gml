@@ -42,6 +42,20 @@ function AnimationsFlashesSoundGroups(){
 		reload : "Plasma Weapons/reload_plasmagun_thunderbolt"			
 	};
 	
+	anmgrp_rotorcannon_proteus = {
+		idle : "idle_rotorcannon_proteus",
+		fire : ["spinup_rotorcannon_proteus","firing_rotorcannon_proteus", "spindown_rotorcannon_proteus"],
+		reload : "reload_rotorcannon_proteus",
+		
+	};
+	
+	anmgrp_autocannon_kalibrax = {
+		idle : "idle_autocannon_kalibrax",
+		fire : "firing_autocannon_kalibrax",
+		reload : "reload_autocannon_kalibrax",
+		
+	};
+	
 	anmgrp_chainsword_thunderedge = {
 		idle : "Chain Weapons/idle_sword_thunderedge",
 		strike : "Chain Weapons/strike_anim_sword_thunderedge",
@@ -92,7 +106,7 @@ function AnimationsFlashesSoundGroups(){
 //+++++++++++++++++++++++++++++++++++++++++++ SOUND GROUPS ++++++++++++++++++++++++++++++++++++++++++++++++
 
 	sndgrp_boltgun1 = {
-		fire : snd_weapon_bolt_med1,
+		fire : [snd_weapon_bolt_med1],
 		mag_in : snd_magin1,
 		mag_out : snd_magout1,
 		rack_slide : snd_rackslide1,
@@ -101,7 +115,7 @@ function AnimationsFlashesSoundGroups(){
 	};
 	
 	sndgrp_boltgun2 = {
-		fire : snd_weapon_bolt_light1,
+		fire : [snd_weapon_bolt_light1],
 		mag_in : snd_magin1,
 		mag_out : snd_magout1,
 		rack_slide : snd_rackslide1,
@@ -110,7 +124,7 @@ function AnimationsFlashesSoundGroups(){
 	};
 	
 	sndgrp_shotgun1 = {
-		fire : snd_shotgun1,
+		fire : [snd_shotgun1],
 		mag_in : snd_shotgun_reload_single1,
 		mag_out : snd_shotgun_reload_single1,
 		rack_slide : snd_shotgun_rackslide1,
@@ -140,9 +154,29 @@ function AnimationsFlashesSoundGroups(){
 	};
 	
 	sndgrp_plasma1 = {
-		fire : snd_plasma_small1,
+		fire : [snd_plasma_small1],
 		mag_in : snd_plasma_magin,
 		mag_out : snd_plasma_magout,
+		empty : snd_click_empty,
+		selector : snd_selector1
+	};
+	
+	sndgrp_rotor1 = {
+		fire_loop : [snd_rotor_loop,snd_rotor_fire_loop],
+		mag_in : snd_rotor_reload,
+		mag_out : snd_rotor_winddown,
+		rack_slide : snd_shotgun_rackslide1,
+		empty : snd_click_empty,
+		selector : snd_selector1,
+		spinup : snd_rotor_windup,
+		spindown : snd_rotor_winddown
+	};
+		
+	sndgrp_autocannon1 = {
+		fire : [snd_autocannon1, snd_autocannon2, snd_autocannon3, snd_autocannon4, snd_autocannon5],
+		mag_in : snd_magin1,
+		mag_out : snd_magoutbig1,
+		rack_slide : snd_shotgun_rackslide1,
 		empty : snd_click_empty,
 		selector : snd_selector1
 	};

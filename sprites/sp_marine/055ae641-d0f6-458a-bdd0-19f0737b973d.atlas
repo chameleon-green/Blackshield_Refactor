@@ -185,28 +185,26 @@ Amputations/rear thigh_trim_bloody
 bounds:124,3,29,24
 
 mk2 test_3.png
-size:128,256
+size:1024,32
 filter:Linear,Linear
 Gun Animations/anim_flamer
-bounds:66,27,14,17
+bounds:746,7,14,17
 Gun Animations/anim_kalibrax
-bounds:2,46,80,22
+bounds:380,2,108,22
 Gun Animations/anim_rotor_proteus1
-bounds:2,112,124,19
+bounds:2,5,124,19
 Gun Animations/anim_rotor_proteus2
-bounds:2,91,124,19
+bounds:128,5,124,19
 Gun Animations/anim_rotor_proteus3
-bounds:2,70,124,19
+bounds:254,5,124,19
 Gun Animations/anim_shotgun_astartes1
-bounds:84,6,62,20
-rotate:90
+bounds:490,4,62,20
 Gun Animations/anim_shotgun_astartes2
-bounds:106,6,62,20
-rotate:90
+bounds:554,4,62,20
 Gun Animations/anim_shotgun_astartes3
-bounds:2,24,62,20
+bounds:618,4,62,20
 Gun Animations/anim_shotgun_astartes4
-bounds:2,2,62,20
+bounds:682,4,62,20
 
 mk2 test_4.png
 size:256,128
@@ -319,47 +317,35 @@ MK3/trim/3000_pauldron trim
 bounds:2,2,59,56
 
 mk2 test_10.png
-size:512,256
+size:1024,128
 filter:Linear,Linear
 Weapons/autocannon_kalibrax
-bounds:208,128,126,48
-rotate:90
+bounds:205,9,136,48
 Weapons/bolter_heavy_mars
-bounds:79,121,133,59
-rotate:90
+bounds:290,66,133,59
 Weapons/bolter_heavy_voss
-bounds:140,122,132,66
-rotate:90
+bounds:156,59,132,66
 Weapons/bolter_phobos
-bounds:297,175,79,50
-rotate:90
+bounds:562,22,79,50
 Weapons/bolter_stalker
-bounds:68,2,98,51
-rotate:90
+bounds:539,74,98,51
 Weapons/flamer_astartes
-bounds:185,8,112,51
-rotate:90
+bounds:425,74,112,51
 Weapons/meltagun_proteus
-bounds:238,14,112,42
-rotate:90
+bounds:2,6,112,42
 Weapons/missile_astartes
-bounds:121,2,117,62
-rotate:90
+bounds:343,2,117,62
 Weapons/pistol_bolt_tigrus
-bounds:320,20,50,39
+bounds:681,36,50,39
 rotate:90
 Weapons/pistol_plasma_sunspite
-bounds:282,8,62,36
+bounds:643,24,62,36
 rotate:90
 Weapons/plasmacannon_sol
-bounds:2,102,152,75
-rotate:90
+bounds:2,50,152,75
 Weapons/plasmagun_thunderbolt
-bounds:282,72,87,42
-rotate:90
+bounds:116,6,87,42
 Weapons/rotorcannon_proteus
-bounds:2,2,98,64
-rotate:90
+bounds:462,8,98,64
 Weapons/shotgun_astartes
-bounds:258,161,93,37
-rotate:90
+bounds:639,88,93,37

@@ -26,8 +26,9 @@ if(col_bot) {
 	move_outside_solid(90,-1)
 	if(sound_toggle = 1){
 		sound_toggle = 0
+		var Multiplier = random_range(0.85,1.15)
 		var ImpactSound = audio_play_sound_at(impact_sound,x,y,0,100,100,1,0,1);
-		audio_sound_pitch(ImpactSound,impact_sound_pitch)
+		audio_sound_pitch(ImpactSound,impact_sound_pitch*Multiplier)
 	};
 };
 

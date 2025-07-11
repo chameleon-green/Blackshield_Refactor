@@ -54,7 +54,7 @@ function AmmoStructs() {
 		guidance : "dumb",
 		fuse : 0.5, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
 		special : "none", //an array of any special effects
-		impact_type : ["dust",4,1,c_gray], //type, smoke mass, smoke max scale, smoke count
+		impact_type : ["dust",9,1.33,c_gray], //type, smoke mass, smoke max scale, smoke count
 		
 		weight : 0.18, //weight in lbs
 		wear : 1, //durability cost on weapon when fired
@@ -71,7 +71,7 @@ function AmmoStructs() {
 	#endregion
 	
 	#region stubber, auto and shotgun ammo
-	Ammo_Shotgun_Buckshot = {//---------------------------- Buckshot rounds
+	Ammo_Shotgun_Buckshot = {//------------------------ Buckshot rounds
 		
 		item_type : "ammo_shotgun",
 		damage_mod : 1.5,
@@ -99,7 +99,7 @@ function AmmoStructs() {
 		inventory_subimage : [sp_shotgun_ammo, 0]
 	};
 	
-	Ammo_Shotgun_Slug = {//---------------------------- Buckshot rounds
+	Ammo_Shotgun_Slug = {//---------------------------- Slug rounds
 		
 		item_type : "ammo_shotgun",
 		damage_mod : 1.50,
@@ -127,9 +127,9 @@ function AmmoStructs() {
 		inventory_subimage : [sp_shotgun_ammo, 1]
 	};
 	
-	Ammo_Auto_Ball = {//---------------------------- Ball rounds
+	Ammo_Auto_Ball = {//------------------------------- Ball rounds
 		
-		item_type : "ammo_autogun",
+		item_type : "ammo_auto",
 		damage_mod : 1.00,
 		ROF_mod : 1.00,
 		range_mod : 1.00,
@@ -150,8 +150,8 @@ function AmmoStructs() {
 		projectile_type : [sp_bullet, 0], //sprite and subimage, if relevant
 		projectile_color : [make_colour_rgb(255, 230, 90), c_white],
 		flash_color : "none", //color override for flash, if relevant
-		casing_type : [sp_casing_shotgun, 1], //sprite and subimage of casing
-		casing_sound : [snd_shotgun_shell_fall1, 1], //impact sound and pitch
+		casing_type : [sp_casing_micro, 0], //sprite and subimage of casing
+		casing_sound : [snd_shellfall_small1, 1], //impact sound and pitch
 		inventory_subimage : [sp_shotgun_ammo, 1]
 	};
 	
@@ -168,7 +168,7 @@ function AmmoStructs() {
 		guidance : "none",
 		fuse : 0.5, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
 		special : "none", //an array of any special effects
-		impact_type : ["dust",8,1,c_gray], //type, smoke mass, smoke max scale, smoke color, frag count, frag lifetime, sound
+		impact_type : ["explosion", 5, 9, 2, c_gray, 0, 0, snd_explode_small1], //type, size, smoke mass, smoke max scale, smoke color, frag count, frag lifetime, sound
 		
 		weight : 0.41,//0.01, //weight in lbs
 		wear : 1, //durability cost on weapon when fired
@@ -178,8 +178,8 @@ function AmmoStructs() {
 		projectile_type : [sp_bullet, 0], //sprite and subimage, if relevant
 		projectile_color : [make_colour_rgb(255, 230, 90), c_white],
 		flash_color : "none", //color override for flash, if relevant
-		casing_type : [sp_casing_shotgun, 1], //sprite and subimage of casing
-		casing_sound : [snd_shotgun_shell_fall1, 1], //impact sound and pitch
+		casing_type : [sp_casing_large, 0], //sprite and subimage of casing
+		casing_sound : [snd_shellfall_big1, 1], //impact sound and pitch
 		inventory_subimage : [sp_shotgun_ammo, 1]
 	};
 	#endregion

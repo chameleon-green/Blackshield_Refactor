@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"snd_autocannon4",
+  "audioGroupId":{
+    "name":"audiogroup1",
+    "path":"audiogroups/audiogroup1",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":0,
+  "conversionMode":0,
+  "duration":3.7074604,
+  "name":"snd_autocannon4",
+  "parent":{
+    "name":"Weapons, Auto",
+    "path":"folders/Sounds/Weapons, Auto.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"snd_autocannon4.wav",
+  "type":0,
+  "volume":1.0,
+}
