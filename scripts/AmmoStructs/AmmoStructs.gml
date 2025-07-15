@@ -168,7 +168,7 @@ function AmmoStructs() {
 		guidance : "none",
 		fuse : 0.5, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
 		special : "none", //an array of any special effects
-		impact_type : ["explosion", 5, 9, 2, c_gray, 0, 0, snd_explode_small1], //type, size, smoke mass, smoke max scale, smoke color, frag count, frag lifetime, sound
+		impact_type : ["explosion", 5, 9, 2, c_gray, 30, 25, snd_explode_small1], //type, size, smoke mass, smoke max scale, smoke color, frag count, frag lifetime, sound
 		
 		weight : 0.41,//0.01, //weight in lbs
 		wear : 1, //durability cost on weapon when fired

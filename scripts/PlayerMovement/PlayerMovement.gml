@@ -120,7 +120,7 @@ if(CanMove) {
 	
 	if(Space && CanRoll && col_bot) { //roll when pressing spacebar
 		rolling = 1;
-		hspd = MoveSpeed*1.3*image_xscale;
+		hspd = MoveSpeed*1.66*image_xscale;
 		sprinting = 0;
 		skeleton_animation_clear(4); 
 		if(IsRanged) {

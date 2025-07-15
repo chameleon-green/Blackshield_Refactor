@@ -18,10 +18,10 @@ if( (creator.SubTab != MySubTab) or (creator.Tab != MyTab) or !creator.visible) 
 var IsEquipped = ( (MyPlayer.wpn_primary_id = unique_id) or 
 				   (MyPlayer.wpn_secondary_id = unique_id) or
 				   (MyPlayer.wpn_melee_id = unique_id) or
-				   (MyPlayer.ammo_primary_id = unique_id) or
-				   (MyPlayer.ammo_primary = item) or 
-				   (MyPlayer.ammo_secondary = item) or 
-				   (MyPlayer.ammo_active = item) or
+				 //(MyPlayer.ammo_primary_id = unique_id) or
+				 //(MyPlayer.ammo_primary = item) or 
+				 //(MyPlayer.ammo_secondary = item) or 
+				 //(MyPlayer.ammo_active = item) or
 				   (MyPlayer.armor_head[1] = unique_id) or
 				   (MyPlayer.armor_torso[1] = unique_id) or
 				   (MyPlayer.armor_armL[1] = unique_id) or
@@ -29,6 +29,9 @@ var IsEquipped = ( (MyPlayer.wpn_primary_id = unique_id) or
 				   (MyPlayer.armor_legL[1] = unique_id) or
 				   (MyPlayer.armor_legR[1] = unique_id)
 				 );
+var IsEquippedAmmoPrimary = (MyPlayer.ammo_primary = item);
+var IsEquippedAmmoSecondary = (MyPlayer.ammo_secondary = item);
+var IsEquippedAmmoBoth = (IsEquippedAmmoPrimary & IsEquippedAmmoSecondary);
 
 //------------------------------------------ Coordinate Stuff -------------------------------------------------
 
@@ -40,7 +43,7 @@ y =  BaseY - (scrollbar.Offset + (120*scale) )*scrollbar.DisplacementMod + scrol
 
 var Selected = (global.Selected[0] = unique_id);
 var touching = point_in_rectangle(Mouse_X,Mouse_Y,bbox_left,bbox_top,bbox_right,bbox_bottom);
-if( (touching && Interactable) or Selected or IsEquipped) {image_index = 0; Color = c_yellow};
+if( (touching && Interactable) or Selected or IsEquipped or IsEquippedAmmoPrimary or IsEquippedAmmoSecondary or IsEquippedAmmoBoth) {image_index = 0; Color = c_yellow};
 if(Click && touching && Interactable) {global.Selected = [unique_id,item]};
 
 //----------------------------------------- Drawing Stuff -------------------------------------------------
@@ -65,6 +68,9 @@ if(GridYValue = -1) {creator.refresh = 1};
 
 if(IsAmmo or IsConsumable) {TitleText = item.name + " (" + string(Quantity) + ")"};
 if(IsEquipped) {TitleText = TitleText + " (equipped)"};
+if(IsEquippedAmmoPrimary & !IsEquippedAmmoBoth) {TitleText = TitleText + " (primary)"};
+if(IsEquippedAmmoSecondary & !IsEquippedAmmoBoth) {TitleText = TitleText + " (secondary)"};
+if(IsEquippedAmmoBoth) {TitleText = TitleText + " (primary/secondary)"};
 
 if ( (MyDisplacement >= -158) and (MyDisplacement <= 135) ){
 	
@@ -83,9 +89,9 @@ if ( (MyDisplacement < -158) and (MyDisplacement > -192) ){
 	var BottomBound = Ycent + (188*scale);
 	var Difference = (y+(36*scale)) - BottomBound;
 	var Height = 36-(Difference/scale);
-	draw_sprite_general(sprite_index,image_index,0,0,313,Height,bbox_left,y,scale,scale,0,c_white,c_white,c_gray,c_gray,1)
+	draw_sprite_general(sprite_index,image_index,0,0,313,Height,bbox_left,y,scale,scale,0,c_white,c_white,c_dkgray,c_dkgray,1)
 	
-	if( abs(Height) > 23 ) {
+	if( abs(Height) > 30 ) {
 		draw_text_ext_transformed_color(x,y+(10*scale),TitleText,1,99999,scale*0.9,scale*1,0,Color,Color,Color,Color,1)
 		Interactable = 1;
 	};
@@ -100,9 +106,9 @@ if ( (MyDisplacement > 135) and (MyDisplacement < 166) ){
 	var TopBound = Ycent - (135*scale);
 	var Difference = TopBound - y;
 	var Height = 36-(Difference/scale);
-	draw_sprite_general(sprite_index,image_index,0,36,313,-Height,bbox_left,y+(36*scale),scale,scale,0,c_white,c_white,c_gray,c_gray,1)
+	draw_sprite_general(sprite_index,image_index,0,36,313,-Height,bbox_left,y+(36*scale),scale,scale,0,c_white,c_white,c_dkgray,c_dkgray,1) 
 	
-	if( abs(Height) > 26 ) {
+	if( abs(Height) > 30 ) {
 		draw_text_ext_transformed_color(x,y+(10*scale),TitleText,1,99999,scale*0.9,scale*1,0,Color,Color,Color,Color,1)
 		Interactable = 1;
 	};

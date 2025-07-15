@@ -20,7 +20,6 @@ if(Tab = "items") {
 	var IsEquipped = ((MyPlayer.wpn_primary_id = _Selected[0]) or 
 				   (MyPlayer.wpn_secondary_id = _Selected[0]) or
 				   (MyPlayer.wpn_melee_id = _Selected[0]) or
-				   (MyPlayer.ammo_primary_id = _Selected[0]) or
 				   (MyPlayer.armor_head[1] = _Selected[0]) or
 				   (MyPlayer.armor_torso[1] = _Selected[0]) or
 				   (MyPlayer.armor_armL[1] = _Selected[0]) or
@@ -28,13 +27,27 @@ if(Tab = "items") {
 				   (MyPlayer.armor_legL[1] = _Selected[0]) or
 				   (MyPlayer.armor_legR[1] = _Selected[0])
 	);	
+	
+	if(IsEquipped) {TriButtonText[0] = "Unequip"};
+	
+	var IsEquippedAmmoPrimary = (MyPlayer.ammo_primary = _Selected[1]);
+	var IsEquippedAmmoSecondary = (MyPlayer.ammo_secondary = _Selected[1]);
+	var IsEquippedAmmoBoth = (IsEquippedAmmoPrimary & IsEquippedAmmoSecondary);
+	
+	/*
 	var IsEquippedAmmo = (
 		(MyPlayer.ammo_primary = _Selected[1]) or 
 		(MyPlayer.ammo_secondary = _Selected[1]) or 
 		(MyPlayer.ammo_active = _Selected[1])
 	);	
-	if(IsEquipped) {TriButtonText[0] = "Unequip"};
+	
 	if(IsEquippedAmmo) {TriButtonText[0] = "Equipped"; TriButtonColors[0] = c_yellow};
+	*/
+	
+	if(IsEquippedAmmoPrimary & (MyPlayer.wpn_active = MyPlayer.wpn_primary)) {TriButtonText[0] = "Equipped"; TriButtonColors[0] = c_yellow}
+	else if(IsEquippedAmmoSecondary & (MyPlayer.wpn_active = MyPlayer.wpn_secondary)) {TriButtonText[0] = "Equipped"; TriButtonColors[0] = c_yellow}
+	else if(IsEquippedAmmoBoth) {TriButtonText[0] = "Equipped"; TriButtonColors[0] = c_yellow};
+	
 	if(SubTab = "aid") {TriButtonText[0] = "Use"};
 	
 	if(ButtonRegionCenter(Mouse_X,Mouse_Y,-40,-112,-49,-19,scale)){

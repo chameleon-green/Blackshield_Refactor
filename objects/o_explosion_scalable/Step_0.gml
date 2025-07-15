@@ -49,19 +49,23 @@ with(instance_create_depth(x,y,depth+1,oprt_smoke)) {
  //++++++++++++++++++++++++++++++++++++++++++++++++++ throw frags ++++++++++++++++++++++++++++++++++++
 
 if(exploded = 0 and array[5] > 0) {
-		exploded = 1
 		
-		rocket_sound = audio_play_sound_at(array[7],x,y,0,size*60,size*700,1,0,1) 
+		exploded = 1;
+		
+		rocket_sound = audio_play_sound_at(array[7],x,y,0,size*60,size*700,1,0,1);
 		
 		repeat(array[5]) {
-			with(instance_create_depth(x,y,1,o_fragment)){
-					damage = other.damage/array[5]
-					damage_type = other.damage_type
-					hp = other.damage/array[5]
-					alarm[0] = array[6]*random_range(0.6,1.3)
-			}
-		}
-}	
+			instance_create_depth(x,y,depth-1,o_fragment,{
+					damage : damage/array[5],
+					damage_type : damage_type,
+					hp : damage/array[5],
+					fuse : 1,
+					final_dir : final_dir,
+					life : array[6]*random_range(0.6,1.3)
+			});
+		};
+};
+	
 //play noise if we got no frags
 else if (exploded = 0) {exploded = 1 rocket_sound = audio_play_sound_at(array[7],x,y,0,size*10,size*600,1,0,1)}
 

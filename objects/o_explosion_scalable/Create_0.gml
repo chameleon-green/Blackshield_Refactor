@@ -10,6 +10,7 @@ damage = 0;
 damage_type = 0;
 explosion_type = undefined;
 exploded = 0;
+final_dir = 0;
 
 audio_falloff_set_model(audio_falloff_linear_distance);
 

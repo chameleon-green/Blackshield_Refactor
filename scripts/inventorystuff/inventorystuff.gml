@@ -150,6 +150,7 @@ function AddItem (Item,Quantity,TargetGrid,InventorySize,UniqueID=-1,Durability=
 				ds_grid_set(TargetGrid,1,Counter,Quantity); //how many?
 				if(Durability = -1) {Durability = Item.durability_max};
 				ds_grid_set(TargetGrid,2,Counter,Durability); //how much durability remaining?
+				ds_grid_set(TargetGrid,3,Counter,Item.item_type); //what is this, exactly?
 				ds_grid_set(TargetGrid,8,Counter,GenerateID()); //unique ID for item
 				break;
 			};		
@@ -958,3 +959,57 @@ ds_grid_destroy(TempGrid);
 };
 
 #endregion
+
+function scr_equip_armor_initial(target) 
+{
+
+var Grid = grd_inv_armr;
+var InvSz = InventorySize;
+
+//HEAD
+if(ds_grid_value_exists(Grid,0,0,10,InvSz,"power_armor_head")) {
+	var xx = ds_grid_value_y(Grid,0,0,10,InvSz,"power_armor_head");
+	var UID = ds_grid_get(Grid,8,xx);
+	var Item = ds_grid_get(Grid,0,xx);
+	EquipItem(Item,UID,target);
+	};
+
+//TORSO
+if(ds_grid_value_exists(Grid,0,0,10,InvSz,"power_armor_torso")) {
+	var xx = ds_grid_value_y(Grid,0,0,10,InvSz,"power_armor_torso");
+	var UID = ds_grid_get(Grid,8,xx);
+	var Item = ds_grid_get(Grid,0,xx);
+	EquipItem(Item,UID,target);
+	};
+
+//ARMS
+if(ds_grid_value_exists(Grid,0,0,10,InvSz,"power_armor_armL")) {
+	var xx = ds_grid_value_y(Grid,0,0,10,InvSz,"power_armor_armL");
+	var UID = ds_grid_get(Grid,8,xx);
+	var Item = ds_grid_get(Grid,0,xx);
+	EquipItem(Item,UID,target);
+	};
+
+if(ds_grid_value_exists(Grid,0,0,10,InvSz,"power_armor_armR")) {
+	var xx = ds_grid_value_y(Grid,0,0,10,InvSz,"power_armor_armR")
+	var UID = ds_grid_get(Grid,8,xx);
+	var Item = ds_grid_get(Grid,0,xx);
+	EquipItem(Item,UID,target);
+	};
+
+//LEGS
+if(ds_grid_value_exists(Grid,0,0,10,InvSz,"power_armor_legL")) {
+	var xx = ds_grid_value_y(Grid,0,0,10,InvSz,"power_armor_legL")
+	var UID = ds_grid_get(Grid,8,xx);
+	var Item = ds_grid_get(Grid,0,xx);
+	EquipItem(Item,UID,target);
+	};
+
+if(ds_grid_value_exists(Grid,0,0,10,InvSz,"power_armor_legR")) {
+	var xx = ds_grid_value_y(Grid,0,0,10,InvSz,"power_armor_legR")
+	var UID = ds_grid_get(Grid,8,xx);
+	var Item = ds_grid_get(Grid,0,xx);
+	EquipItem(Item,UID,target);
+	};
+
+};

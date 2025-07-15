@@ -152,6 +152,7 @@
     {"name":"sp_flamer_ammo","order":2,"path":"sprites/sp_flamer_ammo/sp_flamer_ammo.yy",},
     {"name":"sp_flamer_flames_bw","order":3,"path":"sprites/sp_flamer_flames_bw/sp_flamer_flames_bw.yy",},
     {"name":"sp_flamer_flames","order":2,"path":"sprites/sp_flamer_flames/sp_flamer_flames.yy",},
+    {"name":"sp_fragment","order":5,"path":"sprites/sp_fragment/sp_fragment.yy",},
     {"name":"sp_health_ui","order":1,"path":"sprites/sp_health_ui/sp_health_ui.yy",},
     {"name":"sp_healthbars","order":2,"path":"sprites/sp_healthbars/sp_healthbars.yy",},
     {"name":"sp_human1","order":2,"path":"sprites/sp_human1/sp_human1.yy",},

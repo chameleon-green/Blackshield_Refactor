@@ -228,6 +228,7 @@
     {"id":{"name":"sp_flamer_ammo","path":"sprites/sp_flamer_ammo/sp_flamer_ammo.yy",},},
     {"id":{"name":"sp_flamer_flames_bw","path":"sprites/sp_flamer_flames_bw/sp_flamer_flames_bw.yy",},},
     {"id":{"name":"sp_flamer_flames","path":"sprites/sp_flamer_flames/sp_flamer_flames.yy",},},
+    {"id":{"name":"sp_fragment","path":"sprites/sp_fragment/sp_fragment.yy",},},
     {"id":{"name":"sp_gibs_human","path":"sprites/sp_gibs_human/sp_gibs_human.yy",},},
     {"id":{"name":"sp_health_ui","path":"sprites/sp_health_ui/sp_health_ui.yy",},},
     {"id":{"name":"sp_healthbars","path":"sprites/sp_healthbars/sp_healthbars.yy",},},

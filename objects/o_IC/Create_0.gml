@@ -41,7 +41,6 @@ Mouse_Y = 0;
 
 MyScrollbar = 0;
 
-
 //------------------------------------------ Inventory functionality -------------------------------------------
 
 global.IDList = ds_list_create();
@@ -82,6 +81,28 @@ AddItem(Chainsword_Thunderedge,1,grd_inv_wepn,InventorySize);
 AddItem(Lasgun_Kantrael,1,grd_inv_wepn,InventorySize);
 AddItem(Rotorcannon_Proteus,1,grd_inv_wepn,InventorySize);
 AddItem(Autocannon_Kalibrax,1,grd_inv_wepn,InventorySize);
+AddItem(Boltgun_Phobos,1,grd_inv_wepn,InventorySize);
+AddItem(Shotgun_Astartes,1,grd_inv_wepn,InventorySize);
+AddItem(Flamer_Astartes,1,grd_inv_wepn,InventorySize);
+AddItem(Plasmagun_Thunderbolt,1,grd_inv_wepn,InventorySize);
+AddItem(Meltagun_Proteus,1,grd_inv_wepn,InventorySize);
+AddItem(Bolt_Pistol_Tigrus,1,grd_inv_wepn,InventorySize);
+AddItem(HeavyHammer_Proteus,1,grd_inv_wepn,InventorySize);
+AddItem(Chainsword_Thunderedge,1,grd_inv_wepn,InventorySize);
+AddItem(Lasgun_Kantrael,1,grd_inv_wepn,InventorySize);
+AddItem(Rotorcannon_Proteus,1,grd_inv_wepn,InventorySize);
+AddItem(Autocannon_Kalibrax,1,grd_inv_wepn,InventorySize);
+AddItem(Boltgun_Phobos,1,grd_inv_wepn,InventorySize);
+AddItem(Shotgun_Astartes,1,grd_inv_wepn,InventorySize);
+AddItem(Flamer_Astartes,1,grd_inv_wepn,InventorySize);
+AddItem(Plasmagun_Thunderbolt,1,grd_inv_wepn,InventorySize);
+AddItem(Meltagun_Proteus,1,grd_inv_wepn,InventorySize);
+AddItem(Bolt_Pistol_Tigrus,1,grd_inv_wepn,InventorySize);
+AddItem(HeavyHammer_Proteus,1,grd_inv_wepn,InventorySize);
+AddItem(Chainsword_Thunderedge,1,grd_inv_wepn,InventorySize);
+AddItem(Lasgun_Kantrael,1,grd_inv_wepn,InventorySize);
+AddItem(Rotorcannon_Proteus,1,grd_inv_wepn,InventorySize);
+AddItem(Autocannon_Kalibrax,1,grd_inv_wepn,InventorySize);
 
 AddItem(Ammo_Bolt_Standard,1000,grd_inv_ammo,InventorySize);
 AddItem(Ammo_Bolt_Kraken,100,grd_inv_ammo,InventorySize);
@@ -110,6 +131,10 @@ AddItem(Drug_Combat_Satrophine,5,grd_inv_aidd,InventorySize);
 MyPlayer = instance_create_depth(x,y,depth+1,o_player,{MyIC : id});
 MyHPbar = instance_create_depth(x,y,depth+1,o_HPbar, {MyIC : id, scale : 1.33, MyPlayer : other.MyPlayer});
 //repeat (1) {instance_create_depth(x,y,depth,o_enemy,{leader : 1})};
+
+//------------------------------------- INITIAL EQUIP ------------------------------------
+
+scr_equip_armor_initial(MyPlayer);
 
 //----------------------------------------- Zoom Functionality ------------------------------
 
