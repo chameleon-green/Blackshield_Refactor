@@ -1,0 +1,15 @@
+
+smaller numbers = drawn on top
+
+-41k = mouse
+-40k = gui
+-39k = terrain platforms
+
+-35 = scalable explosions/smoke
+-29 = player
+
+-12 = vehicles
+-11 = humans
+
+-9 = bullet shells, grenades, fragments, bullets
+-6 = fortifications/buildings

@@ -360,7 +360,7 @@ Autocannon_Kalibrax = { //------------------------- KALIBRAX AUTOCANNON
 		sound_group : sndgrp_autocannon1,
 		angular_offset : 90, //angular offset for animation related stuff
 		vertical_offset : -150, // Y axis offset for crosshair stuff	
-		gun_smoke : [c_gray, 12, 1.3, [6,9],"no"] //color, smoke mass, smoke max scale, smoke velocity, twin smoke
+		gun_smoke : [c_gray, 11, 1.33, [6,9],"no"] //color, smoke mass, smoke max scale, smoke velocity, twin smoke
 	};
 	
 #endregion	

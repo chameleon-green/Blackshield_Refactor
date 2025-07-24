@@ -114,6 +114,7 @@ AddItem(Ammo_Plasma_Standard,300,grd_inv_ammo,InventorySize);
 AddItem(Ammo_Melta_Standard,300,grd_inv_ammo,InventorySize);
 AddItem(Ammo_Auto_Ball,1000,grd_inv_ammo,InventorySize);
 AddItem(Ammo_Autocannon_Ball,300,grd_inv_ammo,InventorySize);
+AddItem(Ammo_Autocannon_HE,300,grd_inv_ammo,InventorySize);
 AddItem(Ammo_Laser_Pack_Standard,300,grd_inv_ammo,InventorySize);
 
 AddItem(Armor_Torso_2000,1,grd_inv_armr,InventorySize);
@@ -128,7 +129,7 @@ AddItem(Drug_Combat_Satrophine,5,grd_inv_aidd,InventorySize);
 
 //----------------------------------------- Create Player ---------------------------------------
 
-MyPlayer = instance_create_depth(x,y,depth+1,o_player,{MyIC : id});
+MyPlayer = instance_create_depth(x,y,-14,o_player,{MyIC : id});
 MyHPbar = instance_create_depth(x,y,depth+1,o_HPbar, {MyIC : id, scale : 1.33, MyPlayer : other.MyPlayer});
 //repeat (1) {instance_create_depth(x,y,depth,o_enemy,{leader : 1})};
 
@@ -144,3 +145,26 @@ yy = 768;
 equalize = 0;
 camera_x = 0;
 camera_xprev = 0;
+
+//-------------------------------------- terrain seed -----------------------
+terrain_seed = "";
+for(var i=0;i<6;i++){
+	var temp = irandom(9)
+	terrain_seed += string(temp)
+};
+
+//------------------------------------ depth ----------------------------------------
+
+DepthLayer = {
+
+	cover : -50,
+	explosions : -16,
+	player : -14,
+	
+	vehicles : -12,
+	humans : -11,
+	
+	shells : -9,
+	buildings : -6
+
+};

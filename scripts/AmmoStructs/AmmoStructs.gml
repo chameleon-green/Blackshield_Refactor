@@ -138,7 +138,7 @@ function AmmoStructs() {
 		damage_type : ["physical","PHYS"],
 		armor_penetration : 0,
 		guidance : "none",
-		fuse : 0.2, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
+		fuse : 0.01, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
 		special : "none", //an array of any special effects
 		impact_type : ["dust",8,1,c_gray], //type, smoke mass, smoke max scale, smoke color, frag count, frag lifetime, sound
 		
@@ -164,17 +164,45 @@ function AmmoStructs() {
 		velocity_mod : 1.00,
 		
 		damage_type : ["physical","PHYS"],
-		armor_penetration : 0.2,
+		armor_penetration : 1.0,
 		guidance : "none",
-		fuse : 0.5, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
+		fuse : 0.1, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
 		special : "none", //an array of any special effects
-		impact_type : ["explosion", 5, 9, 2, c_gray, 30, 25, snd_explode_small1], //type, size, smoke mass, smoke max scale, smoke color, frag count, frag lifetime, sound
+		impact_type : ["dust",13,2.5,c_gray],//["explosion", 5, 9, 2, c_gray, 10, 32, snd_explode_small1], //type, size, smoke mass, smoke max scale, smoke color, frag count, frag lifetime, sound
 		
 		weight : 0.41,//0.01, //weight in lbs
 		wear : 1, //durability cost on weapon when fired
 		rarity : "300.common",	
 		
 		name : "Autocannon Rounds, Ball",
+		projectile_type : [sp_bullet, 0], //sprite and subimage, if relevant
+		projectile_color : [make_colour_rgb(255, 230, 90), c_white],
+		flash_color : "none", //color override for flash, if relevant
+		casing_type : [sp_casing_large, 0], //sprite and subimage of casing
+		casing_sound : [snd_shellfall_big1, 1], //impact sound and pitch
+		inventory_subimage : [sp_shotgun_ammo, 1]
+	};
+		
+	Ammo_Autocannon_HE = {//---------------------------- Ball rounds
+		
+		item_type : "ammo_autocannon",
+		damage_mod : 1.5,
+		ROF_mod : 1.00,
+		range_mod : 1.00,
+		velocity_mod : 1.00,
+		
+		damage_type : ["physical","PHYS"],
+		armor_penetration : 0,
+		guidance : "none",
+		fuse : 0.01, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
+		special : "none", //an array of any special effects
+		impact_type : ["explosion", 5, 9, 2, c_gray, 15, 32, snd_explode_small1], //type, size, smoke mass, smoke max scale, smoke color, frag count, frag lifetime, sound
+		
+		weight : 0.41,//0.01, //weight in lbs
+		wear : 1, //durability cost on weapon when fired
+		rarity : "300.common",	
+		
+		name : "Autocannon Rounds, HE",
 		projectile_type : [sp_bullet, 0], //sprite and subimage, if relevant
 		projectile_color : [make_colour_rgb(255, 230, 90), c_white],
 		flash_color : "none", //color override for flash, if relevant
@@ -326,6 +354,36 @@ function AmmoStructs() {
 		casing_type : "none", //sprite and subimage of casing
 		casing_sound : "none", //impact sound and pitch
 		inventory_subimage : [sp_xhair, 6]
+	};
+	#endregion
+	
+	#region ordnance
+	Ammo_Mortar_90mm = {//---------------------------- 90mm mortar rounds
+		
+		item_type : "ammo_ordnance_small",
+		damage_mod : 1.00,
+		ROF_mod : 1.00,
+		range_mod : 1.00,
+		velocity_mod : 1.00,
+		
+		damage_type : ["physical","PHYS"],
+		armor_penetration : 0,
+		guidance : "none",
+		fuse : 0.01, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
+		special : "none", //an array of any special effects
+		impact_type : ["explosion", 8, 11, 2.75, c_gray, 15, 32, snd_explode_small1], //type, size, smoke mass, smoke max scale, smoke color, frag count, frag lifetime, sound
+		
+		weight : 0.41,//0.01, //weight in lbs
+		wear : 1, //durability cost on weapon when fired
+		rarity : "300.common",	
+		
+		name : "Mortar Rounds, HE",
+		projectile_type : [sp_ordnance_small, 0], //sprite and subimage, if relevant
+		projectile_color : [make_colour_rgb(255, 230, 90), c_white],
+		flash_color : "none", //color override for flash, if relevant
+		casing_type : [sp_casing_large, 0], //sprite and subimage of casing
+		casing_sound : [snd_shellfall_big1, 1], //impact sound and pitch
+		inventory_subimage : [sp_shotgun_ammo, 1]
 	};
 	#endregion
 }

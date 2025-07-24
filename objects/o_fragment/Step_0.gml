@@ -11,16 +11,18 @@ var colh = collision_line(x,y,xx,y,o_platform,true,0);
 
 
 if(colv) {
-	vspeed = -vspeed*random_range(0.6,0.9)
+	y -= vspeed;
+	vspeed = -vspeed*random_range(0.6,0.9);
 };
 
 if(colh) {
-	hspeed = -hspeed*random_range(0.5,0.8)
+	x -= hspeed;
+	hspeed = -hspeed*random_range(0.5,0.8);
 };
 
-/*
+
 if(speed < 3) {
 	instance_destroy()
 };
-*/
+
 image_angle = direction;

@@ -16,17 +16,17 @@ function ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy=0){
 				var DRatio = ArmorArray[2];
 				var Damage = Bullet.damage;
 								
-				if(Bullet.damage_type = "physical") {var resist = clamp((ResistArray[0]*DRatio)+resist_base[0]-Bullet.penetration,0,9999999)}
-				else if(Bullet.damage_type = "thermal") {var resist = clamp((ResistArray[1]*DRatio)+resist_base[1]-Bullet.penetration,0,9999999)}
-				else if(Bullet.damage_type = "cryo") {var resist = clamp((ResistArray[2]*DRatio)+resist_base[2]-Bullet.penetration,0,9999999)}
-				else if(Bullet.damage_type = "corrosive") {var resist = clamp((ResistArray[3]*DRatio)+resist_base[3]-Bullet.penetration,0,9999999)}
-				else if(Bullet.damage_type = "radiation") {var resist = clamp((ResistArray[4]*DRatio)+resist_base[4]-Bullet.penetration,0,9999999)}
-				else if(Bullet.damage_type = "electric") {var resist = clamp((ResistArray[5]*DRatio)+resist_base[5]-Bullet.penetration,0,9999999)}
-				else if(Bullet.damage_type = "biohazard") {var resist = clamp((ResistArray[6]*DRatio)+resist_base[6]-Bullet.penetration,0,9999999)}
-				else if(Bullet.damage_type = "warp") {var resist = clamp((ResistArray[7]*DRatio)+resist_base[7]-Bullet.penetration,0,9999999)}
+				if(Bullet.damage_type = "physical") {var resist = clamp((ResistArray[0]*DRatio)+resist_base[0],0,9999999)}
+				else if(Bullet.damage_type = "thermal") {var resist = clamp((ResistArray[1]*DRatio)+resist_base[1],0,9999999)}
+				else if(Bullet.damage_type = "cryo") {var resist = clamp((ResistArray[2]*DRatio)+resist_base[2],0,9999999)}
+				else if(Bullet.damage_type = "corrosive") {var resist = clamp((ResistArray[3]*DRatio)+resist_base[3],0,9999999)}
+				else if(Bullet.damage_type = "radiation") {var resist = clamp((ResistArray[4]*DRatio)+resist_base[4],0,9999999)}
+				else if(Bullet.damage_type = "electric") {var resist = clamp((ResistArray[5]*DRatio)+resist_base[5],0,9999999)}
+				else if(Bullet.damage_type = "biohazard") {var resist = clamp((ResistArray[6]*DRatio)+resist_base[6],0,9999999)}
+				else if(Bullet.damage_type = "warp") {var resist = clamp((ResistArray[7]*DRatio)+resist_base[7],0,9999999)}
 				else {return 0; exit};
 				
-				if(Damage <= resist){
+				if(Damage <= (resist-Bullet.penetration)){
 					
 					audio_play_sound(choose(snd_impact_metal1,snd_impact_metal2,snd_impact_metal3),1,0,1,0,random_range(0.9,1.1));
 			
@@ -73,7 +73,7 @@ function ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy=0){
 					instance_create_depth(SplashX,SplashY,depth-1,oprt_splatter,{image_angle : Bullet.direction-90});
 					
 					var LimbVariable = variable_instance_get(id,"hp_body_"+Limb);
-					var NetDamage = Damage - resist;
+					var NetDamage = Damage - (resist-Bullet.penetration);
 					variable_instance_set(id,"hp_body_"+Limb,LimbVariable-NetDamage);
 					HP -= NetDamage;
 					if(!Enemy){ //damage our armor durability based on how much the damage compares to our resist
@@ -90,12 +90,16 @@ function ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy=0){
 								ArmorArray[3] = NewDurability/ArmorArray[0].durability_max;
 							};
 						}; //item ID check
+					//Bullet.hp -= resist;
+					//Bullet.damage = Bullet.hp;
+					//if(Bullet.hp <= Bullet.fuse) {Bullet.kill = 1};
+					} //enemy check
+					else{};
+					
 					Bullet.hp -= resist;
 					Bullet.damage = Bullet.hp;
 					if(Bullet.hp <= Bullet.fuse) {Bullet.kill = 1};
-					} //enemy check
-					else{};
-									
+							
 					return NetDamage;
 				};
 				

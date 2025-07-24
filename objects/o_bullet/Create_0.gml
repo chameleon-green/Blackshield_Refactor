@@ -2,14 +2,13 @@ sprite_index = type.projectile_type[0];
 
 if(sprite_index = sp_bullet) {image_speed = 0};
 image_blend = type.projectile_color[0];
-//depth = -101;
 image_speed = 0;
 light_enable = -1;
 
 damage_type = type.damage_type[0];
 penetration = damage*type.armor_penetration;
-hp = damage;
-fuse = hp*type.fuse;
+hp = clamp(damage,0,200);
+fuse = damage*type.fuse;
 impact_type = type.impact_type;
 
 base_speed = speed;
@@ -19,13 +18,16 @@ endBeam = 0;
 beamLength = 0;
 beamToggle = 1;
 
+IsBeam = 0;
+Flames = (string_count("flames",sprite_get_name(sprite_index)));
+
 KillMe = function(){
 	instance_destroy(self)
 };
 
 kill_timer = time_source_create(time_source_game,2,time_source_units_frames,KillMe);
 
-IsBeam = 0; Flames = 0;
+
 //-------------------------------------------------------------------------------------
 var col_list = ds_list_create();
 if(!IsBeam && !Flames){
@@ -34,7 +36,20 @@ if(!IsBeam && !Flames){
 	var _YY = y+lengthdir_y(base_speed,direction);
 	var _XXA = x+lengthdir_x(base_speed*3,direction);
 	var _YYA = y+lengthdir_y(base_speed*3,direction);
-	var col_actor = collision_line_list(x,y,_XXA,_YYA,o_actorParent,0,1,col_list,1);
+	var col_actor = collision_line_list(x,y,_XX,_YY,o_actorParent,0,1,col_list,1);
+		
+	if(collision_line(x,y,_XX,_YY,o_platform,0,1)){	
+		//speed = 0;
+		var Line_Length1 = 0;
+		var Collided1 = place_meeting(x,y,o_platform);
+		while(!Collided1 and (Line_Length1 < base_speed)) {
+			Line_Length1 += 2;		
+			x = x+lengthdir_x(Line_Length1,direction);
+			y = y+lengthdir_y(Line_Length1,direction);
+			var Collided1 = place_meeting(x,y,o_platform);
+		};
+		if(Line_Length1 < base_speed) {instance_destroy(self)};
+	};
 
 	if(col_actor > 0){		
 		var i = 0;
@@ -60,27 +75,15 @@ if(!IsBeam && !Flames){
 				var Collided2 = place_meeting(x,y,Actor);
 			};	
 		};
-	};
-	
-	if(collision_line(x,y,_XX,_YY,o_platform,0,1)){	
-		//speed = 0;
-		var Line_Length1 = 0;
-		var Collided1 = place_meeting(x,y,o_platform);
-		while(!Collided1 and (Line_Length1 < base_speed)) {
-			Line_Length1 += 2;		
-			x = x+lengthdir_x(Line_Length1,direction);
-			y = y+lengthdir_y(Line_Length1,direction);
-			var Collided1 = place_meeting(x,y,o_platform);
-		};
-		if(Line_Length1 < base_speed) {instance_destroy(self)};
-	};
-	
+	};	
 };
+
 speed = base_speed;
 ds_list_destroy(col_list);
+
 //------------------------------------------ Special projectile code ------------------------------------	
 
-Flames = (string_count("flames",sprite_get_name(sprite_index)));
+
 if(Flames){
 
 	flameframes =  (sprite_get_number(sprite_index) - 0);
@@ -97,6 +100,6 @@ if(Flames){
 	image_alpha = 1;
 	image_speed = 1;
 };
-	
+
 	
 IsBeam = string_count("beam",type.guidance);

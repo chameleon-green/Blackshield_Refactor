@@ -1,5 +1,5 @@
 
-
+/*
 if(corner = 1) {
 	
 var i = 0;

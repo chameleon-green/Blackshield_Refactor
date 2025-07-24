@@ -3,7 +3,7 @@ AmmoStructs();
 WeaponStructs();
 var _mymethod = function(){}; 
 
-depth = -99;
+
 image_xscale = 1;
 image_yscale = 1;
 //----------------------------------- MOVEMENT VARIABLES -----------------------------------
@@ -277,9 +277,13 @@ xhair = instance_create_depth(x,y,depth-3,o_xhair,{
 });
 
 
-
-
-
+/*
+var Red = make_color_rgb(190,90,90)
+skeleton_slot_colour_set("slot_pauldron", Red, 1);
+skeleton_slot_colour_set("slot_front thigh", Red, 1);
+skeleton_slot_colour_set("slot_front knee", Red, 1);
+skeleton_slot_colour_set("slot_front shin", Red, 1);
+skeleton_slot_colour_set("slot_front foot", Red, 1);
 
 /* 
 //debug stuff for stress testing

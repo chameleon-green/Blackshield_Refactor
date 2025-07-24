@@ -2,31 +2,29 @@
 #region Node generation function
 function GenerateNodes(NodeDensity){
 
-	var Width = abs(bbox_left - bbox_right);
+	var Width = 32*image_xscale;//abs(bbox_left - bbox_right);
 	var NodeCount = floor(Width/NodeDensity);
 	var NodeHoverHeight = 75;
 	
 	var Angle = degtorad(image_angle);
-	var Yoff = tan(Angle)*Width;
+	var Yoff = sin(Angle)*Width;
+	var Xoff = cos(Angle)*Width;
 	
 	var LeftNodeOffset = clamp(sign(Angle),0,1)*Yoff
 	var RightNodeOffset = clamp(sign(Angle),-1,0)*Yoff
 	
-	instance_create_depth(bbox_left+10,bbox_top+LeftNodeOffset-NodeHoverHeight,depth-1,o_navnode,{creator : id, corner : 1});
-	instance_create_depth(bbox_right-10,bbox_top+RightNodeOffset-NodeHoverHeight,depth-1,o_navnode,{creator : id, corner : 1});
+	instance_create_depth(x,y-NodeHoverHeight,depth-1,o_navnode,{creator : id, corner : 1}); //left corner node
+	instance_create_depth(x+Xoff,y-Yoff-NodeHoverHeight,depth-1,o_navnode,{creator : id, corner : 1}); //right corner node
 	
 	var i = 1;
 	while(i < NodeCount) {
 				
-		var Spacing = Width/NodeCount;		
-		var Yoff2 = Yoff*(i/NodeCount);
-		var YPos = bbox_top-Yoff2
-		if(Angle > 0) {
-			Yoff2 = Yoff*(1-(i/NodeCount));
-			YPos = bbox_top+Yoff2;
-		};
+		var Xoff2 = i*(Xoff/NodeCount);
+		var Yoff2 = Yoff*(i/NodeCount)
+		var XPos = x + Xoff2;
+		var YPos = y - Yoff2;
 		
-		instance_create_depth(bbox_left+Spacing*i,YPos-NodeHoverHeight,depth-1,o_navnode,{creator : id, corner : 0});
+		instance_create_depth(XPos,YPos-NodeHoverHeight,depth-1,o_navnode,{creator : id, corner : 0});
 		i++;
 	};	
 };
@@ -550,7 +548,7 @@ function AStarMovement(PathList,ClosedList,MoveSpeed,NewPath) {
 			
 			//jump when we are approaching a node above us. modify dist_X inequality to jump earlier
 			if(Above && (Dist_X < clamp(JumpDistance,250,1750)) && instance_place(x,y+2+vspd,o_platform)) {				
-				var ShouldJump = !NodeParentCollisionCheck(x,instance_place(x,y+2+vspd,o_platform),NodeNext,4);
+				var ShouldJump = 1; //!NodeParentCollisionCheck(x,instance_place(x,y+2+vspd,o_platform),NodeNext,4);
 				if(ShouldJump) {JumpForce = 1.7*(sqrt(Dist_Y)); Jump = 1};
 			};
 					

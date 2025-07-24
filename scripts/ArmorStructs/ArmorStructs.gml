@@ -8,7 +8,7 @@ function ArmorStructs(){
 		item_type : "power_armor_head",
 		
 		weight : 20, //weight in lbs
-		durability_max : 300,
+		durability_max : 500,
 		rarity : "1350.common",	
 		
 		heat_generation : 5, //heat and armor generation 

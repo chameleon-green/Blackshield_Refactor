@@ -1,3 +1,4 @@
+
 if(place_meeting(x,y,o_navnode)) {
 	instance_destroy(other);
 };
