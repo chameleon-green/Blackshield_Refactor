@@ -188,11 +188,13 @@ function NodeParentCollisionCheck(X,CurrentPlatform,NodeToCheck,Loops) {
 	if(instance_exists(NodeToCheck)) {
 				
 		var NodeNextParent = NodeToCheck.creator;
-		var NodeToLeft = (NodeToCheck.x < X);
-		var NodeToRight = (NodeToCheck.x > X);	
-		if(!NodeToLeft && !NodeToRight) {return 1};
-		if(NodeNextParent = CurrentPlatform) {return 1};
-			
+		//var NodeToLeft = (NodeToCheck.x < X);
+		//var NodeToRight = (NodeToCheck.x > X);	
+		//if(!NodeToLeft && !NodeToRight) {return 1};
+		if(NodeNextParent = CurrentPlatform) {return 0};
+		
+	};
+		/*	
 		with(NodeNextParent){
 		
 			var YCoord = [0,0,0];
@@ -229,8 +231,8 @@ function NodeParentCollisionCheck(X,CurrentPlatform,NodeToCheck,Loops) {
 		
 		
 	} //else{return 0}; //node did not exist, return 0
-	
-	return 7;
+	*/
+	return 0;
 	
 };
 
@@ -537,7 +539,7 @@ function AStarMovement(PathList,ClosedList,MoveSpeed,NewPath) {
 		if(NodeNext != 0 && instance_exists(NodeNext)) {
 			
 			var LOStoNode = !collision_line(x,y-15,NodeNext.x,NodeNext.y,o_platform,1,1)
-			var InRange = (abs(x-NodeNext.x) < 20) && (abs(y-NodeNext.y) < 100) && LOStoNode;
+			var InRange = (abs(x-NodeNext.x) < 20) && (abs(y-NodeNext.y) < 80) && LOStoNode;
 			if(InRange) {ds_list_delete(PathList,ds_list_find_index(PathList,NodeNext))};
 			if(!LOStoNode) {NewPath = 1};
 			
@@ -547,8 +549,8 @@ function AStarMovement(PathList,ClosedList,MoveSpeed,NewPath) {
 			var JumpDistance = 5*sqr(MoveSpeed)
 			
 			//jump when we are approaching a node above us. modify dist_X inequality to jump earlier
-			if(Above && (Dist_X < clamp(JumpDistance,250,1750)) && instance_place(x,y+2+vspd,o_platform)) {				
-				var ShouldJump = 1; //!NodeParentCollisionCheck(x,instance_place(x,y+2+vspd,o_platform),NodeNext,4);
+			if(Above && (Dist_X < JumpDistance) && instance_place(x,y+2+vspd,o_platform)) {				
+				var ShouldJump = !NodeParentCollisionCheck(x,instance_place(x,y+2+vspd,o_platform),NodeNext,4);
 				if(ShouldJump) {JumpForce = 1.7*(sqrt(Dist_Y)); Jump = 1};
 			};
 					

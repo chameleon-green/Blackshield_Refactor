@@ -24,7 +24,7 @@ function ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy=0){
 				else if(Bullet.damage_type = "electric") {var resist = clamp((ResistArray[5]*DRatio)+resist_base[5],0,9999999)}
 				else if(Bullet.damage_type = "biohazard") {var resist = clamp((ResistArray[6]*DRatio)+resist_base[6],0,9999999)}
 				else if(Bullet.damage_type = "warp") {var resist = clamp((ResistArray[7]*DRatio)+resist_base[7],0,9999999)}
-				else {return 0; exit};
+				else {return 0};
 				
 				if(Damage <= (resist-Bullet.penetration)){
 					

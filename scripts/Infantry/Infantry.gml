@@ -30,12 +30,12 @@ function InfantryCreateGeneric() {
 	death = [0,0,0]; //0=dead, 1=dying, 2=anim toggle
 	
 	resist_base = [0,0,0,0,0,0,0,0,0];
-	resist_head = [25,0,0,0,0,0,0,0,0]; //phys0, ther1, cryo2, corr3, radi4, elec5, hazm6, warp7
-	resist_torso = [25,0,0,0,0,0,0,0,0];
-	resist_armL = [17,0,0,0,0,0,0,0,0];
-	resist_armR = [17,0,0,0,0,0,0,0,0];
-	resist_legL = [17,0,0,0,0,0,0,0,0];
-	resist_legR = [17,0,0,0,0,0,0,0,0];
+	resist_head = [25,30,0,0,0,0,0,0,0]; //phys0, ther1, cryo2, corr3, radi4, elec5, hazm6, warp7
+	resist_torso = [25,30,0,0,0,0,0,0,0];
+	resist_armL = [17,20,0,0,0,0,0,0,0];
+	resist_armR = [17,20,0,0,0,0,0,0,0];
+	resist_legL = [17,20,0,0,0,0,0,0,0];
+	resist_legR = [17,20,0,0,0,0,0,0,0];
 
 	hbox_head = [-25,135,25,105];
 	hbox_torso = [-30,105,30,60];
@@ -86,10 +86,12 @@ function InfantryCreateGeneric() {
 	
 	// Pathfinding stuff
 	MyTarget = o_player;
-	TargetNodeTimer = [0,irandom_range(8,15)];
+	TargetNodeTimer = timer_create(irandom_range(10,20),0);
 	
 	NewPath = 0;
 	NewPathToggle = 1;
+	RepathTimer = timer_create(300,1); //a timer to see if we have progressed our path
+	LastKnownNode = [-1,-1]; //the last known nodes in our path, used by repathtimer
 	
 	fleeing = 0;
 	aware = 1;
@@ -194,7 +196,7 @@ function InfantryStepGeneric() {
 	
 		col_bot = place_meeting(x,y+2,o_platform);
 	
-		if(canshoot && LOSandRange && col_bot && !fleeing) {firing = 1};
+		//if(canshoot && LOSandRange && col_bot && !fleeing) {firing = 1};
 	
 		if(instance_exists(MyTarget)) {
 			//if we are not fleeing, face our target
@@ -215,13 +217,13 @@ function InfantryStepGeneric() {
 	
 	
 		//If we are not actively engaged, and our target refresh is available, find a new target node
-		TargetNodeTimer[0] += 1;
-		if(firing or (TargetNodeTimer[0] > (TargetNodeTimer[1]+3) )) {TargetNodeTimer[0] = 0};
-	
-		if(!firing && (TargetNodeTimer[0] > TargetNodeTimer[1])) {
+		var TargetNodeTick = 0;
+		if(!firing) {TargetNodeTick = timer_tick(TargetNodeTimer,0)};
+		
+		if(!firing and TargetNodeTick) {
 			TargetNodePrevious = TargetNode;
 			var LOSList = ds_list_create();
-			var NodesInLos = nodes_in_los(600,o_platform,o_navnode,MyTarget.x,MyTarget.y-50,-1);	
+			var NodesInLos = nodes_in_los(3600,o_platform,o_navnode,MyTarget.x,MyTarget.y-50,-1);	
 			if(NodesInLos != -1) {
 				ds_list_read(LOSList,NodesInLos);	
 				TargetNode = ds_list_nearest(LOSList,MyTarget.x,MyTarget.y-50,0);
@@ -229,7 +231,17 @@ function InfantryStepGeneric() {
 			ds_list_destroy(LOSList);
 			TargetNodeTimer[0] = 0;
 		};
-	
+		
+		//if we have not reached our next node for a specified period, generate a new path
+		var RepathCheck = timer_tick(RepathTimer,1);
+		LastKnownNode[0] = ds_list_find_value(PathList,0);
+		if(RepathCheck) {
+			timer_reset(RepathTimer,0);
+			LastKnownNode[1] = ds_list_find_value(PathList,0);
+			if(LastKnownNode[0] = LastKnownNode[1]) {NewPath = 1};
+		};
+
+		
 	
 		//Find a new path when commanded to
 		if(NewPath) {	
@@ -238,12 +250,22 @@ function InfantryStepGeneric() {
 			if(ds_list_find_index(o_IC.AIQ,id) = -1 and !ClearToProcess) {ds_list_add(o_IC.AIQ,id)};
 			if(ClearToProcess) {		
 				ClearToProcess = 0;
+				
 				//get us a new starting node for this new path
 				var LOSList = ds_list_create();
 				var NodesInLos = nodes_in_los(600,o_platform,o_navnode,x,y-50,-1);
 				if(NodesInLos != -1) {
 					ds_list_read(LOSList,NodesInLos);	
 					StartNode = ds_list_nearest(LOSList,x,y-50,0);
+				};
+				ds_list_destroy(LOSList);
+				
+				//get us a new target node for this new path
+				var LOSList = ds_list_create();
+				var NodesInLos = nodes_in_los(3600,o_platform,o_navnode,MyTarget.x,MyTarget.y-50,-1);	
+				if(NodesInLos != -1) {
+					ds_list_read(LOSList,NodesInLos);	
+					TargetNode = ds_list_nearest(LOSList,MyTarget.x,MyTarget.y-50,0);
 				};
 				ds_list_destroy(LOSList);
 		

@@ -2,6 +2,7 @@
 
 
 draw_self();
+draw_text(x,bbox_top,string(id));
 /*
 var LOSList = ds_list_create();
 			ds_list_read(LOSList,nodes_in_los(4000,o_platform,o_navnode,x,y,-1));

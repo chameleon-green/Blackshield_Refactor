@@ -123,6 +123,7 @@
     {"id":{"name":"o_player","path":"objects/o_player/o_player.yy",},},
     {"id":{"name":"o_scrollbar","path":"objects/o_scrollbar/o_scrollbar.yy",},},
     {"id":{"name":"o_swing","path":"objects/o_swing/o_swing.yy",},},
+    {"id":{"name":"o_test_generic","path":"objects/o_test_generic/o_test_generic.yy",},},
     {"id":{"name":"o_timertest","path":"objects/o_timertest/o_timertest.yy",},},
     {"id":{"name":"o_xhair","path":"objects/o_xhair/o_xhair.yy",},},
     {"id":{"name":"oprt_beam","path":"objects/oprt_beam/oprt_beam.yy",},},

@@ -269,7 +269,6 @@ function AmmoStructs() {
 		inventory_subimage : [sp_xhair, 6]
 	};
 	
-	
 	Ammo_Melta_Standard = {//---------------------------- melta fuel
 		
 		item_type : "ammo_melta",

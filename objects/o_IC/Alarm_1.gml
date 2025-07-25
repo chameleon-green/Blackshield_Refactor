@@ -1,4 +1,4 @@
-alarm[1] = 6;
+alarm[1] = 10;
 
 
 var AIsToProcess = ds_list_size(AIQ);
@@ -6,7 +6,7 @@ var AIsToProcess = ds_list_size(AIQ);
 if(AIsToProcess > 0){
 	
 	var i = 0;
-	var Amount = clamp(AIsToProcess,0,2);
+	var Amount = clamp(AIsToProcess,0,5); //max number of AIs to process in one frame
 	while(i < Amount) {
 		var AI = AIQ[| i];
 		if((typeof(AI) = "ref") && instance_exists(AI)) {
