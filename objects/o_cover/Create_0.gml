@@ -22,9 +22,9 @@ top_obj = 0
 //one pillar = 48px, one window = 144px
 
 if(place_meeting(x,y+1,o_cover)) { //checks if there is a cover object below us for multi-story ruins
-	bot_obj = instance_place(x,y+1,o_cover)
-	col_bot = 1
-	}
+	bot_obj = instance_place(x,y+1,o_cover);
+	col_bot = 1;
+	};
 
 if(place_meeting(x,y-1,o_cover)) { //checks if there is a cover object above us for multi-story ruins
 	top_obj = instance_place(x,y-1,o_cover)
@@ -47,14 +47,15 @@ if(place_meeting(x,y+33,o_platform)) { //checks if we are the ground level
 };
 	
 if(!col_ground) { //creates a platform for this floor if we are above the ground
-	myplatform = instance_create_depth(x,y,depth,o_platform)
-	with (myplatform) {
-		image_xscale = other.sizex*(192/32)
-		image_yscale = 0.5
-		draw_tiles_top = 0
-		creator = other
-	}
-}
+	myplatform = instance_create_depth(x,y,depth,o_platform,{ //pre creation variable setting
+		image_xscale : sizex*(192/32),
+		image_yscale : 0.5,		
+	});
+	with(myplatform) { //post creation variable setting
+		draw_tiles_top = 0;
+		creator = other;		
+	};
+};
 
 //+++++++++++++++++++++++++++++++++++++++++++++ INITIALIZE SELF +++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -125,8 +126,8 @@ barrier_right = instance_create_depth(x,y,50,o_barrier);
 with (barrier_right){
 		image_xscale = 1;
 		image_yscale = 150;
-		x = other.bbox_right + 24;
-		y = other.y;
+		x = other.bbox_right + 18;
+		y = other.y+12;
 		//sound = other.sound
 };
 
@@ -135,8 +136,8 @@ barrier_left = instance_create_depth(x,y,50,o_barrier);
 with (barrier_left){
 		image_xscale = -1;
 		image_yscale = 150;
-		x = other.bbox_left - 24;
-		y = other.y;
+		x = other.bbox_left - 18;
+		y = other.y+12;
 		//sound = other.sound
 };
 

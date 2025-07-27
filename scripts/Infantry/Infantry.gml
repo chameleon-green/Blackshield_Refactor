@@ -204,7 +204,7 @@ function InfantryStepGeneric() {
 			//if(target.x > x) {image_xscale = -1} else{image_xscale = 1}
 			};
 	
-			var pl_offset = MyTarget.y+(MyTarget.bbox_top - MyTarget.bbox_bottom)/2;
+			var pl_offset = 20+MyTarget.y+(MyTarget.bbox_top - MyTarget.bbox_bottom)/2;
 			var yyy = y+(bbox_top-bbox_bottom)/2;
 			direc = point_direction(x,yyy,MyTarget.x,pl_offset);
 		};

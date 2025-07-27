@@ -8,7 +8,7 @@ function ArmorStructs(){
 		item_type : "power_armor_head",
 		
 		weight : 20, //weight in lbs
-		durability_max : 500,
+		durability_max : 2000,
 		rarity : "1350.common",	
 		
 		heat_generation : 5, //heat and armor generation 
@@ -40,7 +40,7 @@ function ArmorStructs(){
 		item_type : "power_armor_torso",
 		
 		weight : 110, //weight in lbs
-		durability_max : 1000,
+		durability_max : 3700,
 		rarity : "1350.common",	
 		
 		heat_generation : 25, //heat and armor generation 
@@ -71,7 +71,7 @@ function ArmorStructs(){
 		item_type : "power_armor_armL",
 		
 		weight : 40, //weight in lbs
-		durability_max : 400,
+		durability_max : 1400,
 		rarity : "1350.common",	
 		
 		heat_generation : 8, //heat and armor generation 
@@ -100,7 +100,7 @@ function ArmorStructs(){
 		item_type : "power_armor_armR",
 		
 		weight : 40, //weight in lbs
-		durability_max : 400,
+		durability_max : 1400,
 		rarity : "1350.common",	
 		
 		heat_generation : 8, //heat and armor generation 
@@ -130,7 +130,7 @@ function ArmorStructs(){
 		item_type : "power_armor_legL",
 		
 		weight : 60, //weight in lbs
-		durability_max : 700,
+		durability_max : 2300,
 		rarity : "1350.common",	
 		
 		heat_generation : 12, //heat and armor generation 
@@ -160,7 +160,7 @@ function ArmorStructs(){
 		item_type : "power_armor_legR",
 		
 		weight : 60, //weight in lbs
-		durability_max : 700,
+		durability_max : 2300,
 		rarity : "1350.common",	
 		
 		heat_generation : 12, //heat and armor generation 

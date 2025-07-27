@@ -78,28 +78,7 @@ function FireGun (){
 			};
 	};
 	
-	//------------------------------------------------------ make casing ----------------------------------------------------
-	
-	
-	if(ammo_active.casing_type != "none" ) {
-		var ejection_map = ds_map_create();
-		skeleton_bone_state_get("gun_anim", ejection_map);
-		var EjectX = ds_map_find_value(ejection_map, "worldX");
-		var EjectY = ds_map_find_value(ejection_map, "worldY");
-		//var EjectAng = ds_map_find_value(ejection_map, "worldAngleX");
-
-		instance_create_depth(EjectX,EjectY,depth-1,o_gib,{
-			sprite_index : other.ammo_active.casing_type[0],
-			image_index : other.ammo_active.casing_type[1],
-			hspd : -irandom_range(8,12)*other.image_xscale,
-			vspd : -random_range(3,5),
-			angspeed : irandom_range(-25,25),
-			impact_sound : other.ammo_active.casing_sound[0],
-			impact_sound_pitch : other.ammo_active.casing_sound[1]
-		});
-
-		ds_map_destroy(ejection_map);
-	}; // eject event end
+	//----------------------------------------------------------------------------------------------------
 	
 	if(wpn_active.heat_generation > 0) {
 			if(IsCharge) {wpn_active_heat += wpn_active.heat_generation*ChargeMult*ChargeMult}

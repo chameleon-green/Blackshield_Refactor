@@ -42,7 +42,7 @@ if(col_barrier and !Flames){
 	var list = col_barrier.col_list;
 	var collided = ds_list_find_index(list,id)
 	
-	if(chance <= 75 and !collided){
+	if(chance <= col_barrier.chance and !collided){
 		var facing = sign(col_barrier.image_xscale);
 		var dist = distance_to_object(col_barrier)+random_range(-15,50);
 		//var killme = 0
@@ -54,13 +54,12 @@ if(col_barrier and !Flames){
 				depth = -999;
 				x=x+lengthdir_x(dist,direction);
 				y=y+lengthdir_y(dist,direction);
-				damage = 0;
-				hp = 0;
+				instance_destroy(self);
 				//kill_sound = col_barrier.sound[irandom_range(0,3)]	
 		};
 	};
 		
-	if(chance > 75){
+	if(chance > col_barrier.chance){
 		if(ds_list_find_index(list,id)=-1) {ds_list_add(list,id)};
 	};
 };
@@ -71,7 +70,9 @@ if(!IsBeam && !Flames){
 	
 	var _XX = x+lengthdir_x(base_speed,direction);
 	var _YY = y+lengthdir_y(base_speed,direction);
-	var col_actor = collision_line_list(x,y,_XX,_YY,o_actorParent,0,1,col_list,1);
+	var _XXA = x+lengthdir_x(base_speed*1.2,direction);
+	var _YYA = y+lengthdir_y(base_speed*1.2,direction);
+	var col_actor = collision_line_list(x,y,_XXA,_YYA,o_actorParent,0,1,col_list,1);
 	var Trigger = 0;
 	
 	if(col_actor > 0){		

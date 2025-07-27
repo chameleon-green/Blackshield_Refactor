@@ -18,7 +18,7 @@ if(col_barrier and !Flames){
 	var list = col_barrier.col_list;
 	var collided = ds_list_find_index(list,id)
 	
-	if(chance <= 75 and !collided){
+	if(chance <= col_barrier.chance and !collided){
 		var facing = sign(col_barrier.image_xscale);
 		var dist = distance_to_object(col_barrier)+random_range(-15,50);
 		//var killme = 0
@@ -30,13 +30,12 @@ if(col_barrier and !Flames){
 				depth = -999;
 				x=x+lengthdir_x(dist,direction);
 				y=y+lengthdir_y(dist,direction);
-				damage = 0;
-				hp = 0;
+				instance_destroy(self);
 				//kill_sound = col_barrier.sound[irandom_range(0,3)]	
 		};
 	};
 		
-	if(chance > 75){
+	if(chance > col_barrier.chance){
 		if(ds_list_find_index(list,id)=-1) {ds_list_add(list,id)};
 	};
 };
@@ -47,11 +46,11 @@ var col_list = ds_list_create();
 
 if(!IsBeam && !Flames){
 	
-	
-	
 	var _XX = x+lengthdir_x(base_speed,direction);
 	var _YY = y+lengthdir_y(base_speed,direction);
-	var col_actor = collision_line_list(x,y,_XX,_YY,o_actorParent,0,1,col_list,1);
+	var _XXA = x+lengthdir_x(base_speed*1.2,direction);
+	var _YYA = y+lengthdir_y(base_speed*1.2,direction);
+	var col_actor = collision_line_list(x,y,_XXA,_YYA,o_actorParent,0,1,col_list,1);
 	var Trigger = 0;
 	
 	if(col_actor > 0){		
@@ -100,6 +99,7 @@ if(!IsBeam && !Flames){
 
 if(IsBeam && beamToggle) {
 	
+	var MainBreak = 0;
 	var max_length = 4000;
 	var Beam_Mod = 200; //beam length increase per tick, modified when detecting something
 	
@@ -117,10 +117,42 @@ if(IsBeam && beamToggle) {
 		
 		beamLength+=12;
 		
-		//-----------------------------------------------------------------------------------------------------	
+	//----------------------------------------- BEAM BARRIER COLLISIONS -----------------------------------------
+				
+		col_barrier = collision_point(lx, ly, o_barrier, false, true);
+		
+		if(col_barrier) {
+	
+			var kill_barrier = 0;
+			var chance = irandom_range(0,100);
+			var list = col_barrier.col_list;
+			var collided = ds_list_find_index(list,id)
+	
+			if(chance <= col_barrier.chance and !collided){
+				var facing = sign(col_barrier.image_xscale);
+				var dist = distance_to_object(col_barrier)+random_range(-15,50);
+	
+				if(facing = 1 and (lx < col_barrier.bbox_right)) {kill_barrier = 1};
+				if(facing = -1 and (lx > col_barrier.bbox_left)) {kill_barrier = 1};
+	
+				if(kill_barrier){
+					beamLength += (random_range(0,50));
+					depth = -999;
+					damage = 0;
+					hp = 0;
+					MainBreak = 1;
+				//kill_sound = col_barrier.sound[irandom_range(0,3)]	
+				};
+			};
+		
+		if(chance > col_barrier.chance){
+			if(ds_list_find_index(list,id)=-1) {ds_list_add(list,id)};
+		};
+	};	
+		
+	//------------------------------------------ BEAM ACTOR COLLISIONS ------------------------------------------	
 		var ActorCollision = collision_line_list(x,y,lxa,lya,o_actorParent,0,true,col_list,true);
 		var ActorCounter = 0;
-		var MainBreak = 0;
 		while (ActorCounter<ActorCollision) {
 			var Actor = ds_list_find_value(col_list,ActorCounter);		
 			if(instance_exists(Actor)){
@@ -129,12 +161,10 @@ if(IsBeam && beamToggle) {
 			ActorCounter+=1;
 		};
 		
-		if(MainBreak) {beamToggle = 0; kill = 1; break};
-		//------------------------------------------------------------------------------------------------------
+		if(MainBreak) {beamToggle = 0; kill = 1; break};		
 		
-		
-	};
-};
+	}; //beam length check end
+}; //isbeam check
 
 if(beamLength >= 4000) {kill = 1};
 

@@ -28,8 +28,8 @@ function PlayerStatsCalculator() {
 	STR = Base.STR + Mod.STR;	
 	WIL = Base.WIL + Mod.WIL;
 	 
-	BaseMaxHP = StatAsymptote( (Base.END*9) + (Base.LCK/3) + (Base.WIL/2) , 1000);
-	MaxHP = StatAsymptote( (END*9) + (LCK/3) + (WIL/2) , 1000);
+	BaseMaxHP = StatAsymptote( (Base.END*9) + (Base.LCK/3) + (Base.WIL/2) , 1500);
+	MaxHP = StatAsymptote( (END*9) + (LCK/3) + (WIL/2) , 1500);
 	MaxStamina = StatAsymptote( (END*2.5) + (AGI/4) + (WIL/4) , 300); 
 	MaxWill = StatAsymptote(WIL*3, 300);
 	

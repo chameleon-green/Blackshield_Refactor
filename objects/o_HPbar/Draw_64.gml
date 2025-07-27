@@ -22,7 +22,7 @@ if(Powered = 1) {
 #region drawing bars, status body and main element
 
 //draw actual bars
-var HPGlassScale = (BarHPMax/800)*MaxBarScale; var StamGlassScale = (BarStaminaMax/300)*MaxBarScale; var WillGlassScale = (BarWillMax/300)*MaxBarScale;
+var HPGlassScale = (BarHPMax/1500)*MaxBarScale; var StamGlassScale = (BarStaminaMax/300)*MaxBarScale; var WillGlassScale = (BarWillMax/300)*MaxBarScale;
 var HPBarScale = (BarHP/BarHPMax)*HPGlassScale; var StamBarScale = (BarStamina/BarStaminaMax)*StamGlassScale; var WillBarScale = (BarWill/BarWillMax)*WillGlassScale;
 draw_sprite_ext(sp_healthbars,0,(126+XOffset)*scale,46*scale,HPBarScale*scale,scale,0,c_white,1);
 draw_sprite_ext(sp_healthbars,1,(126+XOffset)*scale,67*scale,StamBarScale*scale,scale,0,c_white,1);
