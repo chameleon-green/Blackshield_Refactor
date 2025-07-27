@@ -1,7 +1,7 @@
 
 draw_self();
 
-
+if(instance_exists(TargetNode)) {draw_text(TargetNode.x,TargetNode.bbox_top,"NODE")};
 /*
 draw_text(x,bbox_top,string(HP) + "/" + string(max_hp));
 draw_rectangle(bbox_left,bbox_top,bbox_right,bbox_bottom,1);

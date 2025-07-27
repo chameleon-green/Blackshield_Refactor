@@ -46,7 +46,9 @@ function ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy=0){
 						}; //item ID check
 					} //enemy check
 					else{};
-
+					
+					Bullet.base_speed = 0;
+					Bullet.speed = 0;
 					Bullet.hp = 0;
 					Bullet.endBeam = 1;
 					return 0;
@@ -98,7 +100,14 @@ function ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy=0){
 					
 					Bullet.hp -= resist;
 					Bullet.damage = Bullet.hp;
-					if(Bullet.hp <= Bullet.fuse) {Bullet.kill = 1};
+					if(Bullet.hp <= Bullet.fuse) {
+						
+						Bullet.base_speed = 0;
+						Bullet.speed = 0;
+						Bullet.hp = 0;
+						Bullet.endBeam = 1;
+						Bullet.kill = 1
+					};
 							
 					return NetDamage;
 				};

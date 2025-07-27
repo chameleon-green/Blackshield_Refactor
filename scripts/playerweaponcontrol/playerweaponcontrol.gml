@@ -38,7 +38,8 @@ function FireGun (){
 				image_xscale : 0.75,
 				image_yscale : 0.25,
 				vspd : 0,//other.vspd_readonly,
-				hspd : 0//other.hspd,
+				hspd : 0,//other.hspd,
+				range : wpn_active.range
 			});
 		};
 	}
@@ -57,7 +58,9 @@ function FireGun (){
 			//image_xscale : ChargeMult,
 			image_yscale : ChargeMult,
 			vspd : 0,//other.vspd_readonly,
-			hspd : 0//other.hspd,
+			hspd : 0,//other.hspd,
+			range : wpn_active.range,
+			creator : id
 		});
 	};
 	

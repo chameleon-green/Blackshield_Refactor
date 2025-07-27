@@ -1,0 +1,1 @@
+if(hp < fuse) {instance_destroy(self)};

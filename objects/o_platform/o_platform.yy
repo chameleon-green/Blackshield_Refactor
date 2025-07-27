@@ -13,7 +13,10 @@
     "name":"Objects: Terrain",
     "path":"folders/Objects/Objects: Terrain.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"o_masterParent",
+    "path":"objects/o_masterParent/o_masterParent.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

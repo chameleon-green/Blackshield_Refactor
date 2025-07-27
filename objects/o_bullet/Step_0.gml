@@ -1,11 +1,12 @@
-
+//var MyRange = point_distance(x,y,origin_x,origin_y);
+//if(MyRange >= range) {instance_destroy(self)};
 
 if(!IsBeam) {VisualCulling()};
 
 //-------------------------------------------- barrier collision -----------------------------------------
 
-var _XX = x+lengthdir_x(base_speed,direction);
-var _YY = y+lengthdir_y(base_speed,direction);
+var _XX = x+lengthdir_x(base_speed*2,direction);
+var _YY = y+lengthdir_y(base_speed*2,direction);
 var col_barrier = collision_line(x,y,_XX,_YY,o_barrier,true,1);
 
 if(col_barrier and !Flames){
@@ -46,29 +47,16 @@ var col_list = ds_list_create();
 
 if(!IsBeam && !Flames){
 	
+	
+	
 	var _XX = x+lengthdir_x(base_speed,direction);
 	var _YY = y+lengthdir_y(base_speed,direction);
-	var _XXA = x+lengthdir_x(base_speed*3,direction);
-	var _YYA = y+lengthdir_y(base_speed*3,direction);
 	var col_actor = collision_line_list(x,y,_XX,_YY,o_actorParent,0,1,col_list,1);
+	var Trigger = 0;
 	
-	if(collision_line(x,y,_XX,_YY,o_platform,0,1)){	
-		//speed = 0;
-		var Line_Length1 = 0;
-		var Collided1 = place_meeting(x,y,o_platform);
-		while(!Collided1 and (Line_Length1 < base_speed)) {
-			Line_Length1 += 2;		
-			x = x+lengthdir_x(Line_Length1,direction);
-			y = y+lengthdir_y(Line_Length1,direction);
-			var Collided1 = place_meeting(x,y,o_platform);
-		};
-		if(Line_Length1 < base_speed) {instance_destroy(self)};
-	};
-
 	if(col_actor > 0){		
 		var i = 0;
-		var Actor = -1;
-		var Trigger = 0;
+		var Actor;
 		while(i<col_actor) {
 			Actor = col_list[| i];
 			if(instance_exists(Actor)) {
@@ -82,15 +70,30 @@ if(!IsBeam && !Flames){
 			speed = 0;
 			var Line_Length2 = 0;
 			var Collided2 = place_meeting(x,y,Actor);
-			while(!Collided2 and (Line_Length2 < base_speed*3.1)) {
+			while(!Collided2 and (Line_Length2 < base_speed*3)) {
 				Line_Length2 += 2;		
-				x = x+lengthdir_x(Line_Length2-10,direction);
-				y = y+lengthdir_y(Line_Length2-10,direction);
-				var Collided2 = place_meeting(x,y,Actor);
-			};	
+				x = x+lengthdir_x(Line_Length2,direction);
+				y = y+lengthdir_y(Line_Length2,direction);
+				Collided2 = place_meeting(x,y,Actor);
+			};
+			Trigger = 0;
 		};
 	};
 	
+	if((hp <= fuse) and !Flames) {instance_destroy(self)};
+	
+	if(collision_line(x,y,_XX,_YY,o_platform,0,1)){	
+		//speed = 0;
+		var Line_Length1 = 0;
+		var Collided1 = place_meeting(x,y,o_platform);
+		while(!Collided1 and (Line_Length1 < base_speed)) {
+			Line_Length1 += 2;		
+			x = x+lengthdir_x(Line_Length1,direction);
+			y = y+lengthdir_y(Line_Length1,direction);
+			Collided1 = place_meeting(x,y,o_platform);
+		};
+		if(Line_Length1 < base_speed) {instance_destroy(self)};
+	};	
 };
 
 //---------------------------------------- special projectile code -------------------------------------
@@ -150,7 +153,7 @@ if(Flames) {
 
 //------------------------------------------------------- maintenance ---------------------------------------------------
 
-if((hp <= fuse) and !Flames) {instance_destroy(self)};
-x+=hspd; y+=vspd;
+
+//x+=hspd; y+=vspd;
 speed = base_speed;
 ds_list_destroy(col_list);

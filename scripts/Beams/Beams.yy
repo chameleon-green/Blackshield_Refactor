@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"Beams",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"Beams",
+  "parent":{
+    "name":"Generic",
+    "path":"folders/Scripts/Generic.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

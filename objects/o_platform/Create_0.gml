@@ -1,5 +1,5 @@
 depth = -102;
-GenerateNodes(350);
+GenerateNodes(450);
 creator = undefined;
 draw_tiles_top = 1;//!place_meeting(x,y-1,obj_platform);
 hill = 0;

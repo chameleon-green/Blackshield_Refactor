@@ -180,17 +180,13 @@ function nodes_in_los(SearchRadius,wall_object,node_object,x,y,closed_list,area=
 
 #region check if our next node parent collides with current platform (jump check for hills)
 
-function NodeParentCollisionCheck(X,CurrentPlatform,NodeToCheck,Loops) {
+function NodeParentCollisionCheck(CurrentPlatform,NodeToCheck) {
 	
 	var NextPlatform = 0;
-	var LoopCount = 0;
 	
 	if(instance_exists(NodeToCheck)) {
 				
 		var NodeNextParent = NodeToCheck.creator;
-		//var NodeToLeft = (NodeToCheck.x < X);
-		//var NodeToRight = (NodeToCheck.x > X);	
-		//if(!NodeToLeft && !NodeToRight) {return 1};
 		if(NodeNextParent = CurrentPlatform) {return 0};
 		
 	};
@@ -232,7 +228,7 @@ function NodeParentCollisionCheck(X,CurrentPlatform,NodeToCheck,Loops) {
 		
 	} //else{return 0}; //node did not exist, return 0
 	*/
-	return 0;
+	return 1;
 	
 };
 
@@ -546,12 +542,12 @@ function AStarMovement(PathList,ClosedList,MoveSpeed,NewPath) {
 			var Above = ( ((y-55)-NodeNext.y) > 40);
 			var Dist_X = abs(NodeNext.x - x);
 			var Dist_Y = abs(NodeNext.y - y); // mid_y)
-			var JumpDistance = 5*sqr(MoveSpeed)
+			var JumpDistance = 2*sqr(MoveSpeed)
 			
 			//jump when we are approaching a node above us. modify dist_X inequality to jump earlier
 			if(Above && (Dist_X < JumpDistance) && instance_place(x,y+2+vspd,o_platform)) {				
-				var ShouldJump = !NodeParentCollisionCheck(x,instance_place(x,y+2+vspd,o_platform),NodeNext,4);
-				if(ShouldJump) {JumpForce = 1.7*(sqrt(Dist_Y)); Jump = 1};
+				var ShouldJump = NodeParentCollisionCheck(instance_place(x,y+4+vspd,o_platform),NodeNext);
+				if(ShouldJump) {JumpForce = 1.9*(sqrt(Dist_Y)); Jump = 1};
 			};
 					
 			if((NodeNext.x > x) && (Dist_X > MoveSpeed)) {Right = 1};

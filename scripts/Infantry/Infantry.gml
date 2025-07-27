@@ -90,7 +90,7 @@ function InfantryCreateGeneric() {
 	
 	NewPath = 0;
 	NewPathToggle = 1;
-	RepathTimer = timer_create(300,1); //a timer to see if we have progressed our path
+	RepathTimer = timer_create(200,1); //a timer to see if we have progressed our path
 	LastKnownNode = [-1,-1]; //the last known nodes in our path, used by repathtimer
 	
 	fleeing = 0;
@@ -196,7 +196,7 @@ function InfantryStepGeneric() {
 	
 		col_bot = place_meeting(x,y+2,o_platform);
 	
-		//if(canshoot && LOSandRange && col_bot && !fleeing) {firing = 1};
+		if(canshoot && LOSandRange && col_bot && !fleeing) {firing = 1};
 	
 		if(instance_exists(MyTarget)) {
 			//if we are not fleeing, face our target
@@ -246,7 +246,7 @@ function InfantryStepGeneric() {
 		//Find a new path when commanded to
 		if(NewPath) {	
 			NewPath = 0;
-			//ClearToProcess = 0;
+		
 			if(ds_list_find_index(o_IC.AIQ,id) = -1 and !ClearToProcess) {ds_list_add(o_IC.AIQ,id)};
 			if(ClearToProcess) {		
 				ClearToProcess = 0;
@@ -359,7 +359,7 @@ function InfantryStepGeneric() {
 			else{var FlashX = x var FlashY = bbox_top};
 			
 			instance_create_depth(FlashX,FlashY,depth-1,o_bullet,{
-				direction : direc + random_range(-other.weapon_ranged.spread,other.weapon_ranged.spread),
+				direction : direc + random_range(-other.weapon_ranged.spread*5,other.weapon_ranged.spread*5),
 				speed : weapon_ranged.muzzle_velocity,
 				type : ammo_type_primary,
 				damage : weapon_ranged.damage,

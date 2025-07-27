@@ -46,10 +46,10 @@ Boltgun_Phobos = { //---------------------------- PHOBOS BOLTER
 		//combat stats
 		damage : 65, //65
 		ROF : FindROF(450), //rounds per minute
-		range : 4000, //effective range before gravity takes hold, rounds can mod this
+		range : 3000, //effective range before gravity takes hold, rounds can mod this
 		capacity : 30,		
 		spread : 0.2,
-		muzzle_velocity : 70,
+		muzzle_velocity : 90,
 		
 		//technical weapon stats
 		weapon_type : "rifle_bolt",

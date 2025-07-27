@@ -23,7 +23,6 @@ draw_self();
 //draw core of bullet
 if(sprite_index = sp_bullet) {draw_sprite_ext(sp_bullet,1,x,y,image_xscale,image_yscale,image_angle,type.projectile_color[1],1)};
 if(sprite_index = sp_beam) {draw_sprite_ext(sp_beam,1,x,y,image_xscale,image_yscale*0.3,direction,type.projectile_color[1],1)};
-draw_text(x,y,Flames);
 
 if(kill = 1) {	
 	time_source_start(kill_timer);
