@@ -23,9 +23,9 @@ if(Will > MaxWill) {Will = MaxWill};
 
 PlayerMovement();
 
-ImpactScript(o_bullet,"head",hbox_head,collisions_list);
-ImpactScript(o_bullet,["torso","torso","torso","torso","armL","armL","armR","armR"],hbox_torso,collisions_list);
-ImpactScript(o_bullet,["legL","legR"],hbox_legs,collisions_list);
+ImpactScript(o_bullet,"head",hbox_head,collisions_list,0);
+ImpactScript(o_bullet,["torso","torso","torso","torso","armL","armL","armR","armR"],hbox_torso,collisions_list,0);
+ImpactScript(o_bullet,["legL","legR"],hbox_legs,collisions_list,0);
 
 //-------------------------------------------- HEAT STUFF --------------------------------------------------
 	var IsRanged = string_count("ranged",wpn_active.item_type);

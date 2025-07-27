@@ -9,7 +9,9 @@ damage_type = type.damage_type[0];
 penetration = damage*type.armor_penetration;
 hp = clamp(damage,0,200);
 fuse = hp-(hp*type.fuse); //a fuse of "0.1" means 10% fusing, i.e. 10% hp loss to trigger detonation
+
 impact_type = type.impact_type;
+impact_wall = 0; //check if we are destroyed as a result of a platform/barrier
 
 base_speed = speed;
 
@@ -44,19 +46,18 @@ if(col_barrier and !Flames){
 	
 	if(chance <= col_barrier.chance and !collided){
 		var facing = sign(col_barrier.image_xscale);
-		var dist = distance_to_object(col_barrier)+random_range(-15,50);
-		//var killme = 0
+		var dist = distance_to_object(col_barrier)+random_range(10,60);
 	
 		if(facing = 1 and x > col_barrier.bbox_right) {var kill_barrier = 1};
 		if(facing =-1 and x < col_barrier.bbox_left) {var kill_barrier = 1};
-	
-		if(kill_barrier){
-				depth = -999;
-				x=x+lengthdir_x(dist,direction);
-				y=y+lengthdir_y(dist,direction);
-				instance_destroy(self);
-				//kill_sound = col_barrier.sound[irandom_range(0,3)]	
-		};
+			
+		depth = -999;
+		x=x+lengthdir_x(dist,direction);
+		y=y+lengthdir_y(dist,direction);
+		impact_wall = 1;
+		instance_destroy(self);
+		//kill_sound = col_barrier.sound[irandom_range(0,3)]	
+		
 	};
 		
 	if(chance > col_barrier.chance){
@@ -113,7 +114,10 @@ if(!IsBeam && !Flames){
 			y = y+lengthdir_y(Line_Length1,direction);
 			var Collided1 = place_meeting(x,y,o_platform);
 		};
-		if(Line_Length1 < base_speed) {instance_destroy(self)};
+		if(Line_Length1 < base_speed) {
+			impact_wall = 1;
+			instance_destroy(self);
+		};
 	};	
 };
 

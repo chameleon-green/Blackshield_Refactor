@@ -30,12 +30,12 @@ function InfantryCreateGeneric() {
 	death = [0,0,0]; //0=dead, 1=dying, 2=anim toggle
 	
 	resist_base = [0,0,0,0,0,0,0,0,0];
-	resist_head = [25,30,0,0,0,0,0,0,0]; //phys0, ther1, cryo2, corr3, radi4, elec5, hazm6, warp7
-	resist_torso = [25,30,0,0,0,0,0,0,0];
-	resist_armL = [17,20,0,0,0,0,0,0,0];
-	resist_armR = [17,20,0,0,0,0,0,0,0];
-	resist_legL = [17,20,0,0,0,0,0,0,0];
-	resist_legR = [17,20,0,0,0,0,0,0,0];
+	resist_head = [25,35,0,0,0,0,0,0,0]; //phys0, ther1, cryo2, corr3, radi4, elec5, hazm6, warp7
+	resist_torso = [25,35,0,0,0,0,0,0,0];
+	resist_armL = [17,25,0,0,0,0,0,0,0];
+	resist_armR = [17,25,0,0,0,0,0,0,0];
+	resist_legL = [17,25,0,0,0,0,0,0,0];
+	resist_legR = [17,25,0,0,0,0,0,0,0];
 
 	hbox_head = [-25,135,25,105];
 	hbox_torso = [-30,105,30,60];
@@ -64,14 +64,16 @@ function InfantryCreateGeneric() {
 	3 = armor ratio (unclamped), raw ratio used for UI 
 	4 = limb per frame damage (for amputations)
 	5 = limb is amputated (true or false)
+	6 = max armor durability
+	7 = remaining armor durability
 	*/
 	
-	armor_head = ["none",-1,1,0,0,false];
-	armor_torso = ["none",-1,1,0,0,false];
-	armor_armL = ["none",-1,1,0,0,false];
-	armor_armR = ["none",-1,1,0,0,false];
-	armor_legL = ["none",-1,1,0,0,false];
-	armor_legR = ["none",-1,1,0,0,false];
+	armor_head = ["none",-1,1,0,0,false,300,300];
+	armor_torso = ["none",-1,1,0,0,false,300,300];
+	armor_armL = ["none",-1,1,0,0,false,200,200];
+	armor_armR = ["none",-1,1,0,0,false,200,200];
+	armor_legL = ["none",-1,1,0,0,false,200,200];
+	armor_legR = ["none",-1,1,0,0,false,200,200];
 		
 	weapon_ranged = o_IC.Lasgun_Kantrael;	
 	ammo_type_primary = o_IC.Lasgun_Kantrael.default_ammo_type;
@@ -81,8 +83,10 @@ function InfantryCreateGeneric() {
 	burst_count = 0;
 	burst_ready = 1;
 	
-	burst_timer = timer_create(600,false);	
-	cycle_timer = timer_create(weapon_ranged.ROF,false);
+	burst_timer = timer_create(900,false);	
+	cycle_timer = timer_create(weapon_ranged.ROF*2,false);
+	
+	spread_angle = 0;
 	
 	// Pathfinding stuff
 	MyTarget = o_player;
@@ -133,9 +137,9 @@ function InfantryStepGeneric() {
 	
 	//----------------------------------------------- Impact Code ---------------------------------------
 	if(death[0] != 1) {
-		ImpactScript(o_bullet,"head",hbox_head,collisions_list);
-		ImpactScript(o_bullet,["torso","torso","torso","torso","armL","armL","armR","armR"],hbox_torso,collisions_list);
-		ImpactScript(o_bullet,["legL","legR"],hbox_legs,collisions_list);
+		ImpactScript(o_bullet,"head",hbox_head,collisions_list,1);
+		ImpactScript(o_bullet,["torso","torso","torso","torso","armL","armL","armR","armR"],hbox_torso,collisions_list,1);
+		ImpactScript(o_bullet,["legL","legR"],hbox_legs,collisions_list,1);
 	};
 	
 	//-------------------------------------------------- Death States ---------------------------------------
@@ -329,7 +333,7 @@ function InfantryStepGeneric() {
 	y += vspd; //change our Y by effects of gravity and climb values
 	
 //------------------------------------------------- Ranged Combat Code -----------------------------------------------
-
+	
 	if(firing && !Dead) {
 		
 		if(burst_count >= burst_size) {burst_ready = timer_tick(burst_timer,1)};
@@ -358,8 +362,10 @@ function InfantryStepGeneric() {
 			}
 			else{var FlashX = x var FlashY = bbox_top};
 			
+			spread_angle = burst_count*weapon_ranged.spread*3;
+			
 			instance_create_depth(FlashX,FlashY,depth-1,o_bullet,{
-				direction : direc + random_range(-other.weapon_ranged.spread*5,other.weapon_ranged.spread*5),
+				direction : direc + random_range(-spread_angle,spread_angle),
 				speed : weapon_ranged.muzzle_velocity,
 				type : ammo_type_primary,
 				damage : weapon_ranged.damage,

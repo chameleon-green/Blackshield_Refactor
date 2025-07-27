@@ -1,6 +1,9 @@
 
 draw_self();
 
+draw_text(x,bbox_top,armor_torso);
+
+
 if(instance_exists(TargetNode)) {draw_text(TargetNode.x,TargetNode.bbox_top,"NODE")};
 /*
 draw_text(x,bbox_top,string(HP) + "/" + string(max_hp));

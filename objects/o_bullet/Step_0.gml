@@ -20,18 +20,19 @@ if(col_barrier and !Flames){
 	
 	if(chance <= col_barrier.chance and !collided){
 		var facing = sign(col_barrier.image_xscale);
-		var dist = distance_to_object(col_barrier)+random_range(-15,50);
-		//var killme = 0
+		var dist = distance_to_object(col_barrier)+random_range(10,60);
 	
 		if(facing = 1 and x > col_barrier.bbox_right) {var kill_barrier = 1};
 		if(facing =-1 and x < col_barrier.bbox_left) {var kill_barrier = 1};
 	
 		if(kill_barrier){
-				depth = -999;
-				x=x+lengthdir_x(dist,direction);
-				y=y+lengthdir_y(dist,direction);
-				instance_destroy(self);
-				//kill_sound = col_barrier.sound[irandom_range(0,3)]	
+			
+		depth = -999;
+		x=x+lengthdir_x(dist,direction);
+		y=y+lengthdir_y(dist,direction);
+		impact_wall = 1;
+		instance_destroy(self);		
+		//kill_sound = col_barrier.sound[irandom_range(0,3)]
 		};
 	};
 		
@@ -91,7 +92,10 @@ if(!IsBeam && !Flames){
 			y = y+lengthdir_y(Line_Length1,direction);
 			Collided1 = place_meeting(x,y,o_platform);
 		};
-		if(Line_Length1 < base_speed) {instance_destroy(self)};
+		if(Line_Length1 < base_speed) {
+			impact_wall = 1;
+			instance_destroy(self);
+		};
 	};	
 };
 
@@ -111,6 +115,7 @@ if(IsBeam && beamToggle) {
 		var lya = y + lengthdir_y(beamLength-10, direction);
 		
 		if(collision_point(lx, ly, o_platform, false, true)) {
+			impact_wall = 1;
 			kill = 1; //trigger death after step event to allow beam a frame to actually exist
 			break;	
 		};		
@@ -132,10 +137,11 @@ if(IsBeam && beamToggle) {
 				var facing = sign(col_barrier.image_xscale);
 				var dist = distance_to_object(col_barrier)+random_range(-15,50);
 	
-				if(facing = 1 and (lx < col_barrier.bbox_right)) {kill_barrier = 1};
-				if(facing = -1 and (lx > col_barrier.bbox_left)) {kill_barrier = 1};
+				if(facing = 1 and (x > col_barrier.bbox_right)) {kill_barrier = 1};
+				if(facing = -1 and (x < col_barrier.bbox_left)) {kill_barrier = 1};
 	
 				if(kill_barrier){
+					impact_wall = 1;
 					beamLength += (random_range(0,50));
 					depth = -999;
 					damage = 0;

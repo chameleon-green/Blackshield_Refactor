@@ -6,7 +6,7 @@ The limb string name must have array variables associated with it to work as fol
 
 #region Impact damage processing with resistances
 
-function ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy=0){
+function ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy){
 	if(instance_exists(Bullet)){
 			if((Bullet.IFF != IFF) && (ds_list_find_index(CollisionsList,Bullet) = -1)){
 				
@@ -45,7 +45,13 @@ function ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy=0){
 							};
 						}; //item ID check
 					} //enemy check
-					else{};
+					else{
+						var CurrentDurability = ArmorArray[7];
+						var MaxDurability = ArmorArray[6];
+						var NewDurability = clamp(ArmorArray[7]-Damage,0,999999999);
+						ArmorArray[7] = NewDurability; //reduce durability of armor
+						ArmorArray[2] = NewDurability/MaxDurability; //recalculate durability ratio
+					};
 					
 					Bullet.base_speed = 0;
 					Bullet.speed = 0;
@@ -96,7 +102,13 @@ function ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy=0){
 					//Bullet.damage = Bullet.hp;
 					//if(Bullet.hp <= Bullet.fuse) {Bullet.kill = 1};
 					} //enemy check
-					else{};
+					else{
+						var CurrentDurability = ArmorArray[7];
+						var MaxDurability = ArmorArray[6];
+						var NewDurability = clamp(ArmorArray[7]-Damage,0,999999999);
+						ArmorArray[7] = NewDurability; //reduce durability of armor
+						ArmorArray[2] = NewDurability/MaxDurability; //recalculate durability ratio
+					};
 					
 					Bullet.hp -= resist;
 					Bullet.damage = Bullet.hp;
@@ -121,7 +133,7 @@ function ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy=0){
 #endregion
 
 #region impact script
-function ImpactScript(BulletObject,Limb,HitboxArray,CollisionsList,Precise=0){
+function ImpactScript(BulletObject,Limb,HitboxArray,CollisionsList,Enemy,Precise=0){
 	
 	var Impacts_List = ds_list_create();
 	var Impacts = collision_rectangle_list(x-HitboxArray[0],y-HitboxArray[1],x-HitboxArray[2],y-HitboxArray[3],BulletObject,Precise,false,Impacts_List,false);
@@ -135,7 +147,7 @@ function ImpactScript(BulletObject,Limb,HitboxArray,CollisionsList,Precise=0){
 			if(!MultipleLimbs){
 				var AmputationThreshold = 1.5*variable_instance_get(id,"hp_body_" + Limb + "_max");
 				var LimbArray = variable_instance_get(id, "armor_" + Limb);
-				LimbArray[4] += ImpactDamageProcessing(Bullet,Limb,CollisionsList);
+				LimbArray[4] += ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy);
 				if(LimbArray[4] >= AmputationThreshold) {LimbArray[5] = true};
 			}
 		//if we have an array of limbs, randomly determine one to be hit
@@ -143,7 +155,7 @@ function ImpactScript(BulletObject,Limb,HitboxArray,CollisionsList,Precise=0){
 				var Pick = irandom_range(0,array_length(Limb)-1);
 				var ChosenLimb = Limb[Pick];
 				var LimbArray = variable_instance_get(id, "armor_" + ChosenLimb);
-				LimbArray[4] += ImpactDamageProcessing(Bullet,ChosenLimb,CollisionsList);
+				LimbArray[4] += ImpactDamageProcessing(Bullet,ChosenLimb,CollisionsList,Enemy);
 				var AmputationThreshold = 1.5*variable_instance_get(id,"hp_body_" + ChosenLimb + "_max");
 				if(LimbArray[4] >= AmputationThreshold) {LimbArray[5] = true};			
 			};

@@ -15,7 +15,7 @@ if(impact_type[0] = "explosion") {
 }
 
 else if(impact_type[0] = "dust"){
-	if(place_meeting(x,y,[o_platform,o_barrier])){ // XX & YY not necessary for beams here
+	if(impact_wall){ // XX & YY not necessary for beams here
 	
 		var RandMult = random_range(0.75,1.1);	
 		with(instance_create_depth(XX,YY,depth-1,oprt_smoke)) {
