@@ -269,6 +269,7 @@
     {"id":{"name":"sp_splatter1","path":"sprites/sp_splatter1/sp_splatter1.yy",},},
     {"id":{"name":"sp_status_body","path":"sprites/sp_status_body/sp_status_body.yy",},},
     {"id":{"name":"sp_status_icons","path":"sprites/sp_status_icons/sp_status_icons.yy",},},
+    {"id":{"name":"sp_statusbody_large","path":"sprites/sp_statusbody_large/sp_statusbody_large.yy",},},
     {"id":{"name":"sp_swing","path":"sprites/sp_swing/sp_swing.yy",},},
     {"id":{"name":"sp_xhair_heatbar","path":"sprites/sp_xhair_heatbar/sp_xhair_heatbar.yy",},},
     {"id":{"name":"sp_xhair","path":"sprites/sp_xhair/sp_xhair.yy",},},

@@ -188,6 +188,7 @@
     {"name":"sp_smokeball","order":11,"path":"sprites/sp_smokeball/sp_smokeball.yy",},
     {"name":"sp_splatter1","order":1,"path":"sprites/sp_splatter1/sp_splatter1.yy",},
     {"name":"sp_status_icons","order":3,"path":"sprites/sp_status_icons/sp_status_icons.yy",},
+    {"name":"sp_statusbody_large","order":6,"path":"sprites/sp_statusbody_large/sp_statusbody_large.yy",},
     {"name":"sp_swing","order":4,"path":"sprites/sp_swing/sp_swing.yy",},
     {"name":"sp_xhair_heatbar","order":1,"path":"sprites/sp_xhair_heatbar/sp_xhair_heatbar.yy",},
     {"name":"spr_collision_mask_marine","order":3,"path":"sprites/spr_collision_mask_marine/spr_collision_mask_marine.yy",},

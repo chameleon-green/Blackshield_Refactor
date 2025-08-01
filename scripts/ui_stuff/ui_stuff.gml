@@ -2,10 +2,10 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 
 
-function ButtonRegionCenter(x,y,Left,Right,Top,Bottom,Scale=1){
+function ButtonRegionCenter(x,y,Left,Right,Top,Bottom,Scale=1,Xoffset=0,Yoffset=0){
 	
-	var Xcent = display_get_gui_width()/2;
-	var Ycent = display_get_gui_height()/2; 
+	var Xcent = (display_get_gui_width()/2) + (Xoffset*Scale);
+	var Ycent = (display_get_gui_height()/2) + (Yoffset*Scale);
 	var LeftBorder = Xcent - (Left*Scale);
 	var RightBorder = Xcent - (Right*Scale);
 	var TopBorder = Ycent - (Top*Scale);
@@ -17,10 +17,10 @@ function ButtonRegionCenter(x,y,Left,Right,Top,Bottom,Scale=1){
 	else{return 0};
 };
 
-function ButtonDrawCenter(Left,Right,Top,Bottom,Scale=1){
+function ButtonDrawCenter(Left,Right,Top,Bottom,Scale=1,Xoffset=0,Yoffset=0){
 	
-	var Xcent = display_get_gui_width()/2;
-	var Ycent = display_get_gui_height()/2; 
+	var Xcent = (display_get_gui_width()/2) + (Xoffset*Scale);
+	var Ycent = (display_get_gui_height()/2) + (Yoffset*Scale);
 	var LeftBorder = Xcent - (Left*Scale);
 	var RightBorder = Xcent - (Right*Scale);
 	var TopBorder = Ycent - (Top*Scale);

@@ -4,10 +4,12 @@ image_speed = 0;
 dragging = 0;
 DeltaY = 0;
 reset = 0;
+Xoffset = creator.Xoffset;
+Yoffset = creator.Yoffset;
 
 var Xcent = display_get_gui_width()/2;
 var Ycent = display_get_gui_height()/2; 
-y = Ycent - (118*creator.scale);
+y = Ycent - (118*creator.scale) + (Yoffset*creator.scale);
 
 item_count = 0;
 

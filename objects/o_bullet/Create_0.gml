@@ -48,8 +48,8 @@ if(col_barrier and !Flames){
 		var facing = sign(col_barrier.image_xscale);
 		var dist = distance_to_object(col_barrier)+random_range(10,60);
 	
-		if(facing = 1 and x > col_barrier.bbox_right) {var kill_barrier = 1};
-		if(facing =-1 and x < col_barrier.bbox_left) {var kill_barrier = 1};
+		if(facing = 1 and origin_x > col_barrier.bbox_right) {var kill_barrier = 1};
+		if(facing =-1 and origin_x < col_barrier.bbox_left) {var kill_barrier = 1};
 			
 		depth = -999;
 		x=x+lengthdir_x(dist,direction);

@@ -2,7 +2,7 @@ smoke = 0; //trigger for smoke expulsion
 image_angle = irandom(360);
 //depth = -16;
 
-size = 5;
+size = 0;
 counter = 0;
 
 creator = undefined;

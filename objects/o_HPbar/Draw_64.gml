@@ -50,18 +50,18 @@ draw_text_ext_transformed((StamTextOffset+XOffset+130)*scale,65*scale,StamText,1
 draw_text_ext_transformed((WillTextOffset+XOffset+130)*scale,82*scale,WillText,10,9999999,scale*0.7,scale*0.6,0);
 
 //draw mini status body
-draw_sprite_ext(sp_status_body,18,(64+XOffset)*scale,43*scale,scale,scale,0,ChooseColor(MyPlayer.hp_body_head/MyPlayer.hp_body_head_max,1,MyPlayer.armor_head[5]),1); //head
-draw_sprite_ext(sp_status_body,24,(64+XOffset)*scale,43*scale,scale,scale,0,ChooseColor(MyPlayer.armor_head[3]),1); //head armor
-draw_sprite_ext(sp_status_body,19,(64+XOffset)*scale,68*scale,scale,scale,0,ChooseColor(MyPlayer.hp_body_torso/MyPlayer.hp_body_torso_max,1,MyPlayer.armor_torso[5]),1); //torso
-draw_sprite_ext(sp_status_body,25,(64+XOffset)*scale,68*scale,scale,scale,0,ChooseColor(MyPlayer.armor_torso[3]),1); //torso armor
-draw_sprite_ext(sp_status_body,20,(37+XOffset)*scale,68*scale,scale,scale,0,ChooseColor(MyPlayer.hp_body_armL/MyPlayer.hp_body_armL_max,1,MyPlayer.armor_armL[5]),1); //armL
-draw_sprite_ext(sp_status_body,26,(37+XOffset)*scale,68*scale,scale,scale,0,ChooseColor(MyPlayer.armor_armL[3]),1); //armL armor
-draw_sprite_ext(sp_status_body,21,(90+XOffset)*scale,68*scale,scale,scale,0,ChooseColor(MyPlayer.hp_body_armR/MyPlayer.hp_body_armR_max,1,MyPlayer.armor_armR[5]),1); //armR
-draw_sprite_ext(sp_status_body,27,(90+XOffset)*scale,68*scale,scale,scale,0,ChooseColor(MyPlayer.armor_armR[3]),1); //armR armor
-draw_sprite_ext(sp_status_body,22,(47+XOffset)*scale,109*scale,scale,scale,0,ChooseColor(MyPlayer.hp_body_legL/MyPlayer.hp_body_legL_max,1,MyPlayer.armor_legL[5]),1); //legL
-draw_sprite_ext(sp_status_body,28,(47+XOffset)*scale,109*scale,scale,scale,0,ChooseColor(MyPlayer.armor_legL[3]),1); //legL armor
-draw_sprite_ext(sp_status_body,23,(81+XOffset)*scale,109*scale,scale,scale,0,ChooseColor(MyPlayer.hp_body_legR/MyPlayer.hp_body_legR_max,1,MyPlayer.armor_legR[5]),1); //legR
-draw_sprite_ext(sp_status_body,29,(81+XOffset)*scale,109*scale,scale,scale,0,ChooseColor(MyPlayer.armor_legR[3]),1); //legR armor
+draw_sprite_ext(sp_status_body,0,(64+XOffset)*scale,43*scale,scale,scale,0,ChooseColor(MyPlayer.hp_body_head/MyPlayer.hp_body_head_max,1,MyPlayer.armor_head[5]),1); //head
+draw_sprite_ext(sp_status_body,6,(64+XOffset)*scale,43*scale,scale,scale,0,ChooseColor(MyPlayer.armor_head[3]),1); //head armor
+draw_sprite_ext(sp_status_body,1,(64+XOffset)*scale,68*scale,scale,scale,0,ChooseColor(MyPlayer.hp_body_torso/MyPlayer.hp_body_torso_max,1,MyPlayer.armor_torso[5]),1); //torso
+draw_sprite_ext(sp_status_body,7,(64+XOffset)*scale,68*scale,scale,scale,0,ChooseColor(MyPlayer.armor_torso[3]),1); //torso armor
+draw_sprite_ext(sp_status_body,2,(37+XOffset)*scale,68*scale,scale,scale,0,ChooseColor(MyPlayer.hp_body_armL/MyPlayer.hp_body_armL_max,1,MyPlayer.armor_armL[5]),1); //armL
+draw_sprite_ext(sp_status_body,8,(37+XOffset)*scale,68*scale,scale,scale,0,ChooseColor(MyPlayer.armor_armL[3]),1); //armL armor
+draw_sprite_ext(sp_status_body,3,(90+XOffset)*scale,68*scale,scale,scale,0,ChooseColor(MyPlayer.hp_body_armR/MyPlayer.hp_body_armR_max,1,MyPlayer.armor_armR[5]),1); //armR
+draw_sprite_ext(sp_status_body,9,(90+XOffset)*scale,68*scale,scale,scale,0,ChooseColor(MyPlayer.armor_armR[3]),1); //armR armor
+draw_sprite_ext(sp_status_body,4,(47+XOffset)*scale,109*scale,scale,scale,0,ChooseColor(MyPlayer.hp_body_legL/MyPlayer.hp_body_legL_max,1,MyPlayer.armor_legL[5]),1); //legL
+draw_sprite_ext(sp_status_body,10,(47+XOffset)*scale,109*scale,scale,scale,0,ChooseColor(MyPlayer.armor_legL[3]),1); //legL armor
+draw_sprite_ext(sp_status_body,5,(81+XOffset)*scale,109*scale,scale,scale,0,ChooseColor(MyPlayer.hp_body_legR/MyPlayer.hp_body_legR_max,1,MyPlayer.armor_legR[5]),1); //legR
+draw_sprite_ext(sp_status_body,11,(81+XOffset)*scale,109*scale,scale,scale,0,ChooseColor(MyPlayer.armor_legR[3]),1); //legR armor
 #endregion
 
 #region drawing status effect icons

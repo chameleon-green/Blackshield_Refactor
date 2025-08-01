@@ -2,10 +2,12 @@ var Xcent = display_get_gui_width()/2;
 var Ycent = display_get_gui_height()/2; 
 scale = creator.scale;
 image_xscale = scale;
+var XoffS = Xoffset*scale;
+var YoffS = Yoffset*scale;
 
-x = (Xcent-(298*scale));
-var BgY = (Ycent - (133*scale));
-var BgYBar = (Ycent - (118*scale));
+x = (Xcent-(298*scale)+XoffS);
+var BgY = (Ycent-(133*scale)+YoffS);
+var BgYBar = (Ycent-(118*scale)+YoffS);
 
 if(!creator.visible) {instance_destroy(self); creator.MyScrollbar = 0};
 
@@ -31,7 +33,7 @@ var MaxDisplacementHeight = BgY + BarHeight - MyHeight + (15*scale);
 if(Click && touching) {DeltaY = (y-Mouse_Y); dragging = 1};
 if(dragging && ClickHold) {
 	var YY = Mouse_Y + DeltaY;
-	if( (YY <= MaxDisplacementHeight)&&(YY >= BgYBar) ){
+	if( (YY <= MaxDisplacementHeight) && (YY >= BgYBar) ){
 		y = YY
 	};	
 	if(YY < BgYBar) {y = BgYBar};
@@ -39,7 +41,7 @@ if(dragging && ClickHold) {
 };
 if(!ClickHold) {dragging = 0};
 
-Offset = y - Ycent
+Offset = y - Ycent - YoffS;
 
 if(reset) {reset = 0; y = BgYBar};
 

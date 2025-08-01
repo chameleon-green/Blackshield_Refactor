@@ -9,6 +9,8 @@ Mouse_X = creator.Mouse_X;
 Mouse_Y = creator.Mouse_Y;
 var Xcent = display_get_gui_width()/2;
 var Ycent = display_get_gui_height()/2; 
+var YoffS = Yoffset*scale;
+var XoffS = Xoffset*scale;
 var Click = mouse_check_button_pressed(mb_left);
 
 var Color = c_dkgray;
@@ -35,9 +37,9 @@ var IsEquippedAmmoBoth = (IsEquippedAmmoPrimary & IsEquippedAmmoSecondary);
 
 //------------------------------------------ Coordinate Stuff -------------------------------------------------
 
-var BaseY = Ycent - (133*scale) + (yoffset*36*scale);
-x = Xcent-(132*scale);  
-y =  BaseY - (scrollbar.Offset + (120*scale) )*scrollbar.DisplacementMod + scrollbar.item_count/4*scale
+var BaseY = Ycent + YoffS - (133*scale) + (yoffset*36*scale);
+x = Xcent + XoffS -(132*scale);  
+y = BaseY - (scrollbar.Offset + (120*scale) ) * scrollbar.DisplacementMod + (scrollbar.item_count)/(4*scale)
 
 //------------------------------------------ Mouse interactions ----------------------------------------
 
@@ -52,7 +54,7 @@ draw_set_font(fnt_caslonSB);
 draw_set_halign(fa_center);
 draw_set_valign(fa_center);
 
-var MyDisplacement = (Ycent - y)/scale;
+var MyDisplacement = ((Ycent - y)/scale)+ Yoffset
 //var GridYValue = ds_grid_value_y(grid,0,0,ds_grid_width(grid),ds_grid_height(grid),unique_id);
 var Quantity = ds_grid_get(grid,1,GridYValue);
 var TitleText = item.name;
@@ -72,7 +74,9 @@ if(IsEquippedAmmoPrimary & !IsEquippedAmmoBoth) {TitleText = TitleText + " (prim
 if(IsEquippedAmmoSecondary & !IsEquippedAmmoBoth) {TitleText = TitleText + " (secondary)"};
 if(IsEquippedAmmoBoth) {TitleText = TitleText + " (primary/secondary)"};
 
-if ( (MyDisplacement >= -158) and (MyDisplacement <= 135) ){
+
+
+if ( (MyDisplacement >= -158) and (MyDisplacement <= 138) ){
 	
 	Interactable = 1;	
 	draw_self();	
@@ -80,13 +84,14 @@ if ( (MyDisplacement >= -158) and (MyDisplacement <= 135) ){
 
 };
 
+
 #region cutoff for text and shadows
 //bottom cutoff
-if ( (MyDisplacement < -158) and (MyDisplacement > -192) ){
+if ( (MyDisplacement < -156) and (MyDisplacement > -192) ){
 	
 	Interactable = 0;
 	
-	var BottomBound = Ycent + (188*scale);
+	var BottomBound = Ycent + YoffS + (188*scale);
 	var Difference = (y+(36*scale)) - BottomBound;
 	var Height = 36-(Difference/scale);
 	draw_sprite_general(sprite_index,image_index,0,0,313,Height,bbox_left,y,scale,scale,0,c_white,c_white,c_dkgray,c_dkgray,1)
@@ -99,11 +104,11 @@ if ( (MyDisplacement < -158) and (MyDisplacement > -192) ){
 };
 
 //top cutoff
-if ( (MyDisplacement > 135) and (MyDisplacement < 166) ){
+if ( (MyDisplacement > 138) and (MyDisplacement < 166) ){
 	
 	Interactable = 0;
 	
-	var TopBound = Ycent - (135*scale);
+	var TopBound = Ycent + YoffS - (135*scale);
 	var Difference = TopBound - y;
 	var Height = 36-(Difference/scale);
 	draw_sprite_general(sprite_index,image_index,0,36,313,-Height,bbox_left,y+(36*scale),scale,scale,0,c_white,c_white,c_dkgray,c_dkgray,1) 
@@ -114,6 +119,8 @@ if ( (MyDisplacement > 135) and (MyDisplacement < 166) ){
 	};
 };
 #endregion
+
+draw_text(x,y,MyDisplacement)
 
 if(Selected = 1) {
 	
@@ -145,12 +152,12 @@ if(Selected = 1) {
 	var _Color = make_color_rgb(164,128,2);
 	gpu_set_fog(1,_Color,1,1);
 	var OutlineOffset = 1.25*ScaleFactor;
-	draw_sprite_ext(Image[0],Image[1],Xcent+((158-OutlineOffset)*scale),Ycent-((62+OutlineOffset)*scale),ImageScale,ImageScale,0,c_white,1);
-	draw_sprite_ext(Image[0],Image[1],Xcent+((158-OutlineOffset)*scale),Ycent-((62-OutlineOffset)*scale),ImageScale,ImageScale,0,c_white,1);
-	draw_sprite_ext(Image[0],Image[1],Xcent+((158+OutlineOffset)*scale),Ycent-((62-OutlineOffset)*scale),ImageScale,ImageScale,0,c_white,1);
-	draw_sprite_ext(Image[0],Image[1],Xcent+((158+OutlineOffset)*scale),Ycent-((62+OutlineOffset)*scale),ImageScale,ImageScale,0,c_white,1);
+	draw_sprite_ext(Image[0],Image[1],Xcent+((Xoffset + 158-OutlineOffset)*scale),Ycent-((Yoffset + 62+OutlineOffset)*scale),ImageScale,ImageScale,0,c_white,1);
+	draw_sprite_ext(Image[0],Image[1],Xcent+((Xoffset + 158-OutlineOffset)*scale),Ycent-((Yoffset + 62-OutlineOffset)*scale),ImageScale,ImageScale,0,c_white,1);
+	draw_sprite_ext(Image[0],Image[1],Xcent+((Xoffset + 158+OutlineOffset)*scale),Ycent-((Yoffset + 62-OutlineOffset)*scale),ImageScale,ImageScale,0,c_white,1);
+	draw_sprite_ext(Image[0],Image[1],Xcent+((Xoffset + 158+OutlineOffset)*scale),Ycent-((Yoffset + 62+OutlineOffset)*scale),ImageScale,ImageScale,0,c_white,1);
 	gpu_set_fog(0,_Color,1,1);
-	draw_sprite_ext(item.inventory_subimage[0],item.inventory_subimage[1],Xcent+(158*scale),Ycent-(62*scale),ImageScale,ImageScale,0,c_white,1);
+	draw_sprite_ext(item.inventory_subimage[0],item.inventory_subimage[1],Xcent+XoffS+(158*scale),Ycent+YoffS-(62*scale),ImageScale,ImageScale,0,c_white,1);
 	
 	if(IsRangedWeapon) {
 		if(IsEquipped) {creator.TriButtonText[0] = "Unequip"};		
@@ -163,16 +170,16 @@ if(Selected = 1) {
 		
 		draw_set_halign(fa_center);
 		draw_set_valign(fa_center);
-		draw_text_ext_transformed_color(Xcent+(158*scale),Ycent-(9*scale),_String,1,40000,scale*0.75,scale*0.75,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+XoffS+(158*scale),Ycent-(9*scale),_String,1,40000,scale*0.75,scale*0.75,0,_Color,_Color,_Color,_Color,1);
 		draw_set_halign(fa_left);
-		draw_text_ext_transformed_color(Xcent+(72*scale),Ycent+(60*scale),item.damage,1,40000,scale*1.33,scale*1.33,0,_Color,_Color,_Color,_Color,1);
-		draw_text_ext_transformed_color(Xcent+(72*scale),Ycent+(94*scale),item.ROF,1,40000,scale*1.33,scale*1.33,0,_Color,_Color,_Color,_Color,1);
-		draw_text_ext_transformed_color(Xcent+(72*scale),Ycent+(128*scale),item.spread,1,40000,scale*1.33,scale*1.33,0,_Color,_Color,_Color,_Color,1);
-		draw_text_ext_transformed_color(Xcent+(72*scale),Ycent+(162*scale),item.range,1,40000,scale*1.33,scale*1.33,0,_Color,_Color,_Color,_Color,1);		
-		draw_text_ext_transformed_color(Xcent+(151*scale),Ycent+(60*scale),item.capacity,1,40000,scale*1.33,scale*1.33,0,_Color,_Color,_Color,_Color,1);
-		draw_text_ext_transformed_color(Xcent+(151*scale),Ycent+(94*scale),"40404",1,40000,scale*1.33,scale*1.33,0,_Color,_Color,_Color,_Color,1);
-		draw_text_ext_transformed_color(Xcent+(151*scale),Ycent+(128*scale),item.weight,1,40000,scale*1.33,scale*1.33,0,_Color,_Color,_Color,_Color,1);
-		draw_text_ext_transformed_color(Xcent+(151*scale),Ycent+(162*scale),item.durability_max,1,40000,scale*1.33,scale*1.33,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+XoffS+(72*scale),Ycent+YoffS+(60*scale),item.damage,1,40000,scale*1.33,scale*1.33,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+XoffS+(72*scale),Ycent+YoffS+(94*scale),item.ROF,1,40000,scale*1.33,scale*1.33,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+XoffS+(72*scale),Ycent+YoffS+(128*scale),item.spread,1,40000,scale*1.33,scale*1.33,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+XoffS+(72*scale),Ycent+YoffS+(162*scale),item.range,1,40000,scale*1.33,scale*1.33,0,_Color,_Color,_Color,_Color,1);		
+		draw_text_ext_transformed_color(Xcent+XoffS+(151*scale),Ycent+YoffS+(60*scale),item.capacity,1,40000,scale*1.33,scale*1.33,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+XoffS+(151*scale),Ycent+YoffS+(94*scale),"40404",1,40000,scale*1.33,scale*1.33,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+XoffS+(151*scale),Ycent+YoffS+(128*scale),item.weight,1,40000,scale*1.33,scale*1.33,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+XoffS+(151*scale),Ycent+YoffS+(162*scale),item.durability_max,1,40000,scale*1.33,scale*1.33,0,_Color,_Color,_Color,_Color,1);
 	};
 	
 	if(IsMeleeWeapon) {
@@ -182,20 +189,20 @@ if(Selected = 1) {
 		var Damage = string(item.damage) + "(" + string(MeleeDamageCalculator(MyPlayer,item)) + ")";
 		
 		//draw correct stats readout for melee weapons
-		draw_sprite_ext(sp_inventory_wep_stats,3,Xcent+160*scale,Ycent+102*scale,scale,scale,0,c_white,1);
+		draw_sprite_ext(sp_inventory_wep_stats,3,Xcent+XoffS+160*scale,Ycent+YoffS+102*scale,scale,scale,0,c_white,1);
 		
 		draw_set_halign(fa_center);
 		draw_set_valign(fa_center);
 		//draw_text_ext_transformed_color(Xcent+(158*scale),Ycent-(9*scale),_String,1,40000,scale*0.75,scale*0.75,0,_Color,_Color,_Color,_Color,1);
 		draw_set_halign(fa_left);
-		draw_text_ext_transformed_color(Xcent+(68*scale),Ycent+(63.5*scale),Damage,1,40000,scale*0.97,scale*1.1,0,_Color,_Color,_Color,_Color,1);
-		draw_text_ext_transformed_color(Xcent+(70*scale),Ycent+(98*scale),ArrayToString(item.scalings,1),1,40000,scale*0.96,scale*1.05,0,_Color,_Color,_Color,_Color,1);
-		draw_text_ext_transformed_color(Xcent+(70*scale),Ycent+(134*scale),ArrayToString(item.damage_type,2),1,40000,scale*0.96,scale*1.05,0,_Color,_Color,_Color,_Color,1);
-		draw_text_ext_transformed_color(Xcent+(70*scale),Ycent+(163*scale),item.durability_max,1,40000,scale*1.33,scale*1.33,0,_Color,_Color,_Color,_Color,1);		
-		draw_text_ext_transformed_color(Xcent+(155*scale),Ycent+(62*scale),ArmorPen,1,40000,scale*1.25,scale*1.25,0,_Color,_Color,_Color,_Color,1);
-		draw_text_ext_transformed_color(Xcent+(155*scale),Ycent+(163*scale),item.weight,1,40000,scale*1.33,scale*1.33,0,_Color,_Color,_Color,_Color,1);
-		draw_text_ext_transformed_color(Xcent+(238*scale),Ycent+(62*scale),item.force,1,40000,scale*1.25,scale*1.25,0,_Color,_Color,_Color,_Color,1);
-		draw_text_ext_transformed_color(Xcent+(238*scale),Ycent+(163*scale),item.force,1,40000,scale*1.33,scale*1.33,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+XoffS+(68*scale),Ycent+YoffS+(63.5*scale),Damage,1,40000,scale*0.97,scale*1.1,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+XoffS+(70*scale),Ycent+YoffS+(98*scale),ArrayToString(item.scalings,1),1,40000,scale*0.96,scale*1.05,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+XoffS+(70*scale),Ycent+YoffS+(134*scale),ArrayToString(item.damage_type,2),1,40000,scale*0.96,scale*1.05,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+XoffS+(70*scale),Ycent+YoffS+(163*scale),item.durability_max,1,40000,scale*1.33,scale*1.33,0,_Color,_Color,_Color,_Color,1);		
+		draw_text_ext_transformed_color(Xcent+XoffS+(155*scale),Ycent+YoffS+(62*scale),ArmorPen,1,40000,scale*1.25,scale*1.25,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+XoffS+(155*scale),Ycent+YoffS+(163*scale),item.weight,1,40000,scale*1.33,scale*1.33,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+XoffS+(238*scale),Ycent+YoffS+(62*scale),item.force,1,40000,scale*1.25,scale*1.25,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+XoffS+(238*scale),Ycent+YoffS+(163*scale),item.force,1,40000,scale*1.33,scale*1.33,0,_Color,_Color,_Color,_Color,1);
 		
 	};
 	
@@ -203,32 +210,33 @@ if(Selected = 1) {
 		var _Color = c_yellow;
 		draw_set_halign(fa_left);
 		var PenString = string(item.armor_penetration*100) + "%"
-		draw_text_ext_transformed_color(Xcent+(71*scale),Ycent+(61*scale),string(item.damage_mod),1,40000,scale*1.25,scale*1.25,0,_Color,_Color,_Color,_Color,1);
-		draw_text_ext_transformed_color(Xcent+(71*scale),Ycent+(96*scale),string(item.ROF_mod),1,40000,scale*1.25,scale*1.25,0,_Color,_Color,_Color,_Color,1);
-		draw_text_ext_transformed_color(Xcent+(156*scale),Ycent+(61*scale),item.damage_type[1],1,40000,scale*1.125,scale*1.25,0,_Color,_Color,_Color,_Color,1);
-		draw_text_ext_transformed_color(Xcent+(156*scale),Ycent+(96*scale),item.weight,1,40000,scale*1.25,scale*1.25,0,_Color,_Color,_Color,_Color,1);	
-		draw_text_ext_transformed_color(Xcent+(240*scale),Ycent+(61*scale),PenString,1,40000,scale*1.125,scale*1.25,0,_Color,_Color,_Color,_Color,1);
-		draw_text_ext_transformed_color(Xcent+(240*scale),Ycent+(96*scale),AmmoCost(item),1,40000,scale*1.125,scale*1.25,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+XoffS+(71*scale),Ycent+YoffS+(61*scale),string(item.damage_mod),1,40000,scale*1.25,scale*1.25,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+XoffS+(71*scale),Ycent+YoffS+(96*scale),string(item.ROF_mod),1,40000,scale*1.25,scale*1.25,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+XoffS+(156*scale),Ycent+YoffS+(61*scale),item.damage_type[1],1,40000,scale*1.125,scale*1.25,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+XoffS+(156*scale),Ycent+YoffS+(96*scale),item.weight,1,40000,scale*1.25,scale*1.25,0,_Color,_Color,_Color,_Color,1);	
+		draw_text_ext_transformed_color(Xcent+XoffS+(240*scale),Ycent+YoffS+(61*scale),PenString,1,40000,scale*1.125,scale*1.25,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+XoffS+(240*scale),Ycent+YoffS+(96*scale),AmmoCost(item),1,40000,scale*1.125,scale*1.25,0,_Color,_Color,_Color,_Color,1);
 		
 	};
 	
 	if(IsArmor) {
 		var _Color = c_yellow;
 		var _Durability = ds_grid_get(grid,2,GridYValue);
-		var _DuraRatio = round((_Durability/item.durability_max)*100);
+		var _RawDuraRatio = round((_Durability/item.durability_max)*100);
+		var _DuraRatio = clamp(_RawDuraRatio,20,100);
 		draw_set_halign(fa_left);
-		draw_text_ext_transformed_color(Xcent+(68*scale),Ycent+(61*scale),string(item.rPHYS) + "(" + string(round((item.rPHYS*_DuraRatio/100))) + ")",1,40000,scale*1.0,scale*1.125,0,_Color,_Color,_Color,_Color,1);
-		draw_text_ext_transformed_color(Xcent+(68*scale),Ycent+(94*scale),string(item.rTHER) + "(" + string(round((item.rTHER*_DuraRatio/100))) + ")",1,40000,scale*1.0,scale*1.125,0,_Color,_Color,_Color,_Color,1);
-		draw_text_ext_transformed_color(Xcent+(68*scale),Ycent+(127*scale),string(item.rCRYO) + "(" + string(round((item.rCRYO*_DuraRatio/100))) + ")",1,40000,scale*1.0,scale*1.125,0,_Color,_Color,_Color,_Color,1);
-		draw_text_ext_transformed_color(Xcent+(68*scale),Ycent+(160*scale),string(item.rELEC) + "(" + string(round((item.rELEC*_DuraRatio/100))) + ")",1,40000,scale*1.0,scale*1.125,0,_Color,_Color,_Color,_Color,1);
-		draw_text_ext_transformed_color(Xcent+(152*scale),Ycent+(61*scale),string(item.rCORR) + "(" + string(round((item.rCORR*_DuraRatio/100))) + ")",1,40000,scale*1.0,scale*1.125,0,_Color,_Color,_Color,_Color,1);
-		draw_text_ext_transformed_color(Xcent+(152*scale),Ycent+(94*scale),string(item.rHAZM) + "(" + string(round((item.rHAZM*_DuraRatio/100))) + ")",1,40000,scale*1.0,scale*1.125,0,_Color,_Color,_Color,_Color,1);	
-		draw_text_ext_transformed_color(Xcent+(152*scale),Ycent+(127*scale),string(item.rRADI) + "(" + string(round((item.rRADI*_DuraRatio/100))) + ")",1,40000,scale*1.0,scale*1.125,0,_Color,_Color,_Color,_Color,1);
-		draw_text_ext_transformed_color(Xcent+(152*scale),Ycent+(160*scale),string(item.rWARP) + "(" + string(round((item.rWARP*_DuraRatio/100))) + ")",1,40000,scale*1.0,scale*1.125,0,_Color,_Color,_Color,_Color,1);
-		draw_text_ext_transformed_color(Xcent+(236*scale),Ycent+(61*scale),string(item.poise),1,40000,scale*1.25,scale*1.25,0,_Color,_Color,_Color,_Color,1);
-		draw_text_ext_transformed_color(Xcent+(236*scale),Ycent+(94*scale),string(_DuraRatio) + "%",1,40000,scale*1.25,scale*1.25,0,_Color,_Color,_Color,_Color,1);
-		draw_text_ext_transformed_color(Xcent+(236*scale),Ycent+(127*scale),string(item.weight),1,40000,scale*1.25,scale*1.25,0,_Color,_Color,_Color,_Color,1);
-		draw_text_ext_transformed_color(Xcent+(236*scale),Ycent+(160*scale),string(404),1,40000,scale*1.25,scale*1.25,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+XoffS+(68*scale),Ycent+YoffS+(61*scale),string(item.rPHYS) + "(" + string(round((item.rPHYS*_DuraRatio/100))) + ")",1,40000,scale*1.0,scale*1.125,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+XoffS+(68*scale),Ycent+YoffS+(94*scale),string(item.rTHER) + "(" + string(round((item.rTHER*_DuraRatio/100))) + ")",1,40000,scale*1.0,scale*1.125,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+XoffS+(68*scale),Ycent+YoffS+(127*scale),string(item.rCRYO) + "(" + string(round((item.rCRYO*_DuraRatio/100))) + ")",1,40000,scale*1.0,scale*1.125,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+XoffS+(68*scale),Ycent+YoffS+(160*scale),string(item.rELEC) + "(" + string(round((item.rELEC*_DuraRatio/100))) + ")",1,40000,scale*1.0,scale*1.125,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+XoffS+(152*scale),Ycent+YoffS+(61*scale),string(item.rCORR) + "(" + string(round((item.rCORR*_DuraRatio/100))) + ")",1,40000,scale*1.0,scale*1.125,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+XoffS+(152*scale),Ycent+YoffS+(94*scale),string(item.rHAZM) + "(" + string(round((item.rHAZM*_DuraRatio/100))) + ")",1,40000,scale*1.0,scale*1.125,0,_Color,_Color,_Color,_Color,1);	
+		draw_text_ext_transformed_color(Xcent+XoffS+(152*scale),Ycent+YoffS+(127*scale),string(item.rRADI) + "(" + string(round((item.rRADI*_DuraRatio/100))) + ")",1,40000,scale*1.0,scale*1.125,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+XoffS+(152*scale),Ycent+YoffS+(160*scale),string(item.rWARP) + "(" + string(round((item.rWARP*_DuraRatio/100))) + ")",1,40000,scale*1.0,scale*1.125,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+XoffS+(236*scale),Ycent+YoffS+(61*scale),string(item.poise),1,40000,scale*1.25,scale*1.25,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+XoffS+(236*scale),Ycent+YoffS+(94*scale),string(_RawDuraRatio) + "%",1,40000,scale*1.25,scale*1.25,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+XoffS+(236*scale),Ycent+YoffS+(127*scale),string(item.weight),1,40000,scale*1.25,scale*1.25,0,_Color,_Color,_Color,_Color,1);
+		draw_text_ext_transformed_color(Xcent+XoffS+(236*scale),Ycent+YoffS+(160*scale),string(404),1,40000,scale*1.25,scale*1.25,0,_Color,_Color,_Color,_Color,1);
 		
 	};
 };
