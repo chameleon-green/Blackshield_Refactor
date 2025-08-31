@@ -279,34 +279,37 @@ xhair = instance_create_depth(x,y,depth-3,o_xhair,{
 });
 
 
-var Red = make_color_rgb(220,210,200)
+var Gray = make_color_rgb(220,210,200)
+var Black = make_color_rgb(130,120,110)
+var Gold = make_color_rgb(255,205,120)
 
-skeleton_slot_colour_set("slot_torso", Red, 1);
+skeleton_slot_colour_set("slot_torso", Gray, 1);
 skeleton_slot_colour_set("slot_eyes", c_red, 1);
-skeleton_slot_colour_set("slot_collar", Red, 1);
-skeleton_slot_colour_set("slot_head", Red, 1);
-skeleton_slot_colour_set("slot_pelvis", Red, 1);
-skeleton_slot_colour_set("slot_backpack", Red, 1);
+skeleton_slot_colour_set("slot_collar", Gray, 1);
+skeleton_slot_colour_set("slot_head", Gray, 1);
+skeleton_slot_colour_set("slot_pelvis", Gray, 1);
+skeleton_slot_colour_set("slot_backpack", Gray, 1);
 
-skeleton_slot_colour_set("slot_pauldron", Red, 1);
-skeleton_slot_colour_set("slot_front bicep", Red, 1);
-skeleton_slot_colour_set("slot_front forearm", Red, 1);
-skeleton_slot_colour_set("slot_front hand", Red, 1);
+skeleton_slot_colour_set("slot_pauldron", Black, 1);
+skeleton_slot_colour_set("slot_pauldron trim", Gold, 1);
+skeleton_slot_colour_set("slot_front bicep", Gray, 1);
+skeleton_slot_colour_set("slot_front forearm", Gray, 1);
+skeleton_slot_colour_set("slot_front hand", Gray, 1);
 
-skeleton_slot_colour_set("slot_rear pauldron", Red, 1);
-skeleton_slot_colour_set("slot_rear bicep", Red, 1);
-skeleton_slot_colour_set("slot_rear forearm", Red, 1);
-skeleton_slot_colour_set("slot_holding hand", Red, 1);
+skeleton_slot_colour_set("slot_rear pauldron", Gray, 1);
+skeleton_slot_colour_set("slot_rear bicep", Gray, 1);
+skeleton_slot_colour_set("slot_rear forearm", Gray, 1);
+skeleton_slot_colour_set("slot_holding hand", Gray, 1);
 
-skeleton_slot_colour_set("slot_front thigh", Red, 1);
-skeleton_slot_colour_set("slot_front knee", Red, 1);
-skeleton_slot_colour_set("slot_front shin", Red, 1);
-skeleton_slot_colour_set("slot_front foot", Red, 1);
+skeleton_slot_colour_set("slot_front thigh", Gray, 1);
+skeleton_slot_colour_set("slot_front knee", Gray, 1);
+skeleton_slot_colour_set("slot_front shin", Gray, 1);
+skeleton_slot_colour_set("slot_front foot", Gray, 1);
 
-skeleton_slot_colour_set("slot_rear thigh", Red, 1);
-skeleton_slot_colour_set("slot_rear knee", Red, 1);
-skeleton_slot_colour_set("slot_rear shin", Red, 1);
-skeleton_slot_colour_set("slot_rear foot", Red, 1);
+skeleton_slot_colour_set("slot_rear thigh", Gray, 1);
+skeleton_slot_colour_set("slot_rear knee", Gray, 1);
+skeleton_slot_colour_set("slot_rear shin", Gray, 1);
+skeleton_slot_colour_set("slot_rear foot", Gray, 1);
 
 /* 
 //debug stuff for stress testing

@@ -229,7 +229,7 @@ mk2 test_6.png
 size:256,128
 filter:Linear,Linear
 MK2/2000_backpack
-bounds:2,16,73,33
+bounds:2,16,74,33
 MK2/2000_collar
 bounds:156,74,50,24
 rotate:90
@@ -240,16 +240,16 @@ bounds:2,2,19,5
 MK2/2000_foot
 bounds:73,51,41,20
 MK2/2000_front forearm
-bounds:171,6,37,30
+bounds:172,6,37,30
 MK2/2000_front thigh
-bounds:134,19,35,51
+bounds:135,19,35,51
 MK2/2000_head
-bounds:171,38,34,34
+bounds:172,38,34,34
 MK2/2000_knee
 bounds:182,88,36,23
 rotate:90
 MK2/2000_pelvis
-bounds:77,14,55,35
+bounds:78,14,55,35
 MK2/2000_rear thigh
 bounds:73,73,42,51
 MK2/2000_shin
@@ -262,9 +262,9 @@ mk2 test_7.png
 size:256,128
 filter:Linear,Linear
 MK2/trim/2000_backpack trim
-bounds:2,34,73,33
+bounds:2,34,74,33
 MK2/trim/2000_pauldron trim
-bounds:77,11,59,56
+bounds:78,11,59,56
 MK2/trim/2000_thigh_trim
 bounds:2,2,30,33
 rotate:90
