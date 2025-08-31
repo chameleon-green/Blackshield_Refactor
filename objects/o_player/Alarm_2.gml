@@ -1,2 +1,2 @@
 ds_list_clear(collisions_list);
-//alarm[2] = 130;
+alarm[2] = 100;

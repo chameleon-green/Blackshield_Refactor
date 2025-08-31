@@ -1,0 +1,336 @@
+mk2 test.png
+size:2048,128
+filter:Linear,Linear
+0000_bicep
+bounds:1113,15,23,47
+rotate:90
+0000_foot
+bounds:1074,4,37,17
+0000_forearm
+bounds:997,4,42,18
+0000_hand
+bounds:955,2,20,15
+0000_head
+bounds:1135,47,26,31
+0000_holding hand
+bounds:204,3,14,11
+0000_pelvis
+bounds:1100,40,35,33
+rotate:90
+0000_shin
+bounds:1074,23,24,52
+0000_thigh
+bounds:845,70,31,58
+rotate:90
+0000_torso
+bounds:726,3,51,62
+rotate:90
+anim_bolter1
+bounds:2,3,17,6
+anim_bolter2
+bounds:21,3,17,6
+anim_bolter3
+bounds:40,3,17,6
+anim_bolter_heavy1
+bounds:114,6,22,8
+anim_bolter_heavy2
+bounds:138,6,22,8
+anim_bolter_heavy3
+bounds:162,6,22,8
+anim_field_proteus1
+bounds:397,7,114,37
+anim_field_proteus2
+bounds:513,9,114,37
+anim_field_proteus3
+bounds:547,89,114,37
+anim_pistol_sunspite1
+bounds:938,109,47,17
+anim_pistol_sunspite2
+bounds:307,31,29,13
+anim_plasmacannon_sol1
+bounds:778,61,65,34
+anim_plasmacannon_sol2
+bounds:987,109,43,17
+anim_plasmagun_thunderbolt1
+bounds:876,104,60,22
+anim_plasmagun_thunderbolt2
+bounds:1032,110,41,16
+anim_teeth_th1
+bounds:789,103,23,85
+rotate:90
+anim_teeth_th2
+bounds:309,6,23,86
+rotate:90
+anim_teeth_th3
+bounds:220,4,23,87
+rotate:90
+belt
+bounds:2,11,110,115
+belt2
+bounds:216,29,89,97
+belt3
+bounds:114,16,110,100
+rotate:90
+blank
+bounds:1163,60,24,24
+crawl_hand
+bounds:1104,110,26,16
+elbow guard_2000
+bounds:930,2,23,15
+fist punch
+bounds:1190,36,20,17
+rotate:90
+fist punch outside
+bounds:1132,110,21,16
+flash med 1
+bounds:489,48,78,56
+rotate:90
+flash med 1 core
+bounds:431,48,78,56
+rotate:90
+flash med 2
+bounds:369,46,80,60
+rotate:90
+flash med 2 core
+bounds:307,46,80,60
+rotate:90
+flash med 3
+bounds:860,13,68,55
+flash med 3 core
+bounds:790,4,68,55
+flash med 4
+bounds:681,56,95,39
+flash med 4 core
+bounds:629,15,95,39
+flash melta 1
+bounds:979,24,46,48
+flash melta 1 core
+bounds:905,71,51,31
+front bicep
+bounds:958,74,33,52
+rotate:90
+front hand
+bounds:1194,98,28,20
+rotate:90
+holding hand
+bounds:977,2,18,15
+mag_pistol_tigrus
+bounds:1155,110,16,17
+rotate:90
+mag_plasma_thunderbolt
+bounds:186,4,10,16
+rotate:90
+mag_plasmacannon_sol
+bounds:1162,19,26,26
+mag_sickle1
+bounds:1041,2,22,31
+rotate:90
+mag_sickle1e
+bounds:1161,86,22,31
+rotate:90
+magazine_bolter_heavy1
+bounds:1066,77,31,50
+rotate:90
+pauldron
+bounds:930,19,50,47
+rotate:90
+rear arm
+bounds:1118,80,41,28
+rear bicep
+bounds:1012,74,33,52
+rotate:90
+rear pauldron
+bounds:1027,26,45,46
+rearfist
+bounds:1189,58,26,22
+rotate:90
+sword_chain_thunderedge
+bounds:663,97,29,124
+rotate:90
+sword_power_proteus
+bounds:547,56,132,31
+throwing hand
+bounds:1075,110,27,16
+
+mk2 test_2.png
+size:256,64
+filter:Linear,Linear
+Amputations/bicep_amputated
+bounds:39,10,24,52
+Amputations/bicep_amputated_trim_bloody
+bounds:65,10,24,52
+Amputations/front thigh_amputated
+bounds:124,29,33,27
+rotate:90
+Amputations/front thigh_amputated_0000
+bounds:91,23,31,39
+Amputations/rear thigh_amputated_0000
+bounds:91,23,31,39
+Amputations/front thigh_trim_bloody
+bounds:91,2,29,19
+Amputations/rear thigh_amputated
+bounds:2,21,35,41
+Amputations/rear thigh_trim_bloody
+bounds:124,3,29,24
+
+mk2 test_3.png
+size:1024,32
+filter:Linear,Linear
+Gun Animations/anim_flamer
+bounds:746,7,14,17
+Gun Animations/anim_kalibrax
+bounds:380,2,108,22
+Gun Animations/anim_rotor_proteus1
+bounds:2,5,124,19
+Gun Animations/anim_rotor_proteus2
+bounds:128,5,124,19
+Gun Animations/anim_rotor_proteus3
+bounds:254,5,124,19
+Gun Animations/anim_shotgun_astartes1
+bounds:490,4,62,20
+Gun Animations/anim_shotgun_astartes2
+bounds:554,4,62,20
+Gun Animations/anim_shotgun_astartes3
+bounds:618,4,62,20
+Gun Animations/anim_shotgun_astartes4
+bounds:682,4,62,20
+
+mk2 test_4.png
+size:256,128
+filter:Linear,Linear
+Magazines/mag_belt_rotor
+bounds:2,21,93,95
+rotate:90
+Magazines/mag_flamer_1
+bounds:61,2,36,17
+Magazines/mag_kalibrax_1
+bounds:99,69,47,45
+Magazines/mag_kalibrax_1e
+bounds:148,67,47,45
+rotate:90
+Magazines/mag_kalibrax_2
+bounds:146,22,45,43
+Magazines/mag_kalibrax_3
+bounds:99,20,47,45
+rotate:90
+Magazines/mag_melta_proteus
+bounds:193,40,25,13
+rotate:90
+Magazines/mag_missile
+bounds:2,2,57,17
+
+mk2 test_5.png
+size:128,256
+filter:Linear,Linear
+Melee/heavyhammer_proteus
+bounds:2,2,67,163
+
+mk2 test_6.png
+size:256,128
+filter:Linear,Linear
+MK2/2000_backpack
+bounds:2,16,73,33
+MK2/2000_collar
+bounds:156,74,50,24
+rotate:90
+MK2/2000_eyes
+bounds:2,9,19,5
+MK2/2000_eyes_bg
+bounds:2,2,19,5
+MK2/2000_foot
+bounds:73,51,41,20
+MK2/2000_front forearm
+bounds:171,6,37,30
+MK2/2000_front thigh
+bounds:134,19,35,51
+MK2/2000_head
+bounds:171,38,34,34
+MK2/2000_knee
+bounds:182,88,36,23
+rotate:90
+MK2/2000_pelvis
+bounds:77,14,55,35
+MK2/2000_rear thigh
+bounds:73,73,42,51
+MK2/2000_shin
+bounds:117,72,37,52
+MK2/2000_torso
+bounds:2,51,73,69
+rotate:90
+
+mk2 test_7.png
+size:256,128
+filter:Linear,Linear
+MK2/trim/2000_backpack trim
+bounds:2,34,73,33
+MK2/trim/2000_pauldron trim
+bounds:77,11,59,56
+MK2/trim/2000_thigh_trim
+bounds:2,2,30,33
+rotate:90
+
+mk2 test_8.png
+size:256,128
+filter:Linear,Linear
+MK3/3000_collar
+bounds:77,11,31,11
+MK3/3000_foot
+bounds:55,6,41,20
+rotate:90
+MK3/3000_front forearm
+bounds:115,36,37,29
+rotate:90
+MK3/3000_front thigh
+bounds:77,24,36,49
+MK3/3000_head
+bounds:115,3,34,31
+MK3/3000_knee
+bounds:118,90,36,23
+rotate:90
+MK3/3000_rear thigh
+bounds:2,2,45,51
+rotate:90
+MK3/3000_shin
+bounds:77,75,39,51
+MK3/3000_torso
+bounds:2,49,73,77
+
+mk2 test_9.png
+size:64,64
+filter:Linear,Linear
+MK3/trim/3000_pauldron trim
+bounds:2,2,59,56
+
+mk2 test_10.png
+size:1024,128
+filter:Linear,Linear
+Weapons/autocannon_kalibrax
+bounds:205,9,136,48
+Weapons/bolter_heavy_mars
+bounds:290,66,133,59
+Weapons/bolter_heavy_voss
+bounds:156,59,132,66
+Weapons/bolter_phobos
+bounds:562,22,79,50
+Weapons/bolter_stalker
+bounds:539,74,98,51
+Weapons/flamer_astartes
+bounds:425,74,112,51
+Weapons/meltagun_proteus
+bounds:2,6,112,42
+Weapons/missile_astartes
+bounds:343,2,117,62
+Weapons/pistol_bolt_tigrus
+bounds:681,36,50,39
+rotate:90
+Weapons/pistol_plasma_sunspite
+bounds:643,24,62,36
+rotate:90
+Weapons/plasmacannon_sol
+bounds:2,50,152,75
+Weapons/plasmagun_thunderbolt
+bounds:116,6,87,42
+Weapons/rotorcannon_proteus
+bounds:462,8,98,64
+Weapons/shotgun_astartes
+bounds:639,88,93,37

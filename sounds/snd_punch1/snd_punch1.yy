@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":0.191917,
+  "duration":0.19192743,
   "name":"snd_punch1",
   "parent":{
     "name":"Weapons, Generic",

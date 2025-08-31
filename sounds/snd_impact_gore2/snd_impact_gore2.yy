@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":1.921088,
+  "duration":1.9210885,
   "name":"snd_impact_gore2",
   "parent":{
     "name":"Impacts",

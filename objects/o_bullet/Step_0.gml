@@ -31,6 +31,7 @@ if(col_barrier and !Flames){
 		x=x+lengthdir_x(dist,direction);
 		y=y+lengthdir_y(dist,direction);
 		impact_wall = 1;
+		//kill = 1;
 		instance_destroy(self);		
 		//kill_sound = col_barrier.sound[irandom_range(0,3)]
 		};
@@ -51,7 +52,7 @@ if(!IsBeam && !Flames){
 	var _YY = y+lengthdir_y(base_speed,direction);
 	var _XXA = x+lengthdir_x(base_speed*1.2,direction);
 	var _YYA = y+lengthdir_y(base_speed*1.2,direction);
-	var col_actor = collision_line_list(x,y,_XXA,_YYA,o_actorParent,0,1,col_list,1);
+	var col_actor = collision_line_list(x,y,_XXA,_YYA,o_actorParent,1,1,col_list,true);
 	var Trigger = 0;
 	
 	if(col_actor > 0){		
@@ -68,6 +69,7 @@ if(!IsBeam && !Flames){
 		
 		if(Trigger) {
 			speed = 0;
+			//freeze = 1;
 			var Line_Length2 = 0;
 			var Collided2 = place_meeting(x,y,Actor);
 			while(!Collided2 and (Line_Length2 < base_speed*3)) {
@@ -94,6 +96,7 @@ if(!IsBeam && !Flames){
 		};
 		if(Line_Length1 < base_speed) {
 			impact_wall = 1;
+			//kill = 1;
 			instance_destroy(self);
 		};
 	};	
@@ -102,17 +105,15 @@ if(!IsBeam && !Flames){
 //---------------------------------------- special projectile code -------------------------------------
 
 if(IsBeam && beamToggle) {
-	
-	var MainBreak = 0;
+
 	var max_length = 4000;
-	var Beam_Mod = 200; //beam length increase per tick, modified when detecting something
 	
 	while(!endBeam && (beamLength < max_length) ){
 		
 		var lx = x + lengthdir_x(beamLength, direction);
 		var ly = y + lengthdir_y(beamLength, direction);
-		var lxa = x + lengthdir_x(beamLength-10, direction);
-		var lya = y + lengthdir_y(beamLength-10, direction);
+		var lxa = x + lengthdir_x(beamLength-0, direction);
+		var lya = y + lengthdir_y(beamLength-0, direction);
 		
 		if(collision_point(lx, ly, o_platform, false, true)) {
 			impact_wall = 1;
@@ -157,17 +158,30 @@ if(IsBeam && beamToggle) {
 	};	
 		
 	//------------------------------------------ BEAM ACTOR COLLISIONS ------------------------------------------	
-		var ActorCollision = collision_line_list(x,y,lxa,lya,o_actorParent,0,true,col_list,true);
+		/*
+		var ActorCollision = collision_point_list(lx,ly,o_actorParent,false,true,col_list,true);
 		var ActorCounter = 0;
-		while (ActorCounter<ActorCollision) {
+		while (ActorCounter < ActorCollision) {
 			var Actor = ds_list_find_value(col_list,ActorCounter);		
 			if(instance_exists(Actor)){
-				if( (Actor.IFF != IFF) && (Actor.death[0] = 0) && (ds_list_find_index(Actor.collisions_list,id) = -1) ) {MainBreak = 1};
+				//if( (Actor.IFF != IFF) && (Actor.death[0] = 0) && (ds_list_find_index(Actor.collisions_list,id) = -1) ) {
+				if( (Actor.IFF != IFF) and (Actor.death[0] = 0) ) {
+					MainBreak = 1;
 				};
+			};
 			ActorCounter+=1;
 		};
+		*/
 		
-		if(MainBreak) {beamToggle = 0; kill = 1; break};		
+		var ActorCollision = collision_point(lx,ly,o_actorParent,false,true);
+		if(ActorCollision) {
+			if(ActorCollision.IFF != IFF and !ActorCollision.death[0]){
+				MainBreak=1;
+			};
+		};
+		
+		//if(hp <= 0) {MainBreak = 1};
+		if(MainBreak) {endBeam = 1; beamToggle = 0; kill = 1; break};		
 		
 	}; //beam length check end
 }; //isbeam check
@@ -191,5 +205,8 @@ if(Flames) {
 
 
 //x+=hspd; y+=vspd;
-speed = base_speed;
+
+if(!freeze) {speed = base_speed};
 ds_list_destroy(col_list);
+
+if(hp <= 0) {kill = 1};

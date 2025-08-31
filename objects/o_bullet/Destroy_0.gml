@@ -28,9 +28,10 @@ else if(impact_type[0] = "dust"){
 	};
 };
 
-if(time_source_exists(kill_timer)) {time_source_destroy(kill_timer)};
-
 with(o_actorParent) {
 	var Index = ds_list_find_index(collisions_list,other.id);
 	if(Index != -1) {ds_list_delete(collisions_list,Index)};
 };
+
+
+MyGhost.StartKill = 1;

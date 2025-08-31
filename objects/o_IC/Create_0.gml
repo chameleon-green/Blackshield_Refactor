@@ -23,7 +23,7 @@ window_set_cursor(cr_none);
 CL_Yellow = make_color_rgb(247,191,2);
 CL_Orange = make_color_rgb(255,121,0);
 CL_Red = make_color_rgb(255,60,40);
-CL_Screen = make_color_rgb(40,30,20); //CL_Screen = make_color_rgb(40,25,0);
+CL_Screen = make_color_rgb(40,25,0); //CL_Screen = make_color_rgb(40,25,0);
 CL_Outline = make_colour_rgb(192,158,2);
 
 ChooseColor = function(Ratio,ColorLock=0,LockInput=false){
@@ -40,7 +40,7 @@ ChooseColor = function(Ratio,ColorLock=0,LockInput=false){
 
 
 active = 0;
-scale = 1.33;
+scale = 1.5;
 bg_subimage = 0;
 enable_mouseaim = 1;
 pos_at_close = [0,0,0,0];
@@ -53,8 +53,8 @@ Mouse_Y = 0;
 
 MyScrollbar = 0;
 
-Xoffset = -100; 
-Yoffset =00;
+Xoffset = 0; 
+Yoffset = 0;
 
 //------------------------------------------ Inventory functionality -------------------------------------------
 
@@ -86,6 +86,10 @@ grd_inv_ammo = ds_grid_create(10,InventorySize); //ammo inventory
 grd_inv_crft = ds_grid_create(10,InventorySize); //crafting inventory
 
 AddItem(Boltgun_Phobos,1,grd_inv_wepn,InventorySize);
+AddItem(Lasgun_Kantrael,1,grd_inv_wepn,InventorySize);
+AddItem(Meltagun_Proteus,1,grd_inv_wepn,InventorySize);
+AddItem(Shotgun_Astartes,1,grd_inv_wepn,InventorySize);
+AddItem(Rotorcannon_Proteus,1,grd_inv_wepn,InventorySize);
 
 AddItem(Ammo_Bolt_Standard,1000,grd_inv_ammo,InventorySize);
 AddItem(Ammo_Bolt_Kraken,100,grd_inv_ammo,InventorySize);

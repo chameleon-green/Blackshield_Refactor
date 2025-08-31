@@ -12,14 +12,14 @@
   "edgeFiltering":false,
   "For3D":false,
   "frames":[
-    {"$GMSpriteFrame":"","%Name":"b6f65d88-0dd5-4ca7-a259-ac4169c34dba","name":"b6f65d88-0dd5-4ca7-a259-ac4169c34dba","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"","%Name":"70a02d9b-846d-4f21-8daf-f77eeaffbd64","name":"70a02d9b-846d-4f21-8daf-f77eeaffbd64","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,
   "height":176,
   "HTile":false,
   "layers":[
-    {"$GMImageLayer":"","%Name":"b10d5a94-087e-4c3f-a510-1f34d470bc8e","blendMode":0,"displayName":"default","isLocked":false,"name":"b10d5a94-087e-4c3f-a510-1f34d470bc8e","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
+    {"$GMImageLayer":"","%Name":"95d644d0-d822-4629-a5bc-78f6bb153f6e","blendMode":0,"displayName":"default","isLocked":false,"name":"95d644d0-d822-4629-a5bc-78f6bb153f6e","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
   "name":"sp_marine",
   "nineSlice":null,
@@ -64,15 +64,15 @@
     "resourceType":"GMSequence",
     "resourceVersion":"2.0",
     "seqHeight":176.0,
-    "seqWidth":113.0,
+    "seqWidth":112.0,
     "showBackdrop":true,
     "showBackdropImage":false,
     "timeUnits":1,
     "tracks":[
       {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"b6f65d88-0dd5-4ca7-a259-ac4169c34dba","path":"sprites/sp_marine/sp_marine.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"dc1239e6-763f-4c58-bb48-314e38dae9a6","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"70a02d9b-846d-4f21-8daf-f77eeaffbd64","path":"sprites/sp_marine/sp_marine.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"fec20180-99b8-41be-8600-daa3306d91a5","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange":null,
@@ -88,5 +88,5 @@
   },
   "type":2,
   "VTile":false,
-  "width":113,
+  "width":112,
 }

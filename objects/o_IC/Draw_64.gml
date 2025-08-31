@@ -245,12 +245,24 @@ if(Tab = "items") {
 
 if(Tab = "status") {
 	
-	var ClrTorsoArmor = ChooseColor(MyPlayer.armor_torso[3]);
-	var ClrHeadArmor = ChooseColor(MyPlayer.armor_head[3]);
-	var ClrArmLArmor = ChooseColor(MyPlayer.armor_armL[3]);
-	var ClrArmRArmor = ChooseColor(MyPlayer.armor_armR[3]);
-	var ClrLegLArmor = ChooseColor(MyPlayer.armor_legL[3]);
-	var ClrLegRArmor = ChooseColor(MyPlayer.armor_legR[3]);
+	//--USE THIS TO SHIFT ENTIRE STATUS DISPLAY--
+	var YoffS = (Yoffset+1)*scale;
+	var XoffS = (Xoffset+1)*scale;
+	//--USE THIS TO SHIFT ENTIRE STATUS DISPLAY--
+	
+	var SPHeadArmor = MyPlayer.armor_head[0].status_subimage;
+	var SPTorsoArmor = MyPlayer.armor_torso[0].status_subimage;
+	var SPArmLArmor = MyPlayer.armor_armL[0].status_subimage;
+	var SPArmRArmor = MyPlayer.armor_armR[0].status_subimage;
+	var SPLegLArmor = MyPlayer.armor_legL[0].status_subimage;
+	var SPLegRArmor = MyPlayer.armor_legR[0].status_subimage;
+	
+	var ClrTorsoArmor = ChooseColor(MyPlayer.armor_torso[3],1);
+	var ClrHeadArmor = ChooseColor(MyPlayer.armor_head[3],1);
+	var ClrArmLArmor = ChooseColor(MyPlayer.armor_armL[3],1);
+	var ClrArmRArmor = ChooseColor(MyPlayer.armor_armR[3],1);
+	var ClrLegLArmor = ChooseColor(MyPlayer.armor_legL[3],1);
+	var ClrLegRArmor = ChooseColor(MyPlayer.armor_legR[3],1);
 	
 	var ClrTorso = ChooseColor(MyPlayer.hp_body_torso/MyPlayer.hp_body_torso_max,1,MyPlayer.armor_torso[5]);
 	var ClrHead = ChooseColor(MyPlayer.hp_body_head/MyPlayer.hp_body_head_max,1,MyPlayer.armor_head[5]);
@@ -266,52 +278,52 @@ if(Tab = "status") {
 	var AlpLegLArmor = 1;
 	var AlpLegRArmor = 1;
 	
-	draw_sprite_ext(sp_inventory_screen,12,Xcent+XoffS,Ycent+YoffS+(6*scale),scale,scale,0,c_white,1); //draw big screen
+	draw_sprite_ext(sp_inventory_screen,12,Xcent+XoffS,Ycent+YoffS+(9*scale),scale,scale*1.01,0,c_white,1); //draw big screen
 	
-	gpu_set_fog(1,CL_Outline,1,1); //draw yellow outline of armor	
-	draw_sprite_ext(sp_statusbody_large,0,Xcent+XoffS+(2*scale),Ycent+YoffS+(24*scale),scale*1.01,scale*1.01,0,c_white,1); 
-	draw_sprite_ext(sp_statusbody_large,0,Xcent+XoffS-(2*scale),Ycent+YoffS+(24*scale),scale*1.01,scale*1.01,0,c_white,1); 
-	draw_sprite_ext(sp_statusbody_large,0,Xcent+XoffS,Ycent+YoffS+(22*scale),scale*1.01,scale*1.01,0,c_white,1); 
-	draw_sprite_ext(sp_statusbody_large,0,Xcent+XoffS,Ycent+YoffS+(26*scale),scale*1.01,scale*1.01,0,c_white,1); 	
-	draw_sprite_ext(sp_statusbody_large,1,Xcent+XoffS+(2*scale),Ycent+YoffS+(24*scale),scale*1.01,scale*1.01,0,c_white,1); 
-	draw_sprite_ext(sp_statusbody_large,1,Xcent+XoffS-(2*scale),Ycent+YoffS+(24*scale),scale*1.01,scale*1.01,0,c_white,1); 
-	draw_sprite_ext(sp_statusbody_large,1,Xcent+XoffS,Ycent+YoffS+(22*scale),scale*1.01,scale*1.01,0,c_white,1); 
-	draw_sprite_ext(sp_statusbody_large,1,Xcent+XoffS,Ycent+YoffS+(26*scale),scale*1.01,scale*1.01,0,c_white,1); 
-	draw_sprite_ext(sp_statusbody_large,2,Xcent+XoffS+(2*scale),Ycent+YoffS+(24*scale),scale*1.01,scale*1.01,0,c_white,1); 
-	draw_sprite_ext(sp_statusbody_large,2,Xcent+XoffS-(2*scale),Ycent+YoffS+(24*scale),scale*1.01,scale*1.01,0,c_white,1); 
-	draw_sprite_ext(sp_statusbody_large,2,Xcent+XoffS,Ycent+YoffS+(22*scale),scale*1.01,scale*1.01,0,c_white,1); 
-	draw_sprite_ext(sp_statusbody_large,2,Xcent+XoffS,Ycent+YoffS+(26*scale),scale*1.01,scale*1.01,0,c_white,1); 
-	draw_sprite_ext(sp_statusbody_large,3,Xcent+XoffS+(2*scale),Ycent+YoffS+(24*scale),scale*1.01,scale*1.01,0,c_white,1);
-	draw_sprite_ext(sp_statusbody_large,3,Xcent+XoffS-(2*scale),Ycent+YoffS+(24*scale),scale*1.01,scale*1.01,0,c_white,1);
-	draw_sprite_ext(sp_statusbody_large,3,Xcent+XoffS,Ycent+YoffS+(22*scale),scale*1.01,scale*1.01,0,c_white,1);
-	draw_sprite_ext(sp_statusbody_large,3,Xcent+XoffS,Ycent+YoffS+(26*scale),scale*1.01,scale*1.01,0,c_white,1);
-	draw_sprite_ext(sp_statusbody_large,4,Xcent+XoffS+(2*scale),Ycent+YoffS+(24*scale),scale*1.01,scale*1.01,0,c_white,1);
-	draw_sprite_ext(sp_statusbody_large,4,Xcent+XoffS-(2*scale),Ycent+YoffS+(24*scale),scale*1.01,scale*1.01,0,c_white,1);
-	draw_sprite_ext(sp_statusbody_large,4,Xcent+XoffS,Ycent+YoffS+(22*scale),scale*1.01,scale*1.01,0,c_white,1);
-	draw_sprite_ext(sp_statusbody_large,4,Xcent+XoffS,Ycent+YoffS+(26*scale),scale*1.01,scale*1.01,0,c_white,1);
-	draw_sprite_ext(sp_statusbody_large,4,Xcent+XoffS+(2*scale),Ycent+YoffS+(24*scale),scale*1.01,scale*1.01,0,c_white,1);
-	draw_sprite_ext(sp_statusbody_large,4,Xcent+XoffS-(2*scale),Ycent+YoffS+(24*scale),scale*1.01,scale*1.01,0,c_white,1);
-	draw_sprite_ext(sp_statusbody_large,4,Xcent+XoffS,Ycent+YoffS+(22*scale),scale*1.01,scale*1.01,0,c_white,1);
-	draw_sprite_ext(sp_statusbody_large,4,Xcent+XoffS,Ycent+YoffS+(26*scale),scale*1.01,scale*1.01,0,c_white,1);	
-	draw_sprite_ext(sp_statusbody_large,5,Xcent+XoffS+(2*scale),Ycent+YoffS+(24*scale),scale*1.01,scale*1.01,0,c_white,1);
-	draw_sprite_ext(sp_statusbody_large,5,Xcent+XoffS-(2*scale),Ycent+YoffS+(24*scale),scale*1.01,scale*1.01,0,c_white,1);
-	draw_sprite_ext(sp_statusbody_large,5,Xcent+XoffS,Ycent+YoffS+(22*scale),scale*1.01,scale*1.01,0,c_white,1);
-	draw_sprite_ext(sp_statusbody_large,5,Xcent+XoffS,Ycent+YoffS+(26*scale),scale*1.01,scale*1.01,0,c_white,1);	
-	gpu_set_fog(1,CL_Screen,1,1);	
-	draw_sprite_ext(sp_statusbody_large,0,Xcent+XoffS,Ycent+YoffS+(24*scale),scale,scale,0,c_white,1); 
-	draw_sprite_ext(sp_statusbody_large,1,Xcent+XoffS,Ycent+YoffS+(24*scale),scale,scale,0,c_white,1); 
-	draw_sprite_ext(sp_statusbody_large,2,Xcent+XoffS,Ycent+YoffS+(24*scale),scale,scale,0,c_white,1); 
-	draw_sprite_ext(sp_statusbody_large,3,Xcent+XoffS,Ycent+YoffS+(24*scale),scale,scale,0,c_white,1);
-	draw_sprite_ext(sp_statusbody_large,4,Xcent+XoffS,Ycent+YoffS+(24*scale),scale,scale,0,c_white,1);
-	draw_sprite_ext(sp_statusbody_large,5,Xcent+XoffS,Ycent+YoffS+(24*scale),scale,scale,0,c_white,1);
+	gpu_set_fog(1,ClrTorsoArmor,1,1); //draw colored outline of armor	
+	draw_sprite_ext(SPTorsoArmor[0],SPTorsoArmor[1],Xcent+XoffS+(2*scale),Ycent+YoffS+(29*scale),scale*1.01,scale*1.01,0,c_white,1); 
+	draw_sprite_ext(SPTorsoArmor[0],SPTorsoArmor[1],Xcent+XoffS-(2*scale),Ycent+YoffS+(29*scale),scale*1.01,scale*1.01,0,c_white,1); 
+	draw_sprite_ext(SPTorsoArmor[0],SPTorsoArmor[1],Xcent+XoffS,Ycent+YoffS+(27*scale),scale*1.01,scale*1.01,0,c_white,1); 
+	draw_sprite_ext(SPTorsoArmor[0],SPTorsoArmor[1],Xcent+XoffS,Ycent+YoffS+(31*scale),scale*1.01,scale*1.01,0,c_white,1); 
+	gpu_set_fog(1,ClrHeadArmor,1,1); //draw colored outline of armor	
+	draw_sprite_ext(SPHeadArmor[0],SPHeadArmor[1],Xcent+XoffS+(2*scale),Ycent+YoffS+(29*scale),scale*1.01,scale*1.01,0,c_white,1); 
+	draw_sprite_ext(SPHeadArmor[0],SPHeadArmor[1],Xcent+XoffS-(2*scale),Ycent+YoffS+(29*scale),scale*1.01,scale*1.01,0,c_white,1); 
+	draw_sprite_ext(SPHeadArmor[0],SPHeadArmor[1],Xcent+XoffS,Ycent+YoffS+(27*scale),scale*1.01,scale*1.01,0,c_white,1); 
+	draw_sprite_ext(SPHeadArmor[0],SPHeadArmor[1],Xcent+XoffS,Ycent+YoffS+(31*scale),scale*1.01,scale*1.01,0,c_white,1); 
+	gpu_set_fog(1,ClrArmLArmor,1,1); //draw colored outline of armor	
+	draw_sprite_ext(SPArmLArmor[0],SPArmLArmor[1],Xcent+XoffS+(2*scale),Ycent+YoffS+(29*scale),scale*1.01,scale*1.01,0,c_white,1); 
+	draw_sprite_ext(SPArmLArmor[0],SPArmLArmor[1],Xcent+XoffS-(2*scale),Ycent+YoffS+(29*scale),scale*1.01,scale*1.01,0,c_white,1); 
+	draw_sprite_ext(SPArmLArmor[0],SPArmLArmor[1],Xcent+XoffS,Ycent+YoffS+(27*scale),scale*1.01,scale*1.01,0,c_white,1); 
+	draw_sprite_ext(SPArmLArmor[0],SPArmLArmor[1],Xcent+XoffS,Ycent+YoffS+(31*scale),scale*1.01,scale*1.01,0,c_white,1); 
+	gpu_set_fog(1,ClrArmRArmor,1,1); //draw colored outline of armor	
+	draw_sprite_ext(SPArmRArmor[0],SPArmRArmor[1],Xcent+XoffS+(2*scale),Ycent+YoffS+(29*scale),scale*1.01,scale*1.01,0,c_white,1);
+	draw_sprite_ext(SPArmRArmor[0],SPArmRArmor[1],Xcent+XoffS-(2*scale),Ycent+YoffS+(29*scale),scale*1.01,scale*1.01,0,c_white,1);
+	draw_sprite_ext(SPArmRArmor[0],SPArmRArmor[1],Xcent+XoffS,Ycent+YoffS+(27*scale),scale*1.01,scale*1.01,0,c_white,1);
+	draw_sprite_ext(SPArmRArmor[0],SPArmRArmor[1],Xcent+XoffS,Ycent+YoffS+(31*scale),scale*1.01,scale*1.01,0,c_white,1);
+	gpu_set_fog(1,ClrLegLArmor,1,1); //draw colored outline of armor	
+	draw_sprite_ext(SPLegLArmor[0],SPLegLArmor[1],Xcent+XoffS+(2*scale),Ycent+YoffS+(29*scale),scale*1.01,scale*1.01,0,c_white,1);
+	draw_sprite_ext(SPLegLArmor[0],SPLegLArmor[1],Xcent+XoffS-(2*scale),Ycent+YoffS+(29*scale),scale*1.01,scale*1.01,0,c_white,1);
+	draw_sprite_ext(SPLegLArmor[0],SPLegLArmor[1],Xcent+XoffS,Ycent+YoffS+(27*scale),scale*1.01,scale*1.01,0,c_white,1);
+	draw_sprite_ext(SPLegLArmor[0],SPLegLArmor[1],Xcent+XoffS,Ycent+YoffS+(31*scale),scale*1.01,scale*1.01,0,c_white,1);
+	gpu_set_fog(1,ClrLegRArmor,1,1); //draw colored outline of armor		
+	draw_sprite_ext(SPLegRArmor[0],SPLegRArmor[1],Xcent+XoffS+(2*scale),Ycent+YoffS+(29*scale),scale*1.01,scale*1.01,0,c_white,1);
+	draw_sprite_ext(SPLegRArmor[0],SPLegRArmor[1],Xcent+XoffS-(2*scale),Ycent+YoffS+(29*scale),scale*1.01,scale*1.01,0,c_white,1);
+	draw_sprite_ext(SPLegRArmor[0],SPLegRArmor[1],Xcent+XoffS,Ycent+YoffS+(27*scale),scale*1.01,scale*1.01,0,c_white,1);
+	draw_sprite_ext(SPLegRArmor[0],SPLegRArmor[1],Xcent+XoffS,Ycent+YoffS+(31*scale),scale*1.01,scale*1.01,0,c_white,1);	
+	gpu_set_fog(1,CL_Screen,1,1);	//draw dark background of limb template
+	draw_sprite_ext(SPTorsoArmor[0],SPTorsoArmor[1],Xcent+XoffS,Ycent+YoffS+(29*scale),scale,scale,0,c_white,1); 
+	draw_sprite_ext(SPHeadArmor[0],SPHeadArmor[1],Xcent+XoffS,Ycent+YoffS+(29*scale),scale,scale,0,c_white,1); 
+	draw_sprite_ext(SPArmLArmor[0],SPArmLArmor[1],Xcent+XoffS,Ycent+YoffS+(29*scale),scale,scale,0,c_white,1); 
+	draw_sprite_ext(SPArmRArmor[0],SPArmRArmor[1],Xcent+XoffS,Ycent+YoffS+(29*scale),scale,scale,0,c_white,1);
+	draw_sprite_ext(SPLegLArmor[0],SPLegLArmor[1],Xcent+XoffS,Ycent+YoffS+(29*scale),scale,scale,0,c_white,1);
+	draw_sprite_ext(SPLegRArmor[0],SPLegRArmor[1],Xcent+XoffS,Ycent+YoffS+(29*scale),scale,scale,0,c_white,1);
 	gpu_set_fog(0,CL_Screen,0,0);	
-	
-	
-	draw_sprite_ext(sp_statusbody_large,6,Xcent+XoffS,Ycent+YoffS+(24*scale),scale,scale,0,ClrTorso,1); 
-	draw_sprite_ext(sp_statusbody_large,8,Xcent+XoffS,Ycent+YoffS+(24*scale),scale,scale,0,ClrArmL,1); 
-	draw_sprite_ext(sp_statusbody_large,9,Xcent+XoffS,Ycent+YoffS+(24*scale),scale,scale,0,ClrArmR,1); 
-	draw_sprite_ext(sp_statusbody_large,10,Xcent+XoffS,Ycent+YoffS+(24*scale),scale,scale,0,ClrLegL,1); 
-	draw_sprite_ext(sp_statusbody_large,11,Xcent+XoffS,Ycent+YoffS+(24*scale),scale,scale,0,ClrLegR,1); 
+	//draw actual skeleton
+	draw_sprite_ext(sp_statusbody_bones,6,Xcent+XoffS,Ycent+YoffS+(29*scale),scale,scale,0,ClrTorso,1); 
+	draw_sprite_ext(sp_statusbody_bones,8,Xcent+XoffS,Ycent+YoffS+(29*scale),scale,scale,0,ClrArmL,1); 
+	draw_sprite_ext(sp_statusbody_bones,9,Xcent+XoffS,Ycent+YoffS+(29*scale),scale,scale,0,ClrArmR,1); 
+	draw_sprite_ext(sp_statusbody_bones,10,Xcent+XoffS,Ycent+YoffS+(29*scale),scale,scale,0,ClrLegL,1); 
+	draw_sprite_ext(sp_statusbody_bones,11,Xcent+XoffS,Ycent+YoffS+(29*scale),scale,scale,0,ClrLegR,1); 
 	
 	if(ClrTorso != CL_Yellow) {AlpTorsoArmor = 0.4};
 	if(ClrHead != CL_Yellow) {AlpHeadArmor = 0.4};
@@ -320,17 +332,171 @@ if(Tab = "status") {
 	if(ClrLegL != CL_Yellow) {AlpLegLArmor = 0.4};
 	if(ClrLegR != CL_Yellow) {AlpLegRArmor = 0.4};
 	
-	if(ClrTorsoArmor != CL_Screen) {draw_sprite_ext(sp_statusbody_large,0,Xcent+XoffS,Ycent+YoffS+(24*scale),scale,scale,0,ClrTorsoArmor,AlpTorsoArmor)}; 
-	draw_sprite_ext(sp_statusbody_large,7,Xcent+XoffS,Ycent+YoffS+(24*scale),scale,scale,0,ClrHead,1); //draw skull over torso, below helmet
-	if(ClrHeadArmor != CL_Screen) {draw_sprite_ext(sp_statusbody_large,1,Xcent+XoffS,Ycent+YoffS+(24*scale),scale,scale,0,ClrHeadArmor,AlpHeadArmor)}; 
-	if(ClrArmLArmor != CL_Screen) {draw_sprite_ext(sp_statusbody_large,2,Xcent+XoffS,Ycent+YoffS+(24*scale),scale,scale,0,ClrArmLArmor,AlpArmLArmor)}; 
-	if(ClrArmRArmor != CL_Screen) {draw_sprite_ext(sp_statusbody_large,3,Xcent+XoffS,Ycent+YoffS+(24*scale),scale,scale,0,ClrArmRArmor,AlpArmRArmor)};
-	if(ClrLegLArmor != CL_Screen) {draw_sprite_ext(sp_statusbody_large,4,Xcent+XoffS,Ycent+YoffS+(24*scale),scale,scale,0,ClrLegLArmor,AlpLegLArmor)};
-	if(ClrLegRArmor != CL_Screen) {draw_sprite_ext(sp_statusbody_large,5,Xcent+XoffS,Ycent+YoffS+(24*scale),scale,scale,0,ClrLegRArmor,AlpLegRArmor)};
+	if(MyPlayer.armor_legL[3] > 0) {draw_sprite_ext(SPLegLArmor[0],SPLegLArmor[1],Xcent+XoffS,Ycent+YoffS+(29*scale),scale,scale,0,ClrLegLArmor,AlpLegLArmor)};
+	if(MyPlayer.armor_legR[3] > 0) {draw_sprite_ext(SPLegRArmor[0],SPLegRArmor[1],Xcent+XoffS,Ycent+YoffS+(29*scale),scale,scale,0,ClrLegRArmor,AlpLegRArmor)};
+	if(MyPlayer.armor_torso[3] > 0) {draw_sprite_ext(SPTorsoArmor[0],SPTorsoArmor[1],Xcent+XoffS,Ycent+YoffS+(29*scale),scale,scale,0,ClrTorsoArmor,AlpTorsoArmor)}; 
+	draw_sprite_ext(sp_statusbody_bones,7,Xcent+XoffS,Ycent+YoffS+(29*scale),scale,scale,0,ClrHead,1); //draw skull over torso, below helmet
+	if(MyPlayer.armor_head[3] > 0) {draw_sprite_ext(SPHeadArmor[0],SPHeadArmor[1],Xcent+XoffS,Ycent+YoffS+(29*scale),scale,scale,0,ClrHeadArmor,AlpHeadArmor)}; 
+	if(MyPlayer.armor_armL[3] > 0) {draw_sprite_ext(SPArmLArmor[0],SPArmLArmor[1],Xcent+XoffS,Ycent+YoffS+(29*scale),scale,scale,0,ClrArmLArmor,AlpArmLArmor)}; 
+	if(MyPlayer.armor_armR[3] > 0) {draw_sprite_ext(SPArmRArmor[0],SPArmRArmor[1],Xcent+XoffS,Ycent+YoffS+(29*scale),scale,scale,0,ClrArmRArmor,AlpArmRArmor)};
+	
+	
+	//----------------------------------------- LEFT SIDE ARMOR DAMAGE -----------------------------------------------
+	
+	
+	if(MyPlayer.armor_torso[3] <= 0.85){
+		//difference of -28 for bubble to title text
+		//difference of -9 for bubble to detail text
+		draw_set_halign(fa_center);
+		draw_set_colour(CL_Screen);
+		var Ratio = MyPlayer.armor_torso[3];
+		var Text = "MINOR DAMAGE";
+		var Text2 = "INTEGRITY: " + string(round(Ratio*100)) + "%";
+		if(Ratio > 0.33 and Ratio < 0.75) {Text = "MAJOR DAMAGE"};
+		if(Ratio > 0 and Ratio <= 0.33) {Text = "CRITICAL DAMAGE"};
+		if(Ratio = 0) {Text = "DESTROYED"}
+		
+		draw_sprite_ext(sp_statusbubble,8,Xcent+XoffS+(-45*scale),Ycent+YoffS+(-128*scale),scale,scale,0,ClrTorsoArmor,1);  //BUBBLE ARROW
+		draw_sprite_ext(sp_statusbubble,0,Xcent+XoffS+(-60*scale),Ycent+YoffS+(-126*scale),scale,scale,0,ClrTorsoArmor,1); //BUBBLE
+		 
+		draw_text_transformed(Xcent+XoffS+(-60*scale),Ycent+YoffS+(-154*scale),Text,scale*0.57,scale*0.6,0); //DAMAGE TEXT
+		draw_text_transformed(Xcent+XoffS+(-55*scale),Ycent+YoffS+(-135*scale),Text2,scale*0.57,scale*0.6,0); //PERCENT DURABILITY TEXT
+		draw_set_colour(c_white);
+	};
+	
+	
+	if(MyPlayer.armor_armL[3] <= 0.85){
+		//difference of -28 for bubble to title text
+		//difference of -9 for bubble to detail text
+		draw_set_halign(fa_center);
+		draw_set_colour(CL_Screen);
+		var Ratio = MyPlayer.armor_armL[3];
+		var Text = "MINOR DAMAGE";
+		var Text2 = "INTEGRITY: " + string(round(Ratio*100)) + "%";
+		if(Ratio > 0.33 and Ratio < 0.75) {Text = "MAJOR DAMAGE"};
+		if(Ratio > 0 and Ratio <= 0.33) {Text = "CRITICAL DAMAGE"};
+		if(Ratio = 0) {Text = "DESTROYED"}
+		
+		draw_sprite_ext(sp_statusbubble,5,Xcent+XoffS+(-104*scale),Ycent+YoffS+(-32*scale),-scale,scale,0,ClrArmLArmor,1); //BUBBLE ARROW
+		draw_sprite_ext(sp_statusbubble,0,Xcent+XoffS+(-135*scale),Ycent+YoffS+(-13*scale),scale,scale,0,ClrArmLArmor,1); //BUBBLE 
+
+		draw_text_transformed(Xcent+XoffS+(-135*scale),Ycent+YoffS+(-41*scale),Text,scale*0.57,scale*0.6,0); //DAMAGE TEXT
+		draw_text_transformed(Xcent+XoffS+(-130*scale),Ycent+YoffS+(-22*scale),Text2,scale*0.57,scale*0.6,0); //PERCENT DURABILITY TEXT
+		draw_set_colour(c_white);
+	};
+	
+	if(MyPlayer.armor_legL[3] <= 0.85){
+		draw_set_halign(fa_center);
+		draw_set_colour(CL_Screen);
+		var Ratio = MyPlayer.armor_legL[3];
+		var Text = "MINOR DAMAGE";
+		var Text2 = "INTEGRITY: " + string(round(Ratio*100)) + "%"
+		if(Ratio > 0.33 and Ratio < 0.75) {Text = "MAJOR DAMAGE"};
+		if(Ratio > 0 and Ratio <= 0.33) {Text = "CRITICAL DAMAGE"};
+		if(Ratio = 0) {Text = "DESTROYED"}
+		
+		draw_sprite_ext(sp_statusbubble,6,Xcent+XoffS+(-104*scale),Ycent+YoffS+(87*scale),-scale,scale,0,ClrLegLArmor,1); //BUBBLE ARROW
+		draw_sprite_ext(sp_statusbubble,0,Xcent+XoffS+(-135*scale),Ycent+YoffS+(102*scale),scale,scale,0,ClrLegLArmor,1); //BUBBLE 
+	
+		draw_text_transformed(Xcent+XoffS+(-135*scale),Ycent+YoffS+(74*scale),Text,scale*0.57,scale*0.6,0); //DAMAGE TEXT
+		draw_text_transformed(Xcent+XoffS+(-130*scale),Ycent+YoffS+(93*scale),Text2,scale*0.57,scale*0.6,0); //PERCENT DURABILITY TEXT
+		draw_set_colour(c_white);
+	};
+	
+	//----------------------------------------- RIGHT SIDE ARMOR DAMAGE -----------------------------------------------
+	
+	if(MyPlayer.armor_head[3] <= 0.85){
+		//difference of -28 for bubble to title text
+		//difference of -9 for bubble to detail text
+		draw_set_halign(fa_center);
+		draw_set_colour(CL_Screen);
+		var Ratio = MyPlayer.armor_head[3];
+		var Text = "MINOR DAMAGE";
+		var Text2 = "INTEGRITY: " + string(round(Ratio*100)) + "%";
+		if(Ratio > 0.33 and Ratio < 0.75) {Text = "MAJOR DAMAGE"};
+		if(Ratio > 0 and Ratio <= 0.33) {Text = "CRITICAL DAMAGE"};
+		if(Ratio = 0) {Text = "DESTROYED"}
+		
+		draw_sprite_ext(sp_statusbubble,9,Xcent+XoffS+(60*scale),Ycent+YoffS+(-128*scale),scale,scale,0,ClrHeadArmor,1);  //BUBBLE ARROW
+		draw_sprite_ext(sp_statusbubble,0,Xcent+XoffS+(60*scale),Ycent+YoffS+(-126*scale),scale,scale,0,ClrHeadArmor,1); //BUBBLE
+		 
+		draw_text_transformed(Xcent+XoffS+(60*scale),Ycent+YoffS+(-154*scale),Text,scale*0.57,scale*0.6,0); //DAMAGE TEXT
+		draw_text_transformed(Xcent+XoffS+(65*scale),Ycent+YoffS+(-135*scale),Text2,scale*0.57,scale*0.6,0); //PERCENT DURABILITY TEXT
+		draw_set_colour(c_white);
+	};
+	
+	
+	if(MyPlayer.armor_armR[3] <= 0.85){
+		//difference of -29 for bubble to title text
+		//difference of -9 for bubble to detail text
+		draw_set_halign(fa_center);
+		draw_set_colour(CL_Screen);
+		var Ratio = MyPlayer.armor_armR[3];
+		var Text = "MINOR DAMAGE";
+		var Text2 = "INTEGRITY: " + string(round(Ratio*100)) + "%";
+		if(Ratio > 0.33 and Ratio < 0.75) {Text = "MAJOR DAMAGE"};
+		if(Ratio > 0 and Ratio <= 0.33) {Text = "CRITICAL DAMAGE"};
+		if(Ratio = 0) {Text = "DESTROYED"}
+		
+		draw_sprite_ext(sp_statusbubble,5,Xcent+XoffS+(104*scale),Ycent+YoffS+(-32*scale),scale,scale,0,ClrArmRArmor,1); 
+		draw_sprite_ext(sp_statusbubble,0,Xcent+XoffS+(135*scale),Ycent+YoffS+(-13*scale),scale,scale,0,ClrArmRArmor,1);
+
+		draw_text_transformed(Xcent+XoffS+(135*scale),Ycent+YoffS+(-41*scale),Text,scale*0.57,scale*0.6,0);
+		draw_text_transformed(Xcent+XoffS+(140*scale),Ycent+YoffS+(-22*scale),Text2,scale*0.57,scale*0.6,0);
+		draw_set_colour(c_white);
+	};
+	
+	if(MyPlayer.armor_legR[3] <= 0.85){
+		draw_set_halign(fa_center);
+		draw_set_colour(CL_Screen);
+		var Ratio = MyPlayer.armor_legR[3];
+		var Text = "MINOR DAMAGE";
+		var Text2 = "INTEGRITY: " + string(round(Ratio*100)) + "%"
+		if(Ratio > 0.33 and Ratio < 0.75) {Text = "MAJOR DAMAGE"};
+		if(Ratio > 0 and Ratio <= 0.33) {Text = "CRITICAL DAMAGE"};
+		if(Ratio = 0) {Text = "DESTROYED"}
+		
+		draw_sprite_ext(sp_statusbubble,6,Xcent+XoffS+(104*scale),Ycent+YoffS+(87*scale),scale,scale,0,ClrLegRArmor,1);
+		draw_sprite_ext(sp_statusbubble,0,Xcent+XoffS+(135*scale),Ycent+YoffS+(102*scale),scale,scale,0,ClrLegRArmor,1); 
+ 
+		draw_text_transformed(Xcent+XoffS+(135*scale),Ycent+YoffS+(74*scale),Text,scale*0.57,scale*0.6,0);
+		draw_text_transformed(Xcent+XoffS+(140*scale),Ycent+YoffS+(93*scale),Text2,scale*0.57,scale*0.6,0);
+		draw_set_colour(c_white);
+	};
+	
+	
+	//----------------------------------------- LEFT SIDE WOUND STATES -----------------------------------------------
+	
+	if(MyPlayer.armor_armL[6] <= 0.75){
+		//difference of -28 for bubble to title text
+		//difference of -9 for bubble to detail text
+		draw_set_halign(fa_center);
+		draw_set_colour(CL_Screen);
+		var Ratio = MyPlayer.armor_armL[6];
+		var Text = "MINOR INJURY";
+		var Text2 = "LIMB STATE: " + string(round(Ratio*100)) + "%";
+		var Text3 = "HELLO \n WORLD";
+		if(Ratio > 0.33 and Ratio < 0.75) {Text = "MAJOR INJURY"};
+		if(Ratio >= 0 and Ratio <= 0.33) {Text = "CRITICAL INJURY"};
+		if(MyPlayer.armor_armL[3] = true) {Text = "AMPUTATED"};
+		
+		//draw_sprite_ext(sp_statusbubble,5,Xcent+XoffS+(-95*scale),Ycent+YoffS+(-32*scale),-scale,scale,0,ClrArmLArmor,1); //BUBBLE ARROW
+		draw_sprite_ext(sp_statusbubble,4,Xcent+XoffS+(-135*scale),Ycent+YoffS+(+30*scale),scale,scale,0,ClrArmL,1); //BUBBLE EXTENSION
+		draw_sprite_ext(sp_statusbubble,0,Xcent+XoffS+(-135*scale),Ycent+YoffS+(+30*scale),scale,scale,0,ClrArmL,1); //BUBBLE 
+		
+		draw_text_transformed(Xcent+XoffS+(-135*scale),Ycent+YoffS+(+2*scale),Text,scale*0.57,scale*0.6,0); //DAMAGE TEXT
+		draw_text_transformed(Xcent+XoffS+(-130*scale),Ycent+YoffS+(+21*scale),Text2,scale*0.57,scale*0.6,0); //PERCENT DURABILITY TEXT
+		draw_set_valign(fa_top);
+		draw_text_transformed(Xcent+XoffS+(-130*scale),Ycent+YoffS+(+33*scale),Text3,scale*0.57,scale*0.6,0); //STAT EFFECT TEXT
+		draw_set_colour(c_white);
+	};
 	
 }; //status tab check
 
-	//+++++++++++++++++++++++++++++++++++++++ BUTTON CHECKS ++++++++++++++++++++++++++++++++++++++++++++
+var YoffS = Yoffset*scale;
+var XoffS = Xoffset*scale;
+
+//+++++++++++++++++++++++++++++++++++++++ BUTTON CHECKS ++++++++++++++++++++++++++++++++++++++++++++
 
 #region Button Checks
 

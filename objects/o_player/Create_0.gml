@@ -3,6 +3,7 @@ AmmoStructs();
 WeaponStructs();
 var _mymethod = function(){}; 
 
+draw_enable_skeleton_blendmodes(true);
 
 image_xscale = 1;
 image_yscale = 1;
@@ -73,9 +74,9 @@ resist_armR = [0,0,0,0,0,0,0,0,0];
 resist_legL = [0,0,0,0,0,0,0,0,0];
 resist_legR = [0,0,0,0,0,0,0,0,0];
 
-hbox_head = [20,146,-20,176];
-hbox_torso = [30,85,-30,146];
-hbox_legs = [30,0,-30,85];
+hbox_head = [40,146,-40,176];
+hbox_torso = [50,85,-50,146];
+hbox_legs = [50,0,-50,85];
 
 PlayerStatsCalculator();
 
@@ -114,13 +115,14 @@ ammo_active = 0; ammo_active_id = -1; ammo_primary = 0; ammo_secondary = 0; ammo
 3 = armor ratio (unclamped), raw ratio used for UI 
 4 = limb per frame damage (for amputations)
 5 = limb is amputated (true or false)
+6 = limb HP ratio
 */
-armor_head = ["none",-1,1,0,0,false];
-armor_torso = ["none",-1,1,0,0,false];
-armor_armL = ["none",-1,1,0,0,false];
-armor_armR = ["none",-1,1,0,0,false];
-armor_legL = ["none",-1,1,0,0,false];
-armor_legR = ["none",-1,1,0,0,false];
+armor_head = ["none",-1,1,0,0,false,1,0,0];
+armor_torso = ["none",-1,1,0,0,false,1,0,0];
+armor_armL = ["none",-1,1,0,0,false,1,0,0];
+armor_armR = ["none",-1,1,0,0,false,1,0,0];
+armor_legL = ["none",-1,1,0,0,false,1,0,0];
+armor_legR = ["none",-1,1,0,0,false,1,0,0];
 
 var IC_ID = -1;
 if(variable_instance_exists(id,"MyIC")) {
@@ -277,13 +279,34 @@ xhair = instance_create_depth(x,y,depth-3,o_xhair,{
 });
 
 
-/*
-var Red = make_color_rgb(190,90,90)
+var Red = make_color_rgb(220,210,200)
+
+skeleton_slot_colour_set("slot_torso", Red, 1);
+skeleton_slot_colour_set("slot_eyes", c_red, 1);
+skeleton_slot_colour_set("slot_collar", Red, 1);
+skeleton_slot_colour_set("slot_head", Red, 1);
+skeleton_slot_colour_set("slot_pelvis", Red, 1);
+skeleton_slot_colour_set("slot_backpack", Red, 1);
+
 skeleton_slot_colour_set("slot_pauldron", Red, 1);
+skeleton_slot_colour_set("slot_front bicep", Red, 1);
+skeleton_slot_colour_set("slot_front forearm", Red, 1);
+skeleton_slot_colour_set("slot_front hand", Red, 1);
+
+skeleton_slot_colour_set("slot_rear pauldron", Red, 1);
+skeleton_slot_colour_set("slot_rear bicep", Red, 1);
+skeleton_slot_colour_set("slot_rear forearm", Red, 1);
+skeleton_slot_colour_set("slot_holding hand", Red, 1);
+
 skeleton_slot_colour_set("slot_front thigh", Red, 1);
 skeleton_slot_colour_set("slot_front knee", Red, 1);
 skeleton_slot_colour_set("slot_front shin", Red, 1);
 skeleton_slot_colour_set("slot_front foot", Red, 1);
+
+skeleton_slot_colour_set("slot_rear thigh", Red, 1);
+skeleton_slot_colour_set("slot_rear knee", Red, 1);
+skeleton_slot_colour_set("slot_rear shin", Red, 1);
+skeleton_slot_colour_set("slot_rear foot", Red, 1);
 
 /* 
 //debug stuff for stress testing

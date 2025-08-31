@@ -10,6 +10,9 @@ function ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy){
 	if(instance_exists(Bullet)){
 			if((Bullet.IFF != IFF) && (ds_list_find_index(CollisionsList,Bullet) = -1)){
 				
+				//add our projectile to the collisions list, so it doesn't continuously damage us 
+				ds_list_add(CollisionsList,Bullet);
+				
 				//determine what we will use to resist the incoming damage, and the durability of our armor
 				var ResistArray = variable_instance_get(id,"resist_" + Limb);
 				var ArmorArray = variable_instance_get(id, "armor_" + Limb);
@@ -26,7 +29,9 @@ function ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy){
 				else if(Bullet.damage_type = "warp") {var resist = clamp((ResistArray[7]*DRatio)+resist_base[7],0,9999999)}
 				else {return 0};
 				
-				if(Damage <= (resist-Bullet.penetration)){
+				var NetResist = (resist - Bullet.penetration);
+				
+				if(Damage <= NetResist){
 					
 					audio_play_sound(choose(snd_impact_metal1,snd_impact_metal2,snd_impact_metal3),1,0,1,0,random_range(0.9,1.1));
 			
@@ -53,13 +58,15 @@ function ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy){
 						ArmorArray[2] = NewDurability/MaxDurability; //recalculate durability ratio
 					};
 					
+					Bullet.depth = other.depth-1;
 					Bullet.base_speed = 0;
 					Bullet.speed = 0;
 					Bullet.hp = 0;
 					Bullet.endBeam = 1;
+					Bullet.MainBreak = 1;
 					return 0;
 				}
-				else if(Damage > resist) {
+				else if(Damage > NetResist) {
 					
 					audio_play_sound(choose(snd_impact_metal_penetrate1,snd_impact_metal_penetrate2,snd_impact_metal_penetrate3),1,0,1,0,random_range(0.9,1.1));
 					audio_play_sound(choose(snd_impact_gore1,snd_impact_gore2,snd_impact_gore3),1,0,0.75,0,random_range(0.9,1.1));
@@ -74,16 +81,19 @@ function ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy){
 					}
 					else{
 						var SplashX = Bullet.x;
-						var SplashY = Bullet.y;
-						
+						var SplashY = Bullet.y;					
 					};
 				
 					instance_create_depth(SplashX,SplashY,depth-1,oprt_splatter,{image_angle : Bullet.direction-90});
 					
-					var LimbVariable = variable_instance_get(id,"hp_body_"+Limb);
-					var NetDamage = Damage - (resist-Bullet.penetration);
+					var LimbVariable = variable_instance_get(id,"hp_body_"+ Limb);
+					var LimbVariableMax = variable_instance_get(id,"hp_body_"+ Limb + "_max");
+					var NetDamage = Damage - NetResist;
 					variable_instance_set(id,"hp_body_"+Limb,LimbVariable-NetDamage);
+					ArmorArray[6] = clamp(LimbVariable/LimbVariableMax,0,5);
+					
 					HP -= NetDamage;
+					
 					if(!Enemy){ //damage our armor durability based on how much the damage compares to our resist
 						var ItemID = ArmorArray[1];
 						if(ItemID != -1) {	
@@ -98,20 +108,20 @@ function ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy){
 								ArmorArray[3] = NewDurability/ArmorArray[0].durability_max;
 							};
 						}; //item ID check
-					//Bullet.hp -= resist;
-					//Bullet.damage = Bullet.hp;
-					//if(Bullet.hp <= Bullet.fuse) {Bullet.kill = 1};
 					} //enemy check
 					else{
-						var CurrentDurability = ArmorArray[7];
-						var MaxDurability = ArmorArray[6];
-						var NewDurability = clamp(ArmorArray[7]-Damage,0,999999999);
-						ArmorArray[7] = NewDurability; //reduce durability of armor
+						var CurrentDurability = ArmorArray[8];
+						var MaxDurability = ArmorArray[7];
+						var NewDurability = clamp(ArmorArray[8]-Damage,0,999999999);
+						ArmorArray[8] = NewDurability; //reduce durability of armor
 						ArmorArray[2] = NewDurability/MaxDurability; //recalculate durability ratio
 					};
 					
+					Bullet.depth = other.depth-1;
 					Bullet.hp -= resist;
 					Bullet.damage = Bullet.hp;
+					Bullet.freeze = 0;
+					
 					if(Bullet.hp <= Bullet.fuse) {
 						
 						Bullet.base_speed = 0;
@@ -120,7 +130,8 @@ function ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy){
 						Bullet.endBeam = 1;
 						Bullet.kill = 1
 					};
-							
+					
+					
 					return NetDamage;
 				};
 				
@@ -136,16 +147,17 @@ function ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy){
 function ImpactScript(BulletObject,Limb,HitboxArray,CollisionsList,Enemy,Precise=0){
 	
 	var Impacts_List = ds_list_create();
-	var Impacts = collision_rectangle_list(x-HitboxArray[0],y-HitboxArray[1],x-HitboxArray[2],y-HitboxArray[3],BulletObject,Precise,false,Impacts_List,false);
+	var Impacts = collision_rectangle_list(x-HitboxArray[0],y-HitboxArray[1],x-HitboxArray[2],y-HitboxArray[3],BulletObject,1,false,Impacts_List,false);
 	var ImpactCount = 0; //impact counter for while loop
 	var TotalDamage = 0; //damage this frame, used to measure amputations
 	var MultipleLimbs = is_array(Limb);
 	
 	while(ImpactCount < Impacts) {	
 		var Bullet = Impacts_List[| ImpactCount];		
+		Bullet.freeze = 0;
 		//if we have one limb, do the stuff to that limb
 			if(!MultipleLimbs){
-				var AmputationThreshold = 1.5*variable_instance_get(id,"hp_body_" + Limb + "_max");
+				var AmputationThreshold = 2.25*variable_instance_get(id,"hp_body_" + Limb + "_max");
 				var LimbArray = variable_instance_get(id, "armor_" + Limb);
 				LimbArray[4] += ImpactDamageProcessing(Bullet,Limb,CollisionsList,Enemy);
 				if(LimbArray[4] >= AmputationThreshold) {LimbArray[5] = true};
@@ -156,12 +168,9 @@ function ImpactScript(BulletObject,Limb,HitboxArray,CollisionsList,Enemy,Precise
 				var ChosenLimb = Limb[Pick];
 				var LimbArray = variable_instance_get(id, "armor_" + ChosenLimb);
 				LimbArray[4] += ImpactDamageProcessing(Bullet,ChosenLimb,CollisionsList,Enemy);
-				var AmputationThreshold = 1.5*variable_instance_get(id,"hp_body_" + ChosenLimb + "_max");
+				var AmputationThreshold = 2.25*variable_instance_get(id,"hp_body_" + ChosenLimb + "_max");
 				if(LimbArray[4] >= AmputationThreshold) {LimbArray[5] = true};			
 			};
-			
-			//add our projectile to the collisions list, so it doesn't continuously damage us 
-			if(ds_list_find_index(CollisionsList,Bullet) = -1) {ds_list_add(CollisionsList,Bullet)};
 			ImpactCount++;
 	}; //while loop bracket
 	

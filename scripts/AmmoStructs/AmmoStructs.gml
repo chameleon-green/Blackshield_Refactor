@@ -12,7 +12,7 @@ function AmmoCost(Item) {
 #endregion
 
 function AmmoStructs() {
-	#region small bolt rounds
+#region small bolt rounds
 	Ammo_Bolt_Standard = { //---------------------------- STANDARD BOLT ROUNDS
 		
 		item_type : "ammo_bolt",
@@ -24,7 +24,7 @@ function AmmoStructs() {
 		damage_type : ["physical","PHYS"],
 		armor_penetration : 0.10,
 		guidance : "dumb",
-		fuse : 0.1, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive. 
+		fuse : 0.01, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive. 
 		special : "none", //an array of any special effects
 		impact_type : ["explosion", 2, 4, 1, c_gray, 0, 0, snd_explode_small1], //type, boom size, smoke mass, smoke max scale, smoke color, frag count, frag lifetime, sound
 		
@@ -44,15 +44,15 @@ function AmmoStructs() {
 	Ammo_Bolt_Kraken = { //---------------------------- KRAKEN BOLT ROUNDS
 		
 		item_type : "ammo_bolt",
-		damage_mod : 1.1,
+		damage_mod : 0.9,
 		ROF_mod : 0.8,
 		range_mod : 1.25,
 		velocity_mod : 1.25,
 		
 		damage_type : ["physical","PHYS"],
-		armor_penetration : 0.25,
+		armor_penetration : 0.4,
 		guidance : "dumb",
-		fuse : 0.5, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
+		fuse : 0.01, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
 		special : "none", //an array of any special effects
 		impact_type : ["dust",9,1.33,c_gray], //type, smoke mass, smoke max scale, smoke count
 		
@@ -102,7 +102,7 @@ function AmmoStructs() {
 	Ammo_Shotgun_Slug = {//---------------------------- Slug rounds
 		
 		item_type : "ammo_shotgun",
-		damage_mod : 1.50,
+		damage_mod : 1.2,
 		ROF_mod : 1.00,
 		range_mod : 1.00,
 		velocity_mod : 1.00,
@@ -110,7 +110,7 @@ function AmmoStructs() {
 		damage_type : ["physical","PHYS"],
 		armor_penetration : -0.1,
 		guidance : "none",
-		fuse : 0.15, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
+		fuse : 0.03, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
 		special : "none", //an array of any special effects
 		impact_type : ["dust",8,1,c_gray], //type, smoke mass, smoke max scale, smoke color, frag count, frag lifetime, sound
 		
@@ -166,7 +166,7 @@ function AmmoStructs() {
 		damage_type : ["physical","PHYS"],
 		armor_penetration : 1.0,
 		guidance : "none",
-		fuse : 0.1, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
+		fuse : 0.01, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
 		special : "none", //an array of any special effects
 		impact_type : ["dust",13,2.5,c_gray],//["explosion", 5, 9, 2, c_gray, 10, 32, snd_explode_small1], //type, size, smoke mass, smoke max scale, smoke color, frag count, frag lifetime, sound
 		
@@ -278,7 +278,7 @@ function AmmoStructs() {
 		velocity_mod : 1.00,
 		
 		damage_type : ["thermal","THER"],
-		armor_penetration : 3,
+		armor_penetration : 5,
 		guidance : "beam",
 		fuse : 0.3, //how much resistance the projectile must encounter to detonate, as a factor of its dmg. smaller no. = more sensitive
 		special : ["ignite"], //an array of any special effects

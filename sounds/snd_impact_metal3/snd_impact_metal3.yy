@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":0.520522,
+  "duration":0.5205215,
   "name":"snd_impact_metal3",
   "parent":{
     "name":"Impacts",
@@ -21,5 +21,5 @@
   "sampleRate":44100,
   "soundFile":"snd_impact_metal3.wav",
   "type":0,
-  "volume":1.0,
+  "volume":0.6,
 }

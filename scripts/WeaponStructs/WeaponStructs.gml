@@ -10,7 +10,7 @@ function FindROF(RoundsPerMinute) {
 #region WeaponStructs function
 function WeaponStructs(){
 
-	#region fists
+#region fists
 	Unarmed_Fists = { //---------------------------- thunderedge pattern chainsword
 		
 		item_type : "weapon_melee_unarmed",
@@ -38,14 +38,14 @@ function WeaponStructs(){
 	//ds_list_add(ListComWP,pistol_bolt_tigrus[27]+".pistol_bolt_tigrus") //fix this later
 	#endregion
 	
-	#region Boltguns, storm bolters, bolt pistols and heavy bolters
+#region Boltguns, storm bolters, bolt pistols and heavy bolters
 Boltgun_Phobos = { //---------------------------- PHOBOS BOLTER
 		
 		item_type : "weapon_ranged_bolt",
 		
 		//combat stats
-		damage : 65, //65
-		ROF : FindROF(450), //rounds per minute
+		damage : 77,//65,
+		ROF : FindROF(500), //450 rounds per minute
 		range : 3000, //effective range before gravity takes hold, rounds can mod this
 		capacity : 30,		
 		spread : 0.2,
@@ -79,7 +79,7 @@ Boltgun_Phobos = { //---------------------------- PHOBOS BOLTER
 	};
 	//ds_list_add(ListComWP,pistol_bolt_tigrus[27]+".pistol_bolt_tigrus") //fix this later
 	
-	Bolt_Pistol_Tigrus = { //---------------------------- tigrus bolt pistol
+Bolt_Pistol_Tigrus = { //---------------------------- tigrus bolt pistol
 		
 		item_type : "weapon_ranged_bolt",
 		
@@ -120,16 +120,16 @@ Boltgun_Phobos = { //---------------------------- PHOBOS BOLTER
 	//ds_list_add(ListComWP,pistol_bolt_tigrus[27]+".pistol_bolt_tigrus") //fix this later
 #endregion
 
-	#region Melta weapons and inferno pistols
+#region Melta weapons and inferno pistols
 Meltagun_Proteus = { //---------------------------- proteus melter
 		
 		item_type : "weapon_ranged_melta",
 		
 		//combat stats
-		damage : 90,
+		damage : 200,
 		ROF : 2, //rounds per minute
-		range : 1000, //effective range before gravity takes hold, rounds can mod this
-		capacity : 55,		
+		range : 800, //effective range before gravity takes hold, rounds can mod this
+		capacity : 40,		
 		spread : 0.1,
 		muzzle_velocity : 00,
 		
@@ -162,7 +162,7 @@ Meltagun_Proteus = { //---------------------------- proteus melter
 	//ds_list_add(ListComWP,pistol_bolt_tigrus[27]+".pistol_bolt_tigrus") //fix this later
 #endregion	
 	
-	#region Flamers, hand flamers, heavy flamers
+#region Flamers, hand flamers, heavy flamers
 Flamer_Astartes = { //---------------------------- ASTARTES SHOTGUN
 	
 		item_type : "weapon_ranged_flamer",
@@ -204,14 +204,14 @@ Flamer_Astartes = { //---------------------------- ASTARTES SHOTGUN
 	//ds_list_add(ListComWP,pistol_bolt_tigrus[27]+".pistol_bolt_tigrus") //fix this later
 #endregion	
 	
-	#region Laser locks, guns, cutters, cannons, etc.
+#region Laser locks, guns, cutters, cannons, etc.
 Lasgun_Kantrael = { //---------------------------- KANTRAEL LASGUN
 		
 		item_type : "weapon_ranged_laser_lasgun",
 		
 		//combat stats
-		damage : 29,
-		ROF : FindROF(500), //rounds per minute
+		damage : 26,
+		ROF : FindROF(400), //rounds per minute
 		range : 4000, //effective range before gravity takes hold, rounds can mod this
 		capacity : 60,		
 		spread : 0.15,
@@ -237,8 +237,8 @@ Lasgun_Kantrael = { //---------------------------- KANTRAEL LASGUN
 		magazine_attachment : "mag_sickle1", //spine attachment name
 		flash_type : flash_med_normal,
 		flash_color : [c_red, c_white], 
-		animation_group : anmgrp_boltgun_phobos,
-		sound_group : sndgrp_boltgun1,
+		animation_group : anmgrp_lasgun_kantrael,
+		sound_group : sndgrp_laser1,
 		angular_offset : 90, //angular offset for animation related stuff
 		vertical_offset : -150, // Y axis offset for crosshair stuff		
 		gun_smoke : "none"
@@ -246,14 +246,14 @@ Lasgun_Kantrael = { //---------------------------- KANTRAEL LASGUN
 	//ds_list_add(ListComWP,pistol_bolt_tigrus[27]+".pistol_bolt_tigrus") //fix this later
 #endregion	
 
-	#region Shotguns, auto and stub weapons
+#region Shotguns, auto and stub weapons
 	
 Rotorcannon_Proteus = { //------------------------- PROTEUS ROTORCANNON
 		
 		item_type : "weapon_ranged_auto",
 		
 		//combat stats
-		damage : 14,
+		damage : 24,
 		ROF : FindROF(3000), //FindROF(330), //rounds per minute
 		range : 1000, //effective range before gravity takes hold, rounds can mod this
 		capacity : 500,		
@@ -291,11 +291,11 @@ Shotgun_Astartes = { //---------------------------- ASTARTES SHOTGUN
 		item_type : "weapon_ranged_shotgun_auto",
 		
 		//combat stats
-		damage : 90,
+		damage : 150,
 		ROF : 45, //FindROF(330), //rounds per minute
 		range : 1000, //effective range before gravity takes hold, rounds can mod this
-		capacity : 8,		
-		spread : 0.25,
+		capacity : 9,		
+		spread : 0.5,
 		muzzle_velocity : 80,
 		
 		//technical weapon stats
@@ -362,10 +362,86 @@ Autocannon_Kalibrax = { //------------------------- KALIBRAX AUTOCANNON
 		vertical_offset : -150, // Y axis offset for crosshair stuff	
 		gun_smoke : [c_gray, 11, 1.33, [6,9],"no"] //color, smoke mass, smoke max scale, smoke velocity, twin smoke
 	};
+Autogun_Agrippina3 = { //------------------------- AGRIPPINA III AUTOGUN
+		
+		item_type : "weapon_ranged_auto",
+		
+		//combat stats
+		damage : 27,
+		ROF : FindROF(500), //rounds per minute
+		range : 3300, //effective range before gravity takes hold, rounds can mod this
+		capacity : 20,		
+		spread : 0.25,
+		muzzle_velocity : 90,
+		
+		//technical weapon stats
+		weapon_type : "auto",
+		weapon_slot : ["primary",2], //1 = single hand, 2 = both hands, 3 = offhand,
+		ammo_type: "ammo_autogun",
+		default_ammo_type: Ammo_Auto_Ball,
+		firemodes: ["Semi", "Auto"],
+		weight : 9,
+		durability_max : 2000,
+		rarity : "300.common",
+		heat_generation : -1,
+		heat_capacity : 1,
+		
+		//cosmetic stuff, animations, sounds, etc.
+		name : "Agrippina III Pattern Autogun",
+		description : "desc_blank.txt", 
+		inventory_subimage : [sp_shotgun_icons, 0], //subimage for item to appear in inventory
+		weapon_attachment : "Weapons/autogun_agri3", //spine attachment name
+		magazine_attachment : "Magazines/mag_auto2", //spine attachment name
+		flash_type : flash_med_normal,
+		flash_color : [make_colour_rgb(255, 230, 90), c_white], 
+		animation_group : anmgrp_autogun_agri3,
+		sound_group : sndgrp_autogun1,
+		angular_offset : 90, //angular offset for animation related stuff
+		vertical_offset : -150, // Y axis offset for crosshair stuff	
+		gun_smoke : [c_gray, 11, 1.33, [6,9],"no"] //color, smoke mass, smoke max scale, smoke velocity, twin smoke
+	};
+Autogun_Mosin = { //------------------------- MOSIN AUTOGUN
+		
+		item_type : "weapon_ranged_auto",
+		
+		//combat stats
+		damage : 31,
+		ROF : 50, //rounds per minute
+		range : 3300, //effective range before gravity takes hold, rounds can mod this
+		capacity : 6,		
+		spread : 0.1,
+		muzzle_velocity : 90,
+		
+		//technical weapon stats
+		weapon_type : "auto",
+		weapon_slot : ["primary",2], //1 = single hand, 2 = both hands, 3 = offhand,
+		ammo_type: "ammo_autogun",
+		default_ammo_type: Ammo_Auto_Ball,
+		firemodes: ["Semi"],
+		weight : 11,
+		durability_max : 2000,
+		rarity : "300.common",
+		heat_generation : -1,
+		heat_capacity : 1,
+		
+		//cosmetic stuff, animations, sounds, etc.
+		name : "Mosin Pattern Autogun",
+		description : "desc_blank.txt", 
+		inventory_subimage : [sp_shotgun_icons, 0], //subimage for item to appear in inventory
+		weapon_attachment : "Weapons/autogun_mosin", //spine attachment name
+		magazine_attachment : "Magazines/mag_auto2", //spine attachment name
+		flash_type : flash_med_normal,
+		flash_color : [make_colour_rgb(255, 230, 90), c_white], 
+		animation_group : anmgrp_autogun_mosin,
+		sound_group : sndgrp_autogun_bolt1,
+		angular_offset : 90, //angular offset for animation related stuff
+		vertical_offset : -150, // Y axis offset for crosshair stuff	
+		gun_smoke : [c_gray, 11, 1.33, [6,9],"no"] //color, smoke mass, smoke max scale, smoke velocity, twin smoke
+	};
 	
 #endregion	
 
-	#region Plasma cannons, guns, pistols
+#region Plasma cannons, guns, pistols
 Plasmagun_Thunderbolt = { //---------------------------- Thunderbolt pattern plasma gun
 		
 		item_type : "weapon_ranged_plasma",
@@ -407,7 +483,7 @@ Plasmagun_Thunderbolt = { //---------------------------- Thunderbolt pattern pla
 	
 #endregion
 
-	#region Chain swords and axes
+#region Chain swords and axes
 Chainsword_Thunderedge = { //---------------------------- thunderedge pattern chainsword
 		
 		item_type : "weapon_melee_sword_chain",
@@ -437,7 +513,7 @@ Chainsword_Thunderedge = { //---------------------------- thunderedge pattern ch
 	//ds_list_add(ListComWP,pistol_bolt_tigrus[27]+".pistol_bolt_tigrus") //fix this later
 #endregion
 	
-	#region Power swords, mauls and axes
+#region Power swords, mauls and axes
 Powersword_Proteus = { //---------------------------- thunderedge pattern chainsword
 		
 		item_type : "weapon_melee_sword_power",

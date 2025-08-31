@@ -1,4 +1,7 @@
-CreateScript = InfantryCreateGeneric;
+
+
+if(EnemyType = "Scion") {CreateScript = InfantryCreateGeneric};
+
 StepScript = InfantryStepGeneric;
 AnimScript = InfantryAnimGeneric;
 EventScript = InfantryEventGeneric;

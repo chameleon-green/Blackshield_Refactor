@@ -33,8 +33,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sp_casing_shotgun",
-    "path":"sprites/sp_casing_shotgun/sp_casing_shotgun.yy",
+    "name":"sp_human1",
+    "path":"sprites/sp_human1/sp_human1.yy",
   },
   "spriteMaskId":null,
   "visible":true,

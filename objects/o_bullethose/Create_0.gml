@@ -1,1 +1,1 @@
-repeat (100) {instance_create_depth(x,y,depth,o_enemy)};
+//repeat (100) {instance_create_depth(x,y,depth,o_enemy)};

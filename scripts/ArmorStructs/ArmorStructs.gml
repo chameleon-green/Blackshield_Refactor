@@ -8,7 +8,7 @@ function ArmorStructs(){
 		item_type : "power_armor_head",
 		
 		weight : 20, //weight in lbs
-		durability_max : 2000,
+		durability_max : 3000,
 		rarity : "1350.common",	
 		
 		heat_generation : 5, //heat and armor generation 
@@ -32,7 +32,8 @@ function ArmorStructs(){
 		name : "MKII 'Crusade' Pattern Helmet",
 		armor_attachment : ["2000_head","2000_eyes"],	
 		description : "desc_blank.txt", 
-		inventory_subimage : [sp_xhair, 6] //subimage for item to appear in inventory		
+		inventory_subimage : [sp_statusbody_mk2, 1], //subimage for item to appear in inventory
+		status_subimage : [sp_statusbody_mk2, 1] //subimage to show on status screen
 	};
 	
 	Armor_Torso_2000 = { //---------------------------- Standard MK2 Torso
@@ -40,7 +41,7 @@ function ArmorStructs(){
 		item_type : "power_armor_torso",
 		
 		weight : 110, //weight in lbs
-		durability_max : 3700,
+		durability_max : 4700,
 		rarity : "1350.common",	
 		
 		heat_generation : 25, //heat and armor generation 
@@ -63,7 +64,8 @@ function ArmorStructs(){
 		name : "MKII 'Crusade' Pattern Cuirass",
 		armor_attachment : ["2000_torso","2000_collar","2000_backpack","2000_backpack trim","2000_pelvis"],	
 		description : "desc_blank.txt", 
-		inventory_subimage : [sp_xhair, 6] //subimage for item to appear in inventory		
+		inventory_subimage : [sp_statusbody_mk2, 0], //subimage for item to appear in inventory
+		status_subimage : [sp_statusbody_mk2, 0] //subimage to show on status screen
 	};
 	
 	Armor_ArmL_2000 = { //---------------------------- Standard MK2 Left Arm
@@ -71,7 +73,7 @@ function ArmorStructs(){
 		item_type : "power_armor_armL",
 		
 		weight : 40, //weight in lbs
-		durability_max : 1400,
+		durability_max : 2400,
 		rarity : "1350.common",	
 		
 		heat_generation : 8, //heat and armor generation 
@@ -92,7 +94,8 @@ function ArmorStructs(){
 		name : "MKII 'Crusade' Pattern Left Vambrace",
 		armor_attachment : ["front bicep","2000_front forearm","pauldron","2000_pauldron trim","front hand"],	
 		description : "desc_blank.txt", 
-		inventory_subimage : [sp_xhair, 6] //subimage for item to appear in inventory		
+		inventory_subimage : [sp_statusbody_mk2, 2], //subimage for item to appear in inventory
+		status_subimage : [sp_statusbody_mk2, 2] //subimage to show on status screen		
 	};
 	
 	Armor_ArmR_2000 = { //---------------------------- Standard MK2 Right Arm
@@ -100,7 +103,7 @@ function ArmorStructs(){
 		item_type : "power_armor_armR",
 		
 		weight : 40, //weight in lbs
-		durability_max : 1400,
+		durability_max : 2400,
 		rarity : "1350.common",	
 		
 		heat_generation : 8, //heat and armor generation 
@@ -122,7 +125,8 @@ function ArmorStructs(){
 		//armor_attachment : ["front bicep","2000_front forearm","pauldron","2000_pauldron trim"],	
 		armor_attachment : ["rear bicep","rear forearm","rear pauldron"],	
 		description : "desc_blank.txt", 
-		inventory_subimage : [sp_xhair, 6] //subimage for item to appear in inventory		
+		inventory_subimage : [sp_statusbody_mk2, 3], //subimage for item to appear in inventory
+		status_subimage : [sp_statusbody_mk2, 3] //subimage to show on status screen		
 	};
 	
 	Armor_LegL_2000 = { //---------------------------- Standard MK2 Left Leg
@@ -130,7 +134,7 @@ function ArmorStructs(){
 		item_type : "power_armor_legL",
 		
 		weight : 60, //weight in lbs
-		durability_max : 2300,
+		durability_max : 3300,
 		rarity : "1350.common",	
 		
 		heat_generation : 12, //heat and armor generation 
@@ -152,7 +156,8 @@ function ArmorStructs(){
 		armor_attachment : ["2000_thigh","2000_thigh_trim","2000_knee","2000_shin","2000_foot"],	
 		
 		description : "desc_blank.txt", 
-		inventory_subimage : [sp_xhair, 6] //subimage for item to appear in inventory		
+		inventory_subimage : [sp_statusbody_mk2, 4], //subimage for item to appear in inventory
+		status_subimage : [sp_statusbody_mk2, 4] //subimage to show on status screen
 	};
 	
 	Armor_LegR_2000 = { //---------------------------- Standard MK2 Left Leg
@@ -160,7 +165,7 @@ function ArmorStructs(){
 		item_type : "power_armor_legR",
 		
 		weight : 60, //weight in lbs
-		durability_max : 2300,
+		durability_max : 3300,
 		rarity : "1350.common",	
 		
 		heat_generation : 12, //heat and armor generation 
@@ -182,7 +187,8 @@ function ArmorStructs(){
 		armor_attachment : ["2000_thigh","2000_knee","2000_shin","2000_foot"],
 		
 		description : "desc_blank.txt", 
-		inventory_subimage : [sp_xhair, 6] //subimage for item to appear in inventory		
+		inventory_subimage : [sp_statusbody_mk2, 5], //subimage for item to appear in inventory
+		status_subimage : [sp_statusbody_mk2, 5] //subimage to show on status screen	
 	};
 	#endregion
 	

@@ -56,6 +56,27 @@ function AnimationsFlashesSoundGroups(){
 		
 	};
 	
+	anmgrp_autogun_agri3 = {
+		idle : "Ballistic Weapons/idle_auto_agri3",
+		fire : "Ballistic Weapons/firing_auto_agri3",
+		reload : "Ballistic Weapons/reload_auto_agri3"
+		
+	};
+	
+	anmgrp_autogun_mosin = {
+		idle : "Ballistic Weapons/idle_auto_mosin",
+		fire : "Ballistic Weapons/firing_auto_mosin",
+		reload : "Ballistic Weapons/reload_auto_mosin"
+		
+	};
+	
+	anmgrp_lasgun_kantrael = {
+		idle : "Laser Weapons/idle_lasgun_kantrael",
+		fire : "Laser Weapons/firing_lasgun_kantrael",
+		reload : "Laser Weapons/reload_lasgun_kantrael"
+		
+	};
+	
 	anmgrp_chainsword_thunderedge = {
 		idle : "Chain Weapons/idle_sword_thunderedge",
 		strike : "Chain Weapons/strike_anim_sword_thunderedge",
@@ -161,6 +182,15 @@ function AnimationsFlashesSoundGroups(){
 		selector : snd_selector1
 	};
 	
+	sndgrp_laser1 = {
+		fire : [snd_laser_small1],
+		mag_in : snd_magin1,
+		mag_out : snd_magout1,
+		rack_slide : snd_rackslide1,
+		empty : snd_click_empty,
+		selector : snd_selector1
+	};
+	
 	sndgrp_rotor1 = {
 		fire_loop : [snd_rotor_loop,snd_rotor_fire_loop],
 		mag_in : snd_rotor_reload,
@@ -177,6 +207,24 @@ function AnimationsFlashesSoundGroups(){
 		mag_in : snd_magin1,
 		mag_out : snd_magoutbig1,
 		rack_slide : snd_shotgun_rackslide1,
+		empty : snd_click_empty,
+		selector : snd_selector1
+	};
+	
+	sndgrp_autogun1 = {
+		fire : [snd_weapon_bolt_med1],
+		mag_in : snd_magin1,
+		mag_out : snd_magout1,
+		rack_slide : snd_rackslide1,
+		empty : snd_click_empty,
+		selector : snd_selector1
+	};
+	
+	sndgrp_autogun_bolt1 = {
+		fire : [snd_weapon_bolt_med1],
+		mag_in : snd_magin1,
+		mag_out : snd_magout1,
+		rack_slide : snd_rackslide1,
 		empty : snd_click_empty,
 		selector : snd_selector1
 	};

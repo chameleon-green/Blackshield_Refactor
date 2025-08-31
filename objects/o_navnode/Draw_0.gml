@@ -1,4 +1,4 @@
-draw_self();
+//draw_self();
 //draw_text(x,bbox_top,string(id));
 /*
 var LOSList = ds_list_create();

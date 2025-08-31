@@ -5,18 +5,21 @@ draw_self();
 
 
 //--------------------------------------------- DEBUG STUFF ------------------------------------------------
+/*
 draw_text(x,bbox_top,reloading);
 
-//ds_list_draw(collisions_list,x,bbox_top);
+ds_list_draw(collisions_list,x,bbox_top);
 
 //draw_text(x,bbox_top,o_IC.AIQ);
-/*
-ds_list_draw(AIQueue,x,bbox_top);
+
+//ds_list_draw(AIQueue,x,bbox_top);
 
 draw_rectangle(x-hbox_torso[0],y-hbox_torso[1],x-hbox_torso[2],y-hbox_torso[3],true);
 draw_rectangle(x-hbox_legs[0],y-hbox_legs[1],x-hbox_legs[2],y-hbox_legs[3],true);
 draw_rectangle(x-hbox_head[0],y-hbox_head[1],x-hbox_head[2],y-hbox_head[3],true);
- 
+
+draw_rectangle(bbox_left,bbox_top,bbox_right,bbox_bottom,true);
+ /*
 draw_set_halign(fa_center);
 
 draw_text(x,bbox_top-90,"head:"+string(hp_body_head)+"/"+string(hp_body_head_max));

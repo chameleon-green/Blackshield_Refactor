@@ -1,0 +1,1 @@
+if(!freeze) {speed = base_speed};

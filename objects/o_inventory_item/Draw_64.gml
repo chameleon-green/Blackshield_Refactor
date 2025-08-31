@@ -52,7 +52,7 @@ if(Click && touching && Interactable) {global.Selected = [unique_id,item]};
 
 draw_set_font(fnt_caslonSB);
 draw_set_halign(fa_center);
-draw_set_valign(fa_center);
+draw_set_valign(fa_middle);
 
 var MyDisplacement = ((Ycent - y)/scale)+ Yoffset
 //var GridYValue = ds_grid_value_y(grid,0,0,ds_grid_width(grid),ds_grid_height(grid),unique_id);
@@ -80,7 +80,7 @@ if ( (MyDisplacement >= -158) and (MyDisplacement <= 138) ){
 	
 	Interactable = 1;	
 	draw_self();	
-	draw_text_ext_transformed_color(x,y+(10*scale),TitleText,1,99999,scale*0.9,scale*1,0,Color,Color,Color,Color,1);
+	draw_text_ext_transformed_color(x,y+(10*scale),TitleText,1,99999,scale*0.85,scale*1.1,0,Color,Color,Color,Color,1);
 
 };
 
@@ -119,8 +119,6 @@ if ( (MyDisplacement > 138) and (MyDisplacement < 166) ){
 	};
 };
 #endregion
-
-draw_text(x,y,MyDisplacement)
 
 if(Selected = 1) {
 	

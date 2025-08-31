@@ -23,6 +23,10 @@ if(Will > MaxWill) {Will = MaxWill};
 
 PlayerMovement();
 
+hbox_head = [40,146-55*crouching,-40,176-65*crouching];
+hbox_torso = [50,85-40*crouching,-50,146-55*crouching];
+hbox_legs = [50,0,-50,85-40*crouching];
+
 ImpactScript(o_bullet,"head",hbox_head,collisions_list,0);
 ImpactScript(o_bullet,["torso","torso","torso","torso","armL","armL","armR","armR"],hbox_torso,collisions_list,0);
 ImpactScript(o_bullet,["legL","legR"],hbox_legs,collisions_list,0);

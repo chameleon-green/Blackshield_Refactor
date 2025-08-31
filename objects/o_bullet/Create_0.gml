@@ -14,20 +14,26 @@ impact_type = type.impact_type;
 impact_wall = 0; //check if we are destroyed as a result of a platform/barrier
 
 base_speed = speed;
+freeze = 0;
 
 kill = 0;
 endBeam = 0;
 beamLength = 0;
 beamToggle = 1;
+MainBreak = 0;
 
-IsBeam = 0;
+IsBeam = string_count("beam",type.guidance);
 Flames = (string_count("flames",sprite_get_name(sprite_index)));
 
-KillMe = function(){
-	instance_destroy(self)
-};
+kill_timer = timer_create(2,false);
 
-kill_timer = time_source_create(time_source_game,2,time_source_units_frames,KillMe);
+MyGhost = instance_create_depth(x,y,depth,o_suppressionghost,{
+	Creator : id, 
+	IFF : IFF, 
+	KillTime : 60,
+	StartKill : 0,
+	image_angle : direction
+});
 
 //-------------------------------------------- barrier collision -----------------------------------------
 
@@ -73,7 +79,7 @@ if(!IsBeam && !Flames){
 	var _YY = y+lengthdir_y(base_speed,direction);
 	var _XXA = x+lengthdir_x(base_speed*1.2,direction);
 	var _YYA = y+lengthdir_y(base_speed*1.2,direction);
-	var col_actor = collision_line_list(x,y,_XXA,_YYA,o_actorParent,0,1,col_list,1);
+	var col_actor = collision_line_list(x,y,_XXA,_YYA,o_actorParent,1,1,col_list,1);
 	var Trigger = 0;
 	
 	if(col_actor > 0){		
@@ -90,6 +96,7 @@ if(!IsBeam && !Flames){
 		
 		if(Trigger) {
 			speed = 0;
+			//freeze = 1;
 			var Line_Length2 = 0;
 			var Collided2 = place_meeting(x,y,Actor);
 			while(!Collided2 and (Line_Length2 < base_speed*3)) {
@@ -145,4 +152,4 @@ if(Flames){
 };
 
 	
-IsBeam = string_count("beam",type.guidance);
+

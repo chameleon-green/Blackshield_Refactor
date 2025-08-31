@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":0.78356,
+  "duration":0.7835601,
   "name":"snd_swing_heavy2",
   "parent":{
     "name":"Weapons, Generic",

@@ -36,3 +36,4 @@ function check_los_and_range(ai_enabled,ix,iy,target,wall_object,max_range){
 		
 	};
 };
+	
